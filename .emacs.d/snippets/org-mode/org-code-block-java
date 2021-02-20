@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: java code block
+# key: ;cj
+# --
+
+#+begin_src java
+$0
+#+end_src

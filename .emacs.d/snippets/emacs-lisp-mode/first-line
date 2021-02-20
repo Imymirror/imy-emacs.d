@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: .el first line
+# key: ;e
+# --
+;; $1.el -*- lexical-binding: t; -*-
+$0
