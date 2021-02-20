@@ -1,7 +1,7 @@
 * introduce
 This is my personal emacs configuration. It is highly inspired by doom emacs.
 
-I use doom-emacs for mostly 3 months. then I think maybe I configure emacs from scratch by myself for fun.
+I use doom-emacs for mostly 3 months. then I think maybe I can configure emacs from scratch by myself for fun.
 
 * directory structure
 The Emacs configuration is placed in [[file:.emacs.d/][.emacs.d]] folder.
@@ -29,3 +29,4 @@ The Emacs configuration is placed in [[file:.emacs.d/][.emacs.d]] folder.
   - =init-theme.el= : load theme
   - =init-which-key.el= : which key
   - =init-temp.el= : temporary configuration. I haven't decided where to put it yet
+
