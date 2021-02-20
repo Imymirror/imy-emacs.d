@@ -9,7 +9,7 @@ The Emacs configuration is placed in [[file:.emacs.d/][.emacs.d]] folder.
 - init file
   - =init-early.el= : configuration load before init.el
   - =init.el= : the default configure entry
-- [[file:.emacs.d/lisp/][lisp/]] : configuration requred by init.el by classification
+- [[file:.emacs.d/lisp/][lisp/]] : configuration requred by init.el classify by pakcage 
   - =init-basic.el= : emacs basic config.
   - =init-capture.el= : config about org-capure
   - =init-custom.el= : put custom config into custom.el
@@ -29,4 +29,3 @@ The Emacs configuration is placed in [[file:.emacs.d/][.emacs.d]] folder.
   - =init-theme.el= : load theme
   - =init-which-key.el= : which key
   - =init-temp.el= : temporary configuration. I haven't decided where to put it yet
-
