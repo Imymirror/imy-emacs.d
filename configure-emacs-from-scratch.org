@@ -151,6 +151,13 @@
     - [[#有用选项][有用选项]]
 - [[#敏感信息的处理][敏感信息的处理]]
 - [[#行或者mode-line背景颜色设置][行或者mode-line背景颜色设置]]
+- [[#如何优化-emacs-的启动速度][如何优化 emacs 的启动速度]]
+  - [[#emacs-daemon][emacs daemon]]
+  - [[#gc-优化][gc 优化]]
+  - [[#file-name-handler-alist][file-name-handler-alist]]
+  - [[#minibuffer-的时候不要gc][minibuffer 的时候不要gc]]
+  - [[#gc-out-of-focus][gc out of focus]]
+  - [[#使用package-gcmh--the-gc-magic-hack][使用package gcmh : the gc magic hack]]
 :END:
 
 *  前言
