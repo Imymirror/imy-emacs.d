@@ -420,7 +420,9 @@ ivy-mode 1)
 * ivy-rich 的配置 
 安装 ivy-rich 上为了显示 命令或者变量的更详细的信息.
 #+ATTR_ORG: :width 500 
-[[file:images/20210222130436-从零配置emacs教程/ivy-rich_的配置/20210222-133201_screenshot.png]]
+[[file:image/20210222-133201_screenshot.png]]
+
+
 
 #+begin_src elisp
 (require 'ivy-rich)
@@ -498,9 +500,9 @@ M + x  global-visual-line-mode
 
 package search command-log-mode 安装
 
-=command-log-mode= (this turns the mode on, and turn on logging current buffer)
-=global-command-log-mode= (optional. Turn on logging for any buffer)
-=clm/open-command-log-buffer= (show the key/command output buffer)
+- =command-log-mode= (this turns the mode on, and turn on logging current buffer)
+- =global-command-log-mode= (optional. Turn on logging for any buffer)
+- =clm/open-command-log-buffer= (show the key/command output buffer)
 * 安装主题
 ** 主题的切换
 emacs 有默认的主题,可用通过命令切换: M-x load-theme <tab>
@@ -706,7 +708,6 @@ emacs 著名的 git 插件
 #+end_src
 * telega
 如果你使用telegram, 那么这个插件就是必装的.
-
 ** install 
 #+BEGIN_SRC
 brew install tdlib
@@ -776,20 +777,16 @@ git clone --depth 1 --branch releases https://github.com/zevlg/telega.el
 #+begin_src elisp
 (general-define-key "C-M-)" 'telega) 
 #+end_src
-
 ** 常用操作
 *** Telega前缀map绑定：
-t (telega) :  开始telegram聊天. 如果指定 `ARG`, 就不会加入 root buffer.
-c (telega-chat-with) : 开始和符合 NAME 的人聊天.
-s (telega-saved-messages) : 切换到 SaveMessage. 如果 `C-u`, 保留该点, 否\\
-则跳到buffer的末尾.
-b (telega-switch-buffer) : 交互方式切换聊天.
-f (telega-buffer-file-send) : 发送文档或者图片到聊天. 如果指定 `C-u`
-则传输文件. 否则按照`iamge-mode major-mode`的方式, 将文件作为图片发送.
-如果在交互模式下调用, 与当前buffer关联的文件会被当做FILE.
-w (telega-browse-url) : 打开URL.
-    #+begin_src...
-a (telega-account-switch) :  telegram账号切换.
+- t (telega) :  开始telegram聊天. 如果指定 `ARG`, 就不会加入 root buffer.
+- c (telega-chat-with) : 开始和符合 NAME 的人聊天.
+- s (telega-saved-messages) : 切换到 SaveMessage. 如果 `C-u`, 保留该点, 否\\
+- 则跳到buffer的末尾.
+- b (telega-switch-buffer) : 交互方式切换聊天.
+- f (telega-buffer-file-send) : 发送文档或者图片到聊天. 如果指定 `C-u`则传输文件. 否则按照`iamge-mode major-mode`的方式, 将文件作为图片发送.如果在交互模式下调用, 与当前buffer关联的文件会被当做FILE.
+- w (telega-browse-url) : 打开URL.
+- a (telega-account-switch) :  telegram账号切换.
 *** 常用操作
 
 1. 翻页 ctrl+f ctrl+b
@@ -826,9 +823,9 @@ telega 有通知的, 不过得有d-bus协议的支持,像sway之类的就没有�
 *** 发送流媒体 : photo, png, gif, vedio
 C-c C-a (telega-chatbuf-attach) : 选择格式
 *** 聊天内容过滤搜索
-C-c / (telega-chatbuf-filter)
-C-c C-c (telega-chatbuf-filter-cancel)
-C-c C-s (telega-chatbuf-filter-search)
+- C-c / (telega-chatbuf-filter)
+- C-c C-c (telega-chatbuf-filter-cancel)
+- C-c C-s (telega-chatbuf-filter-search)
 * easymotion
 
 ** install
@@ -911,17 +908,17 @@ M-x package-install [RET] projectile [RET]
 (setq projectile-project-search-path '("~/pkm-roam"))
 #+end_src
 *** command
-Find file in current project (s-p f)
-Switch project (s-p p) (you can also switch between open projects with s-p q)
-Grep (search for text/regexp) in project (s-p s g) (grep alternatives like ag, pt and rg are also supported)
-Replace in project (s-p r)
-Invoke any Projectile command via the Projectile Commander (s-p m)
-Toggle between implementation and test (s-p t)
-Toggle between related files (e.g. foo.h <→ foo.c and Gemfile <→ Gemfile.lock) (s-p a)
-Run a shell command in the root of the project (s-p ! for a sync command and s-p & for an async command)
-Run various pre-defined project commands like:
-build/compile project (s-p c)
-test project (s-p T)
+- Find file in current project (s-p f)
+- Switch project (s-p p) (you can also switch between open projects with s-p q)
+- Grep (search for text/regexp) in project (s-p s g) (grep alternatives like ag, pt and rg are also supported)
+- Replace in project (s-p r)
+- Invoke any Projectile command via the Projectile Commander (s-p m)
+- Toggle between implementation and test (s-p t)
+- Toggle between related files (e.g. foo.h <→ foo.c and Gemfile <→ Gemfile.lock) (s-p a)
+- Run a shell command in the root of the project (s-p ! for a sync command and s-p & for an async command)
+- Run various pre-defined project commands like:
+- build/compile project (s-p c)
+- test project (s-p T)
 * 注释 comment
 ** install
 [[https://github.com/redguardtoo/evil-nerd-commenter][redguardtoo/evil-nerd-commenter: Comment/uncomment lines efficiently. Like Nerd Commenter in Vim]]
@@ -1192,9 +1189,8 @@ kill-buffer-ask 可以改成 kill-buffer
 fork from smex
 
 ** usage
-amx-mode :  remap execute-extended-command to amx
-amx-show-unbound-commands : shows frequently used commands that have no key bindings.
-
+- amx-mode :  remap execute-extended-command to amx
+- amx-show-unbound-commands : shows frequently used commands that have no key bindings.
 ** amx-save-file
 amx-save-file : 保存文件状态, 默认路径~/.emacs.d/amx-items 
 ** Completion backends
