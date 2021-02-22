@@ -3,6 +3,8 @@ This is my personal emacs configuration. It is highly inspired by doom emacs.
 
 I use doom-emacs for mostly 3 months. then I think maybe I can configure emacs from scratch by myself for fun.
 
+the detail see [[file:configure-emacs-from-scratch.org][configure eamcs from scratch]]
+
 * directory structure
 The Emacs configuration is placed in [[file:.emacs.d/][.emacs.d]] folder.
 
