@@ -1430,4 +1430,69 @@ mode-line : 给mode-line添加背景色
 1. global-hl-line-mode on 
 2. (with-eval-after-load 'hl-line ...)
 3. I should required it first.
+* 如何优化 emacs 的启动速度
+** emacs daemon
+详细使用见 [[https://github.com/daviwil/emacs-from-scratch/blob/master/show-notes/Emacs-Tips-08.org][emacs-from-scratch/Emacs-Tips-08.org at master · daviwil/emacs-from-scratch]]
+** gc 优化
+#+begin_src elisp
+(defvar better-gc-cons-threshold 134217728 ; 128mb
+  "The default value to use for `gc-cons-threshold'.
+If you experience freezing, decrease this. If you experience stuttering, increase this.")
 
+(setq gc-cons-threshold most-positive-fixnum
+      gc-cons-percentage 0.6)
+
+
+(defun startup/reset-gc ()
+  (setq gc-cons-threshold better-gc-cons-threshold
+	gc-cons-percentage 0.1))
+   
+(add-hook 'emacs-startup-hook 'startup/reset-gc)
+#+end_src
+** file-name-handler-alist
+#+begin_src elisp
+(defvar startup/file-name-handler-alist file-name-handler-alist)
+(setq file-name-handler-alist nil)
+
+(defun startup/revert-file-name-handler-alist ()
+  (setq file-name-handler-alist startup/file-name-handler-alist))
+
+(add-hook 'emacs-startup-hook 'startup/revert-file-name-handler-alist)
+#+end_src
+** minibuffer 的时候不要gc
+#+begin_src elisp
+(defun gc-minibuffer-setup-hook ()
+  (setq gc-cons-threshold (* better-gc-cons-threshold 2)))
+
+(defun gc-minibuffer-exit-hook ()
+  (garbage-collect)
+  (setq gc-cons-threshold better-gc-cons-threshold))
+
+(add-hook 'minibuffer-setup-hook #'gc-minibuffer-setup-hook)
+(add-hook 'minibuffer-exit-hook #'gc-minibuffer-exit-hook)
+
+#+end_src
+** gc out of focus
+#+begin_src elisp
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (if (boundp 'after-focus-change-function)
+                (add-function :after after-focus-change-function
+                              (lambda ()
+                                (unless (frame-focus-state)
+                                  (garbage-collect))))
+              (add-hook 'after-focus-change-function 'garbage-collect))))
+
+#+end_src
+** 使用package gcmh : the gc magic hack
+https://github.com/emacsmirror/gcmh
+
+#+begin_src elisp
+(straight-use-package
+ '(gcmh
+   :type git
+   :host github
+   :repo "emacsmirror/gcmh"))
+(require 'gcmh)
+(gcmh-mode 1)
+#+end_src
