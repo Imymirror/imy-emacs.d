@@ -1,9 +1,24 @@
 ;; init-which-key.el -*- lexical-binding: t; -*-
 
+(setq which-key-show-early-on-C-h t)
+(setq which-key-idle-delay 10000)
+(setq which-key-idle-secondary-delay 0.05)
+
+(setq which-key-prefix-prefix "+" )
+
+(setq which-key-add-column-padding 2)
+
 (which-key-mode)
 
-(setq which-key-idle-delay 1.0)
-(setq which-key-prefix-prefix "+" )
+;; (set-face-attribute 'which-key-key-face	nil :font "Hack Nerd Font Mono 14")
+;; (set-face-attribute 'which-key-separator-face nil :font "Hack Nerd Font Mono 14")
+;; (set-face-attribute 'which-key-note-face nil :font "Hack Nerd Font Mono 14")
+;; (set-face-attribute 'which-key-special-key-face nil :font "Hack Nerd Font Mono 14")
+;; (set-face-attribute 'which-key-group-description-face nil :font "Hack Nerd Font Mono 14")
+;; (set-face-attribute 'which-key-command-description-face nil :font "Hack Nerd Font Mono 14")
+;; (set-face-attribute 'which-key-local-map-description-face nil :font "Hack Nerd Font Mono 14")
+
+(setq which-key-special-keys '("SPC" "TAB" "RET" "ESC" "DEL"))
 
 (which-key-add-key-based-replacements
   "SPC b" "buffer"

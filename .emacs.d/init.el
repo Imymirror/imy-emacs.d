@@ -8,5 +8,6 @@
 ;;(require 'init-general) 
 (require 'init-map)
 (require 'init-roam)
+(require 'init-custom)
 (require 'init-idle-time-load)
 (require 'init-custom)

@@ -86,5 +86,30 @@ directory to make multiple eshell windows easier."
   (start-process-shell-command "make-frame" nil "emacsclient -c")
 )
 
+(defun imy/kill-other-buffers ()
+    "Kill all other buffers."
+    (interactive)
+    (mapc 'kill-buffer 
+          (delq (current-buffer) 
+                (cl-remove-if-not 'buffer-file-name (buffer-list)))))
+
+(defun imy/kill-all-buffers ()
+  (interactive)
+  (mapc 'kill-buffer (buffer-list)))
+
+
+(defun imy/org-delete-link ()
+    "Replace an org link by its description or if empty its address"
+  (interactive)
+  (if (org-in-regexp org-link-bracket-re 1)
+      (save-excursion
+        (let ((remove (list (match-beginning 0) (match-end 0)))
+              (description
+               (if (match-end 2) 
+                   (org-match-string-no-properties 2)
+                 (org-match-string-no-properties 1))))
+          (apply 'delete-region remove)
+          (insert description)))))
+
 (provide 'init-imy)
 

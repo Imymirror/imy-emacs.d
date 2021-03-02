@@ -1,9 +1,8 @@
 ;; init-basic.el -*- lexical-binding: t; -*-
 
-
 ;;(add-to-list 'custom-theme-load-path "~/.emacs.d.imymirror/package-manual/emacs-color-theme-solarized")
-(load-theme 'dichromacy t)
-;;(load-theme 'doom-dracula t)
+;; themes i like : doom-dracula dichromacy  doom-ayu-light, dichromacy
+(load-theme 'doom-dracula t)
 
 ;; 备份文件
 (setq
@@ -21,10 +20,17 @@
 (setq backup-directory-alist
       `(("." . ,imy/backup-dir)))
 
-
-
 ;; font
-(set-face-attribute 'default nil :height 160)
+;; Setting English Font 
+(set-face-attribute 'default nil :height 150 :weight 'bold :family "menlo")
+;; Chinese Font 配制中文字体
+(dolist (charset '(kana han symbol cjk-misc bopomofo))
+  (set-fontset-font (frame-parameter nil 'font)
+                    charset
+                    (font-spec :family "PingFang SC" :size 15)))
+
+;; (set-face-background 'hl-line "midnight blue")
+;; (set-face-background hl-line-face "gray13")
 
 ;; (global-linum-mode 1)
 (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
@@ -38,14 +44,32 @@
 (setq ring-bell-function 'ignore)
 
 (setq display-time-24hr-format t)
-(setq display-time-day-and-date t)
+;; (setq display-time-day-and-date t)
 
 (setq inhibit-startup-message t)
-(setq initial-frame-alist (quote ((fullscreen . maximized))))
-;;(setq default-frame-alist (quote ((fullscreen . maximized))))
+;; (setq initial-frame-alist (quote ((fullscreen . maximized))))
+;; (setq default-frame-alist (quote ((fullscreen . maximized))))
+
+(setq initial-frame-alist '(
+			    (top . 0) (left . 0) (width . 160) (height . 40)
+			    (tool-bar-lines . 0) 
+			    (vertical-scroll-bars . nil)
+			    (horizontal-scroll-bars . nil)
+			    (internal-border-width . 10)
+			    ))
+
+(setq default-frame-alist '(
+			    (top . 0) (left . 0) (width . 160) (height . 40)
+                            (tool-bar-lines . 0) 
+			    (vertical-scroll-bars . nil)
+			    (horizontal-scroll-bars . nil)
+			    (internal-border-width . 10)
+			    )
+      )
+
+
 
 (setq org-link-frame-setup '((file . find-file))) ;; 同一个窗口下打开org文件, 默认是在另一个窗口打
-
 
 (defun yes-or-no-p->-y-or-n-p (orig-fun &rest r)
   (cl-letf (((symbol-function 'yes-or-no-p) #'y-or-n-p))
@@ -57,6 +81,8 @@
 (setq org-return-follows-link t)
 
 (setq writeroom-width 100)
+
+(setq org-preview-latex-image-directory "~/.my-emacs-env/ltximg/")
 
 ;; early-init Compatibility with Emacs 26
 (cond ((version< emacs-version "26.1")

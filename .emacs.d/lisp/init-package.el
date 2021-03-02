@@ -10,7 +10,7 @@
 
 (package-initialize)
 
-(setq package-list '(command-log-mode doom-themes company writeroom-mode general visual-fill-column rainbow-identifiers yasnippet undo-fu org-bullets evil-nerd-commenter evil evil-collection magit projectile ivy org-roam org-roam-server grab-mac-link link-hint ripgrep counsel-projectile ivy-rich winum amx org-download rainbow-delimiters paredit which-key gcmh
+(setq package-list '(command-log-mode doom-themes company writeroom-mode general visual-fill-column rainbow-identifiers yasnippet undo-fu org-bullets evil-nerd-commenter evil evil-collection magit projectile ivy org-roam org-roam-server grab-mac-link link-hint ripgrep counsel-projectile ivy-rich winum amx org-download rainbow-delimiters paredit which-key gcmh org-make-toc lsp-mode evil-surround ace-pinyin pinyinlib
 				))
 
 (unless package-archive-contents

@@ -1,6 +1,8 @@
 ;; init-speedup.el -*- lexical-binding: t; -*-
 
-(defvar better-gc-cons-threshold 67108864 ; 64mb
+(setq load-prefer-newer t)
+
+(defvar better-gc-cons-threshold 13427728 ; 128mb
   "The default value to use for `gc-cons-threshold'.
 If you experience freezing, decrease this. If you experience stuttering, increase this.")
 
@@ -30,6 +32,7 @@ If you experience freezing, decrease this. If you experience stuttering, increas
 (add-hook 'minibuffer-setup-hook #'gc-minibuffer-setup-hook)
 (add-hook 'minibuffer-exit-hook #'gc-minibuffer-exit-hook)
 
+
 (add-hook 'emacs-startup-hook
           (lambda ()
             (if (boundp 'after-focus-change-function)
@@ -39,7 +42,6 @@ If you experience freezing, decrease this. If you experience stuttering, increas
                                   (garbage-collect))))
               (add-hook 'after-focus-change-function 'garbage-collect))))
 
-(setq load-prefer-newer t)
 
 
 (add-hook 'emacs-startup-hook

@@ -21,6 +21,13 @@
 (my-leader-def 'normal 'override "`" 'repeat)
 (general-define-key "M-x" 'counsel-M-x)
 
+
+
+(with-eval-after-load 'counsel
+  (define-key counsel-find-file-map  (kbd "TAB") #'ivy-alt-done))
+
+(general-define-key "C-x C-f" 'counsel-find-file) 
+
 (my-leader-def 'normal 'override "." 'counsel-find-file)
 (my-leader-def 'normal 'override "'" 'ivy-resume)
 (my-leader-def  'normal ";" 'evil-repeat-find-char) 
@@ -78,8 +85,8 @@
  (my-leader-def 'normal 'override "w k" 'evil-window-up)
  (my-leader-def 'normal 'override "w a" 'winner-undo)
  (my-leader-def 'normal 'override "w f" 'winner-redo)
-(my-leader-def 'normal 'override "1" 'winum-select-window-1)
 
+(my-leader-def 'normal 'override "1" 'winum-select-window-1)
 (my-leader-def 'normal 'override "2" 'winum-select-window-2)
 (my-leader-def 'normal 'override "3" 'winum-select-window-3)
 (my-leader-def 'normal 'override "4" 'winum-select-window-4)
@@ -87,6 +94,13 @@
 (my-leader-def 'normal 'override "6" 'winum-select-window-6)
 (my-leader-def 'normal 'override "7" 'winum-select-window-7)
 (my-leader-def 'normal 'override "8" 'winum-select-window-8)
+
+(general-define-key "M-x" 'counsel-M-x)
+(general-define-key  "s-1" 'winum-select-window-1)
+(general-define-key  "s-2" 'winum-select-window-2)
+(general-define-key  "s-3" 'winum-select-window-3)
+(general-define-key  "s-4" 'winum-select-window-4)
+(general-define-key  "s-5" 'winum-select-window-5)
 
  ;; file frame
 (my-leader-def 'normal 'override "f r" 'counsel-recentf)
@@ -154,7 +168,7 @@
 (my-leader-def 'normal 'override "t e" 'eval-region)
 (my-leader-def 'normal 'override "t E" 'eval-buffer)
 (my-leader-def 'normal 'override "t p" 'imy/org-download-paste-clipboard)
-(general-def  "C-; i" 'imy/org-download-paste-clipboard) 
+(general-def  "C-; C-i" 'imy/org-download-paste-clipboard) 
 
  ;; company
 (my-leader-def 'normal 'override "t c" 'company-complete) 
@@ -203,9 +217,14 @@
 (my-leader-def 'normal 'override "c e" 'imy/eshell-close)
 (my-leader-def 'normal 'override "c h" 'org-hide-block-all)
 (my-leader-def 'normal 'override "c s" 'org-show-block-all)
+(my-leader-def 'normal 'override "c c" 'org-edit-src-code)
+(my-leader-def 'normal 'override "c f" 'org-edit-src-exit)
 
 ;; zi
 (general-def 'normal  "z i" 'org-toggle-inline-images) 
+
+;;delete
+(my-leader-def 'normal 'override "d l" 'imy/org-delete-link)
 
 (provide 'init-map)
 
