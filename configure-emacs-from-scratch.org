@@ -1,12 +1,12 @@
 #+title: 从零配置emacs教程
 #+roam_tags: blog
 
-* Table of Contents
+* 目录
 :PROPERTIES:
-:TOC:      :include all :depth 5
+:TOC:      :include all :depth 2
 :END:
 :CONTENTS:
-- [[#table-of-contents][Table of Contents]]
+- [[#目录][目录]]
 - [[#前言][前言]]
 - [[#下载哪一个emacs版本][下载哪一个emacs版本]]
 - [[#如何安装-emacs-mac][如何安装 emacs-mac]]
@@ -53,17 +53,10 @@
   - [[#主题的切换][主题的切换]]
   - [[#包管理器中的可用包][包管理器中的可用包]]
   - [[#onedark-主题-配置过程][onedark 主题 配置过程]]
-    - [[#下载-one-dark][下载 one dark]]
-    - [[#复制主题到emacs的配置文件夹内][复制主题到emacs的配置文件夹内]]
-    - [[#配置主题加载文件夹信息启用主题][配置主题加载文件夹信息,启用主题]]
 - [[#emacs-roam][emacs roam]]
   - [[#install][install]]
   - [[#常规设置][常规设置]]
   - [[#roam-protocol][Roam Protocol]]
-    - [[#配置中启用-org-roam-protocol][配置中启用 Org-roam protocol]]
-    - [[#为-emacsclient-创建一个桌面应用][为 emacsclient 创建一个桌面应用]]
-    - [[#禁止-chrome-弹出提示][禁止 chrome 弹出提示]]
-    - [[#roam-template-ref][roam template ref]]
   - [[#roam快捷键设置][roam快捷键设置]]
 - [[#org-下常见问题修复][org 下常见问题修复]]
   - [[#evil-导致org-link-按回车异常问题修复][evil 导致org link 按回车异常问题修复]]
@@ -90,11 +83,6 @@
   - [[#writeroom-设置][writeroom 设置]]
   - [[#设置快捷键][设置快捷键]]
   - [[#常用操作][常用操作]]
-    - [[#telega前缀map绑定][Telega前缀map绑定：]]
-    - [[#常用操作][常用操作]]
-    - [[#发送消息markdown格式][发送消息Markdown格式]]
-    - [[#发送流媒体--photo-png-gif-vedio][发送流媒体 : photo, png, gif, vedio]]
-    - [[#聊天内容过滤搜索][聊天内容过滤搜索]]
 - [[#easymotion][easymotion]]
   - [[#install][install]]
   - [[#usage][usage]]
@@ -107,7 +95,6 @@
 - [[#projectile][projectile]]
   - [[#install][install]]
   - [[#usage][usage]]
-    - [[#command][command]]
 - [[#注释-comment][注释 comment]]
   - [[#install][install]]
   - [[#usage][usage]]
@@ -147,10 +134,9 @@
 - [[#which-key][which-key]]
   - [[#install][install]]
   - [[#usage][usage]]
-    - [[#定义快捷键说明文本][定义快捷键说明文本]]
-    - [[#有用选项][有用选项]]
 - [[#敏感信息的处理][敏感信息的处理]]
 - [[#行或者mode-line背景颜色设置][行或者mode-line背景颜色设置]]
+- [[#emacs-pinyin][emacs pinyin]]
 - [[#如何优化-emacs-的启动速度][如何优化 emacs 的启动速度]]
   - [[#emacs-daemon][emacs daemon]]
   - [[#gc-优化][gc 优化]]
@@ -160,7 +146,7 @@
   - [[#使用package-gcmh--the-gc-magic-hack][使用package gcmh : the gc magic hack]]
 :END:
 
-*  前言
+* 前言
 我使用的操作系统: Macos. 
 
 我的一份完整的配置信息在 [[file:README.org][这里]]
