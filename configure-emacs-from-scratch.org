@@ -32,7 +32,7 @@
   - [[#url-proxy-services][url-proxy-services]]
   - [[#telega][telega]]
   - [[#启动的时候设置][启动的时候设置]]
-- [[#macos-modifier-键位][macos modifier 键位]]
+- [[#macos-modifier-setting][macos modifier setting]]
 - [[#配置自动下载package的方式][配置自动下载package的方式]]
 - [[#emacs-三件套ivycounselswiper][Emacs 三件套Ivy,Counsel,Swiper]]
   - [[#简介][简介]]
@@ -319,7 +319,7 @@ open -n /Applications/Emacs.app --args --daemon
 #+begin_src sh
 http_proxy=http://127.0.0.1:51501 https_proxy=http://127.0.0.1:51501 
 #+end_src
-* macos modifier 键位
+* macos modifier setting
 #+begin_src elisp
  (setq mac-option-key-is-meta t
        x-select-enable-clipboard 't
@@ -1533,15 +1533,10 @@ If you experience freezing, decrease this. If you experience stuttering, increas
               (add-hook 'after-focus-change-function 'garbage-collect))))
 
 #+end_src
-** 使用package gcmh : the gc magic hack
+** package gcmh : the gc magic hack
 https://github.com/emacsmirror/gcmh
 
 #+begin_src elisp
-(straight-use-package
- '(gcmh
-   :type git
-   :host github
-   :repo "emacsmirror/gcmh"))
 (require 'gcmh)
 (gcmh-mode 1)
 #+end_src
