@@ -17,5 +17,31 @@
 (setq counsel-grep-base-command
  "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
 
+ ;; ivy
+(setq ivy-re-builders-alist
+ '((counsel-rg . ivy--regex-plus)
+  (swiper . ivy--regex-plus)
+  (swiper-isearch . ivy--regex-plus)
+  (t . ivy--regex-ignore-order))) ;; 忽略单词顺序
+
+(setq counsel-find-file-ignore-regexp
+        (concat
+         ;; filename begins with #
+         "\\(?:\\`[#.]\\)"
+         ;; filename ends with # or ~
+         "\\|\\(?:\\`.+?[#~]\\'\\)"
+         "\\|\\.elc\\'"
+         "\\|\\.pyc\\'"
+         "\\|\\.meta\\'"
+         ))
+
+
+(custom-set-faces
+ '(ivy-current-match
+   ((((class color) (background light))
+     :background "red" :foreground "white")
+    (((class color) (background dark))
+     :background "blue" :foreground "black"))))
+
 (provide 'init-ivy)
 

@@ -1,5 +1,6 @@
 ;; init-pinyin.el -*- lexical-binding: t; -*-
 
+;; 此插件目的是让 ivy 支持拼音, 但是解决得并不完美 
 ;; avy support pinyin
 (require 'ace-pinyin)
 
@@ -12,14 +13,26 @@
 
 (defun re-builder-pinyin (str)
   (or (pinyin-to-utf8 str)
-      (ivy--regex-plus str)
-      (ivy--regex-ignore-order)
-      ))
+       ;; (ivy--regex-plus str)
+       (ivy--regex-ignore-order str) 
+  )
+)
+
+
 
 (setq ivy-re-builders-alist
       '(
         (t . re-builder-pinyin)
         ))
+
+ ;; (setq ivy-re-builders-alist
+ ;;       '(
+ ;; 	 (counsel-rg . ivy--regex-plus)
+ ;; 	 (swiper . ivy--regex-plus)
+ ;; 	 (swiper-isearch . ivy--regex-plus)
+ ;;         (t . re-builder-pinyin)
+ ;;  ;; (t . ivy--regex-ignore-order)
+ ;;  )) 
 
 (defun my-pinyinlib-build-regexp-string (str)
   (progn
@@ -45,6 +58,7 @@
                                                                   (replace-regexp-in-string "!" "" str) "")))
                     ""))
         nil))
+
 
 ;; ;; ;;; this function can remove `pinyin' match
 ;; (defun pinyin-to-utf8 (str)

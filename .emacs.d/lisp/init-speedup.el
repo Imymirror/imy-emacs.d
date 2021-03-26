@@ -1,8 +1,7 @@
 ;; init-speedup.el -*- lexical-binding: t; -*-
 
-(setq load-prefer-newer t)
 
-(defvar better-gc-cons-threshold 13427728 ; 128mb
+(defvar better-gc-cons-threshold (* 16 1024 1024) ; 128mb
   "The default value to use for `gc-cons-threshold'.
 If you experience freezing, decrease this. If you experience stuttering, increase this.")
 
@@ -40,7 +39,7 @@ If you experience freezing, decrease this. If you experience stuttering, increas
                               (lambda ()
                                 (unless (frame-focus-state)
                                   (garbage-collect))))
-              (add-hook 'after-focus-change-function 'garbage-collect))))
+(add-hook 'after-focus-change-function 'garbage-collect))))
 
 
 

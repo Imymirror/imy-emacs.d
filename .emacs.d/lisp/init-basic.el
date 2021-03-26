@@ -1,9 +1,5 @@
 ;; init-basic.el -*- lexical-binding: t; -*-
 
-;;(add-to-list 'custom-theme-load-path "~/.emacs.d.imymirror/package-manual/emacs-color-theme-solarized")
-;; themes i like : doom-dracula dichromacy  doom-ayu-light, dichromacy
-(load-theme 'doom-dracula t)
-
 ;; 备份文件
 (setq
      backup-by-copying t ; 自动备份
@@ -20,14 +16,14 @@
 (setq backup-directory-alist
       `(("." . ,imy/backup-dir)))
 
-;; font
-;; Setting English Font 
-(set-face-attribute 'default nil :height 150 :weight 'bold :family "menlo")
-;; Chinese Font 配制中文字体
-(dolist (charset '(kana han symbol cjk-misc bopomofo))
-  (set-fontset-font (frame-parameter nil 'font)
-                    charset
-                    (font-spec :family "PingFang SC" :size 15)))
+
+(if (not (file-exists-p imy/autosave-dir))
+    (make-directory imy/autosave-dir t))
+
+
+(setq auto-save-file-name-transforms
+          `((".*" ,imy/autosave-dir t)))
+
 
 ;; (set-face-background 'hl-line "midnight blue")
 ;; (set-face-background hl-line-face "gray13")
@@ -44,7 +40,10 @@
 (setq ring-bell-function 'ignore)
 
 (setq display-time-24hr-format t)
-;; (setq display-time-day-and-date t)
+ ;; (setq display-time-day-and-date t)
+;; (setq display-time-format "%I:%M:%S")
+(setq display-time-format "%I:%M")
+(setq display-time-default-load-average nil)
 
 (setq inhibit-startup-message t)
 ;; (setq initial-frame-alist (quote ((fullscreen . maximized))))
@@ -71,11 +70,15 @@
 
 (setq org-link-frame-setup '((file . find-file))) ;; 同一个窗口下打开org文件, 默认是在另一个窗口打
 
+;; yes-or-no
 (defun yes-or-no-p->-y-or-n-p (orig-fun &rest r)
   (cl-letf (((symbol-function 'yes-or-no-p) #'y-or-n-p))
     (apply orig-fun r)))
 
 (advice-add 'kill-buffer :around #'yes-or-no-p->-y-or-n-p)
+
+(setq use-short-answers t)
+(define-key y-or-n-p-map [return] 'act)
 
 (add-hook 'org-mode-hook 'org-indent-mode)
 (setq org-return-follows-link t)
@@ -97,6 +100,8 @@
          (copy-file early-init-f early-init-do-not-edit-f t t t t)
          (add-to-list 'load-path early-init-do-not-edit-d)
          (require 'early-init))))
+
+
 
 (provide 'init-basic)
 

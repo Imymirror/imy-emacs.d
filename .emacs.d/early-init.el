@@ -15,6 +15,7 @@
 
 (defvar imy/package-install-dir "~/.my-emacs-env/package-install/" "directory for package install")
 (setq imy/backup-dir "~/.my-emacs-env/backup/")
+(setq imy/autosave-dir "~/.my-emacs-env/autosave/")
 (setq imy/package-manual-dir "~/.my-emacs-env/package-manual/")
 
 (setq imy/lisp-dir (expand-file-name "lisp/" user-emacs-directory))
@@ -31,6 +32,10 @@
 (push '(vertical-scroll-bars) default-frame-alist)
 
 (require 'init-speedup)
+
+;; 去掉一些提示
+(setq load-prefer-newer t)
+(setq byte-compile-warnings '(cl-functions))
 
 (provide 'early-init)
 

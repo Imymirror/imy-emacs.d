@@ -12,4 +12,6 @@
 
 (evil-collection-magit-setup)
 
+(setq-default evil-kill-on-visual-paste nil)
+
 (provide 'init-evil)
