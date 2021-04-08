@@ -235,7 +235,8 @@ open -n /Applications/Emacs.app --args --daemon
 (setq display-time-day-and-date t)
 #+end_src
 ** 自动换行
-有[[file:20210213015653-emacs_auto_word_wrap.org][两种]]方式来自动换行
+有两种方式来自动换行:
+
 方式1 : 
 M + x  global-visual-line-mode 
 #+begin_src elisp
