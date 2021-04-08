@@ -236,9 +236,23 @@ open -n /Applications/Emacs.app --args --daemon
 #+end_src
 ** 自动换行
 有[[file:20210213015653-emacs_auto_word_wrap.org][两种]]方式来自动换行
+方式1 : 
+M + x  global-visual-line-mode 
 #+begin_src elisp
-(toggle-truncate-lines 1) ;; 关闭自动换行
+(global-visual-line-mode 1) ; 1 for on, 0 for off.
 #+end_src
+
+方式2 : 
+#+begin_src elisp
+(set-default 'truncate-lines nil)
+#+end_src
+以上设置在 org-mode 里会无效, 因为org mode 默认会打开 truncate-lines 模式.
+#+begin_src elisp
+(add-hook 'org-mode-hook
+	  (lambda()
+	    (setq truncate-lines nil))) 
+#+end_src
+
 ** 隐藏开始界面
 #+begin_src elisp
 ;; hide startup message
