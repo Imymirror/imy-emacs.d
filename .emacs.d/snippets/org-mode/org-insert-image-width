@@ -1,4 +1,4 @@
 # key: ;i
 # name: insert org image attr width
 # --
-#+ATTR_ORG: :width 700 $0
+#+ATTR_ORG: :width 500 $0

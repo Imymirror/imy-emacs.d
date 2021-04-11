@@ -54,7 +54,7 @@
 			    (tool-bar-lines . 0) 
 			    (vertical-scroll-bars . nil)
 			    (horizontal-scroll-bars . nil)
-			    (internal-border-width . 10)
+			    (internal-border-width . 0)
 			    ))
 
 (setq default-frame-alist '(
@@ -62,7 +62,7 @@
                             (tool-bar-lines . 0) 
 			    (vertical-scroll-bars . nil)
 			    (horizontal-scroll-bars . nil)
-			    (internal-border-width . 10)
+			    (internal-border-width . 0)
 			    )
       )
 
@@ -86,6 +86,7 @@
 (setq writeroom-width 100)
 
 (setq org-preview-latex-image-directory "~/.my-emacs-env/ltximg/")
+(setq org-preview-latex-default-process 'dvisvgm)
 
 ;; early-init Compatibility with Emacs 26
 (cond ((version< emacs-version "26.1")

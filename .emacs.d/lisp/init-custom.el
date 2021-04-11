@@ -1,6 +1,6 @@
 ;; init-custom.el -*- lexical-binding: t; -*-
 
-;; (setq custom-file "~/.emacs.d.imymirror/custom.el")
+;; (setq custom-file "~/.emacs.d/custom.el")
 ;; (load custom-file)
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))

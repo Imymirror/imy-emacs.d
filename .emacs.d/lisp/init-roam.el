@@ -8,13 +8,14 @@
 ;; roam find file 的时候不会自动打开 backlinks
 (setq +org-roam-open-buffer-on-find-file nil)
 
-(setq org-roam-directory "~/pkm-roam")  ;; roam 应用的文件夹
+(setq org-roam-directory "~/pkm-roam/roam0")  ;; roam 应用的文件夹
+(setq org-roam-db-location "~/pkm-roam/org-roam.db")
 (setq org-roam-completion-system 'ivy)
 
 (defun start-roam-mode () (org-roam-mode t))
 (add-hook 'after-init-hook 'start-roam-mode)
 
-(require 'org-roam-protocol)
+ (require 'org-roam-protocol)
 
  ;; 启动时无效, 关闭后再启动才有效
 
@@ -39,10 +40,10 @@
          :unnarrowed t)))
 
 
-(setq org-roam-graph-extra-config '(
-                                    ;; ("overlap" . "scale")
-                                    ("rankdir" . "RL")
-                                    ;; ("color" . "skyblue")
-                                    ))
+;; (setq org-roam-graph-extra-config '(
+;;                                     ;; ("overlap" . "scale")
+;;                                     ("rankdir" . "RL")
+;;                                     ;; ("color" . "skyblue")
+;;                                     ))
 
 (provide 'init-roam)

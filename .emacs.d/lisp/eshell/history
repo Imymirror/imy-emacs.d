@@ -1,0 +1,18 @@
+l
+ls
+cd 
+l
+ls
+cd .emacs.d.imymirror/
+l
+le
+ls
+tree
+ls
+ls
+cd package-install/
+l
+ls
+cd yasnippet-20200604.246/
+l
+ls

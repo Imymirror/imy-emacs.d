@@ -1,6 +1,6 @@
 ;; init-font.el -*- lexical-binding: t; -*-
-;; midnight blue | dim gray | sea green | cornflower blue
-(set-face-background 'hl-line "cOrnflower blue")
+;; midnight blue | dim gray | sea green | cornflower blue | gold
+;; (set-face-background 'hl-line "cornflower blue")
 
 (set-face-attribute 'region nil
                     :box '(:line-width -1 
@@ -13,8 +13,8 @@
 (setq imy/chinese-font "PingFang SC")
 ;; (setq imy/english-font "Sarasa Mono SC Nerd")
 ;; (setq imy/chinese-font "Sarasa Mono SC Nerd")
-(setq imy/english-font-height (* 16 10))
-(setq imy/chinese-font-size 14)
+(setq imy/english-font-height (* 15 10))
+(setq imy/chinese-font-size 15)
 
 
 ;; Setting English Font  - Fira Code | Inconsolata | Monoid  + Unifont | Sarasa Mono SC Nerd |  PinFang SC | Source Code Pro | Monaco | menlo

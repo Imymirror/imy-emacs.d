@@ -7,9 +7,15 @@
 (require 'evil)
 (evil-mode 1)
 
+
 (when (require 'evil-collection nil t)
    (evil-collection-init))
 
+;; (require 'evil-collection)
+;; (evil-collection-init)
+
+
+(require 'magit)
 (evil-collection-magit-setup)
 
 (setq-default evil-kill-on-visual-paste nil)

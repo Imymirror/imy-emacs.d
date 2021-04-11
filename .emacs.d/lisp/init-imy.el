@@ -2,13 +2,8 @@
 
 ;; 快速打开配置文件
 (defun open-init-file() (interactive) (find-file (concat user-emacs-directory "init.el")))
-(defun open-init-map-file() (interactive) (find-file (concat imy/lisp-dir  "init-map.el")))
-(defun open-init-package-file() (interactive) (find-file (concat imy/lisp-dir  "init-package.el")))
-(defun open-init-speedup-file() (interactive) (find-file (concat imy/lisp-dir  "init-speedup.el")))
-(global-set-key (kbd "<f5>") 'open-init-file)
-(global-set-key (kbd "<f2>") 'open-init-map-file)
-(global-set-key (kbd "<f3>") 'open-init-package-file)
-(global-set-key (kbd "<f4>") 'open-init-speedup-file)
+(defun open-init-map-file() (interactive) (find-file (concat imy/lisp-dir  "init-no-dump.el")))
+(global-set-key (kbd "<f5>") 'open-init-map-file)
 
 
 (defun create-scratch-buffer nil
@@ -230,7 +225,7 @@ directory to make multiple eshell windows easier."
        (forward-line (- n))
        (setq p1 (point))
        (goto-char initial-point)
-       (forward-line n)
+       (forward-line (+ n 1) )
        (setq p2 (point))
        (narrow-to-region p1 p2)
        (avy--regex-candidates (regexp-quote (string char)))))
@@ -253,6 +248,42 @@ directory to make multiple eshell windows easier."
     (goto-char (point-min))
     (while (search-forward "\n" nil t) (replace-match "" nil t))))
 
+
+(defun imy/find-emacs-lisp-find ()
+  "find emacs lisp config"
+  (interactive)
+  (counsel-find-file nil "~/.emacs.d/lisp/") 
+  )
+
+
+(defun imy/find-agenda-find ()
+  "find emacs lisp config"
+  (interactive)
+  (counsel-find-file nil "~/pkm-roam/agenda/") 
+  )
+
+
+(defun imy/iterm-my-emacs-env ()
+  "find emacs lisp config"
+  (interactive)
+  (shell-command "open -a iTerm  ~/.my-emacs-env" ))
+
+(defun imy/prelude-copy-file-name-to-clipboard ()
+  "Copy the current buffer file name to the clipboard."
+  (interactive)
+  (let ((filename (if (equal major-mode 'dired-mode)
+                      default-directory
+                    (buffer-file-name))))
+    (when filename
+      (kill-new filename)
+      (message "Copied buffer file name '%s' to the clipboard." filename))))
+
+
+(defun imy/dump-emacs ()
+  "dump emacs in dump-emacs-buffer"
+  (interactive)
+  (start-process-shell-command "dump-emacs" "dump-emacs-buffer" "sh ~/.emacs.d/dump.sh")
+)
 
 (provide 'init-imy)
 

@@ -2,7 +2,7 @@
 
 (require 'org-journal)
 
-(setq org-journal-dir "~/org/journal/")
+(setq org-journal-dir "~/pkm-roam/agenda/journal")
 (setq org-journal-date-prefix "#+TITLE: ")
 (setq org-journal-time-prefix "* ")
 (setq org-journal-date-format "%Y-%m-%d, %A")
@@ -24,9 +24,6 @@
     (org-narrow-to-subtree))
   (goto-char (point-max)))
 
-(setq org-capture-templates '(("j" "Journal entry" plain (function org-journal-find-location)
-                               "** %(format-time-string org-journal-time-format)%^{Title}\n%i%?"
-                               :jump-to-captured t :immediate-finish t)))
 
 
 (defun org-journal-save-entry-and-exit()

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: typescript org code block
+# key: ;ct
+# --
+
+#+begin_src typescript
+$0
+#+end_src 

@@ -43,5 +43,10 @@
     (((class color) (background dark))
      :background "blue" :foreground "black"))))
 
+;; 创建文件到时候能向上选择
+(setq ivy-use-selectable-prompt t)
+
+
+
 (provide 'init-ivy)
 

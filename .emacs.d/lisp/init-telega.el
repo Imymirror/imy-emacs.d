@@ -9,10 +9,10 @@
 
 (setq telega-animation-play-inline nil)
 
-(setq telega-chat-show-avatars t)
+(setq telega-chat-show-avatars nil)
 ;;(setq telega-avatar-text-compose-chars nil)
 
-(add-hook 'telega-root-mode-hook (lambda () (writeroom-mode 1)))
+(add-hook 'telega-root-mode-hook (lambda () (writeroom-mode nil)))
 
 (setq telega-proxies
       (list

@@ -1,6 +1,6 @@
 ;; init-map.el -*- lexical-binding: t; -*-
 
-(with-eval-after-load 'evil-maps
+;; (with-eval-after-load 'evil-maps
   (define-key evil-motion-state-map (kbd "RET") nil)
   (define-key evil-normal-state-map (kbd "RET") nil)
   (define-key evil-motion-state-map  (kbd "C-v") nil) ;; evil-visual-block
@@ -9,7 +9,7 @@
   (define-key evil-motion-state-map  (kbd "C-e") nil)
   (define-key evil-motion-state-map  (kbd "TAB") nil)
   (define-key evil-normal-state-map  (kbd "s") nil) ;; evil-substitute
-  )
+  ;; )
 
 (evil-define-key 'treemacs treemacs-mode-map (kbd "SPC")  nil)
 (evil-define-key 'visual global-map (kbd ">") 'imy/evil-shift-right)
@@ -128,6 +128,8 @@
  (spc-leader-def 'normal 'override "s p" 'counsel-projectile-rg)
  (general-define-key "s-F" 'counsel-projectile-rg)
  (spc-leader-def 'normal 'override "s d" 'counsel-rg)
+ (spc-leader-def 'normal 'override "s l" 'imy/find-emacs-lisp-find)
+ (spc-leader-def 'normal 'override "s a" 'imy/find-agenda-find)
  
  ;; roam
  
@@ -164,11 +166,14 @@
 
  ;; toogle
 (spc-leader-def 'normal 'override "t t" 'treemacs)
+(spc-leader-def 'normal 'override "t h" 'link-hint-open-link)
+(spc-leader-def 'normal 'override "t a" 'org-agenda)
 (spc-leader-def 'normal 'override "t z" 'writeroom-mode)
 (spc-leader-def 'normal 'override "t l" 'org-toggle-link-display)
 (spc-leader-def 'normal 'override "t y" 'org-yank)
 (spc-leader-def 'normal 'override "t g" 'grab-mac-link-dwim)
 (spc-leader-def 'normal 'override "t c" 'org-capture)
+(spc-leader-def 'normal 'override "t f" 'elfeed)
 (general-def  "C-; C-g" 'grab-mac-link-dwim) 
 (general-def  "C-; C-t" 'rand-theme) 
 
