@@ -1,15 +1,15 @@
 ;; init-map.el -*- lexical-binding: t; -*-
 
-;; (with-eval-after-load 'evil-maps
+(with-eval-after-load 'evil-maps
   (define-key evil-motion-state-map (kbd "RET") nil)
   (define-key evil-normal-state-map (kbd "RET") nil)
   (define-key evil-motion-state-map  (kbd "C-v") nil) ;; evil-visual-block
   (define-key evil-motion-state-map  (kbd "SPC") nil) ;; evil-visual-block
-  (define-key evil-motion-state-map  (kbd ";") nil) ;;'evil-repeat-find-char)
+  (define-key evil-motion-state-map  (kbd ";") nil)   ;;'evil-repeat-find-char)
   (define-key evil-motion-state-map  (kbd "C-e") nil)
   (define-key evil-motion-state-map  (kbd "TAB") nil)
-  (define-key evil-normal-state-map  (kbd "s") nil) ;; evil-substitute
-  ;; )
+  (define-key evil-normal-state-map  (kbd "s") nil)   ;; evil-substitute
+  )
 
 (evil-define-key 'treemacs treemacs-mode-map (kbd "SPC")  nil)
 (evil-define-key 'visual global-map (kbd ">") 'imy/evil-shift-right)
@@ -249,5 +249,8 @@
 
 ;;delete
 (spc-leader-def 'normal 'override "d l" 'imy/org-delete-link)
+
+;; selection
+(global-set-key (kbd "C-=") 'er/expand-region)
 
 (provide 'init-map)

@@ -1,3 +1,4 @@
+;; init-snippet.el -*- lexical-binding: t; -*-
 
 (require 'yasnippet)
 

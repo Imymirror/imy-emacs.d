@@ -1,7 +1,7 @@
 ;; init-speedup.el -*- lexical-binding: t; -*-
 
 
-(defvar better-gc-cons-threshold (* 32 1024 1024) ; 128mb
+(defvar better-gc-cons-threshold (* 16 1024 1024) ; 16mb
   "The default value to use for `gc-cons-threshold'.
 If you experience freezing, decrease this. If you experience stuttering, increase this.")
 

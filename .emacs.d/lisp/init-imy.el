@@ -2,8 +2,8 @@
 
 ;; 快速打开配置文件
 (defun open-init-file() (interactive) (find-file (concat user-emacs-directory "init.el")))
-(defun open-init-map-file() (interactive) (find-file (concat imy/lisp-dir  "init-no-dump.el")))
-(global-set-key (kbd "<f5>") 'open-init-map-file)
+;; (defun open-init-map-file() (interactive) (find-file (concat imy/lisp-dir  "init-no-dump.el")))
+(global-set-key (kbd "<f5>") 'open-init-file)
 
 
 (defun create-scratch-buffer nil
@@ -286,4 +286,3 @@ directory to make multiple eshell windows easier."
 )
 
 (provide 'init-imy)
-

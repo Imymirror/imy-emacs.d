@@ -1,9 +1,12 @@
 ;; init-org-mode.el -*- lexical-binding: t; -*-
 
+;; 截图黏贴到 org 文件里
+(require 'grab-mac-link)
+(setq grab-mac-link-dwim-favourite-app 'chrome)
 
-(setq org-src-preserve-indentation t ;; 代码永久地保存固定不缩进
-      org-edit-src-content-indentation 2) ;; 如果 org-src-preserve-indentation 为nil , 代码缩进值
 
+(setq org-src-preserve-indentation nil ;; 代码永久地保存固定不缩进
+      org-edit-src-content-indentation 0) ;; 如果 org-src-preserve-indentation 为nil , 代码缩进值
 
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))) 

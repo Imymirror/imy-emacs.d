@@ -1,1 +1,1 @@
-emacs --batch -q -l ~/.emacs.d/dump.el 
+emacs --batch -q -l ~/.emacs.d/dump.el

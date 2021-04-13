@@ -1,4 +1,4 @@
-
+;; init-capture.el -*- lexical-binding: t; -*-
 
 ;; (setq org-capture-templates '(("j" "Journal entry" plain (function org-journal-find-location)
 ;;                                "** %(format-time-string org-journal-time-format)%^{Title}\n%i%?"

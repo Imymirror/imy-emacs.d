@@ -1,3 +1,4 @@
+;; init-telega.el -*- lexical-binding: t; -*-
 
 
 (add-to-list 'load-path (concat imy/package-manual-dir "telega.el"))

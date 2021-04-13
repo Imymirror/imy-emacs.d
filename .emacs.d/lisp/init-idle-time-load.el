@@ -2,18 +2,18 @@
 
 (defun imy/load-after-idle-time () 
 
-
   (load "server")
   (unless (server-running-p) (server-start))
 
-  ;; (ace-pinyin-global-mode +1)
   ;; (mac-auto-operator-composition-mode)
 
+  ;; 解决unicode字体相关的问题, 尤其在telega有些图标名字显示不出来
   (require 'unicode-fonts)
   (unicode-fonts-setup)
 
+  ;; 通过分析语义增量选择 region 的插件
   (require 'expand-region)
-  (global-set-key (kbd "C-=") 'er/expand-region)
+
   (require 'init-evil-surround)
   (require 'init-agenda)
   (require 'init-journal)			      
@@ -24,7 +24,8 @@
   (require 'init-company)
 
   (require 'init-telega)
-  (require 'init-temp)
+  (require 'init-language)
+  (require 'init-window)
   (require 'init-which-key)
   (require 'init-org-mode)
   (require 'init-random-theme)
@@ -36,8 +37,11 @@
   (require 'init-nyan-mode)
 
   (require 'init-enable-mode)
-  
-			)
+
+  ;; dump 不了, 只能放在 idle 里
+  (winner-mode)
+
+  )
 
 ;; (imy/load-after-idle-time)
 
@@ -49,11 +53,5 @@
 				  )))
 
 
-;; (setq  auto-save-buffer-idle-time
-;;        (run-with-idle-timer 30 t
-;; 			    (lambda ()
-;; 			      ;;(message "auto save all buffer.")
-;; 			      (evil-write-all nil)
-;; 			      )))
 
 (provide 'init-idle-time-load)

@@ -1,33 +1,8 @@
+#+title: README
+#+PROPERTY: header-args:emacs-lisp :tangle ./init-new.el :mkdirp yes
+
 * introduce
-This is my personal emacs configuration. It is highly inspired by doom emacs.
 
-I use doom-emacs for mostly 3 months. then I think maybe I can configure emacs from scratch by myself for fun.
+旧的从零配置教程 :  [[file:configure-emacs-from-scratch.org][configure eamcs from scratch]]
 
-the detail see [[file:configure-emacs-from-scratch.org][configure eamcs from scratch]]
-
-* directory structure
-The Emacs configuration is placed in [[file:.emacs.d/][.emacs.d]] folder.
-
-- init file
-  - =init-early.el= : configuration load before init.el
-  - =init.el= : the default configure entry
-- [[file:.emacs.d/lisp/][lisp/]] : configuration requred by init.el classify by pakcage 
-  - =init-basic.el= : emacs basic config.
-  - =init-capture.el= : config about org-capure
-  - =init-custom.el= : put custom config into custom.el
-  - =init-evil.el= : config about evil
-  - =init-general.el= : config about general, is empty now
-  - =init-idle-time-load.el= : configuration after idle time. part of speedup emacs
-  - =init-imy.el= : functions and variables I define
-  - =init-ivy.el= : config about ivy
-  - =init-map.el= :  all the shortcuts that I binding
-  - =init-org-download.el= : config about org-download, Cut the image from the paste board
-  - =init-package.el= : auto install package by package.el
-  - =init-paredit.el= : keep parentheses balanced
-  - =init-roam.el= : config about org-roam, zettelkasten 
-  - =init-snippet.el= : config about snippet
-  - =init-speedup.el= : config that I use to speed up emacs, gc-cons-threshold ..
-  - =init-telega.el= : config about telega,telegram chat with emacs
-  - =init-theme.el= : load theme
-  - =init-which-key.el= : which key
-  - =init-temp.el= : temporary configuration. I haven't decided where to put it yet
+2021-04-13 我开始使用 org babel, 对配置进行重新整理以及更加全面详细的说明, 见  [[file:Emacs.org][Emacs.org]] .

@@ -25,7 +25,7 @@
   (goto-char (point-max)))
 
 
-
+;; 关闭 journal 界面
 (defun org-journal-save-entry-and-exit()
   "Simple convenience function.
   Saves the buffer of the current day's entry and kills the window

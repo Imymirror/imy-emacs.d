@@ -1,6 +1,4 @@
-;; init-d.el -*- lexical-binding: t; -*-
-
-;; (require 'init-dump)
+;; dump-entry.el -*- lexical-binding: t; -*-
 
 (require 'init-imy)
 (require 'init-package)
@@ -16,7 +14,6 @@
 (unicode-fonts-setup)
 
 (require 'expand-region)
-(global-set-key (kbd "C-=") 'er/expand-region)
 (require 'init-evil-surround)
 (require 'init-agenda)
 (require 'init-journal)			      
@@ -26,7 +23,8 @@
 (require 'init-org-download)
 (require 'init-company)
 
-(require 'init-temp)
+(require 'init-language)
+(require 'init-window)
 (require 'init-telega)
 (require 'init-which-key)
 (require 'init-org-mode)
@@ -36,5 +34,6 @@
 (require 'init-treemacs)
 (require 'init-elfeed)
 (require 'init-nyan-mode)
+(require 'init-enable-mode)
 
 (require 'init-custom)

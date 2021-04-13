@@ -25,9 +25,6 @@
           `((".*" ,imy/autosave-dir t)))
 
 
-;; (set-face-background 'hl-line "midnight blue")
-;; (set-face-background hl-line-face "gray13")
-
 ;; (global-linum-mode 1)
 (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
 (delete-selection-mode 1)
@@ -105,4 +102,3 @@
 
 
 (provide 'init-basic)
-

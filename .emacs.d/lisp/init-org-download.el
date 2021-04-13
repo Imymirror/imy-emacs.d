@@ -1,4 +1,4 @@
-;;; lisp/c-org-download.el -*- lexical-binding: t; -*-
+;;; init-org-download.el -*- lexical-binding: t; -*-
 
 (require 'org-download)
 

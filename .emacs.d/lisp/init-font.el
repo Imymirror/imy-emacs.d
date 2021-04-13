@@ -1,12 +1,13 @@
 ;; init-font.el -*- lexical-binding: t; -*-
+
 ;; midnight blue | dim gray | sea green | cornflower blue | gold
 ;; (set-face-background 'hl-line "cornflower blue")
 
-(set-face-attribute 'region nil
-                    :box '(:line-width -1 
-                           ;; :color "gtk_selection_bg_color"
-                           :color "gray14"
-                           :style nil))
+;; (set-face-attribute 'region nil
+;;                     :box '(:line-width -1 
+;;                            ;; :color "gtk_selection_bg_color"
+;;                            :color "gray14"
+;;                            :style nil))
 
 
 (setq imy/english-font "Fira Code")
@@ -28,4 +29,3 @@
 			(font-spec  :family imy/chinese-font :size imy/chinese-font-size))))
 
 (provide 'init-font)
-

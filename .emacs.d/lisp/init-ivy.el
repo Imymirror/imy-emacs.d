@@ -49,4 +49,3 @@
 
 
 (provide 'init-ivy)
-

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: code block emacs lisp 
+# key: ;ce
+# --
+#+begin_src emacs-lisp
+$0
+#+end_src

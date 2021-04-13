@@ -1,6 +1,5 @@
 ;;; early-init.el --- -*- lexical-binding: t -*-
 
-
 (when (file-exists-p "~/private/") (load "~/private/sensitive.el")) 
 
 ;; proxy
@@ -21,7 +20,7 @@
 (setq imy/lisp-dir (expand-file-name "lisp/" user-emacs-directory))
 (add-to-list 'load-path imy/lisp-dir)
 
-(setq package-enable-at-startup nil)
+;; (setq package-enable-at-startup nil)
 
 (setq site-run-file nil)
 
@@ -39,4 +38,3 @@
 
 
 (provide 'early-init)
-
