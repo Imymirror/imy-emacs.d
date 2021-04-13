@@ -13,13 +13,13 @@
   - [[#dumpsh][dump.sh]]
   - [[#lauch_dump_emacssh][lauch_dump_emacs.sh]]
   - [[#dump-initel][dump-init.el]]
-- [[#package-下载与安装][package 下载与安装]]
-  - [[#init-packageel--自动安装-emacs-package][init-package.el : 自动安装 emacs package]]
-  - [[#手动下载][手动下载]]
 - [[#具体配置][具体配置]]
   - [[#early-initel--在initel之前会执行的配置文件][early-init.el : 在init.el之前会执行的配置文件]]
   - [[#initel--入口配置-包含其他的配置文件][init.el : 入口配置, 包含其他的配置文件]]
   - [[#init-speedupel--加速启动配置-主要是-gc][init-speedup.el : 加速启动配置, 主要是 gc]]
+  - [[#package-下载与安装][package 下载与安装]]
+    - [[#init-packageel--自动安装-emacs-package][init-package.el : 自动安装 emacs package]]
+    - [[#手动下载][手动下载]]
   - [[#init-imyel--个人定义的相关函数][init-imy.el : 个人定义的相关函数]]
   - [[#init-basicel--emacs-基础配置][init-basic.el : emacs 基础配置]]
   - [[#init-ivyel--ivy-相关的配置][init-ivy.el : ivy 相关的配置]]
@@ -182,57 +182,6 @@ dump 启动文件, 与非 dump 的启动文件 init.el 分开
 
 #+end_src
 
-* package 下载与安装
-
-我没有使用其他包管理工具, 只使用 内置的 package 包, 如果从 package archives 的仓库源上下载不到, 我会通过手动下载(通常在 Github 上).
-
-** init-package.el : 自动安装 emacs package 
-
-#+begin_src emacs-lisp :tangle ./lisp/init-package.el
-;; init-package.el -*- lexical-binding: t; -*-
-
-(require 'package)
-(setq package-user-dir imy/package-install-dir)
-(setq package-enable-at-startup nil)
-(setq package-archives '(("gnu" . "http://elpa.emacs-china.org/gnu/")
-			 ("melpa" . "https://melpa.org/packages/")
-			 ("melpa-stable" . "https://stable.melpa.org/packages/")
-			 ("elpy" .  "http://jorgenschaefer.github.io/packages/")))
-
-(package-initialize)
-
-(setq package-list '(
-		     command-log-mode  company writeroom-mode general visual-fill-column rainbow-identifiers yasnippet undo-fu org-bullets evil-nerd-commenter evil evil-collection magit projectile ivy org-roam org-roam-server grab-mac-link link-hint ripgrep counsel-projectile ivy-rich winum amx org-download rainbow-delimiters paredit which-key gcmh org-make-toc lsp-mode evil-surround ace-pinyin pinyinlib typescript-mode lsp-ui expand-region mood-line minions posframe rime org-journal unicode-fonts treemacs treemacs-evil treemacs-projectile ox-hugo elfeed elfeed-org org-super-agenda 
-
-				       ;; kaolin-themes
-				       doom-themes
-				      
-;; afternoon-theme  ample-theme leuven-theme plan9-theme twilight-bright-theme moe-theme flatui-theme  flucui-themes espresso-theme soft-stone-theme minimal-theme  darktooth-theme apropospriate-theme tao-theme   hc-zenburn-theme jazz-theme naquadah-theme  darkburn-theme  soothe-theme clues-theme  spacegray-theme planet-theme  seti-theme badwolf-theme darkmine-theme     gruber-darker-theme subatomic-theme  nimbus-theme  green-is-the-new-black-theme organic-green-theme green-phosphor-theme 
-				      
-				      ))
-
-(unless package-archive-contents
-  (package-refresh-contents))
-
-(dolist (package package-list)
-  (unless (package-installed-p package)
-    (package-install package)))
-
-(provide 'init-package)
-
-#+end_src
-
-** 手动下载
-
-手动下载安装的一般步骤(以 nyan-mode 为例子):
-1. 从 github 下载相关插件源码
-2. 在 emacs 通过 load-path 倒入相关路径, 然后使用 package
-   
-    #+begin_src elisp
-    (add-to-list 'load-path (concat imy/package-manual-dir "nyan-mode"))
-    (require 'nyan-mode)
-    #+end_src
-
 * 具体配置
 ** early-init.el : 在init.el之前会执行的配置文件
 
@@ -359,6 +308,57 @@ If you experience freezing, decrease this. If you experience stuttering, increas
 (provide 'init-speedup)
 
 #+end_src
+** package 下载与安装
+
+我没有使用其他包管理工具, 只使用 内置的 package 包, 如果从 package archives 的仓库源上下载不到, 我会通过手动下载(通常在 Github 上).
+
+*** init-package.el : 自动安装 emacs package 
+
+#+begin_src emacs-lisp :tangle ./lisp/init-package.el
+;; init-package.el -*- lexical-binding: t; -*-
+
+(require 'package)
+(setq package-user-dir imy/package-install-dir)
+(setq package-enable-at-startup nil)
+(setq package-archives '(("gnu" . "http://elpa.emacs-china.org/gnu/")
+			 ("melpa" . "https://melpa.org/packages/")
+			 ("melpa-stable" . "https://stable.melpa.org/packages/")
+			 ("elpy" .  "http://jorgenschaefer.github.io/packages/")))
+
+(package-initialize)
+
+(setq package-list '(
+		     command-log-mode  company writeroom-mode general visual-fill-column rainbow-identifiers yasnippet undo-fu org-bullets evil-nerd-commenter evil evil-collection magit projectile ivy org-roam org-roam-server grab-mac-link link-hint ripgrep counsel-projectile ivy-rich winum amx org-download rainbow-delimiters paredit which-key gcmh org-make-toc lsp-mode evil-surround ace-pinyin pinyinlib typescript-mode lsp-ui expand-region mood-line minions posframe rime org-journal unicode-fonts treemacs treemacs-evil treemacs-projectile ox-hugo elfeed elfeed-org org-super-agenda 
+
+				       ;; kaolin-themes
+				       doom-themes
+				      
+;; afternoon-theme  ample-theme leuven-theme plan9-theme twilight-bright-theme moe-theme flatui-theme  flucui-themes espresso-theme soft-stone-theme minimal-theme  darktooth-theme apropospriate-theme tao-theme   hc-zenburn-theme jazz-theme naquadah-theme  darkburn-theme  soothe-theme clues-theme  spacegray-theme planet-theme  seti-theme badwolf-theme darkmine-theme     gruber-darker-theme subatomic-theme  nimbus-theme  green-is-the-new-black-theme organic-green-theme green-phosphor-theme 
+				      
+				      ))
+
+(unless package-archive-contents
+  (package-refresh-contents))
+
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
+
+(provide 'init-package)
+
+#+end_src
+
+*** 手动下载
+
+手动下载安装的一般步骤(以 nyan-mode 为例子):
+1. 从 github 下载相关插件源码
+2. 在 emacs 通过 load-path 倒入相关路径, 然后使用 package
+   
+    #+begin_src elisp
+    (add-to-list 'load-path (concat imy/package-manual-dir "nyan-mode"))
+    (require 'nyan-mode)
+    #+end_src
+
 ** init-imy.el : 个人定义的相关函数
 
 #+begin_src emacs-lisp :tangle ./lisp/init-imy.el
