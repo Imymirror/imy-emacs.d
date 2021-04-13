@@ -1,6 +1,2040 @@
 #+title: README
-#+PROPERTY: header-args:emacs-lisp :tangle ./init-new.el :mkdirp yes
 
+* Table of Contents
+:PROPERTIES:
+:TOC:      :include all :depth 5
+:END:
+:CONTENTS:
+- [[#table-of-contents][Table of Contents]]
+- [[#introduce][introduce]]
+- [[#pdump][pdump]]
+  - [[#dumpel][dump.el]]
+  - [[#dump-entryel][dump-entry.el]]
+  - [[#dumpsh][dump.sh]]
+  - [[#lauch_dump_emacssh][lauch_dump_emacs.sh]]
+  - [[#dump-initel][dump-init.el]]
+- [[#package-下载与安装][package 下载与安装]]
+  - [[#init-packageel--自动安装-emacs-package][init-package.el : 自动安装 emacs package]]
+  - [[#手动下载][手动下载]]
+- [[#具体配置][具体配置]]
+  - [[#early-initel--在initel之前会执行的配置文件][early-init.el : 在init.el之前会执行的配置文件]]
+  - [[#initel--入口配置-包含其他的配置文件][init.el : 入口配置, 包含其他的配置文件]]
+  - [[#init-speedupel--加速启动配置-主要是-gc][init-speedup.el : 加速启动配置, 主要是 gc]]
+  - [[#init-imyel--个人定义的相关函数][init-imy.el : 个人定义的相关函数]]
+  - [[#init-basicel--emacs-基础配置][init-basic.el : emacs 基础配置]]
+  - [[#init-ivyel--ivy-相关的配置][init-ivy.el : ivy 相关的配置]]
+  - [[#init-evilel--evil-相关的配置][init-evil.el : evil 相关的配置]]
+  - [[#init-fontel--字体相关的配置][init-font.el : 字体相关的配置]]
+  - [[#init-generalel--支持多leader-key的插件][init-general.el : 支持多leader key的插件]]
+  - [[#init-mapel--定义快捷键的地方][init-map.el : 定义快捷键的地方]]
+  - [[#init-roamel--org-roam][init-roam.el : org roam]]
+  - [[#init-customel--将-custom-信息放在专门的文件里][init-custom.el : 将 custom 信息放在专门的文件里]]
+  - [[#init-idle-time-loadel--利用idle-time-加载插件][init-idle-time-load.el : 利用idle time 加载插件]]
+    - [[#init-evil-surroundel--类似-surroundvim][init-evil-surround.el : 类似 surround.vim]]
+    - [[#init-agendael--agenda-相关][init-agenda.el : agenda 相关]]
+    - [[#init-journalel--每日日记-journal-相关][init-journal.el : 每日日记 journal 相关]]
+    - [[#init-captureel--capture-相关][init-capture.el : capture 相关]]
+    - [[#init-yasnippetel--snippet][init-yasnippet.el : snippet]]
+    - [[#init-pareditel--lisp-括号配对插件][init-paredit.el : lisp 括号配对插件]]
+    - [[#init-org-downloadel--在-org-里插入图片][init-org-download.el : 在 org 里插入图片]]
+    - [[#init-companyel--自动补全][init-company.el : 自动补全]]
+    - [[#init-telegael--telegram-聊天][init-telega.el : telegram 聊天]]
+    - [[#init-which-keyel--快捷键提示][init-which-key.el : 快捷键提示]]
+    - [[#init-org-modeel--跟-org-mode-相关的配置][init-org-mode.el : 跟 org mode 相关的配置]]
+    - [[#init-random-themeel--随机主题][init-random-theme.el : 随机主题]]
+    - [[#init-foldel--折叠][init-fold.el : 折叠]]
+    - [[#init-treemacsel--treemacs][init-treemacs.el : treemacs]]
+    - [[#init-elfeedel--rss-reader][init-elfeed.el : rss reader]]
+    - [[#init-nyan-modeel--用彩虹小猫显示当前buffer的光标进度][init-nyan-mode.el : 用彩虹小猫显示当前buffer的光标进度]]
+    - [[#init-enable-modeel--想要默认开启的-minor-mode][init-enable-mode.el : 想要默认开启的 minor mode]]
+    - [[#init-languageel--编程语言相关][init-language.el : 编程语言相关]]
+      - [[#start][start]]
+      - [[#python][python]]
+      - [[#end][end]]
+    - [[#init-windowel--window-窗口相关][init-window.el : window 窗口相关]]
+- [[#tips-and-tricks][tips and tricks]]
+  - [[#revert-buffer-不要提示-yesno][revert-buffer 不要提示 yes/no]]
+  - [[#每-30s-保存一次所有buffer文件][每 30s 保存一次所有buffer文件]]
+  - [[#org-babel-自动tangle][org babel 自动tangle]]
+:END:
+* introduce
 旧的从零配置教程 :  [[file:configure-emacs-from-scratch.org][configure eamcs from scratch]]
 
-2021-04-13 我开始使用 org babel, 对配置进行重新整理以及更加全面详细的说明, 见  [[file:Emacs.org][Emacs.org]] .
+2021-04-13 我开始使用 org babel, README.org 可以看作新的教程.
+* pdump
+** dump.el
+dump file
+
+#+begin_src emacs-lisp :tangle ./dump.el
+;; dump.el -*- lexical-binding: t; -*-
+
+(load (expand-file-name "early-init.el" user-emacs-directory))
+(load (expand-file-name "dump-entry.el" user-emacs-directory))
+
+(setq evil-want-keybinding nil) 
+
+(require 'package)
+(setq package-user-dir imy/package-install-dir)
+(setq package-enable-at-startup nil)
+
+;; load autoload files and populate load-path’s
+(package-initialize)
+
+(dolist (package package-list)
+  (require package))
+
+(setq luna-dumped-load-path load-path)
+
+;; dump image
+;; (dump-emacs-portable "~/.emacs.d/emacs.pdmp")
+(dump-emacs-portable (expand-file-name "emacs.pdmp" user-emacs-directory))
+#+end_src
+** dump-entry.el
+
+需要dump的配置, 借鉴 init.el 不断尝试调出一个能够dump的版本
+
+#+begin_src emacs-lisp :tangle ./dump-entry.el
+;; dump-entry.el -*- lexical-binding: t; -*-
+
+(require 'init-imy)
+(require 'init-package)
+(require 'init-basic)
+(require 'init-ivy)
+(require 'init-evil)
+(require 'init-font)
+(require 'init-general) 
+(require 'init-map)
+(require 'init-roam)
+
+(require 'unicode-fonts)
+(unicode-fonts-setup)
+
+(require 'expand-region)
+(require 'init-evil-surround)
+(require 'init-agenda)
+(require 'init-journal)			      
+(require 'init-capture)
+(require 'init-snippet)
+(require 'init-paredit)
+(require 'init-org-download)
+(require 'init-company)
+
+(require 'init-language)
+(require 'init-window)
+(require 'init-telega)
+(require 'init-which-key)
+(require 'init-org-mode)
+(require 'init-random-theme)
+(require 'init-fold)
+
+(require 'init-treemacs)
+(require 'init-elfeed)
+(require 'init-nyan-mode)
+(require 'init-enable-mode)
+
+(require 'init-custom)
+#+end_src
+** dump.sh
+
+shell脚本, 用来编译出 emacs.pdump
+
+#+begin_src emacs-lisp :tangle ./dump.sh
+emacs --batch -q -l ~/.emacs.d/dump.el 
+#+end_src
+
+** lauch_dump_emacs.sh
+
+dump 方式打开 GUI 的 emacs
+
+#+begin_src emacs-lisp :tangle ./lauch_dump_emacs.sh
+open -a emacs --args --dump-file="/Users/fuhongxue/.emacs.d/emacs.pdmp" -l "~/.emacs.d/dump-init.el"
+#+end_src
+
+** dump-init.el
+
+dump 启动文件, 与非 dump 的启动文件 init.el 分开
+
+#+begin_src emacs-lisp :tangle ./dump-init.el
+;; dump-init.el -*- lexical-binding: t; -*-
+
+(setq load-path luna-dumped-load-path)
+
+(global-font-lock-mode)
+(transient-mark-mode)
+
+(load "server")
+(unless (server-running-p) (server-start))
+
+
+;; 实现window的undo redo, 和 delete-other-windows 搭配使用
+;; 不能dump, 出现错误 : unsupported object type in dump: window configuration
+(winner-mode)
+
+;; telega 
+(set-fontset-font t 'unicode "Symbola" nil 'append)
+
+;; Chinese Font
+(if (display-graphic-p)
+    (dolist (charset '(kana han symbol cjk-misc bopomofo))
+      (set-fontset-font (frame-parameter nil 'font)
+			charset
+			(font-spec  :family imy/chinese-font :size imy/chinese-font-size))))
+
+#+end_src
+
+* package 下载与安装
+
+我没有使用其他包管理工具, 只使用 内置的 package 包, 如果从 package archives 的仓库源上下载不到, 我会通过手动下载(通常在 Github 上).
+
+** init-package.el : 自动安装 emacs package 
+
+#+begin_src emacs-lisp :tangle ./lisp/init-package.el
+;; init-package.el -*- lexical-binding: t; -*-
+
+(require 'package)
+(setq package-user-dir imy/package-install-dir)
+(setq package-enable-at-startup nil)
+(setq package-archives '(("gnu" . "http://elpa.emacs-china.org/gnu/")
+			 ("melpa" . "https://melpa.org/packages/")
+			 ("melpa-stable" . "https://stable.melpa.org/packages/")
+			 ("elpy" .  "http://jorgenschaefer.github.io/packages/")))
+
+(package-initialize)
+
+(setq package-list '(
+		     command-log-mode  company writeroom-mode general visual-fill-column rainbow-identifiers yasnippet undo-fu org-bullets evil-nerd-commenter evil evil-collection magit projectile ivy org-roam org-roam-server grab-mac-link link-hint ripgrep counsel-projectile ivy-rich winum amx org-download rainbow-delimiters paredit which-key gcmh org-make-toc lsp-mode evil-surround ace-pinyin pinyinlib typescript-mode lsp-ui expand-region mood-line minions posframe rime org-journal unicode-fonts treemacs treemacs-evil treemacs-projectile ox-hugo elfeed elfeed-org org-super-agenda 
+
+				       ;; kaolin-themes
+				       doom-themes
+				      
+;; afternoon-theme  ample-theme leuven-theme plan9-theme twilight-bright-theme moe-theme flatui-theme  flucui-themes espresso-theme soft-stone-theme minimal-theme  darktooth-theme apropospriate-theme tao-theme   hc-zenburn-theme jazz-theme naquadah-theme  darkburn-theme  soothe-theme clues-theme  spacegray-theme planet-theme  seti-theme badwolf-theme darkmine-theme     gruber-darker-theme subatomic-theme  nimbus-theme  green-is-the-new-black-theme organic-green-theme green-phosphor-theme 
+				      
+				      ))
+
+(unless package-archive-contents
+  (package-refresh-contents))
+
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
+
+(provide 'init-package)
+
+#+end_src
+
+** 手动下载
+
+手动下载安装的一般步骤(以 nyan-mode 为例子):
+1. 从 github 下载相关插件源码
+2. 在 emacs 通过 load-path 倒入相关路径, 然后使用 package
+   
+    #+begin_src elisp
+    (add-to-list 'load-path (concat imy/package-manual-dir "nyan-mode"))
+    (require 'nyan-mode)
+    #+end_src
+
+* 具体配置
+** early-init.el : 在init.el之前会执行的配置文件
+
+#+begin_src emacs-lisp :tangle ./early-init.el
+;;; early-init.el --- -*- lexical-binding: t -*-
+
+(when (file-exists-p "~/private/") (load "~/private/sensitive.el")) 
+
+;; proxy
+(setq url-proxy-services
+      `(
+        ("http" . ,imy/proxy-url)
+        ("https" . ,imy/proxy-url)
+        ))
+
+(setq user-init-file (or load-file-name (buffer-file-name)))
+(setq user-emacs-directory (file-name-directory user-init-file))
+
+(defvar imy/package-install-dir "~/.my-emacs-env/package-install/" "directory for package install")
+(setq imy/backup-dir "~/.my-emacs-env/backup/")
+(setq imy/autosave-dir "~/.my-emacs-env/autosave/")
+(setq imy/package-manual-dir "~/.my-emacs-env/package-manual/")
+
+(setq imy/lisp-dir (expand-file-name "lisp/" user-emacs-directory))
+(add-to-list 'load-path imy/lisp-dir)
+
+;; (setq package-enable-at-startup nil)
+
+(setq site-run-file nil)
+
+;;(menu-bar-mode -1)
+(unless (and (display-graphic-p) (eq system-type 'darwin))
+  (push '(menu-bar-lines . 0) default-frame-alist))
+(push '(tool-bar-lines . 0) default-frame-alist)
+(push '(vertical-scroll-bars) default-frame-alist)
+
+(require 'init-speedup)
+
+;; 去掉一些提示
+(setq load-prefer-newer t)
+(setq byte-compile-warnings '(cl-functions))
+
+
+(provide 'early-init)
+#+end_src
+
+** init.el : 入口配置, 包含其他的配置文件
+#+begin_src emacs-lisp :tangle ./init.el
+;; init.el -*- lexical-binding: t; -*-
+
+(require 'init-package)
+(require 'init-imy)
+(require 'init-basic)
+(require 'init-ivy)
+(require 'init-evil)
+(require 'init-font)
+(require 'init-general) 
+(require 'init-map)
+(require 'init-roam)
+(require 'init-idle-time-load)
+(require 'init-custom)
+
+;; (setq garbage-collection-messages t)
+;; (setq gcmh-verbose t)
+
+#+end_src
+** init-speedup.el : 加速启动配置, 主要是 gc
+
+#+begin_src emacs-lisp :tangle ./lisp/init-speedup.el
+;; init-speedup.el -*- lexical-binding: t; -*-
+
+
+(defvar better-gc-cons-threshold (* 16 1024 1024) ; 16mb
+  "The default value to use for `gc-cons-threshold'.
+If you experience freezing, decrease this. If you experience stuttering, increase this.")
+
+(setq gc-cons-threshold most-positive-fixnum
+      gc-cons-percentage 0.6)
+
+(defvar startup/file-name-handler-alist file-name-handler-alist)
+(setq file-name-handler-alist nil)
+
+(defun startup/revert-file-name-handler-alist ()
+  (setq file-name-handler-alist startup/file-name-handler-alist))
+
+(defun startup/reset-gc ()
+  (setq gc-cons-threshold better-gc-cons-threshold
+	gc-cons-percentage 0.1))
+
+(add-hook 'emacs-startup-hook 'startup/revert-file-name-handler-alist)
+(add-hook 'emacs-startup-hook 'startup/reset-gc)
+
+(defun gc-minibuffer-setup-hook ()
+  (setq gc-cons-threshold (* better-gc-cons-threshold 2)))
+
+(defun gc-minibuffer-exit-hook ()
+  (garbage-collect)
+  (setq gc-cons-threshold better-gc-cons-threshold))
+
+(add-hook 'minibuffer-setup-hook #'gc-minibuffer-setup-hook)
+(add-hook 'minibuffer-exit-hook #'gc-minibuffer-exit-hook)
+
+
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (if (boundp 'after-focus-change-function)
+                (add-function :after after-focus-change-function
+                              (lambda ()
+                                (unless (frame-focus-state)
+                                  (garbage-collect))))
+(add-hook 'after-focus-change-function 'garbage-collect))))
+
+
+
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (message "Emacs ready in %s with %d garbage collections."
+                     (format "%.2f seconds"
+                             (float-time
+                              (time-subtract after-init-time before-init-time)))
+                     gcs-done)))
+
+
+(provide 'init-speedup)
+
+#+end_src
+** init-imy.el : 个人定义的相关函数
+
+#+begin_src emacs-lisp :tangle ./lisp/init-imy.el
+;; init-imy.el -*- lexical-binding: t; -*-
+
+;; 快速打开配置文件
+(defun open-init-file() (interactive) (find-file (concat user-emacs-directory "init.el")))
+;; (defun open-init-map-file() (interactive) (find-file (concat imy/lisp-dir  "init-no-dump.el")))
+(global-set-key (kbd "<f5>") 'open-init-file)
+
+
+(defun create-scratch-buffer nil
+  "create a new scratch buffer to work in. (could be *scratch* - *scratchX*)"
+  (interactive)
+  (let ((n 0)
+	bufname)
+    (while (progn
+	     (setq bufname (concat "*scratch"
+				   (if (= n 0) "" (int-to-string n))
+				   "*"))
+	     (setq n (1+ n))
+	     (get-buffer bufname)))
+    (switch-to-buffer (get-buffer-create bufname))
+    (if (= n 1) (lisp-interaction-mode)) ; 1, because n was incremented
+    ))
+
+(defun imy/reveal-in-finder ()
+  (interactive)
+  (shell-command (concat "open -R " buffer-file-name)))
+
+(defun imy/create-1/3-scratch-buffer nil
+  "Opens up a new shell in the directory associated with the
+current buffer's file. The eshell is renamed to match that
+directory to make multiple eshell windows easier."
+  (interactive)
+  (let* ((parent (if (buffer-file-name)
+                     (file-name-directory (buffer-file-name))
+                   default-directory))
+         (height (/ (window-total-height) 3))
+         (name   (car (last (split-string parent "/" t)))))
+    (split-window-vertically (- height))
+    (other-window 1)
+    (create-scratch-buffer))
+)
+
+
+(defun imy/open-vterm nil
+  "Opens up a new shell in the directory associated with the
+current buffer's file. The eshell is renamed to match that
+directory to make multiple eshell windows easier."
+  (interactive)
+  (let* ((parent (if (buffer-file-name)
+                     (file-name-directory (buffer-file-name))
+                   default-directory))
+         (height (/ (window-total-height) 2))
+         (name   (car (last (split-string parent "/" t)))))
+    (split-window-vertically (- height))
+    (other-window 1)
+    (vterm))
+)
+
+(defun imy/eshell-here ()
+  "Opens up a new shell in the directory associated with the
+current buffer's file. The eshell is renamed to match that
+directory to make multiple eshell windows easier."
+  (interactive)
+  (let* ((parent (if (buffer-file-name)
+                     (file-name-directory (buffer-file-name))
+                   default-directory))
+         (height (/ (window-total-height) 3))
+         (name   (car (last (split-string parent "/" t)))))
+    (split-window-vertically (- height))
+    (other-window 1)
+    (eshell "new")
+    (rename-buffer (concat "*eshell: " name "*"))
+
+    ;;(insert (concat "ls"))
+    (eshell-send-input)))
+
+(defun imy/eshell-close ()
+  "Closes the winexitdow created by the function 'eshell-here'"
+  (interactive)
+  (evil-insert nil nil nil)
+  (insert "exit")
+  (eshell-send-input)
+  (delete-window))
+
+(defun imy/open-iTerm ()
+  "Opens up a new shell in the directory associated with the
+current buffer's file. The eshell is renamed to match that
+directory to make multiple eshell windows easier."
+  (interactive)
+  (shell-command "open -a iTerm .")
+)
+
+
+(defun imy/make-frame-by-emacsclient ()
+  "make frame by emacsclient -c"
+  (interactive)
+  (start-process-shell-command "make-frame" nil "emacsclient -c")
+)
+
+(defun imy/kill-other-buffers ()
+    "Kill all other buffers."
+    (interactive)
+    (mapc 'kill-buffer 
+          (delq (current-buffer) 
+                (cl-remove-if-not 'buffer-file-name (buffer-list)))))
+
+(defun imy/kill-all-buffers ()
+  (interactive)
+  (mapc 'kill-buffer (buffer-list)))
+
+
+(defun imy/org-delete-link ()
+    "Replace an org link by its description or if empty its address"
+  (interactive)
+  (if (org-in-regexp org-link-bracket-re 1)
+      (save-excursion
+        (let ((remove (list (match-beginning 0) (match-end 0)))
+              (description
+               (if (match-end 2) 
+                   (org-match-string-no-properties 2)
+                 (org-match-string-no-properties 1))))
+          (apply 'delete-region remove)
+          (insert description)))))
+
+
+(defun imy/org-show-current-heading-tidily ()
+
+  (interactive)
+  "Show next entry, keeping other entries closed."
+  (if (save-excursion (end-of-line) (outline-invisible-p))
+      (progn (org-show-entry) (show-children))
+    (outline-back-to-heading)
+    (unless (and (bolp) (org-on-heading-p))
+      (org-up-heading-safe)
+      (hide-subtree)
+      (error "Boundary reached"))
+    (org-overview)
+    (org-reveal t)
+    (org-show-entry)
+    (show-children)))
+
+(defun imy/org-show-next-heading-tidily ()
+  (interactive)
+  "Show next entry, keeping other entries closed."
+  (if (save-excursion (end-of-line) (outline-invisible-p))
+      (progn (org-show-entry) (show-children))
+    (outline-next-heading)
+    (unless (and (bolp) (org-on-heading-p))
+      (org-up-heading-safe)
+      (hide-subtree)
+      (error "Boundary reached"))
+    (org-overview)
+    (org-reveal t)
+    (org-show-entry)
+    (recenter-top-bottom)
+    (show-children)
+    (recenter-top-bottom)))
+
+(defun imy/org-show-previous-heading-tidily ()
+  "Show previous entry, keeping other entries closed."
+  (interactive)
+  (let ((pos (point)))
+    (outline-previous-heading)
+    (unless (and (< (point) pos) (bolp) (org-on-heading-p))
+      (goto-char pos)
+      (hide-subtree)
+      (error "Boundary reached"))
+    (org-overview)
+    (org-reveal t)
+    (org-show-entry)
+    (recenter-top-bottom)
+    (show-children)
+    (recenter-top-bottom)))
+
+
+(defun imy/org-foldup ()
+  "Hide the entire subtree from root headline at point."
+  (interactive)
+  (while (ignore-errors (outline-up-heading 1)))
+  (org-flag-subtree t))
+
+(defun imy/org-shifttab (&optional arg)
+  (interactive "P")
+  (if (or (null (org-current-level))     ; point is before 1st heading, or
+          (and (= 1 (org-current-level)) ; at level-1 heading, or
+               (org-at-heading-p))
+          (org-at-table-p))              ; in a table (to preserve cell movement)
+      ; perform org-shifttab at root level elements and inside tables
+      (org-shifttab arg)
+      ; try to fold up elsewhere 
+      (imy/org-foldup)))
+
+
+(defun imy/delete-this-file (buffername)
+  "Delete the file visited by the buffer named BUFFERNAME."
+  (interactive "b")
+  (let* ((buffer (get-buffer buffername))
+         (filename (buffer-file-name buffer)))
+    (when filename
+      (delete-file filename)
+      (kill-buffer-ask buffer))))
+
+;; evil < > 
+(defun imy/evil-shift-right ()
+  (interactive)
+  (evil-shift-right evil-visual-beginning evil-visual-end)
+  (evil-normal-state)
+  (evil-visual-restore))
+
+(defun imy/evil-shift-left ()
+  (interactive)
+  (evil-shift-left evil-visual-beginning evil-visual-end)
+  (evil-normal-state)
+  (evil-visual-restore))
+
+
+(defun imy/avy-goto-char-near-point (char)
+  "Jump to the currently visible CHAR in the few lines near point."
+  (interactive (list (read-char "char: " t)))
+  (let ((avy-all-windows nil) (p1 nil) (p2 nil) (initial-point (point)) (n 2))
+    (avy-with avy-goto-char
+      (avy--process
+       (save-excursion
+     (save-restriction
+       (forward-line (- n))
+       (setq p1 (point))
+       (goto-char initial-point)
+       (forward-line (+ n 1) )
+       (setq p2 (point))
+       (narrow-to-region p1 p2)
+       (avy--regex-candidates (regexp-quote (string char)))))
+     (avy--style-fn avy-style)))))
+
+
+(defun imy/single-lines-only ()
+  "replace multiple blank lines with a single one"
+  (interactive)
+  (goto-char (point-min))
+  (while (re-search-forward "\\(^\\s-*$\\)\n" nil t)
+    (replace-match "\n")
+    (forward-char 1)))
+
+(defun imy/remove-newlines-in-region ()
+  "Removes all newlines in the region."
+  (interactive)
+  (save-restriction
+    (narrow-to-region (point) (mark))
+    (goto-char (point-min))
+    (while (search-forward "\n" nil t) (replace-match "" nil t))))
+
+
+(defun imy/find-emacs-lisp-find ()
+  "find emacs lisp config"
+  (interactive)
+  (counsel-find-file nil "~/.emacs.d/lisp/") 
+  )
+
+
+(defun imy/find-agenda-find ()
+  "find emacs lisp config"
+  (interactive)
+  (counsel-find-file nil "~/pkm-roam/agenda/") 
+  )
+
+
+(defun imy/iterm-my-emacs-env ()
+  "find emacs lisp config"
+  (interactive)
+  (shell-command "open -a iTerm  ~/.my-emacs-env" ))
+
+(defun imy/prelude-copy-file-name-to-clipboard ()
+  "Copy the current buffer file name to the clipboard."
+  (interactive)
+  (let ((filename (if (equal major-mode 'dired-mode)
+                      default-directory
+                    (buffer-file-name))))
+    (when filename
+      (kill-new filename)
+      (message "Copied buffer file name '%s' to the clipboard." filename))))
+
+
+(defun imy/dump-emacs ()
+  "dump emacs in dump-emacs-buffer"
+  (interactive)
+  (start-process-shell-command "dump-emacs" "dump-emacs-buffer" "sh ~/.emacs.d/dump.sh")
+)
+
+(provide 'init-imy)
+
+#+end_src
+** init-basic.el : emacs 基础配置
+
+#+begin_src emacs-lisp :tangle ./lisp/init-basic.el
+;; init-basic.el -*- lexical-binding: t; -*-
+
+;; 备份文件
+(setq
+     backup-by-copying t ; 自动备份
+   ;;   backup-directory-alist
+   ;;   '(("." . backup-directory)) ; 自动备份在目录"~/.em_backup"下
+     delete-old-versions t ; 自动删除旧的备份文件
+     kept-new-versions 3 ; 保留最近的3个备份文件
+     kept-old-versions 1 ; 保留最早的1个备份文件
+     version-control t) ; 多次备份
+
+(if (not (file-exists-p imy/backup-dir))
+    (make-directory imy/backup-dir t))
+
+(setq backup-directory-alist
+      `(("." . ,imy/backup-dir)))
+
+
+(if (not (file-exists-p imy/autosave-dir))
+    (make-directory imy/autosave-dir t))
+
+
+(setq auto-save-file-name-transforms
+          `((".*" ,imy/autosave-dir t)))
+
+
+;; (global-linum-mode 1)
+(add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
+(delete-selection-mode 1)
+(global-hl-line-mode 1)
+(tool-bar-mode 0)
+(menu-bar-mode 0)
+(scroll-bar-mode 0)
+(toggle-truncate-lines nil)
+(display-time-mode 1)
+(setq ring-bell-function 'ignore)
+
+(setq display-time-24hr-format t)
+ ;; (setq display-time-day-and-date t)
+;; (setq display-time-format "%I:%M:%S")
+(setq display-time-format "%I:%M")
+(setq display-time-default-load-average nil)
+
+(setq inhibit-startup-message t)
+;; (setq initial-frame-alist (quote ((fullscreen . maximized))))
+;; (setq default-frame-alist (quote ((fullscreen . maximized))))
+
+(setq initial-frame-alist '(
+			    (top . 0) (left . 0) (width . 160) (height . 40)
+			    (tool-bar-lines . 0) 
+			    (vertical-scroll-bars . nil)
+			    (horizontal-scroll-bars . nil)
+			    (internal-border-width . 0)
+			    ))
+
+(setq default-frame-alist '(
+			    (top . 0) (left . 0) (width . 160) (height . 40)
+                            (tool-bar-lines . 0) 
+			    (vertical-scroll-bars . nil)
+			    (horizontal-scroll-bars . nil)
+			    (internal-border-width . 0)
+			    )
+      )
+
+
+
+(setq org-link-frame-setup '((file . find-file))) ;; 同一个窗口下打开org文件, 默认是在另一个窗口打
+
+;; yes-or-no
+(defun yes-or-no-p->-y-or-n-p (orig-fun &rest r)
+  (cl-letf (((symbol-function 'yes-or-no-p) #'y-or-n-p))
+    (apply orig-fun r)))
+
+(advice-add 'kill-buffer :around #'yes-or-no-p->-y-or-n-p)
+
+(setq use-short-answers t)
+(define-key y-or-n-p-map [return] 'act)
+
+(add-hook 'org-mode-hook 'org-indent-mode)
+(setq org-return-follows-link t)
+
+(setq writeroom-width 100)
+
+(setq org-preview-latex-image-directory "~/.my-emacs-env/ltximg/")
+(setq org-preview-latex-default-process 'dvisvgm)
+
+;; early-init Compatibility with Emacs 26
+(cond ((version< emacs-version "26.1")
+       (warn "M-EMACS requires Emacs 26.1 and above!"))
+      ((let* ((early-init-f (expand-file-name "early-init.el" user-emacs-directory))
+              (early-init-do-not-edit-d (expand-file-name "early-init-do-not-edit/" user-emacs-directory))
+              (early-init-do-not-edit-f (expand-file-name "early-init.el" early-init-do-not-edit-d)))
+         (and (version< emacs-version "27")
+              (or (not (file-exists-p early-init-do-not-edit-f))
+                  (file-newer-than-file-p early-init-f early-init-do-not-edit-f)))
+         (make-directory early-init-do-not-edit-d t)
+         (copy-file early-init-f early-init-do-not-edit-f t t t t)
+         (add-to-list 'load-path early-init-do-not-edit-d)
+         (require 'early-init))))
+
+
+
+(provide 'init-basic)
+
+#+end_src
+** init-ivy.el : ivy 相关的配置
+
+#+begin_src emacs-lisp :tangle ./lisp/init-ivy.el
+;; init-ivy.el -*- lexical-binding: t; -*-
+
+(ivy-mode 1)
+;;(setq ivy-use-virtual-buffers t) ;; 是否要将 bookmark 和 recentf 加入 ivy-swich-buffer.
+(setq enable-recursive-minibuffers t)
+
+;; delete M-x ^
+;;(setq ivy-initial-inputs-alist nil)
+(with-eval-after-load 'counsel
+  (setq ivy-initial-inputs-alist nil))
+
+(define-key ivy-minibuffer-map [escape] 'minibuffer-keyboard-quit)
+;;(define-key ivy-minibuffer-map (kbd "<ESC>") 'minibuffer-keyboard-quit)
+;;(define-key swiper-map (kbd "<ESC>") 'minibuffer-keyboard-quit)
+
+;; 使用rg 替代 grep, 使用counsel-grep-or-swiper的时候
+(setq counsel-grep-base-command
+ "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
+
+ ;; ivy
+(setq ivy-re-builders-alist
+ '((counsel-rg . ivy--regex-plus)
+  (swiper . ivy--regex-plus)
+  (swiper-isearch . ivy--regex-plus)
+  (t . ivy--regex-ignore-order))) ;; 忽略单词顺序
+
+(setq counsel-find-file-ignore-regexp
+        (concat
+         ;; filename begins with #
+         "\\(?:\\`[#.]\\)"
+         ;; filename ends with # or ~
+         "\\|\\(?:\\`.+?[#~]\\'\\)"
+         "\\|\\.elc\\'"
+         "\\|\\.pyc\\'"
+         "\\|\\.meta\\'"
+         ))
+
+
+(custom-set-faces
+ '(ivy-current-match
+   ((((class color) (background light))
+     :background "red" :foreground "white")
+    (((class color) (background dark))
+     :background "blue" :foreground "black"))))
+
+;; 创建文件到时候能向上选择
+(setq ivy-use-selectable-prompt t)
+
+
+
+(provide 'init-ivy)
+
+#+end_src
+** init-evil.el : evil 相关的配置
+
+#+begin_src emacs-lisp :tangle ./lisp/init-evil.el
+;;; init-evil.el -*- lexical-binding: t; -*-
+
+(setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+(setq evil-want-keybinding nil)
+
+(require 'evil)
+(evil-mode 1)
+
+
+(when (require 'evil-collection nil t)
+   (evil-collection-init))
+
+;; (require 'evil-collection)
+;; (evil-collection-init)
+
+
+(require 'magit)
+(evil-collection-magit-setup)
+
+(setq-default evil-kill-on-visual-paste nil)
+
+(provide 'init-evil)
+#+end_src
+** init-font.el : 字体相关的配置
+
+#+begin_src emacs-lisp :tangle ./lisp/init-font.el
+
+;; init-font.el -*- lexical-binding: t; -*-
+
+;; midnight blue | dim gray | sea green | cornflower blue | gold
+;; (set-face-background 'hl-line "cornflower blue")
+
+;; (set-face-attribute 'region nil
+;;                     :box '(:line-width -1 
+;;                            ;; :color "gtk_selection_bg_color"
+;;                            :color "gray14"
+;;                            :style nil))
+
+
+(setq imy/english-font "Fira Code")
+(setq imy/chinese-font "PingFang SC")
+;; (setq imy/english-font "Sarasa Mono SC Nerd")
+;; (setq imy/chinese-font "Sarasa Mono SC Nerd")
+(setq imy/english-font-height (* 15 10))
+(setq imy/chinese-font-size 15)
+
+
+;; Setting English Font  - Fira Code | Inconsolata | Monoid  + Unifont | Sarasa Mono SC Nerd |  PinFang SC | Source Code Pro | Monaco | menlo
+(set-face-attribute 'default nil :height imy/english-font-height :weight 'regular :family imy/english-font)
+
+;; Chinese Font 配制中文字体 PingFang SC | Songti SC
+(if (display-graphic-p)
+    (dolist (charset '(kana han symbol cjk-misc bopomofo))
+      (set-fontset-font (frame-parameter nil 'font)
+			charset
+			(font-spec  :family imy/chinese-font :size imy/chinese-font-size))))
+
+(provide 'init-font)
+#+end_src
+** init-general.el : 支持多leader key的插件
+
+将插件包含进来, 真正定义快捷键文件上 init-map.el
+
+#+begin_src emacs-lisp :tangle ./lisp/init-general.el
+
+;;; init-general.el  -*- lexical-binding: t; -*-
+
+(require 'general)
+
+(provide 'init-general)
+#+end_src
+** init-map.el : 定义快捷键的地方
+
+#+begin_src emacs-lisp :tangle ./lisp/init-map.el
+
+;; init-map.el -*- lexical-binding: t; -*-
+
+(with-eval-after-load 'evil-maps
+  (define-key evil-motion-state-map (kbd "RET") nil)
+  (define-key evil-normal-state-map (kbd "RET") nil)
+  (define-key evil-motion-state-map  (kbd "C-v") nil) ;; evil-visual-block
+  (define-key evil-motion-state-map  (kbd "SPC") nil) ;; evil-visual-block
+  (define-key evil-motion-state-map  (kbd ";") nil)   ;;'evil-repeat-find-char)
+  (define-key evil-motion-state-map  (kbd "C-e") nil)
+  (define-key evil-motion-state-map  (kbd "TAB") nil)
+  (define-key evil-normal-state-map  (kbd "s") nil)   ;; evil-substitute
+  )
+
+(evil-define-key 'treemacs treemacs-mode-map (kbd "SPC")  nil)
+(evil-define-key 'visual global-map (kbd ">") 'imy/evil-shift-right)
+(evil-define-key 'visual global-map (kbd "<") 'imy/evil-shift-left)
+
+(general-define-key "C-; C-d" 'ivy-immediate-done)
+
+(general-create-definer spc-leader-def :prefix "SPC")
+(general-create-definer roam-leader-def :prefix ";")
+(general-create-definer s-leader-def :prefix "s")
+(general-create-definer g-leader-def :prefix "g")
+(spc-leader-def 'normal 'override "SPC" 'counsel-M-x)
+(spc-leader-def 'normal 'override "`" 'repeat)
+(general-define-key "M-x" 'counsel-M-x)
+(general-define-key "s-f" 'swiper-isearch)
+
+
+(with-eval-after-load 'counsel
+  (define-key counsel-find-file-map  (kbd "TAB") #'ivy-alt-done))
+
+(general-define-key "C-x C-f" 'counsel-find-file) 
+
+(spc-leader-def 'normal 'override "." 'counsel-find-file)
+(spc-leader-def 'normal 'override "'" 'ivy-resume)
+(spc-leader-def  'normal ";" 'evil-repeat-find-char) 
+
+;; general
+(general-def 'insert  "C-v" 'org-yank) 
+(general-def  'normal "C-v" 'org-yank) 
+(general-define-key "s-c" 'evil-yank)
+(general-define-key "s-v" 'org-yank)
+
+;; yas
+(general-def 'insert  "C-'" 'yas-expand) 
+(general-def  'normal "C-'" 'yas-expand) 
+
+;;telega
+(general-define-key "C-M-s-)" 'telega) 
+
+;; macos
+ (setq mac-option-key-is-meta t
+       x-select-enable-clipboard 't
+       ;; mac-command-key-is-meta nil
+       mac-command-modifier 'super
+       mac-option-modifier 'meta)
+
+;; help
+ (spc-leader-def 'normal 'override "h t" 'counsel-load-theme)
+ (spc-leader-def 'normal 'override "h v" 'counsel-describe-variable)
+ (spc-leader-def 'normal 'override "h k" 'describe-key)
+ (spc-leader-def 'normal 'override "h f" 'counsel-describe-function)
+ 
+ ;; buffer
+
+(spc-leader-def 'normal 'override "x" 'imy/create-1/3-scratch-buffer)
+(spc-leader-def 'normal 'override "b b" 'counsel-switch-buffer)
+(spc-leader-def 'normal 'override "b s" 'save-buffer)
+(spc-leader-def 'normal 'override "b S" 'evil-write-all)
+(spc-leader-def 'normal 'override "b k" 'kill-current-buffer)
+(spc-leader-def 'normal 'override "b d" 'kill-current-buffer)
+(spc-leader-def 'normal 'override "b p" 'previous-buffer)
+(spc-leader-def 'normal 'override "b n" 'next-buffer)
+(spc-leader-def 'normal 'override "b i" 'ibuffer)
+ 
+ ;; window
+ (spc-leader-def 'normal 'override "w w" 'other-window)
+ (spc-leader-def 'normal 'override "w d" 'delete-window)
+ (spc-leader-def 'normal 'override "w m" 'delete-other-windows)
+ (spc-leader-def 'normal 'override "w D" 'delete-other-windows)
+ (spc-leader-def 'normal 'override "w b" '(lambda () (interactive) (split-window-vertically) (other-window 1)))
+ (spc-leader-def 'normal 'override "w r" '(lambda () (interactive) (split-window-horizontally) (other-window 1)))
+ (spc-leader-def 'normal 'override "w <" 'scroll-left)
+ (spc-leader-def 'normal 'override "w >" 'scroll-right)
+ (spc-leader-def 'normal 'override "w }" 'enlarge-window-horizontally)
+ (spc-leader-def 'normal 'override "w {" 'shrink-window-horizontally)
+ (spc-leader-def 'normal 'override "w H" 'evil-window-move-far-left)
+ (spc-leader-def 'normal 'override "w L" 'evil-window-move-far-right)
+ (spc-leader-def 'normal 'override "w J" 'evil-window-move-very-bottom)
+ (spc-leader-def 'normal 'override "w K" 'evil-window-move-very-top)
+ (spc-leader-def 'normal 'override "w h" 'evil-window-left)
+ (spc-leader-def 'normal 'override "w l" 'evil-window-right)
+ (spc-leader-def 'normal 'override "w j" 'evil-window-down)
+ (spc-leader-def 'normal 'override "w k" 'evil-window-up)
+ (spc-leader-def 'normal 'override "w a" 'winner-undo)
+ (spc-leader-def 'normal 'override "w f" 'winner-redo)
+
+(spc-leader-def 'normal 'override "1" 'winum-select-window-1)
+(spc-leader-def 'normal 'override "2" 'winum-select-window-2)
+(spc-leader-def 'normal 'override "3" 'winum-select-window-3)
+(spc-leader-def 'normal 'override "4" 'winum-select-window-4)
+(spc-leader-def 'normal 'override "5" 'winum-select-window-5)
+(spc-leader-def 'normal 'override "6" 'winum-select-window-6)
+(spc-leader-def 'normal 'override "7" 'winum-select-window-7)
+(spc-leader-def 'normal 'override "8" 'winum-select-window-8)
+
+(general-define-key "M-x" 'counsel-M-x)
+(general-define-key  "s-1" 'winum-select-window-1)
+(general-define-key  "s-2" 'winum-select-window-2)
+(general-define-key  "s-3" 'winum-select-window-3)
+(general-define-key  "s-4" 'winum-select-window-4)
+(general-define-key  "s-5" 'winum-select-window-5)
+
+ ;; file frame
+(spc-leader-def 'normal 'override "f r" 'counsel-recentf)
+(spc-leader-def 'normal 'override "f n" 'imy/make-frame-by-emacsclient)
+(spc-leader-def 'normal 'override "f d" 'delete-frame)
+(spc-leader-def 'normal 'override "f D" 'delete-other-frame)
+(spc-leader-def 'normal 'override "f m" 'toggle-frame-maximized)
+
+ ;; search
+ (spc-leader-def 'normal 'override "s s" 'swiper-isearch)
+ (spc-leader-def 'normal 'override "s i" 'counsel-imenu)
+ (spc-leader-def 'normal 'override "s r" 'counsel-recentf)
+ (spc-leader-def 'normal 'override "s f" 'counsel-projectile-find-file)
+ (spc-leader-def 'normal 'override "s D" 'projectile-find-dir)
+ (spc-leader-def 'normal 'override "s p" 'counsel-projectile-rg)
+ (general-define-key "s-F" 'counsel-projectile-rg)
+ (spc-leader-def 'normal 'override "s d" 'counsel-rg)
+ (spc-leader-def 'normal 'override "s l" 'imy/find-emacs-lisp-find)
+ (spc-leader-def 'normal 'override "s a" 'imy/find-agenda-find)
+ 
+ ;; roam
+ 
+ (roam-leader-def 'normal 'override  ";" 'org-roam-find-file)
+ (roam-leader-def 'normal 'override  "f" 'evil-repeat-find-char)
+ (roam-leader-def 'normal 'override  "l" 'org-roam)
+ (roam-leader-def 'normal 'override  "t" 'org-roam-tag-add)
+ (roam-leader-def 'normal 'override  "b" 'org-roam-switch-to-buffer)
+ (roam-leader-def 'normal 'override  "c" 'org-roam-capture)
+ (roam-leader-def 'normal 'override  "a" 'org-roam-alias-add)
+ (roam-leader-def 'normal 'override  "g" 'org-roam-graph)
+ (roam-leader-def 'normal 'override  "i" 'org-roam-insert)
+ (roam-leader-def 'normal 'override  "I" 'org-roam-insert-immediate)
+ 
+ ;; evil
+ (general-define-key "C-e" 'move-end-of-line)
+
+ (define-key evil-motion-state-map "L" 'evil-end-of-line)
+ (define-key evil-motion-state-map "H" 'evil-first-non-blank)
+ (setq evil-motion-state-cursor 'box)  ; █
+ (setq evil-visual-state-cursor 'box)  ; █
+ (setq evil-normal-state-cursor 'box)  ; █
+ (setq evil-insert-state-cursor 'bar)  ; ⎸
+ (setq evil-emacs-state-cursor  'hbar) ; _ 
+ 
+ 
+ ;; org
+(spc-leader-def 'normal 'override "RET" 'counsel-bookmark)
+
+(general-def org-mode-map "M-j" 'org-metadown)
+(general-def org-mode-map "M-k" 'org-metaup)
+(general-def org-mode-map "M-l" 'org-metaright)
+(general-def org-mode-map "M-h" 'org-metaleft) 
+
+ ;; toogle
+(spc-leader-def 'normal 'override "t t" 'treemacs)
+(spc-leader-def 'normal 'override "t h" 'link-hint-open-link)
+(spc-leader-def 'normal 'override "t a" 'org-agenda)
+(spc-leader-def 'normal 'override "t z" 'writeroom-mode)
+(spc-leader-def 'normal 'override "t l" 'org-toggle-link-display)
+(spc-leader-def 'normal 'override "t y" 'org-yank)
+(spc-leader-def 'normal 'override "t g" 'grab-mac-link-dwim)
+(spc-leader-def 'normal 'override "t c" 'org-capture)
+(spc-leader-def 'normal 'override "t f" 'elfeed)
+(general-def  "C-; C-g" 'grab-mac-link-dwim) 
+(general-def  "C-; C-t" 'rand-theme) 
+
+(spc-leader-def 'normal 'override "t e" 'eval-region)
+(spc-leader-def 'normal 'override "t E" 'eval-buffer)
+(spc-leader-def 'normal 'override "t p" 'imy/org-download-paste-clipboard)
+(general-def  "C-; C-i" 'imy/org-download-paste-clipboard) 
+
+;; company
+;; (global-set-key (kbd "C-m") 'company-complete)
+
+ ;; s leader
+(s-leader-def 'normal "s" 'avy-goto-char) 
+(s-leader-def 'normal "L" 'avy-goto-line) 
+(s-leader-def 'normal "j" 'avy-goto-line-below) 
+(s-leader-def 'normal "k" 'avy-goto-line-above) 
+(s-leader-def 'normal "h" 'avy-org-goto-heading-timer) 
+(s-leader-def 'normal "r" 'avy-org-refile-as-child) 
+(s-leader-def 'normal "f" 'swiper-thing-at-point) 
+(s-leader-def 'normal ";" 'avy-goto-char-timer) 
+(s-leader-def 'normal "n" 'imy/avy-goto-char-near-point) 
+
+ ;; link hint
+ (s-leader-def 'normal "l" 'link-hint-open-link) 
+ (s-leader-def 'normal "c" 'link-hint-copy-link) 
+ 
+ ;; evil
+ (define-key evil-normal-state-map "u" 'undo-fu-only-undo)
+ (define-key evil-normal-state-map "\C-r" 'undo-fu-only-redo)
+ 
+ ;; projectile
+ (projectile-mode +1)
+ ;; (general-def 'normal "C-;" 'projectile-command-map) 
+ (spc-leader-def 'normal "p" 'projectile-command-map) 
+ 
+ ;; magit
+ (spc-leader-def 'normal 'override "g" 'magit-status)
+ 
+ ;; comment 
+ (evilnc-default-hotkeys nil t)
+ (g-leader-def 'normal "i" 'evilnc-comment-or-uncomment-lines)
+ (g-leader-def 'normal "\\" 'evilnc-comment-operator) 
+
+;; bookmark
+(spc-leader-def 'normal 'override "m s" 'bookmark-set)
+(spc-leader-def 'normal 'override "m m" 'list-bookmarks)
+(spc-leader-def 'normal 'override "m j" 'bookmark-jump)
+(spc-leader-def 'normal 'override "m S" 'bookmark-save)
+;;(spc-leader-def 'normal 'override "," 'counsel-bookmark)
+
+;; open org
+;; (spc-leader-def 'normal 'override "o e" 'imy/eshell-here)
+(spc-leader-def 'normal 'override "o v" 'imy/open-vterm)
+(spc-leader-def 'normal 'override "o i" 'imy/open-iTerm)
+(spc-leader-def 'normal 'override "o o" 'imy/reveal-in-finder)
+(spc-leader-def 'normal 'override "o ;" 'imy/org-show-current-heading-tidily)
+(spc-leader-def 'normal 'override "o k" 'imy/org-show-previous-heading-tidily)
+(spc-leader-def 'normal 'override "o j" 'imy/org-show-next-heading-tidily)
+(spc-leader-def 'normal 'override "o f" 'imy/org-foldup)
+(spc-leader-def 'normal 'override "o F" 'org-footnote-new)
+(general-def "C-; C-f" 'org-footnote-new) 
+(spc-leader-def 'normal 'override "o y" 'yas-insert-snippet)
+
+;; close code 
+(spc-leader-def 'normal 'override "c e" 'imy/eshell-close)
+(spc-leader-def 'normal 'override "c h" 'org-hide-block-all)
+(spc-leader-def 'normal 'override "c s" 'org-show-block-all)
+(spc-leader-def 'normal 'override "c c" 'org-edit-src-code)
+(spc-leader-def 'normal 'override "c f" 'org-edit-src-exit)
+
+;; zi
+(general-def 'normal  "z i" 'org-toggle-inline-images) 
+
+;;delete
+(spc-leader-def 'normal 'override "d l" 'imy/org-delete-link)
+
+;; selection
+(global-set-key (kbd "C-=") 'er/expand-region)
+
+(provide 'init-map)
+#+end_src
+** init-roam.el : org roam
+
+#+begin_src emacs-lisp :tangle ./lisp/init-roam.el
+;; init-roam.el -*- lexical-binding: t; -*-
+
+(setq org-roam-buffer-width '0.25)
+
+;; delete-other-windows 执行的时候  roam侧边栏也 delete
+(setq org-roam-buffer-window-parameters nil) ;; (setq org-roam-buffer-window-parameters '((no-delete-other-windows . nil)))
+
+;; roam find file 的时候不会自动打开 backlinks
+(setq +org-roam-open-buffer-on-find-file nil)
+
+(setq org-roam-directory "~/pkm-roam/roam0")  ;; roam 应用的文件夹
+(setq org-roam-db-location "~/pkm-roam/org-roam.db")
+(setq org-roam-completion-system 'ivy)
+
+(defun start-roam-mode () (org-roam-mode t))
+(add-hook 'after-init-hook 'start-roam-mode)
+
+ (require 'org-roam-protocol)
+
+ ;; 启动时无效, 关闭后再启动才有效
+
+(setq org-roam-server-host "127.0.0.1"
+        org-roam-server-port 1024
+        org-roam-server-authenticate nil
+        org-roam-server-export-inline-images t
+        org-roam-server-serve-files nil
+        org-roam-server-served-file-extensions '("pdf" "mp4" "ogv")
+        org-roam-server-network-poll t
+        org-roam-server-network-arrows nil
+        org-roam-server-network-label-truncate t
+        org-roam-server-network-label-truncate-length 60
+        org-roam-server-network-label-wrap-length 20)
+
+
+(setq org-roam-capture-ref-templates
+      '(("r" "ref" plain (function org-roam-capture--get-point)
+         ""
+         :file-name "%<%Y%m%d%H%M%S>-${slug}"
+         :head "#+title: ${title}\n#+roam_key: ${ref}\n#+ROAM_TAGS: webpage\n"
+         :unnarrowed t)))
+
+
+;; (setq org-roam-graph-extra-config '(
+;;                                     ;; ("overlap" . "scale")
+;;                                     ("rankdir" . "RL")
+;;                                     ;; ("color" . "skyblue")
+;;                                     ))
+
+(provide 'init-roam)
+
+#+end_src
+** init-custom.el : 将 custom 信息放在专门的文件里
+
+默认 emacs 会将一些 custom 信息放到 init.el 的末尾, 十分影响美观.
+
+我将它抽出放入 custom.el
+#+begin_src emacs-lisp :tangle ./lisp/init-custom.el
+;; init-custom.el -*- lexical-binding: t; -*-
+
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(unless (file-exists-p custom-file)
+  (write-region "" nil custom-file))
+(when (file-exists-p custom-file)
+  (load custom-file))
+
+(provide 'init-custom)
+#+end_src
+** init-idle-time-load.el : 利用idle time 加载插件
+
+为了提高 emacs 的启动速度, 我将一些不需要马上用到配置放到 idle time 再加载.
+
+具体加载的时机是 idle time 超过 3s 的时候.
+
+#+begin_src emacs-lisp :tangle ./lisp/init-idle-time-load.el
+;; init-idle-time-load.el -*- lexical-binding: t; -*-
+
+(defun imy/load-after-idle-time () 
+
+  (load "server")
+  (unless (server-running-p) (server-start))
+
+  ;; (mac-auto-operator-composition-mode)
+
+  ;; 解决unicode字体相关的问题, 尤其在telega有些图标名字显示不出来
+  (require 'unicode-fonts)
+  (unicode-fonts-setup)
+
+  ;; 通过分析语义增量选择 region 的插件
+  (require 'expand-region)
+
+  (require 'init-evil-surround)
+  (require 'init-agenda)
+  (require 'init-journal)			      
+  (require 'init-capture)
+  (require 'init-snippet)
+  (require 'init-paredit)
+  (require 'init-org-download)
+  (require 'init-company)
+
+  (require 'init-telega)
+  (require 'init-language)
+  (require 'init-window)
+  (require 'init-which-key)
+  (require 'init-org-mode)
+  (require 'init-random-theme)
+  (require 'init-fold)
+  ;; (require 'init-pinyin)
+
+  (require 'init-treemacs)
+  (require 'init-elfeed)
+  (require 'init-nyan-mode)
+
+  (require 'init-enable-mode)
+
+  ;; dump 不了, 只能放在 idle 里
+  (winner-mode)
+
+  )
+
+;; (imy/load-after-idle-time)
+
+(setq  setup-idle-time-once
+	   (run-with-idle-timer 3 t
+				(lambda ()
+				  (imy/load-after-idle-time)
+				  (cancel-timer setup-idle-time-once)
+				  )))
+
+
+
+(provide 'init-idle-time-load)
+#+end_src
+*** init-evil-surround.el : 类似 surround.vim
+
+#+begin_src emacs-lisp :tangle ./lisp/init-evil-surround.el
+;; init-evil-surround.el -*- lexical-binding: t; -*-
+
+(global-evil-surround-mode 1)
+
+;; 自定义 ~ 的行为, 我在 ~ 前后多加了个空格
+(setq-default evil-surround-pairs-alist
+              (push '(?~ . (" ~" . "~ ")) evil-surround-pairs-alist))
+
+(provide 'init-evil-surround)
+
+#+end_src
+*** init-agenda.el : agenda 相关
+
+#+begin_src emacs-lisp :tangle ./lisp/init-agenda.el
+;; init-agenda.el -*- lexical-binding: t; -*-
+
+(setq org-agenda-files (list
+			"~/pkm-roam/agenda/GTD.org"
+			"~/pkm-roam/agenda/inbox.org"
+			"~/pkm-roam/agenda/archive.org"
+			))
+
+
+ (setq org-todo-keywords
+        '((sequence
+           "☞ TODO(t)"  ; A task that needs doing & is ready to do
+           "PROJ(p)"  ; An ongoing project that cannot be completed in one step
+           "⚔ INPROCESS(i)"  ; A task that is in progress
+           "⚑ WAITING(w)"  ; Something is holding up this task; or it is paused
+           "|"
+           "☟ NEXT(n)"
+           ;; "✰ Important(i)"
+           "✔ DONE(d)"  ; Task successfully completed
+           "✘ CANCELED(c@)" ; Task was cancelled, aborted or is no longer applicable
+	   ) 
+          (sequence
+           ;; "✍ NOTE(N)"
+           ;; "FIXME(f)"
+           "☕ BREAK(b)"
+           ;; "❤ Love(l)"
+           "REVIEW(r)"
+           ))) ; Task was completed
+
+
+(setq org-habit-graph-column 40) ;; agenda view 的时候宽带设定大一点
+
+;; 如果设定了 org-agenda-files , 会在 org-agenda-files 列表里查找
+(setq org-refile-targets
+      '(("archive.org" :maxlevel . 1)
+	("GTD.org" :maxlevel . 1)
+	))
+
+;; Save Org buffers after refiling!
+(advice-add 'org-refile :after 'org-save-all-org-buffers)
+
+
+;; Configure custom agenda views
+(setq org-agenda-custom-commands
+      '(
+	;; ("d" "Dashboard"
+	;;  ((agenda "" ((org-deadline-warning-days 7)))
+	;;   (todo "☟ NEXT"
+	;; 	((org-agenda-overriding-header "Next Tasks")))
+	;;   ;; (tags-todo "agenda/⚔ INPROCESS" ((org-agenda-overriding-header "Active Projects")))
+	;;   ))
+
+
+	("d" "TODO"
+	 ((todo "☞ TODO"
+		((org-agenda-overriding-header "TODO Tasks")))))
+
+	("i" "INPROCESS"
+	 ((todo "⚔ INPROCESS"
+		((org-agenda-overriding-header "Next Tasks")))))
+	
+	("n" "Next Tasks"
+	 ((todo "☟ NEXT"
+		((org-agenda-overriding-header "Next Tasks")))))
+
+	))
+
+
+(setq org-agenda-show-future-repeats 'next)
+(setq org-agenda-repeating-timestamp-show-all nil)
+
+
+(add-hook 'org-agenda-mode-hook (lambda ()
+				  ;; (define-key org-agenda-mode-map "k" 'org-agenda-next-item)
+
+(define-key org-agenda-mode-map "j" 'evil-next-line)
+(define-key org-agenda-mode-map "k" 'evil-previous-line)
+
+				  ))
+
+(define-key global-map (kbd "C-c d")
+  (lambda () (interactive) (org-agenda nil "d")))
+
+(define-key global-map (kbd "C-c p")
+  (lambda () (interactive) (org-agenda nil "i")))
+
+(define-key global-map (kbd "C-c n")
+  (lambda () (interactive) (org-agenda nil "n")))
+
+(provide 'init-agenda)
+
+#+end_src
+*** init-journal.el : 每日日记 journal 相关
+#+begin_src emacs-lisp :tangle ./lisp/init-journal.el
+
+;; init-journal.el -*- lexical-binding: t; -*-
+
+(require 'org-journal)
+
+(setq org-journal-dir "~/pkm-roam/agenda/journal")
+(setq org-journal-date-prefix "#+TITLE: ")
+(setq org-journal-time-prefix "* ")
+(setq org-journal-date-format "%Y-%m-%d, %A")
+(setq org-journal-file-format "%Y-%m-%d.org")
+
+(spc-leader-def 'normal 'override "j j" 'org-journal-new-entry)
+(spc-leader-def 'normal 'override "j d" 'org-journal-new-date-entry)
+
+(setq org-agenda-file-regexp "\\`\\\([^.].*\\.org\\\|[0-9]\\\{8\\\}\\\(\\.gpg\\\)?\\\)\\'")
+(add-to-list 'org-agenda-files org-journal-dir)
+
+
+;; capture
+(defun org-journal-find-location ()
+  ;; Open today's journal, but specify a non-nil prefix argument in order to
+  ;; inhibit inserting the heading; org-capture will insert the heading.
+  (org-journal-new-entry t)
+  (unless (eq org-journal-file-type 'daily)
+    (org-narrow-to-subtree))
+  (goto-char (point-max)))
+
+
+;; 关闭 journal 界面
+(defun org-journal-save-entry-and-exit()
+  "Simple convenience function.
+  Saves the buffer of the current day's entry and kills the window
+  Similar to org-capture like behavior"
+  (interactive)
+  (save-buffer)
+  (kill-buffer-and-window))
+(spc-leader-def 'normal 'override "j k" 'org-journal-save-entry-and-exit)
+
+(provide 'init-journal)
+#+end_src
+*** init-capture.el : capture 相关
+
+主要用来存储 elfeed , 新闻等有启发意义的信息
+
+#+begin_src emacs-lisp :tangle ./lisp/init-capture.el
+
+;; init-capture.el -*- lexical-binding: t; -*-
+
+;; (setq org-capture-templates '(("j" "Journal entry" plain (function org-journal-find-location)
+;;                                "** %(format-time-string org-journal-time-format)%^{Title}\n%i%?"
+;;                                :jump-to-captured t :immediate-finish t)))
+
+(setq org-capture-templates
+    `(
+
+      ("t" "Tasks / Projects")
+      ("ti" "Task" entry (file+olp "~/pkm-roam/agenda/inbox.org" "Inbox")
+       "* %?\n  %U\n  %a\n  %i" :empty-lines 1)
+      ("ts" "Task" entry (file+olp "~/pkm-roam/agenda/inbox.org" "resource")
+       "* %?\n  %U\n  %a\n  %i" :empty-lines 1)
+
+
+      
+      ;; ("ts" "Clocked Entry Subtask" entry (clock)
+      ;;  "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
+      ;; ("h" "Inbox" entry (file "~/pkm-roam/agenda/inbox.org")
+      ;;        "* %U %^{heading} %^g\n %?\n")
+    
+      ;; ("w" "Task" entry (file+olp "~/pkm-roam/agenda/inbox.org" "webpage")
+      ;;  "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
+    ))
+
+(define-key global-map (kbd "C-c i")
+  (lambda () (interactive) (org-capture nil "ti")))
+
+(define-key global-map (kbd "C-c s")
+  (lambda () (interactive) (org-capture nil "ts")))
+
+(provide 'init-capture)
+
+#+end_src
+*** init-yasnippet.el : snippet
+
+
+#+begin_src emacs-lisp :tangle ./lisp/init-snippet.el
+;; init-snippet.el -*- lexical-binding: t; -*-
+
+(require 'yasnippet)
+
+(yas-global-mode 1)
+
+(provide 'init-snippet)
+#+end_src
+*** init-paredit.el : lisp 括号配对插件
+
+#+begin_src emacs-lisp :tangle ./lisp/init-paredit.el
+;; init-paredit.el -*- lexical-binding: t; -*-
+
+(autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
+(add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
+(add-hook 'ielm-mode-hook             #'enable-paredit-mode)
+(add-hook 'lisp-mode-hook             #'enable-paredit-mode)
+(add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
+(add-hook 'scheme-mode-hook           #'enable-paredit-mode)
+
+(provide 'init-paredit)
+
+#+end_src
+*** init-org-download.el : 在 org 里插入图片
+
+#+begin_src emacs-lisp :tangle ./lisp/init-org-download.el
+;;; init-org-download.el -*- lexical-binding: t; -*-
+
+(require 'org-download)
+
+(defun imy/im-file-name ()
+  "copy buffer's full path to kill ring"
+  (interactive)
+  (when buffer-file-name
+    ;; (file-name-nondirectory (kill-new (file-truename buffer-file-name)))))
+     ;; (file-name-nondirectory  (file-truename buffer-file-name))))
+     (file-name-sans-extension (buffer-name))))
+
+(defun imy/org-download-paste-clipboard (&optional use-default-filename)
+  (interactive "P")
+
+  (yas-expand-snippet (yas-lookup-snippet "insert org image attr width"))
+
+  (setq org-download-image-dir (concat "images/" (imy/im-file-name)))
+  (let ((file
+         (if (not use-default-filename)
+             (read-string (format "Filename [%s]: " org-download-screenshot-basename)
+                          nil nil org-download-screenshot-basename)
+           nil)))
+(org-download-clipboard file)))
+
+(with-eval-after-load "org"
+  (setq org-download-method 'directory)
+  (setq org-download-image-dir  "images/")
+  (setq org-download-heading-lvl nil)
+  (setq org-download-timestamp "%Y%m%d-%H%M%S_")
+  (setq org-image-actual-width nil)
+  (setq org-src-window-setup 'split-window-right)
+  (setq org-download-annotate-function (lambda (_link) ""))
+  )
+
+
+(provide 'init-org-download)
+
+#+end_src
+*** init-company.el : 自动补全
+
+#+begin_src emacs-lisp :tangle ./lisp/init-company.el
+;; init-company.el -*- lexical-binding: t; -*-
+
+;; (with-eval-after-load 'company
+
+;; 优化性能
+(setq company-minimum-prefix-length 1
+      company-idle-delay 0.5) ;; default is 0.2
+
+(setq company-auto-complete t)
+(setq company-show-numbers t)
+;; )
+
+(provide 'init-company)
+
+#+end_src
+*** init-telega.el : telegram 聊天
+
+#+begin_src emacs-lisp :tangle ./lisp/init-telega.el
+;; init-telega.el -*- lexical-binding: t; -*-
+
+
+(add-to-list 'load-path (concat imy/package-manual-dir "telega.el"))
+
+(require 'telega)
+(with-eval-after-load 'telega
+  (define-key telega-msg-button-map "k" nil)
+  )
+
+(setq telega-animation-play-inline nil)
+
+(setq telega-chat-show-avatars nil)
+;;(setq telega-avatar-text-compose-chars nil)
+
+(add-hook 'telega-root-mode-hook (lambda () (writeroom-mode nil)))
+
+(setq telega-proxies
+      (list
+       `(:server ,imy/telega-server-ip :port ,imy/telega-server-port :enable t
+                 :type (:@type "proxyTypeHttp"
+                               :username ,imy/telega-server-username :password ,imy/telega-server-password ))
+       ))
+
+
+(defun my-telega-chat-mode ()
+  (set (make-local-variable 'company-backends)
+       (append (list telega-emoji-company-backend
+                   'telega-company-username
+                   'telega-company-hashtag)
+             (when (telega-chat-bot-p telega-chatbuf--chat)
+               '(telega-company-botcmd))))
+  (company-mode 1)
+  (writeroom-mode 1))
+
+(add-hook 'telega-chat-mode-hook 'my-telega-chat-mode)
+
+
+(set-fontset-font t 'unicode "Symbola" nil 'append)
+
+(setq telega-symbol-unread "🄌")
+;; (setq telega-symbol-reply "↫")                                        
+
+(defun my-telega-load ()
+  ;; 🄌 occupies two full chars, but (string-width "🄌") returns 1
+  ;; so we install custom widths to `char-width-table'
+  (telega-symbol-set-width telega-symbol-unread 2)
+
+  ;; ... other code
+  )
+
+(add-hook 'telega-load-hook 'my-telega-load)
+
+(provide 'init-telega)
+
+#+end_src
+*** init-which-key.el : 快捷键提示
+
+我设置按 C-h 才显示 
+#+begin_src emacs-lisp :tangle ./lisp/init-which-key.el
+;; init-which-key.el -*- lexical-binding: t; -*-
+
+(setq which-key-show-early-on-C-h t)
+(setq which-key-idle-delay 10000)
+(setq which-key-idle-secondary-delay 0.05)
+
+(setq which-key-prefix-prefix "+" )
+
+(setq which-key-add-column-padding 2)
+
+(which-key-mode)
+
+;; (set-face-attribute 'which-key-key-face	nil :font "Hack Nerd Font Mono 14")
+;; (set-face-attribute 'which-key-separator-face nil :font "Hack Nerd Font Mono 14")
+;; (set-face-attribute 'which-key-note-face nil :font "Hack Nerd Font Mono 14")
+;; (set-face-attribute 'which-key-special-key-face nil :font "Hack Nerd Font Mono 14")
+;; (set-face-attribute 'which-key-group-description-face nil :font "Hack Nerd Font Mono 14")
+;; (set-face-attribute 'which-key-command-description-face nil :font "Hack Nerd Font Mono 14")
+;; (set-face-attribute 'which-key-local-map-description-face nil :font "Hack Nerd Font Mono 14")
+
+(setq which-key-special-keys '("SPC" "TAB" "RET" "ESC" "DEL"))
+
+(which-key-add-key-based-replacements
+  "SPC b" "buffer"
+  "SPC c" "close or hide"
+  "SPC m" "bookmark"
+  "SPC o" "open"
+  "SPC s" "search"
+  "SPC t" "toggle"
+  "SPC w" "window"
+  "SPC f" "frame"
+  "SPC h" "help"
+)
+
+(provide 'init-which-key)
+
+#+end_src
+*** init-org-mode.el : 跟 org mode 相关的配置
+
+#+begin_src emacs-lisp :tangle ./lisp/init-org-mode.el
+;; init-org-mode.el -*- lexical-binding: t; -*-
+
+;; 截图黏贴到 org 文件里
+(require 'grab-mac-link)
+(setq grab-mac-link-dwim-favourite-app 'chrome)
+
+
+(setq org-src-preserve-indentation nil ;; 代码永久地保存固定不缩进
+      org-edit-src-content-indentation 0) ;; 如果 org-src-preserve-indentation 为nil , 代码缩进值
+
+(require 'org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))) 
+(add-hook 'emacs-lisp-mode-hook
+	  (lambda ()
+	    (paredit-mode t)
+	    (rainbow-delimiters-mode t)
+	    (show-paren-mode 1)
+	    ))
+
+(add-hook 'lisp-interaction-mode
+	  (lambda ()
+	    (paredit-mode t)
+	    (rainbow-delimiters-mode t)
+	    (show-paren-mode 1)
+	    ))
+
+(add-hook 'after-change-major-mode-hook
+	  (lambda ()
+	    (modify-syntax-entry ?_ "w")))
+
+(setq org-M-RET-may-split-line '((item . nil)))
+
+
+(defun imy/org-global-prop( name )
+  "Get the value from the global property with the given name, e.g. 'AUTHOR', 'TITLE', etc."
+  (save-excursion
+    (outline-show-all)
+    (goto-line 0)
+    (if (re-search-forward (concat "^#\\+" name ":") nil t)
+	(progn
+	  (setq start (point))
+	  (re-search-forward "$")
+	  (setq end (point))
+	  (string-trim (buffer-substring-no-properties start end))))
+    ))
+
+(defun imy/org-mode-rename-buffer ()
+  (interactive)
+  (when (eq major-mode 'org-mode)
+    (if (imy/org-global-prop "TITLE")
+	(rename-buffer (imy/org-global-prop "TITLE")))))
+
+(add-hook 'org-mode-hook  'imy/org-mode-rename-buffer)
+
+(provide 'init-org-mode)
+
+#+end_src
+*** init-random-theme.el : 随机主题
+
+#+begin_src emacs-lisp :tangle ./lisp/init-random-theme.el
+;; init-random-theme.el -*- lexical-binding: t; -*-
+
+(load-theme 'doom-dracula t)
+
+;; (add-to-list 'load-path (concat imy/package-manual-dir "theme"))
+(add-to-list 'load-path (concat imy/package-manual-dir "rand-theme"))
+
+(require 'rand-theme)
+
+;; Themes I never want to be selected
+(setq rand-theme-unwanted '(doom-nord-light tsdh-dark))
+
+;; dark : kaolin-mono-dark kaolin-mono-light  darktooth
+
+(setq wanted-theme '(
+		       ;; dark
+		       ;;  doom-snazzy doom-gruvbox  
+
+		       ;; light
+		       
+		       ))
+
+(setq rand-theme-wanted wanted-theme)
+
+
+;; (rand-theme)
+
+
+(provide 'init-random-theme)
+
+#+end_src
+*** init-fold.el : 折叠
+
+#+begin_src emacs-lisp :tangle ./lisp/init-fold.el
+;; init-fold.el -*- lexical-binding: t; -*-
+
+;; Clean code folding via Outline minor mode.
+(add-hook 'prog-mode-hook 'outline-minor-mode)
+(add-hook 'text-mode-hook 'outline-minor-mode)
+
+;; Show all headings but no content in Outline mode.
+(add-hook 'outline-minor-mode-hook
+	  (defun baba/outline-overview ()
+	    "Show only outline headings."
+	    (outline-show-all)
+	    (outline-hide-body)))
+
+
+(provide 'init-fold)
+
+#+end_src
+*** init-treemacs.el : treemacs
+
+#+begin_src emacs-lisp :tangle ./lisp/init-treemacs.el
+;; init-treemacs.el -*- lexical-binding: t; -*-
+(require 'treemacs)
+(require 'treemacs-evil)
+(require 'treemacs-projectile)
+
+(with-eval-after-load 'winum
+  (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
+
+(treemacs-resize-icons 22)
+(treemacs-follow-mode t)
+(treemacs-filewatch-mode t)
+(treemacs-fringe-indicator-mode 'always)
+
+(pcase (cons (not (null (executable-find "git")))
+	     (not (null treemacs-python-executable)))
+  (`(t . t)
+   (treemacs-git-mode 'deferred))
+  (`(t . _)
+   (treemacs-git-mode 'simple)))
+
+(setq treemacs-collapse-dirs                 (if treemacs-python-executable 3 0)
+      treemacs-deferred-git-apply-delay      0.5
+      treemacs-directory-name-transformer    #'identity
+      treemacs-display-in-side-window        t
+      treemacs-eldoc-display                 t
+      treemacs-file-event-delay              5000
+      treemacs-file-extension-regex          treemacs-last-period-regex-value
+      treemacs-file-follow-delay             0.2
+      treemacs-file-name-transformer         #'identity
+      treemacs-follow-after-init             t
+      treemacs-git-command-pipe              ""
+      treemacs-goto-tag-strategy             'refetch-index
+      treemacs-indentation                   2
+      treemacs-indentation-string            " "
+      treemacs-is-never-other-window         nil
+      treemacs-max-git-entries               5000
+      treemacs-missing-project-action        'ask
+      treemacs-move-forward-on-expand        nil
+      treemacs-no-png-images                 nil
+      treemacs-no-delete-other-windows       t
+      treemacs-project-follow-cleanup        nil
+      treemacs-persist-file                  (expand-file-name ".cache/treemacs-persist" user-emacs-directory)
+      treemacs-position                      'left
+      treemacs-read-string-input             'from-child-frame
+      treemacs-recenter-distance             0.1
+      treemacs-recenter-after-file-follow    nil
+      treemacs-recenter-after-tag-follow     nil
+      treemacs-recenter-after-project-jump   'always
+      treemacs-recenter-after-project-expand 'on-distance
+      treemacs-show-cursor                   nil
+      treemacs-show-hidden-files             t
+      treemacs-silent-filewatch              nil
+      treemacs-silent-refresh                nil
+      treemacs-sorting                       'alphabetic-asc
+      treemacs-space-between-root-nodes      t
+      treemacs-tag-follow-cleanup            t
+      treemacs-tag-follow-delay              1.5
+      treemacs-user-mode-line-format         nil
+      treemacs-user-header-line-format       nil
+      treemacs-width                         35
+      treemacs-workspace-switch-cleanup      nil)
+
+(provide 'init-treemacs)
+
+#+end_src
+*** init-elfeed.el : rss reader
+
+#+begin_src emacs-lisp :tangle ./lisp/init-elfeed.el
+;; init-elfeed.el -*- lexical-binding: t; -*-
+
+
+(require 'elfeed-org)
+(elfeed-org)
+
+(setq rmh-elfeed-org-files (list "~/pkm-roam/roam0/elfeed.org"))
+
+(setq-default elfeed-search-filter "@1-months-ago +unread")
+
+(add-hook 'elfeed-search-mode-hook 'elfeed-update)
+
+(provide 'init-elfeed)
+
+#+end_src
+*** init-nyan-mode.el : 用彩虹小猫显示当前buffer的光标进度
+
+#+begin_src emacs-lisp :tangle ./lisp/init-nyan-mode.el
+;; init-nyan-mode.el -*- lexical-binding: t; -*-
+
+(add-to-list 'load-path (concat imy/package-manual-dir "nyan-mode"))
+(require 'nyan-mode)
+(nyan-mode)
+
+;; (add-to-list 'mode-line-format   '(:eval (list (nyan-create))))
+
+(setq nyan-animation-frame-interval 2)
+;; (setq nyan-wavy-trail nil)
+
+(define-minor-mode mood-line-mode
+  "Toggle mood-line on or off."
+  :group 'mood-line
+  :global t
+  :lighter nil
+  (if mood-line-mode
+      (progn
+
+        ;; Setup flycheck hooks
+        (add-hook 'flycheck-status-changed-functions #'mood-line--update-flycheck-segment)
+        (add-hook 'flycheck-mode-hook #'mood-line--update-flycheck-segment)
+
+        ;; Setup VC hooks
+        (add-hook 'find-file-hook #'mood-line--update-vc-segment)
+        (add-hook 'after-save-hook #'mood-line--update-vc-segment)
+        (advice-add #'vc-refresh-state :after #'mood-line--update-vc-segment)
+
+        ;; Set the new mode-line-format
+        (setq-default mode-line-format
+                      '((:eval
+                         (mood-line--format
+                          ;; Left
+                          (format-mode-line
+                           '(" "
+                             (:eval (mood-line-segment-modified))
+                             (:eval (mood-line-segment-buffer-name))
+                             (:eval (mood-line-segment-anzu))
+			     (:eval (mood-line-segment-multiple-cursors))
+			     (:eval (mood-line-segment-position))
+
+			     (:eval (list (nyan-create)))
+			     " "
+			     )
+			   )
+
+			  
+                          ;; Right
+                          (format-mode-line
+                           '((:eval (mood-line-segment-eol))
+                             (:eval (mood-line-segment-encoding))
+                             (:eval (mood-line-segment-vc))
+                             (:eval (mood-line-segment-major-mode))
+                             (:eval (mood-line-segment-misc-info))
+                             (:eval (mood-line-segment-flycheck))
+                             (:eval (mood-line-segment-flymake))
+                             (:eval (mood-line-segment-process))
+                             " ")))))))
+    (progn
+
+      ;; Remove flycheck hooks
+      (remove-hook 'flycheck-status-changed-functions #'mood-line--update-flycheck-segment)
+      (remove-hook 'flycheck-mode-hook #'mood-line--update-flycheck-segment)
+
+      ;; Remove VC hooks
+      (remove-hook 'file-find-hook #'mood-line--update-vc-segment)
+      (remove-hook 'after-save-hook #'mood-line--update-vc-segment)
+      (advice-remove #'vc-refresh-state #'mood-line--update-vc-segment)
+
+      ;; Restore the original mode-line format
+      (setq-default mode-line-format mood-line--default-mode-line))))
+
+(provide 'init-nyan-mode)
+
+#+end_src
+*** init-enable-mode.el : 想要默认开启的 minor mode
+
+放到 idle time 里加载
+
+#+begin_src emacs-lisp :tangle ./lisp/init-enable-mode.el
+;; init-enable-mode.el -*- lexical-binding: t; -*-
+
+(recentf-mode 1)
+(global-visual-line-mode)
+(ivy-rich-mode)
+(gcmh-mode 1)
+
+(ace-pinyin-global-mode +1)
+
+(provide 'init-enable-mode)
+
+#+end_src
+*** init-language.el : 编程语言相关
+**** start
+#+begin_src emacs-lisp :tangle ./lisp/init-language.el
+;; init-language.el -*- lexical-binding: t; -*-
+
+#+end_src
+**** python
+
+#+begin_src emacs-lisp :tangle ./lisp/init-language.el
+;; 缩进调成 4, 默认是 2
+(add-hook 'python-mode-hook
+      (lambda ()
+        (setq indent-tabs-mode t)
+        (setq tab-width 4)
+        (setq python-indent-offset 4)))
+#+end_src
+**** end
+
+#+begin_src emacs-lisp :tangle ./lisp/init-language.el
+(provide 'init-language)
+#+end_src
+
+*** init-window.el : window 窗口相关
+#+begin_src emacs-lisp :tangle ./lisp/init-window.el
+;; init-window.el.el -*- lexical-binding: t; -*-
+
+
+;; 给window窗口标记数字, 使用 cmd + 12345 来跳转, 可和frame搭配
+(require 'winum)
+(winum-mode)
+
+(provide 'init-window)
+#+end_src
+* tips and tricks
+** revert-buffer 不要提示 yes/no
+
+[[https://emacs.stackexchange.com/questions/169/how-do-i-reload-a-file-in-a-buffer][How do I reload a file in a buffer? - Emacs Stack Exchange]]
+
+方法1 : 
+#+begin_src  elisp
+(defun imy/revert-buffer-no-confirm ()
+    "Revert buffer without confirmation."
+    (interactive)
+    (revert-buffer :ignore-auto :noconfirm))
+#+end_src
+
+方法2 : =auto-revert-mode=
+** 每 30s 保存一次所有buffer文件
+
+#+begin_src elisp
+(setq  auto-save-buffer-idle-time
+       (run-with-idle-timer 30 t
+			    (lambda ()
+			      ;;(message "auto save all buffer.")
+			      (evil-write-all nil)
+			      )))
+#+end_src
+
+** org babel 自动tangle
+
+自动 tangle org babel 文件. 具体见 [[https://www.youtube.com/watch?v=kkqVTDbfYp4][Emacs From Scratch #7 - Configure Everything with Org Babel - YouTube]]
+
+配置一多, 可能不想每次保存都自动生成, 可以使用  ~org-babel-tangle~  手动生成
+
+#+begin_src elisp
+(defun efs/org-babel-tangle-config ()
+  (when (eq major-mode 'org-mode) 
+    (when (string-equal (file-name-directory (buffer-file-name))
+                        (expand-file-name user-emacs-directory))
+        ;; Dynamic scoping to the rescue
+        (let ((org-confirm-babel-evaluate nil))
+        (org-babel-tangle)))))
+
+(add-hook 'after-save-hook #'efs/org-babel-tangle-config)
+
+#+end_src
