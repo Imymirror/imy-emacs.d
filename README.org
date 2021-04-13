@@ -1,8 +1,6 @@
 #+title: README
 #+PROPERTY: header-args:emacs-lisp :tangle ./init-new.el :mkdirp yes
 
-* introduce
-
 旧的从零配置教程 :  [[file:configure-emacs-from-scratch.org][configure eamcs from scratch]]
 
 2021-04-13 我开始使用 org babel, 对配置进行重新整理以及更加全面详细的说明, 见  [[file:Emacs.org][Emacs.org]] .

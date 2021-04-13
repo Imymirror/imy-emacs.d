@@ -1,6 +1,64 @@
 #+title: Emacs Configuration
 #+PROPERTY: header-args:emacs-lisp :tangle ./init-new.el :mkdirp yes
 
+* Table of Contents
+  :PROPERTIES:
+  :TOC:      :include all :depth 5
+  :END:
+ 
+:CONTENTS:
+- [[#table-of-contents][Table of Contents]]
+- [[#pdump][pdump]]
+  - [[#dumpel][dump.el]]
+  - [[#dump-entryel][dump-entry.el]]
+  - [[#dumpsh][dump.sh]]
+  - [[#lauch_dump_emacssh][lauch_dump_emacs.sh]]
+  - [[#dump-initel][dump-init.el]]
+- [[#package-下载与安装][package 下载与安装]]
+  - [[#init-packageel--自动安装-emacs-package][init-package.el : 自动安装 emacs package]]
+  - [[#手动下载][手动下载]]
+- [[#具体配置][具体配置]]
+  - [[#early-initel--在initel之前会执行的配置文件][early-init.el : 在init.el之前会执行的配置文件]]
+  - [[#initel--入口配置-包含其他的配置文件][init.el : 入口配置, 包含其他的配置文件]]
+  - [[#init-speedupel--加速启动配置-主要是-gc][init-speedup.el : 加速启动配置, 主要是 gc]]
+  - [[#init-imyel--个人定义的相关函数][init-imy.el : 个人定义的相关函数]]
+  - [[#init-basicel--emacs-基础配置][init-basic.el : emacs 基础配置]]
+  - [[#init-ivyel--ivy-相关的配置][init-ivy.el : ivy 相关的配置]]
+  - [[#init-evilel--evil-相关的配置][init-evil.el : evil 相关的配置]]
+  - [[#init-fontel--字体相关的配置][init-font.el : 字体相关的配置]]
+  - [[#init-generalel--支持多leader-key的插件][init-general.el : 支持多leader key的插件]]
+  - [[#init-mapel--定义快捷键的地方][init-map.el : 定义快捷键的地方]]
+  - [[#init-roamel--org-roam][init-roam.el : org roam]]
+  - [[#init-customel--将-custom-信息放在专门的文件里][init-custom.el : 将 custom 信息放在专门的文件里]]
+  - [[#init-idle-time-loadel--利用idle-time-加载插件][init-idle-time-load.el : 利用idle time 加载插件]]
+    - [[#init-evil-surroundel--类似-surroundvim][init-evil-surround.el : 类似 surround.vim]]
+    - [[#init-agendael--agenda-相关][init-agenda.el : agenda 相关]]
+    - [[#init-journalel--每日日记-journal-相关][init-journal.el : 每日日记 journal 相关]]
+    - [[#init-captureel--capture-相关][init-capture.el : capture 相关]]
+    - [[#init-yasnippetel--snippet][init-yasnippet.el : snippet]]
+    - [[#init-pareditel--lisp-括号配对插件][init-paredit.el : lisp 括号配对插件]]
+    - [[#init-org-downloadel--在-org-里插入图片][init-org-download.el : 在 org 里插入图片]]
+    - [[#init-companyel--自动补全][init-company.el : 自动补全]]
+    - [[#init-telegael--telegram-聊天][init-telega.el : telegram 聊天]]
+    - [[#init-which-keyel--快捷键提示][init-which-key.el : 快捷键提示]]
+    - [[#init-org-modeel--跟-org-mode-相关的配置][init-org-mode.el : 跟 org mode 相关的配置]]
+    - [[#init-random-themeel--随机主题][init-random-theme.el : 随机主题]]
+    - [[#init-foldel--折叠][init-fold.el : 折叠]]
+    - [[#init-treemacsel--treemacs][init-treemacs.el : treemacs]]
+    - [[#init-elfeedel--rss-reader][init-elfeed.el : rss reader]]
+    - [[#init-nyan-modeel--用彩虹小猫显示当前buffer的光标进度][init-nyan-mode.el : 用彩虹小猫显示当前buffer的光标进度]]
+    - [[#init-enable-modeel--想要默认开启的-minor-mode][init-enable-mode.el : 想要默认开启的 minor mode]]
+    - [[#init-languageel--编程语言相关][init-language.el : 编程语言相关]]
+      - [[#start][start]]
+      - [[#python][python]]
+      - [[#end][end]]
+    - [[#init-windowel--window-窗口相关][init-window.el : window 窗口相关]]
+- [[#tips-and-tricks][tips and tricks]]
+  - [[#revert-buffer-不要提示-yesno][revert-buffer 不要提示 yes/no]]
+  - [[#每-30s-保存一次所有buffer文件][每 30s 保存一次所有buffer文件]]
+  - [[#org-babel-自动tangle][org babel 自动tangle]]
+:END:
+ 
 * pdump
 ** dump.el
 dump file
