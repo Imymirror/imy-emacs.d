@@ -352,7 +352,7 @@ If you experience freezing, decrease this. If you experience stuttering, increas
 
 手动下载安装的一般步骤(以 nyan-mode 为例子):
 1. 从 github 下载相关插件源码
-2. 在 emacs 通过 load-path 倒入相关路径, 然后使用 package
+2. 在 emacs 通过 load-path 导入相关路径, 然后使用 package
    
     #+begin_src elisp
     (add-to-list 'load-path (concat imy/package-manual-dir "nyan-mode"))
