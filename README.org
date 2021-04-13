@@ -60,7 +60,7 @@
 * introduce
 旧的从零配置教程 :  [[file:configure-emacs-from-scratch.org][configure eamcs from scratch]]
 
-2021-04-13 我开始使用 org babel, README.org 可以看作新的教程.
+2021-04-13 我开始使用 org babel, [[file:README.org][README.org]] 可以看作新的教程.
 * pdump
 ** dump.el
 dump file
