@@ -138,6 +138,9 @@ dump file
 (require 'init-enable-mode)
 
 (require 'init-custom)
+
+(require 'init-hydra)
+(require 'init-awesome-tab)
 #+end_src
 ** dump.sh
 
@@ -189,6 +192,57 @@ dump 启动文件, 与非 dump 的启动文件 init.el 分开
 (evil-mode 0)
 (evil-mode 1)
 #+end_src
+
+* package 下载与安装
+
+我没有使用其他包管理工具, 只使用 内置的 package 包, 如果从 package archives 的仓库源上下载不到, 我会通过手动下载(通常在 Github 上).
+
+** init-package.el : 自动安装 emacs package 
+
+#+begin_src emacs-lisp :tangle ./lisp/init-package.el
+;; init-package.el -*- lexical-binding: t; -*-
+
+(require 'package)
+(setq package-user-dir imy/package-install-dir)
+(setq package-enable-at-startup nil)
+(setq package-archives '(("gnu" . "http://elpa.emacs-china.org/gnu/")
+			 ("melpa" . "https://melpa.org/packages/")
+			 ("melpa-stable" . "https://stable.melpa.org/packages/")
+			 ("elpy" .  "http://jorgenschaefer.github.io/packages/")))
+
+(package-initialize)
+
+(setq package-list '(
+		     command-log-mode  company writeroom-mode general visual-fill-column rainbow-identifiers yasnippet undo-fu org-bullets evil-nerd-commenter evil evil-collection magit projectile ivy org-roam org-roam-server grab-mac-link link-hint ripgrep counsel-projectile ivy-rich winum amx org-download rainbow-delimiters paredit which-key gcmh org-make-toc lsp-mode evil-surround ace-pinyin pinyinlib typescript-mode lsp-ui expand-region mood-line minions posframe rime org-journal unicode-fonts treemacs treemacs-evil treemacs-projectile ox-hugo elfeed elfeed-org org-super-agenda 
+
+				       ;; kaolin-themes
+				       doom-themes
+				      
+;; afternoon-theme  ample-theme leuven-theme plan9-theme twilight-bright-theme moe-theme flatui-theme  flucui-themes espresso-theme soft-stone-theme minimal-theme  darktooth-theme apropospriate-theme tao-theme   hc-zenburn-theme jazz-theme naquadah-theme  darkburn-theme  soothe-theme clues-theme  spacegray-theme planet-theme  seti-theme badwolf-theme darkmine-theme     gruber-darker-theme subatomic-theme  nimbus-theme  green-is-the-new-black-theme organic-green-theme green-phosphor-theme 
+				      
+				      ))
+
+(unless package-archive-contents
+  (package-refresh-contents))
+
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
+
+(provide 'init-package)
+
+#+end_src
+
+** 手动下载
+
+手动下载安装的一般步骤(以 nyan-mode 为例子):
+1. 从 github 下载相关插件源码
+2. 在 emacs 通过 load-path 倒入相关路径, 然后使用 package
+   
+    #+begin_src elisp
+    (add-to-list 'load-path (concat imy/package-manual-dir "nyan-mode"))
+    (require 'nyan-mode)
+    #+end_src
 
 * 具体配置
 ** early-init.el : 在init.el之前会执行的配置文件
@@ -251,6 +305,9 @@ dump 启动文件, 与非 dump 的启动文件 init.el 分开
 (require 'init-roam)
 (require 'init-idle-time-load)
 (require 'init-custom)
+
+(require 'init-hydra)
+(require 'init-awesome-tab)
 
 ;; (setq garbage-collection-messages t)
 ;; (setq gcmh-verbose t)
@@ -316,57 +373,6 @@ If you experience freezing, decrease this. If you experience stuttering, increas
 (provide 'init-speedup)
 
 #+end_src
-** package 下载与安装
-
-我没有使用其他包管理工具(use-pachage, straight等), 只使用内置的 package 包, 如果 package archives 的仓库源上下载不到, 我会手动下载(通常在 Github 上).
-
-*** init-package.el : 自动安装 emacs package 
-
-#+begin_src emacs-lisp :tangle ./lisp/init-package.el
-;; init-package.el -*- lexical-binding: t; -*-
-
-(require 'package)
-(setq package-user-dir imy/package-install-dir)
-(setq package-enable-at-startup nil)
-(setq package-archives '(("gnu" . "http://elpa.emacs-china.org/gnu/")
-			 ("melpa" . "https://melpa.org/packages/")
-			 ("melpa-stable" . "https://stable.melpa.org/packages/")
-			 ("elpy" .  "http://jorgenschaefer.github.io/packages/")))
-
-(package-initialize)
-
-(setq package-list '(
-		     command-log-mode  company writeroom-mode general visual-fill-column rainbow-identifiers yasnippet undo-fu org-bullets evil-nerd-commenter evil evil-collection magit projectile ivy org-roam org-roam-server grab-mac-link link-hint ripgrep counsel-projectile ivy-rich winum amx org-download rainbow-delimiters paredit which-key gcmh org-make-toc lsp-mode evil-surround ace-pinyin pinyinlib typescript-mode lsp-ui expand-region mood-line minions posframe rime org-journal unicode-fonts treemacs treemacs-evil treemacs-projectile ox-hugo elfeed elfeed-org org-super-agenda 
-
-				       ;; kaolin-themes
-				       doom-themes
-				      
-;; afternoon-theme  ample-theme leuven-theme plan9-theme twilight-bright-theme moe-theme flatui-theme  flucui-themes espresso-theme soft-stone-theme minimal-theme  darktooth-theme apropospriate-theme tao-theme   hc-zenburn-theme jazz-theme naquadah-theme  darkburn-theme  soothe-theme clues-theme  spacegray-theme planet-theme  seti-theme badwolf-theme darkmine-theme     gruber-darker-theme subatomic-theme  nimbus-theme  green-is-the-new-black-theme organic-green-theme green-phosphor-theme 
-				      
-				      ))
-
-(unless package-archive-contents
-  (package-refresh-contents))
-
-(dolist (package package-list)
-  (unless (package-installed-p package)
-    (package-install package)))
-
-(provide 'init-package)
-
-#+end_src
-
-*** 手动下载
-
-手动下载安装的一般步骤(以 nyan-mode 为例子):
-1. 从 github 下载相关插件源码
-2. 在 emacs 通过 load-path 导入相关路径, 然后使用 package
-   
-    #+begin_src elisp
-    (add-to-list 'load-path (concat imy/package-manual-dir "nyan-mode"))
-    (require 'nyan-mode)
-    #+end_src
-
 ** init-imy.el : 个人定义的相关函数
 
 #+begin_src emacs-lisp :tangle ./lisp/init-imy.el
@@ -2002,6 +2008,71 @@ directory to make multiple eshell windows easier."
 (winum-mode)
 
 (provide 'init-window)
+#+end_src
+** init-hydra.el
+#+begin_src emacs-lisp :tangle ./lisp/init-hydra.el
+;; init-hydra.el -*- lexical-binding: t; -*-
+
+(add-to-list 'load-path (concat imy/package-manual-dir "hydra"))
+(require 'hydra)
+
+(provide 'init-hydra)
+
+#+end_src
+** init-awesome-tab.el
+
+键位绑定使用了 hydra. 我正在试用 hydra 插件
+
+M-0~9 : 按照数字切换 tab.
+
+#+begin_src emacs-lisp :tangle ./lisp/init-awesome-tab.el
+
+;; init-awesome-tab.el -*- lexical-binding: t; -*-
+(add-to-list 'load-path (concat imy/package-manual-dir "awesome-tab"))
+
+(require 'awesome-tab)
+
+;; (awesome-tab-mode t)
+
+(defhydra awesome-fast-switch (:hint nil)
+  "
+ ^^^^Fast Move             ^^^^Tab                    ^^Search            ^^Misc
+-^^^^--------------------+-^^^^---------------------+-^^----------------+-^^---------------------------
+   ^_k_^   prev group    | _C-a_^^     select first | _b_ search buffer | _C-k_   kill buffer
+ _h_   _l_  switch tab   | _C-e_^^     select last  | _g_ search group  | _C-S-k_ kill others in group
+   ^_j_^   next group    | _C-j_^^     ace jump     | ^^                | ^^
+ ^^0 ~ 9^^ select window | _C-h_/_C-l_ move current | ^^                | ^^
+-^^^^--------------------+-^^^^---------------------+-^^----------------+-^^---------------------------
+"
+  ("h" awesome-tab-backward-tab)
+  ("j" awesome-tab-forward-group)
+  ("k" awesome-tab-backward-group)
+  ("l" awesome-tab-forward-tab)
+  ("C-a" awesome-tab-select-beg-tab)
+  ("C-e" awesome-tab-select-end-tab)
+  ("C-j" awesome-tab-ace-jump)
+  ("C-h" awesome-tab-move-current-tab-to-left)
+  ("C-l" awesome-tab-move-current-tab-to-right)
+  ("b" ivy-switch-buffer)
+  ("g" awesome-tab-counsel-switch-group)
+  ("C-k" kill-current-buffer)
+  ("C-S-k" awesome-tab-kill-other-buffers-in-current-group)
+  ("q" nil "quit"))
+
+(spc-leader-def 'normal 'override "a h" 'awesome-fast-switch/body)
+
+(global-set-key (kbd "M-1") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "M-2") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "M-3") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "M-4") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "M-5") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "M-6") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "M-7") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "M-8") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "M-9") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "M-0") 'awesome-tab-select-visible-tab)
+
+(provide 'init-awesome-tab)
 #+end_src
 * tips and tricks
 ** revert-buffer 不要提示 yes/no

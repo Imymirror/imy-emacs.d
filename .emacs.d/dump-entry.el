@@ -37,3 +37,6 @@
 (require 'init-enable-mode)
 
 (require 'init-custom)
+
+(require 'init-hydra)
+(require 'init-awesome-tab)
