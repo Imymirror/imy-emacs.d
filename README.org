@@ -61,6 +61,11 @@
 旧的从零配置教程 :  [[file:configure-emacs-from-scratch.org][configure eamcs from scratch]]
 
 2021-04-13 我开始使用 org babel, [[file:README.org][README.org]] 可以看作新的教程.
+
+我的使用环境:
+- 操作系统 : MacOS
+- emacs 版本 : [[https://github.com/railwaycat/homebrew-emacsmacport][railwaycat/homebrew-emacsmacport: Emacs mac port formulae for the Homebrew package manager]] 
+
 * pdump
 ** dump.el
 dump file
@@ -313,7 +318,7 @@ If you experience freezing, decrease this. If you experience stuttering, increas
 #+end_src
 ** package 下载与安装
 
-我没有使用其他包管理工具, 只使用 内置的 package 包, 如果从 package archives 的仓库源上下载不到, 我会通过手动下载(通常在 Github 上).
+我没有使用其他包管理工具(use-pachage, straight等), 只使用内置的 package 包, 如果 package archives 的仓库源上下载不到, 我会手动下载(通常在 Github 上).
 
 *** init-package.el : 自动安装 emacs package 
 
