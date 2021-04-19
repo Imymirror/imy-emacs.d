@@ -143,6 +143,7 @@ dump file
 
 (require 'init-hydra)
 (require 'init-awesome-tab)
+(require 'init-keymap)
 #+end_src
 ** dump.sh
 
@@ -194,57 +195,6 @@ dump 启动文件, 与非 dump 的启动文件 init.el 分开
 (evil-mode 0)
 (evil-mode 1)
 #+end_src
-
-* package 下载与安装
-
-我没有使用其他包管理工具, 只使用 内置的 package 包, 如果从 package archives 的仓库源上下载不到, 我会通过手动下载(通常在 Github 上).
-
-** init-package.el : 自动安装 emacs package 
-
-#+begin_src emacs-lisp :tangle ./lisp/init-package.el
-;; init-package.el -*- lexical-binding: t; -*-
-
-(require 'package)
-(setq package-user-dir imy/package-install-dir)
-(setq package-enable-at-startup nil)
-(setq package-archives '(("gnu" . "http://elpa.emacs-china.org/gnu/")
-			 ("melpa" . "https://melpa.org/packages/")
-			 ("melpa-stable" . "https://stable.melpa.org/packages/")
-			 ("elpy" .  "http://jorgenschaefer.github.io/packages/")))
-
-(package-initialize)
-
-(setq package-list '(
-		     command-log-mode  company writeroom-mode general visual-fill-column rainbow-identifiers yasnippet undo-fu org-bullets evil-nerd-commenter evil evil-collection magit projectile ivy org-roam org-roam-server grab-mac-link link-hint ripgrep counsel-projectile ivy-rich winum amx org-download rainbow-delimiters paredit which-key gcmh org-make-toc lsp-mode evil-surround ace-pinyin pinyinlib typescript-mode lsp-ui expand-region mood-line minions posframe rime org-journal unicode-fonts treemacs treemacs-evil treemacs-projectile ox-hugo elfeed elfeed-org org-super-agenda 
-
-				       ;; kaolin-themes
-				       doom-themes
-				      
-;; afternoon-theme  ample-theme leuven-theme plan9-theme twilight-bright-theme moe-theme flatui-theme  flucui-themes espresso-theme soft-stone-theme minimal-theme  darktooth-theme apropospriate-theme tao-theme   hc-zenburn-theme jazz-theme naquadah-theme  darkburn-theme  soothe-theme clues-theme  spacegray-theme planet-theme  seti-theme badwolf-theme darkmine-theme     gruber-darker-theme subatomic-theme  nimbus-theme  green-is-the-new-black-theme organic-green-theme green-phosphor-theme 
-				      
-				      ))
-
-(unless package-archive-contents
-  (package-refresh-contents))
-
-(dolist (package package-list)
-  (unless (package-installed-p package)
-    (package-install package)))
-
-(provide 'init-package)
-
-#+end_src
-
-** 手动下载
-
-手动下载安装的一般步骤(以 nyan-mode 为例子):
-1. 从 github 下载相关插件源码
-2. 在 emacs 通过 load-path 倒入相关路径, 然后使用 package
-   
-    #+begin_src elisp
-    (add-to-list 'load-path (concat imy/package-manual-dir "nyan-mode"))
-    (require 'nyan-mode)
-    #+end_src
 
 * 具体配置
 ** early-init.el : 在init.el之前会执行的配置文件
@@ -310,6 +260,7 @@ dump 启动文件, 与非 dump 的启动文件 init.el 分开
 
 (require 'init-hydra)
 (require 'init-awesome-tab)
+(require 'init-keymap)
 
 ;; (setq garbage-collection-messages t)
 ;; (setq gcmh-verbose t)
@@ -351,7 +302,6 @@ If you experience freezing, decrease this. If you experience stuttering, increas
 (add-hook 'minibuffer-setup-hook #'gc-minibuffer-setup-hook)
 (add-hook 'minibuffer-exit-hook #'gc-minibuffer-exit-hook)
 
-
 (add-hook 'emacs-startup-hook
           (lambda ()
             (if (boundp 'after-focus-change-function)
@@ -375,6 +325,57 @@ If you experience freezing, decrease this. If you experience stuttering, increas
 (provide 'init-speedup)
 
 #+end_src
+** package 下载与安装
+
+我没有使用其他包管理工具, 只使用 内置的 package 包, 如果从 package archives 的仓库源上下载不到, 我会通过手动下载(通常在 Github 上).
+
+*** init-package.el : 自动安装 emacs package 
+
+#+begin_src emacs-lisp :tangle ./lisp/init-package.el
+;; init-package.el -*- lexical-binding: t; -*-
+
+(require 'package)
+(setq package-user-dir imy/package-install-dir)
+(setq package-enable-at-startup nil)
+(setq package-archives '(("gnu" . "http://elpa.emacs-china.org/gnu/")
+			 ("melpa" . "https://melpa.org/packages/")
+			 ("melpa-stable" . "https://stable.melpa.org/packages/")
+			 ("elpy" .  "http://jorgenschaefer.github.io/packages/")))
+
+(package-initialize)
+
+(setq package-list '(
+		     command-log-mode  company writeroom-mode general visual-fill-column rainbow-identifiers yasnippet undo-fu org-bullets evil-nerd-commenter evil evil-collection magit projectile ivy org-roam org-roam-server grab-mac-link link-hint ripgrep counsel-projectile ivy-rich winum amx org-download rainbow-delimiters paredit which-key gcmh org-make-toc lsp-mode evil-surround ace-pinyin pinyinlib typescript-mode lsp-ui expand-region mood-line minions posframe rime org-journal unicode-fonts treemacs treemacs-evil treemacs-projectile ox-hugo elfeed elfeed-org org-super-agenda god-mode evil-god-state key-chord
+
+				       ;; kaolin-themes
+				       doom-themes
+				      
+;; afternoon-theme  ample-theme leuven-theme plan9-theme twilight-bright-theme moe-theme flatui-theme  flucui-themes espresso-theme soft-stone-theme minimal-theme  darktooth-theme apropospriate-theme tao-theme   hc-zenburn-theme jazz-theme naquadah-theme  darkburn-theme  soothe-theme clues-theme  spacegray-theme planet-theme  seti-theme badwolf-theme darkmine-theme     gruber-darker-theme subatomic-theme  nimbus-theme  green-is-the-new-black-theme organic-green-theme green-phosphor-theme 
+				      
+				      ))
+
+(unless package-archive-contents
+  (package-refresh-contents))
+
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
+
+(provide 'init-package)
+
+#+end_src
+
+*** 手动下载
+
+手动下载安装的一般步骤(以 nyan-mode 为例子):
+1. 从 github 下载相关插件源码
+2. 在 emacs 通过 load-path 倒入相关路径, 然后使用 package
+   
+    #+begin_src elisp
+    (add-to-list 'load-path (concat imy/package-manual-dir "nyan-mode"))
+    (require 'nyan-mode)
+    #+end_src
+
 ** init-imy.el : 个人定义的相关函数
 
 #+begin_src emacs-lisp :tangle ./lisp/init-imy.el
@@ -791,7 +792,7 @@ directory to make multiple eshell windows easier."
 (with-eval-after-load 'counsel
   (setq ivy-initial-inputs-alist nil))
 
-(define-key ivy-minibuffer-map [escape] 'minibuffer-keyboard-quit)
+;; (define-key ivy-minibuffer-map [escape] 'minibuffer-keyboard-quit)
 ;;(define-key ivy-minibuffer-map (kbd "<ESC>") 'minibuffer-keyboard-quit)
 ;;(define-key swiper-map (kbd "<ESC>") 'minibuffer-keyboard-quit)
 
@@ -954,6 +955,7 @@ directory to make multiple eshell windows easier."
 (general-def  'normal "C-v" 'org-yank) 
 (general-define-key "s-c" 'evil-yank)
 (general-define-key "s-v" 'org-yank)
+(general-define-key "s-w" 'kill-current-buffer)
 
 ;; yas
 (general-def 'insert  "C-'" 'yas-expand) 
@@ -1743,7 +1745,7 @@ directory to make multiple eshell windows easier."
 (provide 'init-org-mode)
 
 #+end_src
-*** init-random-theme.el : 随机主题
+*** init-random-theme.el : 随机主题 random
 
 #+begin_src emacs-lisp :tangle ./lisp/init-random-theme.el
 ;; init-random-theme.el -*- lexical-binding: t; -*-
@@ -1756,16 +1758,16 @@ directory to make multiple eshell windows easier."
 (require 'rand-theme)
 
 ;; Themes I never want to be selected
-(setq rand-theme-unwanted '(doom-nord-light tsdh-dark))
+;; (setq rand-theme-unwanted '(doom-nord-light tsdh-dark))
 
 ;; dark : kaolin-mono-dark kaolin-mono-light  darktooth
 
 (setq wanted-theme '(
 		       ;; dark
-		       ;;  doom-snazzy doom-gruvbox  
+		        doom-snazzy doom-gruvbox doom-dracula doom-moonlight
 
 		       ;; light
-		       
+		      doom-solarized-light  doom-gruvbox-light doom-opera-light 
 		       ))
 
 (setq rand-theme-wanted wanted-theme)
@@ -2061,7 +2063,7 @@ M-0~9 : 按照数字切换 tab.
   ("C-S-k" awesome-tab-kill-other-buffers-in-current-group)
   ("q" nil "quit"))
 
-(spc-leader-def 'normal 'override "a h" 'awesome-fast-switch/body)
+(spc-leader-def 'normal 'override "a j" 'awesome-fast-switch/body)
 
 (global-set-key (kbd "M-1") 'awesome-tab-select-visible-tab)
 (global-set-key (kbd "M-2") 'awesome-tab-select-visible-tab)
@@ -2075,6 +2077,39 @@ M-0~9 : 按照数字切换 tab.
 (global-set-key (kbd "M-0") 'awesome-tab-select-visible-tab)
 
 (provide 'init-awesome-tab)
+#+end_src
+** init-keymap.el : 快捷键绑定, 去 modifier key 相关
+#+begin_src emacs-lisp :tangle ./lisp/init-keymap.el
+(setq god-mode-enable-function-key-translation nil)
+(require 'god-mode)
+;; (god-mode)
+
+(define-key god-local-mode-map (kbd ".") #'repeat)
+(define-key god-local-mode-map (kbd "z") #'repeat)
+(define-key god-local-mode-map (kbd "i") #'god-local-mode)
+
+(global-set-key (kbd "C-x C-1") #'delete-other-windows)
+(global-set-key (kbd "C-x C-2") #'split-window-below)
+(global-set-key (kbd "C-x C-3") #'split-window-right)
+(global-set-key (kbd "C-x C-0") #'delete-window)
+
+(defun my-god-mode-update-cursor ()
+  (setq cursor-type (if (or god-local-mode buffer-read-only)
+                        'box
+                      'bar)))
+
+(add-hook 'god-mode-enabled-hook #'my-god-mode-update-cursor)
+(add-hook 'god-mode-disabled-hook #'my-god-mode-update-cursor)
+
+(require 'evil-god-state)
+(evil-define-key 'god global-map [escape] 'evil-god-state-bail)
+
+(require 'key-chord)
+(key-chord-mode 1)
+(key-chord-define-global "fk"  'evil-execute-in-god-state) ;; , 
+(key-chord-define-global "fj"  'evil-god-state)
+
+(provide 'init-keymap)
 #+end_src
 * tips and tricks
 ** revert-buffer 不要提示 yes/no

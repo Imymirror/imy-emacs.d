@@ -9,7 +9,7 @@
 (with-eval-after-load 'counsel
   (setq ivy-initial-inputs-alist nil))
 
-(define-key ivy-minibuffer-map [escape] 'minibuffer-keyboard-quit)
+;; (define-key ivy-minibuffer-map [escape] 'minibuffer-keyboard-quit)
 ;;(define-key ivy-minibuffer-map (kbd "<ESC>") 'minibuffer-keyboard-quit)
 ;;(define-key swiper-map (kbd "<ESC>") 'minibuffer-keyboard-quit)
 

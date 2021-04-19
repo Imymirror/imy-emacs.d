@@ -41,6 +41,7 @@
 (general-def  'normal "C-v" 'org-yank) 
 (general-define-key "s-c" 'evil-yank)
 (general-define-key "s-v" 'org-yank)
+(general-define-key "s-w" 'kill-current-buffer)
 
 ;; yas
 (general-def 'insert  "C-'" 'yas-expand) 

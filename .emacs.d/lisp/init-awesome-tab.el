@@ -30,7 +30,7 @@
   ("C-S-k" awesome-tab-kill-other-buffers-in-current-group)
   ("q" nil "quit"))
 
-(spc-leader-def 'normal 'override "a h" 'awesome-fast-switch/body)
+(spc-leader-def 'normal 'override "a j" 'awesome-fast-switch/body)
 
 (global-set-key (kbd "M-1") 'awesome-tab-select-visible-tab)
 (global-set-key (kbd "M-2") 'awesome-tab-select-visible-tab)

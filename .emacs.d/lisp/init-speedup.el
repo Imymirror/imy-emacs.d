@@ -31,7 +31,6 @@ If you experience freezing, decrease this. If you experience stuttering, increas
 (add-hook 'minibuffer-setup-hook #'gc-minibuffer-setup-hook)
 (add-hook 'minibuffer-exit-hook #'gc-minibuffer-exit-hook)
 
-
 (add-hook 'emacs-startup-hook
           (lambda ()
             (if (boundp 'after-focus-change-function)
