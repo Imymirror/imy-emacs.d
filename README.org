@@ -138,6 +138,8 @@ dump file
 (require 'init-treemacs)
 (require 'init-elfeed)
 (require 'init-nyan-mode)
+;; (require 'init-mode-line)
+
 (require 'init-enable-mode)
 
 (require 'init-custom)
@@ -159,7 +161,11 @@ emacs --batch -q -l ~/.emacs.d/dump.el
 dump 方式打开 GUI 的 emacs
 
 #+begin_src emacs-lisp :tangle ./lauch_dump_emacs.sh
-open -a emacs --args --dump-file="/Users/fuhongxue/.emacs.d/emacs.pdmp" -l "~/.emacs.d/dump-init.el"
+# open -a emacs --args --dump-file="/Users/fuhongxue/.emacs.d/emacs.pdmp" -l "~/.emacs.d/dump-init.el"
+
+/usr/local/Cellar/emacs-mac/emacs-27.2-mac-8.2/Emacs.app/Contents/MacOS/Emacs --dump-file="/Users/fuhongxue/.emacs.d/emacs.pdmp" -l "~/.emacs.d/dump-init.el"
+
+# /Applications/Emacs.app/Contents/MacOS/Emacs --dump-file="/Users/fuhongxue/.emacs.d/emacs-mac.pdmp" -l "~/.emacs.d/dump-init.el"
 #+end_src
 
 ** dump-init.el
@@ -346,7 +352,7 @@ If you experience freezing, decrease this. If you experience stuttering, increas
 (package-initialize)
 
 (setq package-list '(
-		     command-log-mode  company writeroom-mode general visual-fill-column rainbow-identifiers yasnippet undo-fu org-bullets evil-nerd-commenter evil evil-collection magit projectile ivy org-roam org-roam-server grab-mac-link link-hint ripgrep counsel-projectile ivy-rich winum amx org-download rainbow-delimiters paredit which-key gcmh org-make-toc lsp-mode evil-surround ace-pinyin pinyinlib typescript-mode lsp-ui expand-region mood-line minions posframe rime org-journal unicode-fonts treemacs treemacs-evil treemacs-projectile ox-hugo elfeed elfeed-org org-super-agenda god-mode evil-god-state key-chord
+		     command-log-mode  company writeroom-mode general visual-fill-column rainbow-identifiers yasnippet undo-fu org-bullets evil-nerd-commenter evil evil-collection magit projectile ivy org-roam org-roam-server grab-mac-link link-hint ripgrep counsel-projectile ivy-rich winum amx org-download rainbow-delimiters paredit which-key gcmh org-make-toc lsp-mode evil-surround ace-pinyin pinyinlib typescript-mode lsp-ui expand-region mood-line minions posframe rime org-journal unicode-fonts treemacs treemacs-evil treemacs-projectile ox-hugo elfeed elfeed-org org-super-agenda god-mode evil-god-state key-chord  windresize keycast
 
 				       ;; kaolin-themes
 				       doom-themes
@@ -675,6 +681,12 @@ directory to make multiple eshell windows easier."
 #+begin_src emacs-lisp :tangle ./lisp/init-basic.el
 ;; init-basic.el -*- lexical-binding: t; -*-
 
+;; dired 
+(setq dired-dwim-target nil)
+(setq delete-by-moving-to-trash t)
+(add-hook 'dired-mode-hook (lambda () (dired-hide-details-mode)))
+
+
 ;; 备份文件
 (setq
      backup-by-copying t ; 自动备份
@@ -926,6 +938,8 @@ directory to make multiple eshell windows easier."
   (define-key evil-normal-state-map  (kbd "s") nil)   ;; evil-substitute
   )
 
+(define-key global-map  (kbd "s-?") 'writeroom-toggle-mode-line)   
+
 (evil-define-key 'treemacs treemacs-mode-map (kbd "SPC")  nil)
 (evil-define-key 'visual global-map (kbd ">") 'imy/evil-shift-right)
 (evil-define-key 'visual global-map (kbd "<") 'imy/evil-shift-left)
@@ -1030,7 +1044,8 @@ directory to make multiple eshell windows easier."
 
  ;; file frame
 (spc-leader-def 'normal 'override "f r" 'counsel-recentf)
-(spc-leader-def 'normal 'override "f n" 'imy/make-frame-by-emacsclient)
+;; (spc-leader-def 'normal 'override "f n" 'imy/make-frame-by-emacsclient)
+(spc-leader-def 'normal 'override "f n" 'make-frame)
 (spc-leader-def 'normal 'override "f d" 'delete-frame)
 (spc-leader-def 'normal 'override "f D" 'delete-other-frame)
 (spc-leader-def 'normal 'override "f m" 'toggle-frame-maximized)
@@ -1081,6 +1096,9 @@ directory to make multiple eshell windows easier."
 (general-def org-mode-map "M-h" 'org-metaleft) 
 
  ;; toogle
+;; magit
+(spc-leader-def 'normal 'override "t g" 'magit-status)
+
 (spc-leader-def 'normal 'override "t t" 'treemacs)
 (spc-leader-def 'normal 'override "t h" 'link-hint-open-link)
 (spc-leader-def 'normal 'override "t a" 'org-agenda)
@@ -1125,8 +1143,6 @@ directory to make multiple eshell windows easier."
  ;; (general-def 'normal "C-;" 'projectile-command-map) 
  (spc-leader-def 'normal "p" 'projectile-command-map) 
  
- ;; magit
- (spc-leader-def 'normal 'override "g" 'magit-status)
  
  ;; comment 
  (evilnc-default-hotkeys nil t)
@@ -1285,13 +1301,13 @@ directory to make multiple eshell windows easier."
   (require 'init-treemacs)
   (require 'init-elfeed)
   (require 'init-nyan-mode)
-
+  ;; (require 'init-mode-line)
   (require 'init-enable-mode)
 
   ;; dump 不了, 只能放在 idle 里
   (winner-mode)
 
-  )
+)
 
 ;; (imy/load-after-idle-time)
 
@@ -1591,7 +1607,6 @@ directory to make multiple eshell windows easier."
 #+begin_src emacs-lisp :tangle ./lisp/init-telega.el
 ;; init-telega.el -*- lexical-binding: t; -*-
 
-
 (add-to-list 'load-path (concat imy/package-manual-dir "telega.el"))
 
 (require 'telega)
@@ -1622,7 +1637,8 @@ directory to make multiple eshell windows easier."
              (when (telega-chat-bot-p telega-chatbuf--chat)
                '(telega-company-botcmd))))
   (company-mode 1)
-  (writeroom-mode 1))
+  (writeroom-mode 1)
+  )
 
 (add-hook 'telega-chat-mode-hook 'my-telega-chat-mode)
 
@@ -1631,6 +1647,7 @@ directory to make multiple eshell windows easier."
 
 (setq telega-symbol-unread "🄌")
 ;; (setq telega-symbol-reply "↫")                                        
+
 
 (defun my-telega-load ()
   ;; 🄌 occupies two full chars, but (string-width "🄌") returns 1
@@ -1749,35 +1766,36 @@ directory to make multiple eshell windows easier."
 *** init-random-theme.el : 随机主题 random
 
 #+begin_src emacs-lisp :tangle ./lisp/init-random-theme.el
-;; init-random-theme.el -*- lexical-binding: t; -*-
+  ;; init-random-theme.el -*- lexical-binding: t; -*-
 
-(load-theme 'doom-dracula t)
+  ;; (load-theme 'doom-gruvbox-light t)
+  (load-theme 'doom-shades-of-purple t)
 
-;; (add-to-list 'load-path (concat imy/package-manual-dir "theme"))
-(add-to-list 'load-path (concat imy/package-manual-dir "rand-theme"))
+  ;; (add-to-list 'load-path (concat imy/package-manual-dir "theme"))
+  (add-to-list 'load-path (concat imy/package-manual-dir "rand-theme"))
 
-(require 'rand-theme)
+  (require 'rand-theme)
 
-;; Themes I never want to be selected
-;; (setq rand-theme-unwanted '(doom-nord-light tsdh-dark))
+  ;; Themes I never want to be selected
+  ;; (setq rand-theme-unwanted '(doom-nord-light tsdh-dark))
 
-;; dark : kaolin-mono-dark kaolin-mono-light  darktooth
+  ;; dark : kaolin-mono-dark kaolin-mono-light  darktooth
 
-(setq wanted-theme '(
-		       ;; dark
-		        doom-snazzy doom-gruvbox doom-dracula doom-moonlight
+  (setq wanted-theme '(
+                         ;; dark
+                          doom-snazzy doom-gruvbox doom-dracula doom-moonlight
 
-		       ;; light
-		      doom-solarized-light  doom-gruvbox-light doom-opera-light 
-		       ))
+                         ;; light
+                        doom-solarized-light  doom-gruvbox-light doom-opera-light 
+                         ))
 
-(setq rand-theme-wanted wanted-theme)
-
-
-;; (rand-theme)
+  (setq rand-theme-wanted wanted-theme)
 
 
-(provide 'init-random-theme)
+  ;; (rand-theme)
+
+
+  (provide 'init-random-theme)
 
 #+end_src
 *** init-fold.el : 折叠
@@ -2107,10 +2125,29 @@ M-0~9 : 按照数字切换 tab.
 
 (require 'key-chord)
 (key-chord-mode 1)
-(key-chord-define-global "fk"  'evil-execute-in-god-state) ;; , 
-(key-chord-define-global "fj"  'evil-god-state)
+(key-chord-define-global "fj"  'evil-execute-in-god-state) ;; , 
+;; (key-chord-define-global "fj"  'evil-god-state)
 
 (provide 'init-keymap)
+#+end_src
+** init-mode-line.el : mode-line
+由于 nyan-mode 和 mood-line 不兼容, 为了好看, 最终还是选择 doom-line
+
+#+begin_src emacs-lisp :tangle ./lisp/init-mode-line.el
+;; init-mode-line.el -*- lexical-binding: t; -*-
+
+(require 'doom-modeline)
+(doom-modeline-mode 1)
+
+;; Or use this
+;; Use `window-setup-hook' if the right segment is displayed incorrectly
+(add-hook 'after-init-hook #'doom-modeline-mode)
+
+(add-to-list 'load-path (concat imy/package-manual-dir "nyan-mode"))
+(require 'nyan-mode)
+(nyan-mode)
+
+(provide 'init-mode-line)
 #+end_src
 * tips and tricks
 ** revert-buffer 不要提示 yes/no
@@ -2155,3 +2192,4 @@ M-0~9 : 按照数字切换 tab.
 (add-hook 'after-save-hook #'efs/org-babel-tangle-config)
 
 #+end_src
+

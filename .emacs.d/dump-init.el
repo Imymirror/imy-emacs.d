@@ -22,3 +22,7 @@
       (set-fontset-font (frame-parameter nil 'font)
 			charset
 			(font-spec  :family imy/chinese-font :size imy/chinese-font-size))))
+
+;; 解决terminal下 dump emacs evil esc 的异常 
+(evil-mode 0)
+(evil-mode 1)

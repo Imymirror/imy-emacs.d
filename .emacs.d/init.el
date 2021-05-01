@@ -12,5 +12,9 @@
 (require 'init-idle-time-load)
 (require 'init-custom)
 
+(require 'init-hydra)
+(require 'init-awesome-tab)
+(require 'init-keymap)
+
 ;; (setq garbage-collection-messages t)
 ;; (setq gcmh-verbose t)
