@@ -1,5 +1,7 @@
 ;; init-basic.el -*- lexical-binding: t; -*-
 
+(require 'init-dired)
+
 ;; 备份文件
 (setq
      backup-by-copying t ; 自动备份

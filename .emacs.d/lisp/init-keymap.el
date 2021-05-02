@@ -24,7 +24,7 @@
 
 (require 'key-chord)
 (key-chord-mode 1)
-(key-chord-define-global "fk"  'evil-execute-in-god-state) ;; , 
-(key-chord-define-global "fj"  'evil-god-state)
+(key-chord-define-global "fj"  'evil-execute-in-god-state) ;; , 
+;; (key-chord-define-global "fj"  'evil-god-state)
 
 (provide 'init-keymap)

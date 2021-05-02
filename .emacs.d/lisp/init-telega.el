@@ -1,6 +1,5 @@
 ;; init-telega.el -*- lexical-binding: t; -*-
 
-
 (add-to-list 'load-path (concat imy/package-manual-dir "telega.el"))
 
 (require 'telega)
@@ -10,7 +9,7 @@
 
 (setq telega-animation-play-inline nil)
 
-(setq telega-chat-show-avatars nil)
+(setq telega-chat-show-avatars t)
 ;;(setq telega-avatar-text-compose-chars nil)
 
 (add-hook 'telega-root-mode-hook (lambda () (writeroom-mode nil)))
@@ -31,7 +30,8 @@
              (when (telega-chat-bot-p telega-chatbuf--chat)
                '(telega-company-botcmd))))
   (company-mode 1)
-  (writeroom-mode 1))
+  (writeroom-mode 1)
+  )
 
 (add-hook 'telega-chat-mode-hook 'my-telega-chat-mode)
 
@@ -40,6 +40,7 @@
 
 (setq telega-symbol-unread "🄌")
 ;; (setq telega-symbol-reply "↫")                                        
+
 
 (defun my-telega-load ()
   ;; 🄌 occupies two full chars, but (string-width "🄌") returns 1

@@ -11,6 +11,8 @@
   (define-key evil-normal-state-map  (kbd "s") nil)   ;; evil-substitute
   )
 
+(define-key global-map  (kbd "s-?") 'writeroom-toggle-mode-line)   
+
 (evil-define-key 'treemacs treemacs-mode-map (kbd "SPC")  nil)
 (evil-define-key 'visual global-map (kbd ">") 'imy/evil-shift-right)
 (evil-define-key 'visual global-map (kbd "<") 'imy/evil-shift-left)
@@ -115,7 +117,8 @@
 
  ;; file frame
 (spc-leader-def 'normal 'override "f r" 'counsel-recentf)
-(spc-leader-def 'normal 'override "f n" 'imy/make-frame-by-emacsclient)
+;; (spc-leader-def 'normal 'override "f n" 'imy/make-frame-by-emacsclient)
+(spc-leader-def 'normal 'override "f n" 'make-frame)
 (spc-leader-def 'normal 'override "f d" 'delete-frame)
 (spc-leader-def 'normal 'override "f D" 'delete-other-frame)
 (spc-leader-def 'normal 'override "f m" 'toggle-frame-maximized)
@@ -124,6 +127,7 @@
  (spc-leader-def 'normal 'override "s s" 'swiper-isearch)
  (spc-leader-def 'normal 'override "s i" 'counsel-imenu)
  (spc-leader-def 'normal 'override "s r" 'counsel-recentf)
+(spc-leader-def 'normal 'override "s R" 'imy/ivy-dired-recent-dirs)
  (spc-leader-def 'normal 'override "s f" 'counsel-projectile-find-file)
  (spc-leader-def 'normal 'override "s D" 'projectile-find-dir)
  (spc-leader-def 'normal 'override "s p" 'counsel-projectile-rg)
@@ -166,6 +170,9 @@
 (general-def org-mode-map "M-h" 'org-metaleft) 
 
  ;; toogle
+;; magit
+(spc-leader-def 'normal 'override "t G" 'magit-status)
+
 (spc-leader-def 'normal 'override "t t" 'treemacs)
 (spc-leader-def 'normal 'override "t h" 'link-hint-open-link)
 (spc-leader-def 'normal 'override "t a" 'org-agenda)
@@ -210,8 +217,6 @@
  ;; (general-def 'normal "C-;" 'projectile-command-map) 
  (spc-leader-def 'normal "p" 'projectile-command-map) 
  
- ;; magit
- (spc-leader-def 'normal 'override "g" 'magit-status)
  
  ;; comment 
  (evilnc-default-hotkeys nil t)
