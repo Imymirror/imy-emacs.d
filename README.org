@@ -137,8 +137,8 @@ dump file
 
 (require 'init-treemacs)
 (require 'init-elfeed)
-(require 'init-nyan-mode)
-;; (require 'init-mode-line)
+;; (require 'init-nyan-mode)
+(require 'init-mode-line)
 
 (require 'init-enable-mode)
 
@@ -147,6 +147,9 @@ dump file
 (require 'init-hydra)
 (require 'init-awesome-tab)
 (require 'init-keymap)
+(require 'init-session)
+
+(require 'init-lsp)
 #+end_src
 ** dump.sh
 
@@ -268,6 +271,8 @@ dump 启动文件, 与非 dump 的启动文件 init.el 分开
 (require 'init-hydra)
 (require 'init-awesome-tab)
 (require 'init-keymap)
+(require 'init-lsp)
+(require 'init-session)
 
 ;; (setq garbage-collection-messages t)
 ;; (setq gcmh-verbose t)
@@ -279,7 +284,7 @@ dump 启动文件, 与非 dump 的启动文件 init.el 分开
 ;; init-speedup.el -*- lexical-binding: t; -*-
 
 
-(defvar better-gc-cons-threshold (* 16 1024 1024) ; 16mb
+(defvar better-gc-cons-threshold (* 8 1024 1024) ;;8m 
   "The default value to use for `gc-cons-threshold'.
 If you experience freezing, decrease this. If you experience stuttering, increase this.")
 
@@ -352,12 +357,10 @@ If you experience freezing, decrease this. If you experience stuttering, increas
 (package-initialize)
 
 (setq package-list '(
-		     command-log-mode  company writeroom-mode general visual-fill-column rainbow-identifiers yasnippet undo-fu org-bullets evil-nerd-commenter evil evil-collection magit projectile ivy org-roam org-roam-server grab-mac-link link-hint ripgrep counsel-projectile ivy-rich winum amx org-download rainbow-delimiters paredit which-key gcmh org-make-toc lsp-mode evil-surround ace-pinyin pinyinlib typescript-mode lsp-ui expand-region mood-line minions posframe rime org-journal unicode-fonts treemacs treemacs-evil treemacs-projectile ox-hugo elfeed elfeed-org org-super-agenda god-mode evil-god-state key-chord  windresize keycast
+		     command-log-mode  company writeroom-mode general visual-fill-column rainbow-identifiers yasnippet undo-fu org-bullets evil-nerd-commenter evil evil-collection magit projectile ivy org-roam org-roam-server grab-mac-link link-hint ripgrep counsel-projectile ivy-rich winum amx org-download rainbow-delimiters paredit which-key gcmh org-make-toc evil-surround ace-pinyin pinyinlib typescript-mode expand-region mood-line minions posframe rime org-journal unicode-fonts treemacs treemacs-evil treemacs-projectile ox-hugo elfeed elfeed-org org-super-agenda god-mode evil-god-state windresize keycast eglot lsp-mode lsp-ui lsp-treemacs flycheck
 
 				       ;; kaolin-themes
 				       doom-themes
-				      
-;; afternoon-theme  ample-theme leuven-theme plan9-theme twilight-bright-theme moe-theme flatui-theme  flucui-themes espresso-theme soft-stone-theme minimal-theme  darktooth-theme apropospriate-theme tao-theme   hc-zenburn-theme jazz-theme naquadah-theme  darkburn-theme  soothe-theme clues-theme  spacegray-theme planet-theme  seti-theme badwolf-theme darkmine-theme     gruber-darker-theme subatomic-theme  nimbus-theme  green-is-the-new-black-theme organic-green-theme green-phosphor-theme 
 				      
 				      ))
 
@@ -426,7 +429,7 @@ directory to make multiple eshell windows easier."
     (split-window-vertically (- height))
     (other-window 1)
     (create-scratch-buffer))
-)
+  )
 
 
 (defun imy/open-vterm nil
@@ -442,7 +445,7 @@ directory to make multiple eshell windows easier."
     (split-window-vertically (- height))
     (other-window 1)
     (vterm))
-)
+  )
 
 (defun imy/eshell-here ()
   "Opens up a new shell in the directory associated with the
@@ -476,21 +479,21 @@ current buffer's file. The eshell is renamed to match that
 directory to make multiple eshell windows easier."
   (interactive)
   (shell-command "open -a iTerm .")
-)
+  )
 
 
 (defun imy/make-frame-by-emacsclient ()
   "make frame by emacsclient -c"
   (interactive)
   (start-process-shell-command "make-frame" nil "emacsclient -c")
-)
+  )
 
 (defun imy/kill-other-buffers ()
-    "Kill all other buffers."
-    (interactive)
-    (mapc 'kill-buffer 
-          (delq (current-buffer) 
-                (cl-remove-if-not 'buffer-file-name (buffer-list)))))
+  "Kill all other buffers."
+  (interactive)
+  (mapc 'kill-buffer 
+        (delq (current-buffer) 
+              (cl-remove-if-not 'buffer-file-name (buffer-list)))))
 
 (defun imy/kill-all-buffers ()
   (interactive)
@@ -498,7 +501,7 @@ directory to make multiple eshell windows easier."
 
 
 (defun imy/org-delete-link ()
-    "Replace an org link by its description or if empty its address"
+  "Replace an org link by its description or if empty its address"
   (interactive)
   (if (org-in-regexp org-link-bracket-re 1)
       (save-excursion
@@ -573,10 +576,10 @@ directory to make multiple eshell windows easier."
           (and (= 1 (org-current-level)) ; at level-1 heading, or
                (org-at-heading-p))
           (org-at-table-p))              ; in a table (to preserve cell movement)
-      ; perform org-shifttab at root level elements and inside tables
+					; perform org-shifttab at root level elements and inside tables
       (org-shifttab arg)
-      ; try to fold up elsewhere 
-      (imy/org-foldup)))
+					; try to fold up elsewhere 
+    (imy/org-foldup)))
 
 
 (defun imy/delete-this-file (buffername)
@@ -609,15 +612,15 @@ directory to make multiple eshell windows easier."
     (avy-with avy-goto-char
       (avy--process
        (save-excursion
-     (save-restriction
-       (forward-line (- n))
-       (setq p1 (point))
-       (goto-char initial-point)
-       (forward-line (+ n 1) )
-       (setq p2 (point))
-       (narrow-to-region p1 p2)
-       (avy--regex-candidates (regexp-quote (string char)))))
-     (avy--style-fn avy-style)))))
+	 (save-restriction
+	   (forward-line (- n))
+	   (setq p1 (point))
+	   (goto-char initial-point)
+	   (forward-line (+ n 1) )
+	   (setq p2 (point))
+	   (narrow-to-region p1 p2)
+	   (avy--regex-candidates (regexp-quote (string char)))))
+       (avy--style-fn avy-style)))))
 
 
 (defun imy/single-lines-only ()
@@ -671,7 +674,7 @@ directory to make multiple eshell windows easier."
   "dump emacs in dump-emacs-buffer"
   (interactive)
   (start-process-shell-command "dump-emacs" "dump-emacs-buffer" "sh ~/.emacs.d/dump.sh")
-)
+  )
 
 (defun imy/ivy-dired-recent-dirs ()
   "Present a list of recently used directories and open the selected one in dired"
@@ -689,6 +692,13 @@ directory to make multiple eshell windows easier."
                          :initial-input nil)))
       (dired dir))))
 
+(defun imy/restart-emacs ()
+  (interactive)
+
+  (evil-write-all)
+  (imy/session-save)
+  (call-process "sh" nil nil nil "-c" "sh /Users/fuhongxue/.emacs.d/lauch_dump_emacs.sh &")
+  (save-buffers-kill-terminal))
 
 (provide 'init-imy)
 
@@ -884,6 +894,8 @@ directory to make multiple eshell windows easier."
 
 (setq-default evil-kill-on-visual-paste nil)
 
+(require 'init-evil-multiple-cursor)
+
 (provide 'init-evil)
 #+end_src
 ** init-font.el : 字体相关的配置
@@ -935,9 +947,7 @@ directory to make multiple eshell windows easier."
 (provide 'init-general)
 #+end_src
 ** init-map.el : 定义快捷键的地方
-
 #+begin_src emacs-lisp :tangle ./lisp/init-map.el
-
 ;; init-map.el -*- lexical-binding: t; -*-
 
 (with-eval-after-load 'evil-maps
@@ -957,7 +967,8 @@ directory to make multiple eshell windows easier."
 (evil-define-key 'visual global-map (kbd ">") 'imy/evil-shift-right)
 (evil-define-key 'visual global-map (kbd "<") 'imy/evil-shift-left)
 
-(general-define-key "C-; C-d" 'ivy-immediate-done)
+
+
 
 (general-create-definer spc-leader-def :prefix "SPC")
 (general-create-definer roam-leader-def :prefix ";")
@@ -977,6 +988,14 @@ directory to make multiple eshell windows easier."
 (spc-leader-def 'normal 'override "." 'counsel-find-file)
 (spc-leader-def 'normal 'override "'" 'ivy-resume)
 (spc-leader-def  'normal ";" 'evil-repeat-find-char) 
+
+;; j 
+(general-define-key "C-c j d" 'ivy-immediate-done)
+(general-def  "C-c j g" 'grab-mac-link-dwim) 
+(general-def  "C-c j t" 'rand-theme) 
+(general-def  "C-c j i" 'imy/org-download-paste-clipboard) 
+(general-def "C-c j f" 'org-footnote-new) 
+
 
 ;; general
 (general-def 'insert  "C-v" 'org-yank) 
@@ -1049,6 +1068,7 @@ directory to make multiple eshell windows easier."
 (spc-leader-def 'normal 'override "8" 'winum-select-window-8)
 
 (general-define-key "M-x" 'counsel-M-x)
+(general-define-key  "s-0" 'treemacs-select-window)
 (general-define-key  "s-1" 'winum-select-window-1)
 (general-define-key  "s-2" 'winum-select-window-2)
 (general-define-key  "s-3" 'winum-select-window-3)
@@ -1065,6 +1085,7 @@ directory to make multiple eshell windows easier."
 
  ;; search
  (spc-leader-def 'normal 'override "s s" 'swiper-isearch)
+ (spc-leader-def 'normal 'override "s S" 'swiper-all)
  (spc-leader-def 'normal 'override "s i" 'counsel-imenu)
  (spc-leader-def 'normal 'override "s r" 'counsel-recentf)
 (spc-leader-def 'normal 'override "s R" 'imy/ivy-dired-recent-dirs)
@@ -1109,9 +1130,10 @@ directory to make multiple eshell windows easier."
 (general-def org-mode-map "M-l" 'org-metaright)
 (general-def org-mode-map "M-h" 'org-metaleft) 
 
- ;; toogle
+;; toogle
 ;; magit
 (spc-leader-def 'normal 'override "t G" 'magit-status)
+(spc-leader-def 'normal 'override "t r" 'imy/restart-emacs)
 
 (spc-leader-def 'normal 'override "t t" 'treemacs)
 (spc-leader-def 'normal 'override "t h" 'link-hint-open-link)
@@ -1122,13 +1144,10 @@ directory to make multiple eshell windows easier."
 (spc-leader-def 'normal 'override "t g" 'grab-mac-link-dwim)
 (spc-leader-def 'normal 'override "t c" 'org-capture)
 (spc-leader-def 'normal 'override "t f" 'elfeed)
-(general-def  "C-; C-g" 'grab-mac-link-dwim) 
-(general-def  "C-; C-t" 'rand-theme) 
 
 (spc-leader-def 'normal 'override "t e" 'eval-region)
 (spc-leader-def 'normal 'override "t E" 'eval-buffer)
 (spc-leader-def 'normal 'override "t p" 'imy/org-download-paste-clipboard)
-(general-def  "C-; C-i" 'imy/org-download-paste-clipboard) 
 
 ;; company
 ;; (global-set-key (kbd "C-m") 'company-complete)
@@ -1154,7 +1173,6 @@ directory to make multiple eshell windows easier."
  
  ;; projectile
  (projectile-mode +1)
- ;; (general-def 'normal "C-;" 'projectile-command-map) 
  (spc-leader-def 'normal "p" 'projectile-command-map) 
  
  
@@ -1171,8 +1189,9 @@ directory to make multiple eshell windows easier."
 ;;(spc-leader-def 'normal 'override "," 'counsel-bookmark)
 
 ;; open org
-;; (spc-leader-def 'normal 'override "o e" 'imy/eshell-here)
-(spc-leader-def 'normal 'override "o v" 'imy/open-vterm)
+(spc-leader-def 'normal 'override "o e" 'imy/eshell-here)
+(spc-leader-def 'normal 'override "o v" 'vterm)
+(spc-leader-def 'normal 'override "o V" 'imy/open-vterm)
 (spc-leader-def 'normal 'override "o i" 'imy/open-iTerm)
 (spc-leader-def 'normal 'override "o o" 'imy/reveal-in-finder)
 (spc-leader-def 'normal 'override "o ;" 'imy/org-show-current-heading-tidily)
@@ -1180,7 +1199,6 @@ directory to make multiple eshell windows easier."
 (spc-leader-def 'normal 'override "o j" 'imy/org-show-next-heading-tidily)
 (spc-leader-def 'normal 'override "o f" 'imy/org-foldup)
 (spc-leader-def 'normal 'override "o F" 'org-footnote-new)
-(general-def "C-; C-f" 'org-footnote-new) 
 (spc-leader-def 'normal 'override "o y" 'yas-insert-snippet)
 
 ;; close code 
@@ -1188,7 +1206,7 @@ directory to make multiple eshell windows easier."
 (spc-leader-def 'normal 'override "c h" 'org-hide-block-all)
 (spc-leader-def 'normal 'override "c s" 'org-show-block-all)
 (spc-leader-def 'normal 'override "c c" 'org-edit-src-code)
-(spc-leader-def 'normal 'override "c f" 'org-edit-src-exit)
+;; (spc-leader-def 'normal 'override "c f" 'org-edit-src-exit)
 
 ;; zi
 (general-def 'normal  "z i" 'org-toggle-inline-images) 
@@ -1198,6 +1216,18 @@ directory to make multiple eshell windows easier."
 
 ;; selection
 (global-set-key (kbd "C-=") 'er/expand-region)
+
+
+;; lsp
+(spc-leader-def 'normal 'override "l f" 'first-error)
+(spc-leader-def 'normal 'override "l n" 'next-error)
+(spc-leader-def 'normal 'override "l p" 'previous-error)
+(spc-leader-def 'normal 'override "l l" 'lsp-ui-flycheck-list)
+(spc-leader-def 'normal 'override "l a" 'lsp-execute-code-action)
+(spc-leader-def 'normal 'override "l i" 'lsp-ui-imenu)
+(spc-leader-def 'normal 'override "l r" 'lsp-find-references)
+(spc-leader-def 'normal 'override "l R" 'lsp-ui-peek-find-references)
+(spc-leader-def 'normal 'override "l =" 'lsp-format-buffer)
 
 (provide 'init-map)
 #+end_src
@@ -1314,13 +1344,14 @@ directory to make multiple eshell windows easier."
 
   (require 'init-treemacs)
   (require 'init-elfeed)
-  (require 'init-nyan-mode)
-  ;; (require 'init-mode-line)
+  ;; (require 'init-nyan-mode)
+  (require 'init-mode-line)
   (require 'init-enable-mode)
 
+  (require 'init-terminal)
+  
   ;; dump 不了, 只能放在 idle 里
   (winner-mode)
-
 )
 
 ;; (imy/load-after-idle-time)
@@ -1601,20 +1632,22 @@ directory to make multiple eshell windows easier."
 *** init-company.el : 自动补全
 
 #+begin_src emacs-lisp :tangle ./lisp/init-company.el
-;; init-company.el -*- lexical-binding: t; -*-
+  ;; init-company.el -*- lexical-binding: t; -*-
 
-;; (with-eval-after-load 'company
+  ;; (with-eval-after-load 'company
 
-;; 优化性能
-(setq company-minimum-prefix-length 1
-      company-idle-delay 0.5) ;; default is 0.2
+  ;; 优化性能
+  (setq company-minimum-prefix-length 1
+        company-idle-delay 0.5) ;; default is 0.2
 
-(setq company-auto-complete t)
-(setq company-show-numbers t)
-;; )
+  (setq company-auto-complete t)
+  (setq company-show-numbers t)
+  ;; )
 
-(provide 'init-company)
+(with-eval-after-load 'company
+  (define-key company-active-map (kbd "C-RET") #'company-complete-selection))
 
+  (provide 'init-company)
 #+end_src
 *** init-telega.el : telegram 聊天
 
@@ -1840,6 +1873,8 @@ directory to make multiple eshell windows easier."
 (require 'treemacs-evil)
 (require 'treemacs-projectile)
 
+(define-key treemacs-mode-map [mouse-1] #'treemacs-single-click-expand-action)
+
 (with-eval-after-load 'winum
   (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
 
@@ -1847,6 +1882,9 @@ directory to make multiple eshell windows easier."
 (treemacs-follow-mode t)
 (treemacs-filewatch-mode t)
 (treemacs-fringe-indicator-mode 'always)
+
+(require 'treemacs-all-the-icons)
+(treemacs-load-theme "all-the-icons")
 
 (pcase (cons (not (null (executable-find "git")))
 	     (not (null treemacs-python-executable)))
@@ -1914,6 +1952,8 @@ directory to make multiple eshell windows easier."
 (setq-default elfeed-search-filter "@1-months-ago +unread")
 
 (add-hook 'elfeed-search-mode-hook 'elfeed-update)
+
+(setq elfeed-curl-extra-arguments '("-xhttp://localhost:1087"))
 
 (provide 'init-elfeed)
 
@@ -2024,10 +2064,19 @@ directory to make multiple eshell windows easier."
 #+begin_src emacs-lisp :tangle ./lisp/init-language.el
 ;; 缩进调成 4, 默认是 2
 (add-hook 'python-mode-hook
-      (lambda ()
-        (setq indent-tabs-mode t)
-        (setq tab-width 4)
-        (setq python-indent-offset 4)))
+	  (lambda ()
+	    (setq indent-tabs-mode t)
+	    (setq tab-width 4)
+	    (setq python-indent-offset 4)))
+
+(setq typescript-indent-level 2)
+(add-hook 'typescript-mode-hook
+          (lambda ()
+            (setq indent-tabs-mode t)
+            (setq tab-width 4)
+            (lsp-deferred)
+            (hs-minor-mode 1)
+            ))
 #+end_src
 **** end
 
@@ -2137,9 +2186,9 @@ M-0~9 : 按照数字切换 tab.
 (require 'evil-god-state)
 (evil-define-key 'god global-map [escape] 'evil-god-state-bail)
 
-(require 'key-chord)
-(key-chord-mode 1)
-(key-chord-define-global "fj"  'evil-execute-in-god-state) ;; , 
+;; (require 'key-chord)
+;; (key-chord-mode 1)
+;; (key-chord-define-global "fj"  'evil-execute-in-god-state) ;; , 
 ;; (key-chord-define-global "fj"  'evil-god-state)
 
 (provide 'init-keymap)
@@ -2152,6 +2201,8 @@ M-0~9 : 按照数字切换 tab.
 
 (require 'doom-modeline)
 (doom-modeline-mode 1)
+(setq doom-modeline-height 20)
+(setq doom-modeline-buffer-file-name-style 'truncate-upto-root)
 
 ;; Or use this
 ;; Use `window-setup-hook' if the right segment is displayed incorrectly
@@ -2164,7 +2215,7 @@ M-0~9 : 按照数字切换 tab.
 (provide 'init-mode-line)
 #+end_src
 ** init-dired.el : dired
-#+begin_src elisp :tangle ./lisp/init-dired.el
+#+begin_src emacs-lisp :tangle ./lisp/init-dired.el
 ;; init-dired.el -*- lexical-binding: t; -*-
 
 (require 'dired)
@@ -2180,6 +2231,147 @@ M-0~9 : 按照数字切换 tab.
 (define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file "..")))  ; was dired-up-directory
 
 (provide 'init-dired)
+#+end_src
+** init-lsp.el : lsp
+#+begin_src emacs-lisp :tangle ./lisp/init-lsp.el
+;; init-lsp.el -*- lexical-binding: t; -*-
+
+(require 'lsp-mode)
+
+(setq typescript-indent-level 2)
+
+;; 性能相关
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
+(setq lsp-completion-provider :capf)
+(setq lsp-idle-delay 0.500)
+(setq lsp-enable-file-watchers nil)
+(setq lsp-log-io nil) ; if set to true can cause a performance hit
+
+(setq lsp-ui-doc-position 'at-point)
+
+;; 补全
+(setq company-minimum-prefix-length 1
+      company-idle-delay 0.0) ;; default is 0.2
+
+(define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
+(with-eval-after-load 'lsp-mode
+  (add-hook 'lsp-mode-hook (lambda ()
+			     (let ((lsp-keymap-prefix "C-c l"))
+			       (lsp-enable-which-key-integration)))))
+
+(setq lsp-eslint-server-command 
+      '("node" 
+	"/Applications/VSCode/code-portable-data/extensions/dbaeumer.vscode-eslint-2.1.20/server/out/eslintServer.js" 
+	"--stdio"))
+
+
+(provide 'init-lsp)
+#+end_src
+** init-evil-multiple-cursor.el : evil 下的多行操作
+#+begin_src emacs-lisp :tangle ./lisp/init-evil-multiple-cursor.el
+;; init-evil-multiple-cursor.el -*- lexical-binding: t; -*-
+
+(require 'evil-multiedit)
+
+;; Highlights all matches of the selection in the buffer.
+(define-key evil-visual-state-map "R" 'evil-multiedit-match-all)
+
+;; Match the word under cursor (i.e. make it an edit region). Consecutive presses will
+;; incrementally add the next unmatched match.
+(define-key evil-normal-state-map (kbd "M-d") 'evil-multiedit-match-and-next)
+;; Match selected region.
+(define-key evil-visual-state-map (kbd "M-d") 'evil-multiedit-match-and-next)
+;; Insert marker at point
+(define-key evil-insert-state-map (kbd "M-d") 'evil-multiedit-toggle-marker-here)
+
+;; Same as M-d but in reverse.
+(define-key evil-normal-state-map (kbd "M-D") 'evil-multiedit-match-and-prev)
+(define-key evil-visual-state-map (kbd "M-D") 'evil-multiedit-match-and-prev)
+
+;; OPTIONAL: If you prefer to grab symbols rather than words, use
+;; `evil-multiedit-match-symbol-and-next` (or prev).
+
+;; Restore the last group of multiedit regions.
+(define-key evil-visual-state-map (kbd "C-M-D") 'evil-multiedit-restore)
+
+;; RET will toggle the region under the cursor
+(define-key evil-multiedit-state-map (kbd "RET") 'evil-multiedit-toggle-or-restrict-region)
+
+;; ...and in visual mode, RET will disable all fields outside the selected region
+(define-key evil-motion-state-map (kbd "RET") 'evil-multiedit-toggle-or-restrict-region)
+
+;; For moving between edit regions
+(define-key evil-multiedit-state-map (kbd "C-n") 'evil-multiedit-next)
+(define-key evil-multiedit-state-map (kbd "C-p") 'evil-multiedit-prev)
+(define-key evil-multiedit-insert-state-map (kbd "C-n") 'evil-multiedit-next)
+(define-key evil-multiedit-insert-state-map (kbd "C-p") 'evil-multiedit-prev)
+
+;; Ex command that allows you to invoke evil-multiedit with a regular expression, e.g.
+(evil-ex-define-cmd "ie[dit]" 'evil-multiedit-ex-match)
+
+
+(provide 'init-evil-multiple-cursor)
+#+end_src
+** init-terminal.el : terminal
+#+begin_src emacs-lisp :tangle ./lisp/init-terminal.el
+(add-to-list 'load-path (concat imy/package-manual-dir "emacs-libvterm"))
+(require 'vterm)
+
+(defun my/source-bashrc ()
+      (interactive)
+      (vterm-send-string "source ~/.bash_profile \n"))
+
+(add-hook 'vterm-mode-hook #'my/source-bashrc)
+
+
+(provide 'init-terminal)
+#+end_src
+** init-session.el : session
+#+begin_src emacs-lisp :tangle ./lisp/init-session.el
+;; init-session.el -*- lexical-binding: t; -*-
+
+;; use only one desktop
+(setq desktop-path '("~/.my-emacs-env/emacs/"))
+(setq desktop-dirname "~/.my-emacs-env/emacs/")
+(setq desktop-base-file-name "emacs-desktop")
+
+;; remove desktop after it's been read
+(add-hook 'desktop-after-read-hook
+	  '(lambda ()
+	     ;; desktop-remove clears desktop-dirname
+	     (setq desktop-dirname-tmp desktop-dirname)
+	     (desktop-remove)
+	     (setq desktop-dirname desktop-dirname-tmp)))
+
+(defun saved-session ()
+  (file-exists-p (concat desktop-dirname "/" desktop-base-file-name)))
+
+;; use session-restore to restore the desktop manually
+(defun imy/session-restore ()
+  "Restore a saved emacs session."
+  (interactive)
+  (if (saved-session)
+      (desktop-read)
+    (message "No desktop found.")))
+
+;; use session-save to save the desktop manually
+(defun imy/session-save ()
+  "Save an emacs session."
+  (interactive)
+  (if (saved-session)
+      (if (y-or-n-p "Overwrite existing desktop? ")
+	  (desktop-save-in-desktop-dir)
+	(message "Session not saved."))
+  (desktop-save-in-desktop-dir)))
+
+;; ask user whether to restore desktop at start-up
+(add-hook 'after-init-hook
+	  '(lambda ()
+	     (if (saved-session)
+		 (if (y-or-n-p "Restore desktop? ")
+		     (imy/session-restore)))))
+
+(provide 'init-session)
 #+end_src
 * tips and tricks
 ** revert-buffer 不要提示 yes/no

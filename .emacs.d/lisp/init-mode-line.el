@@ -2,6 +2,8 @@
 
 (require 'doom-modeline)
 (doom-modeline-mode 1)
+(setq doom-modeline-height 20)
+(setq doom-modeline-buffer-file-name-style 'truncate-upto-root)
 
 ;; Or use this
 ;; Use `window-setup-hook' if the right segment is displayed incorrectly

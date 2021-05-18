@@ -17,7 +17,8 @@
 (evil-define-key 'visual global-map (kbd ">") 'imy/evil-shift-right)
 (evil-define-key 'visual global-map (kbd "<") 'imy/evil-shift-left)
 
-(general-define-key "C-; C-d" 'ivy-immediate-done)
+
+
 
 (general-create-definer spc-leader-def :prefix "SPC")
 (general-create-definer roam-leader-def :prefix ";")
@@ -37,6 +38,14 @@
 (spc-leader-def 'normal 'override "." 'counsel-find-file)
 (spc-leader-def 'normal 'override "'" 'ivy-resume)
 (spc-leader-def  'normal ";" 'evil-repeat-find-char) 
+
+;; j 
+(general-define-key "C-c j d" 'ivy-immediate-done)
+(general-def  "C-c j g" 'grab-mac-link-dwim) 
+(general-def  "C-c j t" 'rand-theme) 
+(general-def  "C-c j i" 'imy/org-download-paste-clipboard) 
+(general-def "C-c j f" 'org-footnote-new) 
+
 
 ;; general
 (general-def 'insert  "C-v" 'org-yank) 
@@ -109,6 +118,7 @@
 (spc-leader-def 'normal 'override "8" 'winum-select-window-8)
 
 (general-define-key "M-x" 'counsel-M-x)
+(general-define-key  "s-0" 'treemacs-select-window)
 (general-define-key  "s-1" 'winum-select-window-1)
 (general-define-key  "s-2" 'winum-select-window-2)
 (general-define-key  "s-3" 'winum-select-window-3)
@@ -125,6 +135,7 @@
 
  ;; search
  (spc-leader-def 'normal 'override "s s" 'swiper-isearch)
+ (spc-leader-def 'normal 'override "s S" 'swiper-all)
  (spc-leader-def 'normal 'override "s i" 'counsel-imenu)
  (spc-leader-def 'normal 'override "s r" 'counsel-recentf)
 (spc-leader-def 'normal 'override "s R" 'imy/ivy-dired-recent-dirs)
@@ -169,9 +180,10 @@
 (general-def org-mode-map "M-l" 'org-metaright)
 (general-def org-mode-map "M-h" 'org-metaleft) 
 
- ;; toogle
+;; toogle
 ;; magit
 (spc-leader-def 'normal 'override "t G" 'magit-status)
+(spc-leader-def 'normal 'override "t r" 'imy/restart-emacs)
 
 (spc-leader-def 'normal 'override "t t" 'treemacs)
 (spc-leader-def 'normal 'override "t h" 'link-hint-open-link)
@@ -182,13 +194,10 @@
 (spc-leader-def 'normal 'override "t g" 'grab-mac-link-dwim)
 (spc-leader-def 'normal 'override "t c" 'org-capture)
 (spc-leader-def 'normal 'override "t f" 'elfeed)
-(general-def  "C-; C-g" 'grab-mac-link-dwim) 
-(general-def  "C-; C-t" 'rand-theme) 
 
 (spc-leader-def 'normal 'override "t e" 'eval-region)
 (spc-leader-def 'normal 'override "t E" 'eval-buffer)
 (spc-leader-def 'normal 'override "t p" 'imy/org-download-paste-clipboard)
-(general-def  "C-; C-i" 'imy/org-download-paste-clipboard) 
 
 ;; company
 ;; (global-set-key (kbd "C-m") 'company-complete)
@@ -214,7 +223,6 @@
  
  ;; projectile
  (projectile-mode +1)
- ;; (general-def 'normal "C-;" 'projectile-command-map) 
  (spc-leader-def 'normal "p" 'projectile-command-map) 
  
  
@@ -231,8 +239,9 @@
 ;;(spc-leader-def 'normal 'override "," 'counsel-bookmark)
 
 ;; open org
-;; (spc-leader-def 'normal 'override "o e" 'imy/eshell-here)
-(spc-leader-def 'normal 'override "o v" 'imy/open-vterm)
+(spc-leader-def 'normal 'override "o e" 'imy/eshell-here)
+(spc-leader-def 'normal 'override "o v" 'vterm)
+(spc-leader-def 'normal 'override "o V" 'imy/open-vterm)
 (spc-leader-def 'normal 'override "o i" 'imy/open-iTerm)
 (spc-leader-def 'normal 'override "o o" 'imy/reveal-in-finder)
 (spc-leader-def 'normal 'override "o ;" 'imy/org-show-current-heading-tidily)
@@ -240,7 +249,6 @@
 (spc-leader-def 'normal 'override "o j" 'imy/org-show-next-heading-tidily)
 (spc-leader-def 'normal 'override "o f" 'imy/org-foldup)
 (spc-leader-def 'normal 'override "o F" 'org-footnote-new)
-(general-def "C-; C-f" 'org-footnote-new) 
 (spc-leader-def 'normal 'override "o y" 'yas-insert-snippet)
 
 ;; close code 
@@ -248,7 +256,7 @@
 (spc-leader-def 'normal 'override "c h" 'org-hide-block-all)
 (spc-leader-def 'normal 'override "c s" 'org-show-block-all)
 (spc-leader-def 'normal 'override "c c" 'org-edit-src-code)
-(spc-leader-def 'normal 'override "c f" 'org-edit-src-exit)
+;; (spc-leader-def 'normal 'override "c f" 'org-edit-src-exit)
 
 ;; zi
 (general-def 'normal  "z i" 'org-toggle-inline-images) 
@@ -258,5 +266,17 @@
 
 ;; selection
 (global-set-key (kbd "C-=") 'er/expand-region)
+
+
+;; lsp
+(spc-leader-def 'normal 'override "l f" 'first-error)
+(spc-leader-def 'normal 'override "l n" 'next-error)
+(spc-leader-def 'normal 'override "l p" 'previous-error)
+(spc-leader-def 'normal 'override "l l" 'lsp-ui-flycheck-list)
+(spc-leader-def 'normal 'override "l a" 'lsp-execute-code-action)
+(spc-leader-def 'normal 'override "l i" 'lsp-ui-imenu)
+(spc-leader-def 'normal 'override "l r" 'lsp-find-references)
+(spc-leader-def 'normal 'override "l R" 'lsp-ui-peek-find-references)
+(spc-leader-def 'normal 'override "l =" 'lsp-format-buffer)
 
 (provide 'init-map)

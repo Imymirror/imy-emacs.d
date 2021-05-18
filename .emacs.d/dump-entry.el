@@ -33,8 +33,8 @@
 
 (require 'init-treemacs)
 (require 'init-elfeed)
-(require 'init-nyan-mode)
-;; (require 'init-mode-line)
+;; (require 'init-nyan-mode)
+(require 'init-mode-line)
 
 (require 'init-enable-mode)
 
@@ -43,3 +43,6 @@
 (require 'init-hydra)
 (require 'init-awesome-tab)
 (require 'init-keymap)
+(require 'init-session)
+
+(require 'init-lsp)

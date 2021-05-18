@@ -19,4 +19,6 @@
 
 (setq-default evil-kill-on-visual-paste nil)
 
+(require 'init-evil-multiple-cursor)
+
 (provide 'init-evil)

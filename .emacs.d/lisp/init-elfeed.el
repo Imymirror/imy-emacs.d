@@ -10,4 +10,6 @@
 
 (add-hook 'elfeed-search-mode-hook 'elfeed-update)
 
+(setq elfeed-curl-extra-arguments '("-xhttp://localhost:1087"))
+
 (provide 'init-elfeed)

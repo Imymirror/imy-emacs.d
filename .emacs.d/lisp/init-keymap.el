@@ -22,9 +22,9 @@
 (require 'evil-god-state)
 (evil-define-key 'god global-map [escape] 'evil-god-state-bail)
 
-(require 'key-chord)
-(key-chord-mode 1)
-(key-chord-define-global "fj"  'evil-execute-in-god-state) ;; , 
+;; (require 'key-chord)
+;; (key-chord-mode 1)
+;; (key-chord-define-global "fj"  'evil-execute-in-god-state) ;; , 
 ;; (key-chord-define-global "fj"  'evil-god-state)
 
 (provide 'init-keymap)

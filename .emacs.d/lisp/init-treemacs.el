@@ -3,6 +3,8 @@
 (require 'treemacs-evil)
 (require 'treemacs-projectile)
 
+(define-key treemacs-mode-map [mouse-1] #'treemacs-single-click-expand-action)
+
 (with-eval-after-load 'winum
   (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
 
@@ -10,6 +12,9 @@
 (treemacs-follow-mode t)
 (treemacs-filewatch-mode t)
 (treemacs-fringe-indicator-mode 'always)
+
+(require 'treemacs-all-the-icons)
+(treemacs-load-theme "all-the-icons")
 
 (pcase (cons (not (null (executable-find "git")))
 	     (not (null treemacs-python-executable)))

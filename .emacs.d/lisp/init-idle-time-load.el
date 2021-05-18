@@ -34,13 +34,14 @@
 
   (require 'init-treemacs)
   (require 'init-elfeed)
-  (require 'init-nyan-mode)
-  ;; (require 'init-mode-line)
+  ;; (require 'init-nyan-mode)
+  (require 'init-mode-line)
   (require 'init-enable-mode)
 
+  (require 'init-terminal)
+  
   ;; dump 不了, 只能放在 idle 里
   (winner-mode)
-
 )
 
 ;; (imy/load-after-idle-time)
