@@ -399,7 +399,7 @@ M-x package-install RET counsel RE
 #+end_src
 ** 常规设置
 #+begin_src elisp
-ivy-mode 1)
+(ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
 (setq enable-recursive-minibuffers t)
 #+end_src
