@@ -184,6 +184,7 @@
 ;; magit
 (spc-leader-def 'normal 'override "t G" 'magit-status)
 (spc-leader-def 'normal 'override "t r" 'imy/restart-emacs)
+(spc-leader-def 'normal 'override "t R" 'imy/switch-roam-directory)
 
 (spc-leader-def 'normal 'override "t t" 'treemacs)
 (spc-leader-def 'normal 'override "t h" 'link-hint-open-link)

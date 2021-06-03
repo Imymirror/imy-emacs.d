@@ -26,4 +26,3 @@
     (package-install package)))
 
 (provide 'init-package)
-

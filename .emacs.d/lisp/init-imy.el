@@ -303,15 +303,10 @@ directory to make multiple eshell windows easier."
 
 (defun imy/restart-emacs ()
   (interactive)
-  (evil-write-all)
-  (imy/session-save)
+
+  (evil-write-all t)
+  ;;(imy/session-save)
   (call-process "sh" nil nil nil "-c" "sh /Users/fuhongxue/.emacs.d/lauch_dump_emacs.sh &")
   (save-buffers-kill-terminal))
-
-(defun imy/open-vscode ()
-  (interactive)
-  (let ((files (dired-get-marked-files t current-prefix-arg)))
-    (dired-do-shell-command "code *" nil files)))
-
 
 (provide 'init-imy)

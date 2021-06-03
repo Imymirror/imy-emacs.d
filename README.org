@@ -65,6 +65,7 @@
   - [[#revert-buffer-不要提示-yesno][revert-buffer 不要提示 yes/no]]
   - [[#每-30s-保存一次所有buffer文件][每 30s 保存一次所有buffer文件]]
   - [[#org-babel-自动tangle][org babel 自动tangle]]
+  - [[#计算执行时间-来自emacs-社区-nasy学姐][计算执行时间 (来自emacs 社区 @nasy学姐)]]
 :END:
 * introduce
 旧的从零配置教程 :  [[file:configure-emacs-from-scratch.org][configure eamcs from scratch]]
@@ -701,8 +702,8 @@ directory to make multiple eshell windows easier."
 (defun imy/restart-emacs ()
   (interactive)
 
-  (evil-write-all)
-  (imy/session-save)
+  (evil-write-all t)
+  ;;(imy/session-save)
   (call-process "sh" nil nil nil "-c" "sh /Users/fuhongxue/.emacs.d/lauch_dump_emacs.sh &")
   (save-buffers-kill-terminal))
 
@@ -1140,6 +1141,7 @@ directory to make multiple eshell windows easier."
 ;; magit
 (spc-leader-def 'normal 'override "t G" 'magit-status)
 (spc-leader-def 'normal 'override "t r" 'imy/restart-emacs)
+(spc-leader-def 'normal 'override "t R" 'imy/switch-roam-directory)
 
 (spc-leader-def 'normal 'override "t t" 'treemacs)
 (spc-leader-def 'normal 'override "t h" 'link-hint-open-link)
@@ -1251,7 +1253,10 @@ directory to make multiple eshell windows easier."
 (setq +org-roam-open-buffer-on-find-file nil)
 
 (setq org-roam-directory "~/pkm-roam/roam0")  ;; roam 应用的文件夹
-(setq org-roam-db-location "~/pkm-roam/org-roam.db")
+;; (setq org-roam-db-location "~/pkm-roam/org-roam.db")
+(setq org-roam-db-location "~/pkm-roam/roam0-org-roam.db")
+
+
 (setq org-roam-completion-system 'ivy)
 
 (defun start-roam-mode () (org-roam-mode t))
@@ -1287,9 +1292,20 @@ directory to make multiple eshell windows easier."
 ;;                                     ("rankdir" . "RL")
 ;;                                     ;; ("color" . "skyblue")
 ;;                                     ))
+(defun imy/switch-roam-directory (x)
+  "switch roam directory : 1. original(default) 2.column"
+  (interactive "nEnter 1. original 2.column: ")
+  (cond ((= x 1)
+	    (setq org-roam-directory "~/pkm-roam/roam0")  ;; roam 应用的文件夹
+	    (setq org-roam-db-location "~/pkm-roam/roam0-org-roam.db"))
+	((= x 2)
+	    (setq org-roam-directory "~/pkm-roam/roam-column")  ;; roam 应用的文件夹
+	    (setq org-roam-db-location "~/pkm-roam/roam-column-org-roam.db"))
+	(t 
+	    (setq org-roam-directory "~/pkm-roam/roam0")  ;; roam 应用的文件夹
+	    (setq org-roam-db-location "~/pkm-roam/roam0-org-roam.db"))))
 
 (provide 'init-roam)
-
 #+end_src
 ** init-custom.el : 将 custom 信息放在专门的文件里
 
@@ -2214,9 +2230,9 @@ M-0~9 : 按照数字切换 tab.
 ;; Use `window-setup-hook' if the right segment is displayed incorrectly
 (add-hook 'after-init-hook #'doom-modeline-mode)
 
-(add-to-list 'load-path (concat imy/package-manual-dir "nyan-mode"))
-(require 'nyan-mode)
-(nyan-mode)
+;; (add-to-list 'load-path (concat imy/package-manual-dir "nyan-mode"))
+;; (require 'nyan-mode)
+;; (nyan-mode)
 
 (provide 'init-mode-line)
 #+end_src
@@ -2371,11 +2387,11 @@ M-0~9 : 按照数字切换 tab.
   (desktop-save-in-desktop-dir)))
 
 ;; ask user whether to restore desktop at start-up
-(add-hook 'after-init-hook
-	  '(lambda ()
-	     (if (saved-session)
-		 (if (y-or-n-p "Restore desktop? ")
-		     (imy/session-restore)))))
+;; (add-hook 'after-init-hook
+;; 	  '(lambda ()
+;; 	     (if (saved-session)
+;; 		 (if (y-or-n-p "Restore desktop? ")
+;; 		     (imy/session-restore)))))
 
 (provide 'init-session)
 #+end_src
@@ -2421,4 +2437,17 @@ M-0~9 : 按照数字切换 tab.
 
 (add-hook 'after-save-hook #'efs/org-babel-tangle-config)
 
+#+end_src
+
+** 计算执行时间 (来自emacs 社区 @nasy学姐)
+#+begin_src elisp
+(defmacro nasy/timer (&rest body)
+  "Measure and return the time it takes evaluating BODY."
+  `(let ((time (current-time)))
+     ,@body
+     (float-time (time-since time))))                               
+
+(setq doom-modeline-enable-word-count t)
+
+(nasy/timer (format-mode-line mode-line-format))
 #+end_src

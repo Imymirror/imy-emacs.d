@@ -9,7 +9,10 @@
 (setq +org-roam-open-buffer-on-find-file nil)
 
 (setq org-roam-directory "~/pkm-roam/roam0")  ;; roam 应用的文件夹
-(setq org-roam-db-location "~/pkm-roam/org-roam.db")
+;; (setq org-roam-db-location "~/pkm-roam/org-roam.db")
+(setq org-roam-db-location "~/pkm-roam/roam0-org-roam.db")
+
+
 (setq org-roam-completion-system 'ivy)
 
 (defun start-roam-mode () (org-roam-mode t))
@@ -45,5 +48,17 @@
 ;;                                     ("rankdir" . "RL")
 ;;                                     ;; ("color" . "skyblue")
 ;;                                     ))
+(defun imy/switch-roam-directory (x)
+  "switch roam directory : 1. original 2.column"
+  (interactive "nEnter 1. original 2.column: ")
+  (cond ((= x 1)
+	    (setq org-roam-directory "~/pkm-roam/roam0")  ;; roam 应用的文件夹
+	    (setq org-roam-db-location "~/pkm-roam/roam0-org-roam.db"))
+	((= x 2)
+	    (setq org-roam-directory "~/pkm-roam/roam-column")  ;; roam 应用的文件夹
+	    (setq org-roam-db-location "~/pkm-roam/roam-column-org-roam.db"))
+	(t 
+	    (setq org-roam-directory "~/pkm-roam/roam0")  ;; roam 应用的文件夹
+	    (setq org-roam-db-location "~/pkm-roam/roam0-org-roam.db"))))
 
 (provide 'init-roam)
