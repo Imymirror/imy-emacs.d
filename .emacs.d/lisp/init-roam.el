@@ -48,17 +48,18 @@
 ;;                                     ("rankdir" . "RL")
 ;;                                     ;; ("color" . "skyblue")
 ;;                                     ))
+
 (defun imy/switch-roam-directory (x)
-  "switch roam directory : 1. original 2.column"
+  "switch roam directory : 1. original  2. column"
   (interactive "nEnter 1. original 2.column: ")
-  (cond ((= x 1)
-	    (setq org-roam-directory "~/pkm-roam/roam0")  ;; roam 应用的文件夹
+  (cond ((= x 1)   ;; 最先使用的路径
+	    (setq org-roam-directory "~/pkm-roam/roam0")  
 	    (setq org-roam-db-location "~/pkm-roam/roam0-org-roam.db"))
-	((= x 2)
-	    (setq org-roam-directory "~/pkm-roam/roam-column")  ;; roam 应用的文件夹
+	((= x 2)   ;; column 路径
+	    (setq org-roam-directory "~/pkm-roam/roam-column")  
 	    (setq org-roam-db-location "~/pkm-roam/roam-column-org-roam.db"))
-	(t 
-	    (setq org-roam-directory "~/pkm-roam/roam0")  ;; roam 应用的文件夹
+	(t      ;; 默认路径
+	    (setq org-roam-directory "~/pkm-roam/roam0")  
 	    (setq org-roam-db-location "~/pkm-roam/roam0-org-roam.db"))))
 
 (provide 'init-roam)

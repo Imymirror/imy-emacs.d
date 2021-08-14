@@ -1,7 +1,7 @@
 ;; init-random-theme.el -*- lexical-binding: t; -*-
 
-;; (load-theme 'doom-gruvbox-light t)
-(load-theme 'doom-shades-of-purple t)
+(load-theme 'github-modern t)
+;; (load-theme 'doom-shades-of-purple t)
 
 ;; (add-to-list 'load-path (concat imy/package-manual-dir "theme"))
 (add-to-list 'load-path (concat imy/package-manual-dir "rand-theme"))

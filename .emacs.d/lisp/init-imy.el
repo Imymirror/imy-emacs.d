@@ -6,6 +6,13 @@
 (global-set-key (kbd "<f5>") 'open-init-file)
 
 
+ (defun imy/insert-date (arg)
+   (interactive "P")
+   (insert (if arg
+               (format-time-string "%d.%m.%Y")
+             (format-time-string "%Y-%m-%d"))))
+
+
 (defun create-scratch-buffer nil
   "create a new scratch buffer to work in. (could be *scratch* - *scratchX*)"
   (interactive)

@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: comment function
+# key: ;cf
+# --
+/**
+ * $1
+ * @params ${2:void}
+ * @return ${3:void}
+**/

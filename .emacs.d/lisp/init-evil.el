@@ -1,5 +1,12 @@
 ;;; init-evil.el -*- lexical-binding: t; -*-
 
+(setq evil-motion-state-cursor 'box)  ; █
+(setq evil-visual-state-cursor 'box)  ; █
+(setq evil-normal-state-cursor 'box)  ; █
+(setq evil-insert-state-cursor 'bar)  ; ⎸
+(setq evil-emacs-state-cursor  'hbar) ; _ 
+
+
 (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
 (setq evil-want-keybinding nil)
 
@@ -8,7 +15,7 @@
 
 
 (when (require 'evil-collection nil t)
-   (evil-collection-init))
+  (evil-collection-init))
 
 ;; (require 'evil-collection)
 ;; (evil-collection-init)

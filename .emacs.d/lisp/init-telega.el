@@ -37,6 +37,9 @@
 
 
 (set-fontset-font t 'unicode "Symbola" nil 'append)
+(set-fontset-font "fontset-default" 'unicode "Apple Color Emoji")
+(add-to-list 'face-font-rescale-alist '("Apple Color Emoji" . 0.6)) ;; 如果裂图的话，把 emoji 调小一些                           
+
 
 (setq telega-symbol-unread "🄌")
 ;; (setq telega-symbol-reply "↫")                                        

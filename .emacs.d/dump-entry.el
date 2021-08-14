@@ -8,16 +8,14 @@
 (require 'init-font)
 (require 'init-general) 
 (require 'init-map)
-(require 'init-roam)
+(require 'init-roam2)
 
-(require 'unicode-fonts)
-(unicode-fonts-setup)
 
 (require 'expand-region)
 (require 'init-evil-surround)
-(require 'init-agenda)
+;; (require 'init-agenda)
 (require 'init-journal)			      
-(require 'init-capture)
+;; (require 'init-capture)
 (require 'init-snippet)
 (require 'init-paredit)
 (require 'init-org-download)
@@ -46,3 +44,6 @@
 (require 'init-session)
 
 (require 'init-lsp)
+
+(require 'unicode-fonts)
+(unicode-fonts-setup)

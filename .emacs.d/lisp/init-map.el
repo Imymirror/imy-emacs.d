@@ -53,6 +53,7 @@
 (general-define-key "s-c" 'evil-yank)
 (general-define-key "s-v" 'org-yank)
 (general-define-key "s-w" 'kill-current-buffer)
+(general-define-key "s-s" 'evil-write-all)
 
 ;; yas
 (general-def 'insert  "C-'" 'yas-expand) 
@@ -80,6 +81,7 @@
 (spc-leader-def 'normal 'override "b b" 'counsel-switch-buffer)
 (spc-leader-def 'normal 'override "b s" 'save-buffer)
 (spc-leader-def 'normal 'override "b S" 'evil-write-all)
+
 (spc-leader-def 'normal 'override "b k" 'kill-current-buffer)
 (spc-leader-def 'normal 'override "b d" 'kill-current-buffer)
 (spc-leader-def 'normal 'override "b p" 'previous-buffer)
@@ -147,29 +149,12 @@
  (spc-leader-def 'normal 'override "s l" 'imy/find-emacs-lisp-find)
  (spc-leader-def 'normal 'override "s a" 'imy/find-agenda-find)
  
- ;; roam
- 
- (roam-leader-def 'normal 'override  ";" 'org-roam-find-file)
- (roam-leader-def 'normal 'override  "f" 'evil-repeat-find-char)
- (roam-leader-def 'normal 'override  "l" 'org-roam)
- (roam-leader-def 'normal 'override  "t" 'org-roam-tag-add)
- (roam-leader-def 'normal 'override  "b" 'org-roam-switch-to-buffer)
- (roam-leader-def 'normal 'override  "c" 'org-roam-capture)
- (roam-leader-def 'normal 'override  "a" 'org-roam-alias-add)
- (roam-leader-def 'normal 'override  "g" 'org-roam-graph)
- (roam-leader-def 'normal 'override  "i" 'org-roam-insert)
- (roam-leader-def 'normal 'override  "I" 'org-roam-insert-immediate)
- 
  ;; evil
  (general-define-key "C-e" 'move-end-of-line)
 
  (define-key evil-motion-state-map "L" 'evil-end-of-line)
  (define-key evil-motion-state-map "H" 'evil-first-non-blank)
- (setq evil-motion-state-cursor 'box)  ; █
- (setq evil-visual-state-cursor 'box)  ; █
- (setq evil-normal-state-cursor 'box)  ; █
- (setq evil-insert-state-cursor 'bar)  ; ⎸
- (setq evil-emacs-state-cursor  'hbar) ; _ 
+
  
  
  ;; org
@@ -183,8 +168,9 @@
 ;; toogle
 ;; magit
 (spc-leader-def 'normal 'override "t G" 'magit-status)
-(spc-leader-def 'normal 'override "t r" 'imy/restart-emacs)
-(spc-leader-def 'normal 'override "t R" 'imy/switch-roam-directory)
+(spc-leader-def 'normal 'override "t g" 'grab-mac-link-dwim)
+(spc-leader-def 'normal 'override "t R" 'imy/restart-emacs)
+(spc-leader-def 'normal 'override "t r" 'imy/switch-roam-directory)
 
 (spc-leader-def 'normal 'override "t t" 'treemacs)
 (spc-leader-def 'normal 'override "t h" 'link-hint-open-link)
@@ -192,7 +178,6 @@
 (spc-leader-def 'normal 'override "t z" 'writeroom-mode)
 (spc-leader-def 'normal 'override "t l" 'org-toggle-link-display)
 (spc-leader-def 'normal 'override "t y" 'org-yank)
-(spc-leader-def 'normal 'override "t g" 'grab-mac-link-dwim)
 (spc-leader-def 'normal 'override "t c" 'org-capture)
 (spc-leader-def 'normal 'override "t f" 'elfeed)
 

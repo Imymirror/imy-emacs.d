@@ -119,16 +119,14 @@ dump file
 (require 'init-font)
 (require 'init-general) 
 (require 'init-map)
-(require 'init-roam)
+(require 'init-roam2)
 
-(require 'unicode-fonts)
-(unicode-fonts-setup)
 
 (require 'expand-region)
 (require 'init-evil-surround)
-(require 'init-agenda)
+;; (require 'init-agenda)
 (require 'init-journal)			      
-(require 'init-capture)
+;; (require 'init-capture)
 (require 'init-snippet)
 (require 'init-paredit)
 (require 'init-org-download)
@@ -157,6 +155,9 @@ dump file
 (require 'init-session)
 
 (require 'init-lsp)
+
+(require 'unicode-fonts)
+(unicode-fonts-setup)
 #+end_src
 ** dump.sh
 
@@ -271,15 +272,14 @@ dump 启动文件, 与非 dump 的启动文件 init.el 分开
 (require 'init-font)
 (require 'init-general) 
 (require 'init-map)
-(require 'init-roam)
 (require 'init-idle-time-load)
 (require 'init-custom)
 
-(require 'init-hydra)
+;; (require 'init-hydra)
 (require 'init-awesome-tab)
 (require 'init-keymap)
 (require 'init-lsp)
-(require 'init-session)
+;; (require 'init-session)
 
 ;; (setq garbage-collection-messages t)
 ;; (setq gcmh-verbose t)
@@ -367,7 +367,8 @@ If you experience freezing, decrease this. If you experience stuttering, increas
 		     command-log-mode  company writeroom-mode general visual-fill-column rainbow-identifiers yasnippet undo-fu org-bullets evil-nerd-commenter evil evil-collection magit projectile ivy org-roam org-roam-server grab-mac-link link-hint ripgrep counsel-projectile ivy-rich winum amx org-download rainbow-delimiters paredit which-key gcmh org-make-toc evil-surround ace-pinyin pinyinlib typescript-mode expand-region mood-line minions posframe rime org-journal unicode-fonts treemacs treemacs-evil treemacs-projectile ox-hugo elfeed elfeed-org org-super-agenda god-mode evil-god-state windresize keycast eglot lsp-mode lsp-ui lsp-treemacs flycheck
 
 				       ;; kaolin-themes
-				       doom-themes
+				       ;; doom-themes
+				       elisp-demos
 				      
 				      ))
 
@@ -402,6 +403,13 @@ If you experience freezing, decrease this. If you experience stuttering, increas
 (defun open-init-file() (interactive) (find-file (concat user-emacs-directory "init.el")))
 ;; (defun open-init-map-file() (interactive) (find-file (concat imy/lisp-dir  "init-no-dump.el")))
 (global-set-key (kbd "<f5>") 'open-init-file)
+
+
+ (defun imy/insert-date (arg)
+   (interactive "P")
+   (insert (if arg
+               (format-time-string "%d.%m.%Y")
+             (format-time-string "%Y-%m-%d"))))
 
 
 (defun create-scratch-buffer nil
@@ -714,8 +722,19 @@ directory to make multiple eshell windows easier."
 
 #+begin_src emacs-lisp :tangle ./lisp/init-basic.el
 ;; init-basic.el -*- lexical-binding: t; -*-
+;; 使用 shfit + 方向键 移动窗口
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
+
+(add-hook 'org-shiftup-final-hook 'windmove-up)
+(add-hook 'org-shiftleft-final-hook 'windmove-left)
+(add-hook 'org-shiftdown-final-hook 'windmove-down)
+(add-hook 'org-shiftright-final-hook 'windmove-right)
+
 
 (require 'init-dired)
+
+(advice-add 'describe-function-1 :after #'elisp-demos-advice-describe-function-1)
 
 ;; 备份文件
 (setq
@@ -869,7 +888,7 @@ directory to make multiple eshell windows easier."
     (((class color) (background dark))
      :background "blue" :foreground "black"))))
 
-;; 创建文件到时候能向上选择
+;; 创建文件的时候能向上选择
 (setq ivy-use-selectable-prompt t)
 
 
@@ -882,6 +901,13 @@ directory to make multiple eshell windows easier."
 #+begin_src emacs-lisp :tangle ./lisp/init-evil.el
 ;;; init-evil.el -*- lexical-binding: t; -*-
 
+(setq evil-motion-state-cursor 'box)  ; █
+(setq evil-visual-state-cursor 'box)  ; █
+(setq evil-normal-state-cursor 'box)  ; █
+(setq evil-insert-state-cursor 'bar)  ; ⎸
+(setq evil-emacs-state-cursor  'hbar) ; _ 
+
+
 (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
 (setq evil-want-keybinding nil)
 
@@ -890,7 +916,7 @@ directory to make multiple eshell windows easier."
 
 
 (when (require 'evil-collection nil t)
-   (evil-collection-init))
+  (evil-collection-init))
 
 ;; (require 'evil-collection)
 ;; (evil-collection-init)
@@ -1010,6 +1036,7 @@ directory to make multiple eshell windows easier."
 (general-define-key "s-c" 'evil-yank)
 (general-define-key "s-v" 'org-yank)
 (general-define-key "s-w" 'kill-current-buffer)
+(general-define-key "s-s" 'evil-write-all)
 
 ;; yas
 (general-def 'insert  "C-'" 'yas-expand) 
@@ -1037,6 +1064,7 @@ directory to make multiple eshell windows easier."
 (spc-leader-def 'normal 'override "b b" 'counsel-switch-buffer)
 (spc-leader-def 'normal 'override "b s" 'save-buffer)
 (spc-leader-def 'normal 'override "b S" 'evil-write-all)
+
 (spc-leader-def 'normal 'override "b k" 'kill-current-buffer)
 (spc-leader-def 'normal 'override "b d" 'kill-current-buffer)
 (spc-leader-def 'normal 'override "b p" 'previous-buffer)
@@ -1104,29 +1132,12 @@ directory to make multiple eshell windows easier."
  (spc-leader-def 'normal 'override "s l" 'imy/find-emacs-lisp-find)
  (spc-leader-def 'normal 'override "s a" 'imy/find-agenda-find)
  
- ;; roam
- 
- (roam-leader-def 'normal 'override  ";" 'org-roam-find-file)
- (roam-leader-def 'normal 'override  "f" 'evil-repeat-find-char)
- (roam-leader-def 'normal 'override  "l" 'org-roam)
- (roam-leader-def 'normal 'override  "t" 'org-roam-tag-add)
- (roam-leader-def 'normal 'override  "b" 'org-roam-switch-to-buffer)
- (roam-leader-def 'normal 'override  "c" 'org-roam-capture)
- (roam-leader-def 'normal 'override  "a" 'org-roam-alias-add)
- (roam-leader-def 'normal 'override  "g" 'org-roam-graph)
- (roam-leader-def 'normal 'override  "i" 'org-roam-insert)
- (roam-leader-def 'normal 'override  "I" 'org-roam-insert-immediate)
- 
  ;; evil
  (general-define-key "C-e" 'move-end-of-line)
 
  (define-key evil-motion-state-map "L" 'evil-end-of-line)
  (define-key evil-motion-state-map "H" 'evil-first-non-blank)
- (setq evil-motion-state-cursor 'box)  ; █
- (setq evil-visual-state-cursor 'box)  ; █
- (setq evil-normal-state-cursor 'box)  ; █
- (setq evil-insert-state-cursor 'bar)  ; ⎸
- (setq evil-emacs-state-cursor  'hbar) ; _ 
+
  
  
  ;; org
@@ -1140,8 +1151,9 @@ directory to make multiple eshell windows easier."
 ;; toogle
 ;; magit
 (spc-leader-def 'normal 'override "t G" 'magit-status)
-(spc-leader-def 'normal 'override "t r" 'imy/restart-emacs)
-(spc-leader-def 'normal 'override "t R" 'imy/switch-roam-directory)
+(spc-leader-def 'normal 'override "t g" 'grab-mac-link-dwim)
+(spc-leader-def 'normal 'override "t R" 'imy/restart-emacs)
+(spc-leader-def 'normal 'override "t r" 'imy/switch-roam-directory)
 
 (spc-leader-def 'normal 'override "t t" 'treemacs)
 (spc-leader-def 'normal 'override "t h" 'link-hint-open-link)
@@ -1149,7 +1161,6 @@ directory to make multiple eshell windows easier."
 (spc-leader-def 'normal 'override "t z" 'writeroom-mode)
 (spc-leader-def 'normal 'override "t l" 'org-toggle-link-display)
 (spc-leader-def 'normal 'override "t y" 'org-yank)
-(spc-leader-def 'normal 'override "t g" 'grab-mac-link-dwim)
 (spc-leader-def 'normal 'override "t c" 'org-capture)
 (spc-leader-def 'normal 'override "t f" 'elfeed)
 
@@ -1292,20 +1303,141 @@ directory to make multiple eshell windows easier."
 ;;                                     ("rankdir" . "RL")
 ;;                                     ;; ("color" . "skyblue")
 ;;                                     ))
+
 (defun imy/switch-roam-directory (x)
-  "switch roam directory : 1. original(default) 2.column"
+  "switch roam directory : 1. original  2. column"
   (interactive "nEnter 1. original 2.column: ")
-  (cond ((= x 1)
-	    (setq org-roam-directory "~/pkm-roam/roam0")  ;; roam 应用的文件夹
+  (cond ((= x 1)   ;; 最先使用的路径
+	    (setq org-roam-directory "~/pkm-roam/roam0")  
 	    (setq org-roam-db-location "~/pkm-roam/roam0-org-roam.db"))
-	((= x 2)
-	    (setq org-roam-directory "~/pkm-roam/roam-column")  ;; roam 应用的文件夹
+	((= x 2)   ;; column 路径
+	    (setq org-roam-directory "~/pkm-roam/roam-column")  
 	    (setq org-roam-db-location "~/pkm-roam/roam-column-org-roam.db"))
-	(t 
-	    (setq org-roam-directory "~/pkm-roam/roam0")  ;; roam 应用的文件夹
+	(t      ;; 默认路径
+	    (setq org-roam-directory "~/pkm-roam/roam0")  
 	    (setq org-roam-db-location "~/pkm-roam/roam0-org-roam.db"))))
 
 (provide 'init-roam)
+#+end_src
+** init-roam2.el : roam V2 
+#+begin_src emacs-lisp :tangle ./lisp/init-roam2.el
+;; init-roam2.el -*- lexical-binding: t; -*-
+
+(setq org-roam-v2-ack t)
+
+(setq org-roam-buffer-width '0.25)
+
+(add-to-list 'display-buffer-alist
+               '("\\*org-roam\\*"
+                  (display-buffer-in-direction)
+                  (direction . right)
+                  (window-width . 0.33)
+                  (window-height . fit-window-to-buffer)))
+
+
+;; delete-other-windows 执行的时候  roam侧边栏也 delete
+(setq org-roam-buffer-window-parameters nil) ;; (setq org-roam-buffer-window-parameters '((no-delete-other-windows . nil)))
+
+;; roam find file 的时候不会自动打开 backlinks
+(setq +org-roam-open-buffer-on-find-file nil)
+
+(setq org-roam-directory "~/pkm-roam/roam2")  ;; roam 应用的文件夹
+(setq org-roam-db-location "~/pkm-roam/roam2-org-roam.db")
+
+;;(setq org-agenda-text-search-extra-files (directory-files-recursively org-roam-directory "\\.org$")
+(setq org-roam-completion-everywhere t)
+
+
+(setq org-roam-completion-system 'ivy)
+
+(require 'org-roam-protocol)
+
+ ;; roam map 
+(general-create-definer roam-leader-def :prefix ";")
+
+(roam-leader-def 'normal 'override  ";" 'org-roam-node-find)
+(roam-leader-def 'normal 'override  "f" 'evil-repeat-find-char)
+(roam-leader-def 'normal 'override  "t" 'org-roam-tag-add)
+(roam-leader-def 'normal 'override  "b" 'org-roam-buffer)
+(roam-leader-def 'normal 'override  "B" 'org-roam-buffer-toggle)
+(roam-leader-def 'normal 'override  "c" 'org-roam-capture)
+(roam-leader-def 'normal 'override  "a" 'org-roam-alias-add)
+(roam-leader-def 'normal 'override  "g" 'org-roam-graph)
+(roam-leader-def 'normal 'override  "i" 'org-roam-node-insert)
+
+(defun my-after-save-actions ()
+  "Used in `after-save-hook'."
+  (org-roam-db-sync)
+  )
+(add-hook 'after-save-hook 'my-after-save-actions)
+
+
+(cl-defmethod org-roam-node-directories ((node org-roam-node))
+  (if-let ((dirs (file-name-directory (file-relative-name (org-roam-node-file node) org-roam-directory))))
+      (format "(%s)" (car (f-split dirs)))
+    ""))
+
+(cl-defmethod org-roam-node-backlinkscount ((node org-roam-node))
+  (let* ((count (caar (org-roam-db-query
+                       [:select (funcall count source)
+                                :from links
+                                :where (= dest $s1)
+                                :and (= type "id")]
+                       (org-roam-node-id node)))))
+    (format "[%d]" count)))
+
+
+(cl-defmethod org-roam-node-filetitle ((node org-roam-node))
+  "Return the file TITLE for the node."
+  (org-roam-get-keyword "TITLE" (org-roam-node-file node)))
+
+(cl-defmethod org-roam-node-hierarchy ((node org-roam-node))
+  "Return the hierarchy for the node."
+  (let ((title (org-roam-node-title node))
+        (olp (org-roam-node-olp node))
+        (level (org-roam-node-level node))
+        (filetitle (org-roam-node-filetitle node)))
+    (concat
+     (if (> level 0) (concat filetitle " > "))
+     (if (> level 1) (concat (string-join olp " > ") " > "))
+     title))
+  )
+
+(setq org-roam-node-display-template "${tags:20} ${hierarchy:*} ${backlinkscount:6}")
+
+(require 'websocket)
+(add-to-list 'load-path (concat imy/package-manual-dir "org-roam-ui"))
+(load-library "org-roam-ui")
+
+
+(defun org-hide-properties ()
+  "Hide all org-mode headline property drawers in buffer. Could be slow if it has a lot of overlays."
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (while (re-search-forward
+            "^ *:properties:\n\\( *:.+?:.*\n\\)+ *:end:\n" nil t)
+      (let ((ov_this (make-overlay (match-beginning 0) (match-end 0))))
+        (overlay-put ov_this 'display "")
+        (overlay-put ov_this 'hidden-prop-drawer t))))
+  (put 'org-toggle-properties-hide-state 'state 'hidden))
+
+(defun org-show-properties ()
+  "Show all org-mode property drawers hidden by org-hide-properties."
+  (interactive)
+  (remove-overlays (point-min) (point-max) 'hidden-prop-drawer t)
+  (put 'org-toggle-properties-hide-state 'state 'shown))
+
+(defun org-toggle-properties ()
+  "Toggle visibility of property drawers."
+  (interactive)
+  (if (eq (get 'org-toggle-properties-hide-state 'state) 'hidden)
+      (org-show-properties)
+    (org-hide-properties)))
+
+;; (add-hook 'org-mode-hook 'org-hide-properties)
+
+(provide 'init-roam2)
 #+end_src
 ** init-custom.el : 将 custom 信息放在专门的文件里
 
@@ -1347,9 +1479,8 @@ directory to make multiple eshell windows easier."
   (require 'expand-region)
 
   (require 'init-evil-surround)
-  (require 'init-agenda)
+  ;; (require 'init-agenda)
   (require 'init-journal)			      
-  (require 'init-capture)
   (require 'init-snippet)
   (require 'init-paredit)
   (require 'init-org-download)
@@ -1371,19 +1502,22 @@ directory to make multiple eshell windows easier."
   (require 'init-enable-mode)
 
   (require 'init-terminal)
-  
+
   ;; dump 不了, 只能放在 idle 里
   (winner-mode)
+
+  (require 'init-roam2)
+  (require 'init-capture)
 )
 
-;; (imy/load-after-idle-time)
+(imy/load-after-idle-time)
 
-(setq  setup-idle-time-once
-	   (run-with-idle-timer 3 t
-				(lambda ()
-				  (imy/load-after-idle-time)
-				  (cancel-timer setup-idle-time-once)
-				  )))
+;; (setq  setup-idle-time-once
+;;            (run-with-idle-timer 3 t
+;;                                 (lambda ()
+;;                                   (imy/load-after-idle-time)
+;;                                   (cancel-timer setup-idle-time-once)
+;;                                   )))
 
 
 
@@ -1398,7 +1532,7 @@ directory to make multiple eshell windows easier."
 
 ;; 自定义 ~ 的行为, 我在 ~ 前后多加了个空格
 (setq-default evil-surround-pairs-alist
-              (push '(?~ . (" ~" . "~ ")) evil-surround-pairs-alist))
+              (push '(?~ . ("~" . "~ ")) evil-surround-pairs-alist))
 
 (provide 'init-evil-surround)
 
@@ -1552,31 +1686,39 @@ directory to make multiple eshell windows easier."
 ;;                                "** %(format-time-string org-journal-time-format)%^{Title}\n%i%?"
 ;;                                :jump-to-captured t :immediate-finish t)))
 
-(setq org-capture-templates
-    `(
+(add-to-list 'org-capture-templates
+             '("i" "Inbox" entry (file "~/pkm-roam/roam2/20210720212928-inbox.org")
+               "* %U - %^{heading} %^g\n %?\n"))
 
-      ("t" "Tasks / Projects")
-      ("ti" "Task" entry (file+olp "~/pkm-roam/agenda/inbox.org" "Inbox")
-       "* %?\n  %U\n  %a\n  %i" :empty-lines 1)
-      ("ts" "Task" entry (file+olp "~/pkm-roam/agenda/inbox.org" "resource")
-       "* %?\n  %U\n  %a\n  %i" :empty-lines 1)
+
+(define-key global-map (kbd "C-c i")
+  (lambda () (interactive) (org-capture nil "i")))
+
+;; (setq org-capture-templates
+;;     `(
+
+;;       ("t" "Tasks / Projects")
+;;       ("ti" "Task" entry (file+olp "~/pkm-roam/agenda/inbox.org" "Inbox")
+;;        "* %?\n  %U\n  %a\n  %i" :empty-lines 1)
+;;       ("ts" "Task" entry (file+olp "~/pkm-roam/agenda/inbox.org" "resource")
+;;        "* %?\n  %U\n  %a\n  %i" :empty-lines 1)
 
 
       
-      ;; ("ts" "Clocked Entry Subtask" entry (clock)
-      ;;  "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
-      ;; ("h" "Inbox" entry (file "~/pkm-roam/agenda/inbox.org")
-      ;;        "* %U %^{heading} %^g\n %?\n")
+;;       ;; ("ts" "Clocked Entry Subtask" entry (clock)
+;;       ;;  "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
+;;       ;; ("h" "Inbox" entry (file "~/pkm-roam/agenda/inbox.org")
+;;       ;;        "* %U %^{heading} %^g\n %?\n")
     
-      ;; ("w" "Task" entry (file+olp "~/pkm-roam/agenda/inbox.org" "webpage")
-      ;;  "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
-    ))
+;;       ;; ("w" "Task" entry (file+olp "~/pkm-roam/agenda/inbox.org" "webpage")
+;;       ;;  "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
+;;     ))
 
-(define-key global-map (kbd "C-c i")
-  (lambda () (interactive) (org-capture nil "ti")))
+;; (define-key global-map (kbd "C-c i")
+;;   (lambda () (interactive) (org-capture nil "ti")))
 
-(define-key global-map (kbd "C-c s")
-  (lambda () (interactive) (org-capture nil "ts")))
+;; (define-key global-map (kbd "C-c s")
+;;   (lambda () (interactive) (org-capture nil "ts")))
 
 (provide 'init-capture)
 
@@ -1713,6 +1855,9 @@ directory to make multiple eshell windows easier."
 
 
 (set-fontset-font t 'unicode "Symbola" nil 'append)
+(set-fontset-font "fontset-default" 'unicode "Apple Color Emoji")
+(add-to-list 'face-font-rescale-alist '("Apple Color Emoji" . 0.6)) ;; 如果裂图的话，把 emoji 调小一些                           
+
 
 (setq telega-symbol-unread "🄌")
 ;; (setq telega-symbol-reply "↫")                                        
@@ -1837,8 +1982,8 @@ directory to make multiple eshell windows easier."
 #+begin_src emacs-lisp :tangle ./lisp/init-random-theme.el
   ;; init-random-theme.el -*- lexical-binding: t; -*-
 
-  ;; (load-theme 'doom-gruvbox-light t)
-  (load-theme 'doom-shades-of-purple t)
+  (load-theme 'github-modern t)
+  ;; (load-theme 'doom-shades-of-purple t)
 
   ;; (add-to-list 'load-path (concat imy/package-manual-dir "theme"))
   (add-to-list 'load-path (concat imy/package-manual-dir "rand-theme"))
@@ -2395,6 +2540,75 @@ M-0~9 : 按照数字切换 tab.
 
 (provide 'init-session)
 #+end_src
+** init-gtd.el : gtd
+#+begin_src emacs-lisp :tangle ./lisp/init-gtd.el
+;; init-gtd.el -*- lexical-binding: t; -*-
+
+;; Files
+(setq org-directory "~/pkm-roam/gtd")
+(setq org-agenda-files (list
+			"~/pkm-roam/gtd/inbox.org"
+			"~/pkm-roam/gtd/agenda.org"
+			"~/pkm-roam/gtd/projects.org"
+			))
+
+
+;; Capture
+(setq org-capture-templates
+      `(("i" "Inbox" entry  (file "inbox.org")
+        ,(concat "* TODO %?\n"
+                 "/Entered on/ %U"))
+        ("m" "Meeting" entry  (file+headline "agenda.org" "Future")
+        ,(concat "* %? :meeting:\n"
+                 "<%<%Y-%m-%d %a %H:00>>"))
+        ("n" "Note" entry  (file "notes.org")
+        ,(concat "* Note (%a)\n"
+                 "/Entered on/ %U\n" "\n" "%?"))
+        ("@" "Inbox [mu4e]" entry (file "inbox.org")
+        ,(concat "* TODO Reply to \"%a\" %?\n"
+                 "/Entered on/ %U"))))
+
+(defun org-capture-inbox ()
+     (interactive)
+     (call-interactively 'org-store-link)
+     (org-capture nil "i"))
+
+(defun org-capture-mail ()
+  (interactive)
+  (call-interactively 'org-store-link)
+  (org-capture nil "@"))
+
+;; Use full window for org-capture
+(add-hook 'org-capture-mode-hook 'delete-other-windows)
+
+;; Key bindings
+(define-key global-map            (kbd "C-c a") 'org-agenda)
+(define-key global-map            (kbd "C-c c") 'org-capture)
+(define-key global-map            (kbd "C-c i") 'org-capture-inbox)
+
+;; Only if you use mu4e
+;; (require 'mu4e)
+;; (define-key mu4e-headers-mode-map (kbd "C-c i") 'org-capture-mail)
+;; (define-key mu4e-view-mode-map    (kbd "C-c i") 'org-capture-mail)
+
+;; Refile
+(setq org-refile-use-outline-path 'file)
+(setq org-outline-path-complete-in-steps nil)
+(setq org-refile-targets
+      '(("projects.org" :regexp . "\\(?:\\(?:Note\\|Task\\)s\\)")))
+
+;; TODO
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "NEXT(n)" "HOLD(h)" "|" "DONE(d)")))
+(defun log-todo-next-creation-date (&rest ignore)
+  "Log NEXT creation time in the property drawer under the key 'ACTIVATED'"
+  (when (and (string= (org-get-todo-state) "NEXT")
+             (not (org-entry-get nil "ACTIVATED")))
+    (org-entry-put nil "ACTIVATED" (format-time-string "[%Y-%m-%d]"))))
+(add-hook 'org-after-todo-state-change-hook #'log-todo-next-creation-date)
+
+(provide 'init-gtd)
+#+end_src
 * tips and tricks
 ** revert-buffer 不要提示 yes/no
 
@@ -2421,7 +2635,6 @@ M-0~9 : 按照数字切换 tab.
 #+end_src
 
 ** org babel 自动tangle
-
 自动 tangle org babel 文件. 具体见 [[https://www.youtube.com/watch?v=kkqVTDbfYp4][Emacs From Scratch #7 - Configure Everything with Org Babel - YouTube]]
 
 配置一多, 可能不想每次保存都自动生成, 可以使用  ~org-babel-tangle~  手动生成

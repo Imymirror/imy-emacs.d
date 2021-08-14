@@ -1,6 +1,17 @@
 ;; init-basic.el -*- lexical-binding: t; -*-
+;; 使用 shfit + 方向键 移动窗口
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
+
+(add-hook 'org-shiftup-final-hook 'windmove-up)
+(add-hook 'org-shiftleft-final-hook 'windmove-left)
+(add-hook 'org-shiftdown-final-hook 'windmove-down)
+(add-hook 'org-shiftright-final-hook 'windmove-right)
+
 
 (require 'init-dired)
+
+(advice-add 'describe-function-1 :after #'elisp-demos-advice-describe-function-1)
 
 ;; 备份文件
 (setq

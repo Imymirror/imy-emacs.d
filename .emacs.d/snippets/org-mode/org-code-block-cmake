@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: code block emacs cmake
+# key: ;cc
+# --
+
+#+begin_src cmake
+$0
+#+end_src

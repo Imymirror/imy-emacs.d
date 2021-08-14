@@ -4,30 +4,38 @@
 ;;                                "** %(format-time-string org-journal-time-format)%^{Title}\n%i%?"
 ;;                                :jump-to-captured t :immediate-finish t)))
 
-(setq org-capture-templates
-    `(
+(add-to-list 'org-capture-templates
+             '("i" "Inbox" entry (file "~/pkm-roam/roam2/20210720212928-inbox.org")
+               "* %U - %^{heading} %^g\n %?\n"))
 
-      ("t" "Tasks / Projects")
-      ("ti" "Task" entry (file+olp "~/pkm-roam/agenda/inbox.org" "Inbox")
-       "* %?\n  %U\n  %a\n  %i" :empty-lines 1)
-      ("ts" "Task" entry (file+olp "~/pkm-roam/agenda/inbox.org" "resource")
-       "* %?\n  %U\n  %a\n  %i" :empty-lines 1)
+
+(define-key global-map (kbd "C-c i")
+  (lambda () (interactive) (org-capture nil "i")))
+
+;; (setq org-capture-templates
+;;     `(
+
+;;       ("t" "Tasks / Projects")
+;;       ("ti" "Task" entry (file+olp "~/pkm-roam/agenda/inbox.org" "Inbox")
+;;        "* %?\n  %U\n  %a\n  %i" :empty-lines 1)
+;;       ("ts" "Task" entry (file+olp "~/pkm-roam/agenda/inbox.org" "resource")
+;;        "* %?\n  %U\n  %a\n  %i" :empty-lines 1)
 
 
       
-      ;; ("ts" "Clocked Entry Subtask" entry (clock)
-      ;;  "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
-      ;; ("h" "Inbox" entry (file "~/pkm-roam/agenda/inbox.org")
-      ;;        "* %U %^{heading} %^g\n %?\n")
+;;       ;; ("ts" "Clocked Entry Subtask" entry (clock)
+;;       ;;  "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
+;;       ;; ("h" "Inbox" entry (file "~/pkm-roam/agenda/inbox.org")
+;;       ;;        "* %U %^{heading} %^g\n %?\n")
     
-      ;; ("w" "Task" entry (file+olp "~/pkm-roam/agenda/inbox.org" "webpage")
-      ;;  "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
-    ))
+;;       ;; ("w" "Task" entry (file+olp "~/pkm-roam/agenda/inbox.org" "webpage")
+;;       ;;  "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
+;;     ))
 
-(define-key global-map (kbd "C-c i")
-  (lambda () (interactive) (org-capture nil "ti")))
+;; (define-key global-map (kbd "C-c i")
+;;   (lambda () (interactive) (org-capture nil "ti")))
 
-(define-key global-map (kbd "C-c s")
-  (lambda () (interactive) (org-capture nil "ts")))
+;; (define-key global-map (kbd "C-c s")
+;;   (lambda () (interactive) (org-capture nil "ts")))
 
 (provide 'init-capture)
