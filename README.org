@@ -28,6 +28,7 @@
   - [[#init-generalel--支持多leader-key的插件][init-general.el : 支持多leader key的插件]]
   - [[#init-mapel--定义快捷键的地方][init-map.el : 定义快捷键的地方]]
   - [[#init-roamel--org-roam][init-roam.el : org roam]]
+  - [[#init-roam2el--roam-v2][init-roam2.el : roam V2]]
   - [[#init-customel--将-custom-信息放在专门的文件里][init-custom.el : 将 custom 信息放在专门的文件里]]
   - [[#init-idle-time-loadel--利用idle-time-加载插件][init-idle-time-load.el : 利用idle time 加载插件]]
     - [[#init-evil-surroundel--类似-surroundvim][init-evil-surround.el : 类似 surround.vim]]
@@ -61,6 +62,8 @@
   - [[#init-evil-multiple-cursorel--evil-下的多行操作][init-evil-multiple-cursor.el : evil 下的多行操作]]
   - [[#init-terminalel--terminal][init-terminal.el : terminal]]
   - [[#init-sessionel--session][init-session.el : session]]
+  - [[#init-gtdel--gtd-废弃-采用-init-gtd2el][init-gtd.el : gtd. 废弃, 采用 init-gtd2.el]]
+  - [[#init-gtd2el--gtd][init-gtd2.el : gtd.]]
 - [[#tips-and-tricks][tips and tricks]]
   - [[#revert-buffer-不要提示-yesno][revert-buffer 不要提示 yes/no]]
   - [[#每-30s-保存一次所有buffer文件][每 30s 保存一次所有buffer文件]]
@@ -279,6 +282,7 @@ dump 启动文件, 与非 dump 的启动文件 init.el 分开
 (require 'init-awesome-tab)
 (require 'init-keymap)
 (require 'init-lsp)
+(require 'init-gtd2)
 ;; (require 'init-session)
 
 ;; (setq garbage-collection-messages t)
@@ -1982,7 +1986,7 @@ directory to make multiple eshell windows easier."
 #+begin_src emacs-lisp :tangle ./lisp/init-random-theme.el
   ;; init-random-theme.el -*- lexical-binding: t; -*-
 
-  (load-theme 'github-modern t)
+  (load-theme 'doom-dracula t)
   ;; (load-theme 'doom-shades-of-purple t)
 
   ;; (add-to-list 'load-path (concat imy/package-manual-dir "theme"))
@@ -2540,7 +2544,7 @@ M-0~9 : 按照数字切换 tab.
 
 (provide 'init-session)
 #+end_src
-** init-gtd.el : gtd
+** init-gtd.el : gtd. 废弃, 采用 init-gtd2.el
 #+begin_src emacs-lisp :tangle ./lisp/init-gtd.el
 ;; init-gtd.el -*- lexical-binding: t; -*-
 
@@ -2608,6 +2612,51 @@ M-0~9 : 按照数字切换 tab.
 (add-hook 'org-after-todo-state-change-hook #'log-todo-next-creation-date)
 
 (provide 'init-gtd)
+#+end_src
+** init-gtd2.el : gtd.
+
+#+begin_src emacs-lisp :tangle ./lisp/init-gtd2.el
+;; init-gtd2.el -*- lexical-binding: t; -*-
+(setq imy/gtd-dir "~/pkm-roam/roam2/gtd/")
+(setq imy/gtd-inbox-file (concat imy/gtd-dir "inbox.org"))
+(setq imy/gtd-tickler-file (concat imy/gtd-dir "tickler.org"))
+(setq imy/gtd-someday-file (concat imy/gtd-dir "someday.org"))
+(setq imy/gtd-gtd-file (concat imy/gtd-dir "gtd.org"))
+
+(defun open-gtd-dir() (interactive) (find-file imy/gtd-dir))
+(global-set-key (kbd "<f6>") 'open-gtd-dir)
+
+;; 定义 org-capture 模版
+(setq org-capture-templates '(("t" "Todo [inbox]" entry
+                               (file+headline imy/gtd-inbox-file  "Tasks")
+                               "* TODO %i%?")
+                              ("T" "Tickler" entry
+                               (file+headline imy/gtd-tickler-file  "Tickler")
+                               "* %i%? \n %U")))
+
+
+;; 定义触发 capture inbox 的快捷键
+(define-key global-map (kbd "C-c c t") (lambda () (interactive) (org-capture nil "t")))
+;; 定义触发 capture Tickler 的快捷键
+(define-key global-map (kbd "C-c c T") (lambda () (interactive) (org-capture nil "T")))
+
+;; Save Org buffers after refiling!
+(advice-add 'org-refile :after 'org-save-all-org-buffers)
+(setq org-refile-targets '((imy/gtd-gtd-file :maxlevel . 3)
+                           (imy/gtd-someday-file :level . 1)
+                           (imy/gtd-tickler-file :maxlevel . 2)))
+
+(setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
+
+(setq org-agenda-files (list imy/gtd-inbox-file imy/gtd-gtd-file imy/gtd-tickler-file))
+
+
+(setq org-agenda-custom-commands 
+      '(("o" "At the office" tags-todo "@office"
+         ((org-agenda-overriding-header "Office")))))
+
+
+(provide 'init-gtd2)
 #+end_src
 * tips and tricks
 ** revert-buffer 不要提示 yes/no

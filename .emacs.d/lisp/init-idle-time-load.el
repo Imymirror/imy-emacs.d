@@ -7,6 +7,9 @@
 
   ;; (mac-auto-operator-composition-mode)
 
+  ;; 解决unicode字体相关的问题, 尤其在telega有些图标名字显示不出来
+  (require 'unicode-fonts)
+  (unicode-fonts-setup)
 
   ;; 通过分析语义增量选择 region 的插件
   (require 'expand-region)
@@ -41,10 +44,6 @@
 
   (require 'init-roam2)
   (require 'init-capture)
-
-  ;; 解决unicode字体相关的问题, 尤其在telega有些图标名字显示不出来
-  (require 'unicode-fonts)
-  (unicode-fonts-setup)
 )
 
 (imy/load-after-idle-time)
@@ -55,8 +54,6 @@
 ;;                                   (imy/load-after-idle-time)
 ;;                                   (cancel-timer setup-idle-time-once)
 ;;                                   )))
-
-
 
 
 
