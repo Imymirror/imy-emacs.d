@@ -12,7 +12,7 @@
 (package-initialize)
 
 (setq package-list '(
-		     which-key org-roam selectrum telega selectrum-prescient ctrlf rg company smartparens winum ryo-modal crux expand-region avy
+		     which-key org-roam selectrum telega selectrum-prescient ctrlf rg company smartparens winum ryo-modal crux expand-region avy consult
 
 			       ))
 

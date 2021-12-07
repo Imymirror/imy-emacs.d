@@ -7,5 +7,4 @@
 
 (ctrlf-mode +1)
 
-
 (provide 'init-selectrum)

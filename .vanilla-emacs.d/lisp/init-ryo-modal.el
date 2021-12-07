@@ -1,7 +1,7 @@
 ;;  -*- lexical-binding: t; -*-
 
 (global-set-key (kbd "<escape>") (lambda () (interactive) (ryo-modal-mode +1)))
-(ryo-modal-key "SPC SPC"  'set-mark-command :mode 'org-mode)
+(ryo-modal-key "SPC SPC"  'execute-extended-command)
 
 (ryo-modal-keys
  ;; Misc
@@ -16,7 +16,11 @@
  ("8" "M-8")
  ("9" "M-9"))
 
-;; buffer
+(ryo-modal-key
+ "SPC" '(
+	 ("." find-file))) 
+
+;; roam 
 (ryo-modal-key
  "SPC" '(
 	 ("n n" org-roam-node-find)
@@ -26,7 +30,9 @@
 (ryo-modal-key
  "SPC" '(
 	 ("b b" switch-to-buffer)
-	 ("b k" kill-buffer)
+	 ("b k" kill-this-buffer)
+	 ("b p" previous-buffer)
+	 ("b n" next-buffer)
 	 ("b s" save-some-buffers))) 
 
 ;; window
@@ -36,10 +42,34 @@
 	 ("w w" other-window)
 	 ("w r" imi-window-jump-right )
 	 ("w b" imi-window-jump-below )
+	 ("w d"  delete-window)
 	 ("w h" windmove-left )
 	 ("w l" windmove-right )
 	 ("w j" windmove-down )
 	 ("w k" windmove-up ))) 
+
+(ryo-modal-key
+ "SPC" '(
+	 ("f n" make-frame)
+	 ("f d" delete-frame)
+	 ))
+
+;; consult/completion
+(ryo-modal-key
+ "SPC" '(
+	 ("c l" consult-line)
+	 ("c b" consult-buffer)
+	 ("c L" consult-goto-line)
+	 ("c o" consult-outline)
+	 ("c i" consult-imenu)
+	 ("c g" consult-grep)
+	 ("c G" consult-git-grep)
+	 ("c m" consult-multi-occur)
+	 ("c M" consult-line-multi)
+	 	 
+	 ))
+
+
 
 (ryo-modal-keys
  ("," ryo-modal-repeat)
@@ -56,15 +86,16 @@
  ("L" forward-sentence)
  ("w" forward-to-word)
  ("b" backward-word)
- ("a" crux-move-beginning-of-line)  
- ("e" end-of-line)
- ("f" avy-goto-word-1)
  ("W" forward-sexp)
  ("B" backward-sexp)
 
+ ("a" crux-move-beginning-of-line)  
+ ("e" end-of-line)
+ ("f" avy-goto-word-1)
+ 
  
  ("g g" beginning-of-buffer)
- ("g G" end-of-buffer)
+ ("G" end-of-buffer)
 
  ("g l" avy-goto-line)
  ("g m" pop-to-mark-command)
