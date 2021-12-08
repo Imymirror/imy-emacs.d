@@ -2,7 +2,9 @@
 
 ;;(set-face-attribute 'default nil :height 140 :weight 'regular :width 'normal :family "PingFang SC")
 (set-face-attribute 'default nil :height 150)
-(load-theme 'dichromacy t)
+
+;; ;; Open links in the same Window by default.
+(setq org-link-frame-setup '((file . find-file)))
 
 (global-set-key (kbd "<f5>") (lambda() (interactive)(find-file user-init-file)))
 
@@ -18,7 +20,19 @@
 
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
-(add-to-list 'display-buffer-alist  '("*Help*" display-buffer-same-window))
+;;(add-to-list 'display-buffer-alist  '("*Help*" display-buffer-same-window))
 (add-to-list 'default-frame-alist '(fullscreen . maximized)) 
+
+(setq display-time-24hr-format t)
+;;(setq display-time-format "%I:%M")
+
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (message "Emacs ready in %s with %d garbage collections."
+                     (format "%.2f seconds"
+                             (float-time
+                              (time-subtract after-init-time before-init-time)))
+                     gcs-done)))
+
 
 (provide 'init-basic)

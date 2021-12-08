@@ -1,7 +1,9 @@
 ;;  -*- lexical-binding: t; -*-
 
 (global-set-key (kbd "<escape>") (lambda () (interactive) (ryo-modal-mode +1)))
+
 (ryo-modal-key "SPC SPC"  'execute-extended-command)
+(setq ryo-modal-default-cursor-color 'DimGray)
 
 (ryo-modal-keys
  ;; Misc
@@ -18,7 +20,33 @@
 
 (ryo-modal-key
  "SPC" '(
+	 ("0" imi-persp-switch-to-0)
+	 ("1" imi-persp-switch-to-1)
+	 ("2" imi-persp-switch-to-2)
+	 ("3" imi-persp-switch-to-3)
+	 ("4" imi-persp-switch-to-4)
+	 ("5" imi-persp-switch-to-5)
+	 
 	 ("." find-file))) 
+
+;; roam 
+(ryo-modal-key
+ "SPC" '(
+	 ("h k" describe-key)
+	 ("h f" describe-function)
+	 ("h a" consult-apropos)
+	 ("h v" describe-variable)
+	 ("h i" info))) 
+
+;; open/org
+(ryo-modal-key
+ "SPC" '(
+	 ("o I" imi-open-iTerm)
+	 ("o i" imi-org-download-paste-clipboard)
+	 ("o s" shell)
+	 ("o l" link-hint-open-link)
+	 ("o g" grab-mac-link-dwim)
+	 ("o o" imi-reveal-in-finder))) 
 
 ;; roam 
 (ryo-modal-key
@@ -33,7 +61,9 @@
 	 ("b k" kill-this-buffer)
 	 ("b p" previous-buffer)
 	 ("b n" next-buffer)
-	 ("b s" save-some-buffers))) 
+	 ("b B" persp-switch-to-buffer)
+	 ("b s" imi-save-all-buffers))) 
+
 
 ;; window
 (ryo-modal-key
@@ -62,17 +92,19 @@
 	 ("c L" consult-goto-line)
 	 ("c o" consult-outline)
 	 ("c i" consult-imenu)
-	 ("c g" consult-grep)
+	 ("c g" consult-ripgrep)
 	 ("c G" consult-git-grep)
 	 ("c m" consult-multi-occur)
 	 ("c M" consult-line-multi)
-	 	 
+	 ("c f" consult-find)
+	 ("c r" consult-recent-file)
+	 
 	 ))
 
 
 
 (ryo-modal-keys
- ("," ryo-modal-repeat)
+ ;;("," ryo-modal-repeat)
  ("i" ryo-modal-mode)
 
  ;; Navigation
@@ -138,7 +170,7 @@
  ("d L" kill-sentence)
 
  ;; Copying (y verb)
- ("Y" kill-ring-save)
+ ("y e" kill-ring-save)
  ("y y" imi-copy-line)
  ("y l" avy-kill-ring-save-whole-line)
  ("y w" kill-word :name "save-word" :then '(yank))
@@ -156,31 +188,23 @@
  ("v o" crux-duplicate-and-comment-current-line-or-region)
  ("v l" avy-copy-line)
  ("v r" avy-copy-region)
-
+ ("v m" set-mark-command)
+ 
  ;; Move (m verb)
  ("m m" imi-move-current-line)
  ("m r" avy-move-region)
  ("m l" avy-move-line)
 
- 
+ ;;
+ ("z l" org-toggle-link-display)
+ ("z i" org-toggle-inline-images)
  )
-
-
-;; buffer
-(global-set-key (kbd "s-0") #'winum-select-window-0)
-(global-set-key (kbd "s-1") #'winum-select-window-1)
-(global-set-key (kbd "s-2") #'winum-select-window-2)
-(global-set-key (kbd "s-3") #'winum-select-window-3)
-(global-set-key (kbd "s-4") #'winum-select-window-4)
-(global-set-key (kbd "s-5") #'winum-select-window-5)
-(global-set-key (kbd "s-6") #'winum-select-window-6)
-(global-set-key (kbd "s-7") #'winum-select-window-7)
-(global-set-key (kbd "s-8") #'winum-select-window-8)
-(global-set-key (kbd "s-9") #'winum-select-window-9)
 
 ;; 这三个毫无用处
 ;;(ryo-modal-key "SPC o o"  'org-cycle :mode 'org-mode)
 ;;(ryo-modal-key "SPC o b"  'imi-worf-beginning-of-line :mode 'org-mode )
 ;;(ryo-modal-key "SPC o t"  'imi-worf-shifttab :mode 'org-mode )
+
+(global-set-key (kbd "C-M-s-)") 'telega) 
 
 (provide 'init-ryo-modal)

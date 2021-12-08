@@ -4,15 +4,37 @@
 (setq user-emacs-directory (file-name-directory user-init-file))
 (add-to-list 'load-path (expand-file-name (concat user-emacs-directory "lisp")))
 
+(require 'init-speedup)
 (require 'init-some-path)
 (require 'init-imi-func)
 (require 'init-basic)
 (require 'init-platform)
 (require 'init-package)
-(require 'init-custom)
+
+;; package
 (require 'init-roam)
 (require 'init-org-mode)
 (require 'init-telega)
+(require 'init-gtd)
+(require 'init-doom)
+(require 'init-winum)
+(require 'init-org-download)
+(require 'init-persp)
+
+;; package
+
+;; completion system
 (require 'init-selectrum)
 (require 'init-ryo-modal)
+(require 'init-consult)
+;; completion system
+
+;; language
+(require 'init-lsp)
+(require 'yasnippet)
+(yas-global-mode 1)
+;; language
+
 (require 'init-mode-enable)
+
+(require 'init-custom)

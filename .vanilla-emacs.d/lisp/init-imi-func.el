@@ -114,4 +114,39 @@ Forward to `org-shifttab' with ARG."
   (other-window 1)
   )
 
+(defun imi-reveal-in-finder ()
+  (interactive)
+  (shell-command (concat "open -R " buffer-file-name)))
+
+(defun imi-open-iTerm ()
+  "Opens up a new shell in the directory associated with the
+current buffer's file. The eshell is renamed to match that
+directory to make multiple eshell windows easier."
+  (interactive)
+  (shell-command "open -a iTerm ."))
+
+(defun imi-save-all-buffers () (interactive) (save-some-buffers t))
+
+(defun imi-restart-emacs ()
+  (interactive)
+  (imi-save-all-buffers)
+  (call-process "sh" nil nil nil "-c" "sh /Users/fuhongxue/project/vanilla-emacs/setup-vanilla-emacs-by-daemon.sh &")
+  (save-buffers-kill-terminal))
+
+;; from https://stackoverflow.com/questions/384284/how-do-i-rename-an-open-file-in-emacs
+(defun imi-rename-file-and-buffer (new-name)
+  "Renames both current buffer and file it's visiting to NEW-NAME."
+  (interactive "sNew name: ")
+  (let ((name (buffer-name))
+        (filename (buffer-file-name)))
+    (if (not filename)
+        (message "Buffer '%s' is not visiting a file!" name)
+      (if (get-buffer new-name)
+          (message "A buffer named '%s' already exists!" new-name)
+        (progn
+          (rename-file filename new-name 1)
+          (rename-buffer new-name)
+          (set-visited-file-name new-name)
+          (set-buffer-modified-p nil))))))
+
 (provide 'init-imi-func)

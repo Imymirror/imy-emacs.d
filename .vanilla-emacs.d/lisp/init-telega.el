@@ -1,6 +1,10 @@
 ;;  -*- lexical-binding: t; -*-
 (require 'telega)
 
+(with-eval-after-load 'telega
+  (define-key telega-msg-button-map "k" nil))
+
+
 (setq telega-chat-show-avatars t)
 ;; (setq telega-avatar-text-compose-chars nil)
 (setf (alist-get 2 telega-avatar-factors-alist ) '(0.4 . 0.1)) ;; 头像开裂问题
