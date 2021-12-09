@@ -18,6 +18,7 @@
  ("8" "M-8")
  ("9" "M-9"))
 
+;; persp
 (ryo-modal-key
  "SPC" '(
 	 ("0" imi-persp-switch-to-0)
@@ -26,10 +27,15 @@
 	 ("3" imi-persp-switch-to-3)
 	 ("4" imi-persp-switch-to-4)
 	 ("5" imi-persp-switch-to-5)
+	 ("b B" persp-switch-to-buffer)))
+
+(ryo-modal-key
+ "SPC" '(
 	 
 	 ("." find-file))) 
 
-;; roam 
+
+;; help
 (ryo-modal-key
  "SPC" '(
 	 ("h k" describe-key)
@@ -52,6 +58,7 @@
 (ryo-modal-key
  "SPC" '(
 	 ("n n" org-roam-node-find)
+	 ("n t" org-roam-tag-add)
 	 ("n i" org-roam-node-insert))) 
 
 ;; buffer
@@ -61,7 +68,6 @@
 	 ("b k" kill-this-buffer)
 	 ("b p" previous-buffer)
 	 ("b n" next-buffer)
-	 ("b B" persp-switch-to-buffer)
 	 ("b s" imi-save-all-buffers))) 
 
 

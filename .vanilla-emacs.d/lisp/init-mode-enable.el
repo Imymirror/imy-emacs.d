@@ -8,6 +8,7 @@
   (global-company-mode)
   (recentf-mode) ;; consult consult-recent-file
   (which-key-mode)
+  (yas-global-mode 1)
   )
 
 ;; daemon 不允许 idle time，会死机

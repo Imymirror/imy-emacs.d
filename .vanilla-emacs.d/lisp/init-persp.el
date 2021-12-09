@@ -23,6 +23,8 @@
         (persp-switch name))
       (cl-incf count))))
 
+
+
 (defun imi-persp-switch-to-0 () (interactive) (imi-persp-switch-to-n 0))
 (defun imi-persp-switch-to-1 () (interactive) (imi-persp-switch-to-n 1))
 (defun imi-persp-switch-to-2 () (interactive) (imi-persp-switch-to-n 2))

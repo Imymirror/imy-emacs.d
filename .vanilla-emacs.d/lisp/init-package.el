@@ -16,7 +16,7 @@
 (package-initialize)
 
 (setq package-list '(
-		     which-key org-roam selectrum telega selectrum-prescient ctrlf rg company smartparens winum ryo-modal crux expand-region avy consult lsp-mode yasnippet link-hint grab-mac-link org-download persp-mode magit
+		     which-key org-roam selectrum telega selectrum-prescient ctrlf rg company smartparens winum ryo-modal crux expand-region avy consult lsp-mode yasnippet link-hint grab-mac-link org-download persp-mode magit meow
 
 			       ))
 

@@ -149,4 +149,17 @@ directory to make multiple eshell windows easier."
           (set-visited-file-name new-name)
           (set-buffer-modified-p nil))))))
 
+;; from https://emacs.stackexchange.com/questions/31429/want-equivalent-of-vim-w-and-e
+(defun imi-forward-word ()
+  "Forward to the end of the 'word at point' (vim-like)."
+  (interactive)
+  (skip-syntax-forward "-")
+  (skip-syntax-forward "^-"))
+
+(defun imi-backward-word ()
+  "Backward to the start of the 'word at point' (vim-like)."
+  (interactive)
+  (skip-syntax-backward "-")
+  (skip-syntax-backward "^-"))
+
 (provide 'init-imi-func)
