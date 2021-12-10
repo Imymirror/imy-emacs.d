@@ -7,11 +7,13 @@
 (setq persp-auto-save-opt 0)
 (persp-load-state-from-file imi-persp-path)
 
+
 (defun imi-close-perspective()
   (message (concat "Saving " imi-persp-path ))
   ;; telega confict with persp, don't save
   (when (telega-server-live-p)  (telega-kill 1) )  
   (persp-save-state-to-file imi-persp-path))
+
 (add-hook 'kill-emacs-hook 'imi-close-perspective)
 
 
@@ -22,7 +24,6 @@
       (when (= count n)
         (persp-switch name))
       (cl-incf count))))
-
 
 
 (defun imi-persp-switch-to-0 () (interactive) (imi-persp-switch-to-n 0))

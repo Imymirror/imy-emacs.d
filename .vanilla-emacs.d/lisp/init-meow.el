@@ -2,12 +2,98 @@
 
 (require 'meow)
 
+(global-set-key (kbd "C-M-s-)") 'telega) 
+
+(defun imi-switch-frame-by-number (n)
+  (select-frame-set-input-focus     (elt (visible-frame-list) n)))
+
+
 (defun meow-setup ()
   (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
+  
   (meow-motion-overwrite-define-key
    '("j" . meow-next)
    '("k" . meow-prev))
+  
   (meow-leader-define-key
+   
+   ;;'("/" . meow-keypad-describe-key)
+   ;;'("?" . meow-cheatsheet)
+   '("." . find-file)
+   
+   ;; consult
+   '(  "s l" . consult-line)
+   '(  "s b" . consult-buffer)
+   '(  "s i" . consult-imenu)
+   '(  "s o" . consult-outline)
+   '(  "s g" . consult-ripgrep)
+   '(  "s f" . consult-find)
+   '(  "s r" . consult-recent-file)
+   '(  "s G" . consult-git-grep)
+
+
+   ;; frame
+   '(  "f n" . make-frame)
+   '(  "f d" . delete-frame)
+   '(  "f 1" . (lambda () (interactive) (imi-switch-frame-by-number 1)))
+   '(  "f 2" . (lambda () (interactive) (imi-switch-frame-by-number 2)))
+   '(  "f 3" . (lambda () (interactive) (imi-switch-frame-by-number 3)))
+   '(  "f 4" . (lambda () (interactive) (imi-switch-frame-by-number 4)))
+   '(  "f 5" . (lambda () (interactive) (imi-switch-frame-by-number 5)))
+   '(  "f 6" . (lambda () (interactive) (imi-switch-frame-by-number 6)))
+
+   ;; window
+   '(  "w m" . delete-other-windows)
+   '(  "w w" . other-window)
+   '(  "w r" . imi-window-jump-right)
+   '(  "w b" . imi-window-jump-below)
+   '(  "w d" . delete-window)
+   '(  "w h" . windmove-left)
+   '(  "w l" . windmove-right)
+   '(  "w j" . windmove-down)
+   '(  "w k" . windmove-up)
+   '(  "w H" . buf-move-left)
+   '(  "w L" . buf-move-right)
+   '(  "w J" . buf-move-down)
+   '(  "w K" . buf-move-up)
+   '(  "w u" . winner-undo)
+   '(  "w U" . winner-redo)
+
+   ;; goto(g used by meow，direct)
+   '(  "d l" . avy-goto-line)
+   '(  "d c" . avy-goto-char)
+
+   
+   ;; roam
+   '(  "n n" . org-roam-node-find)
+   '(  "n t" . org-roam-tag-add)
+   '(  "n i" . org-roam-node-insert)
+
+   ;; buffer
+   '(  "b p" . persp-switch-to-buffer)
+   '(  "b b" . switch-to-buffer)
+   '(  "b k" . kill-this-buffer)
+   '(  "b p" . previous-buffer)
+   '(  "b n" . next-buffer)
+   '(  "b s" . imi-save-all-buffers)
+
+   ;; org toggle
+   '(  "o i" . imi-open-iTerm)
+   '(  "o p" . imi-org-download-paste-clipboard)
+   '(  "o s" . shell)
+   '(  "o l" . link-hint-open-link)
+   '(  "o g" . grab-mac-link-dwim)
+   '(  "o o" . imi-reveal-in-finder)
+
+   ;; persp/project
+   '(  "p 0" . imi-persp-switch-to-0)
+   '(  "p 1" . imi-persp-switch-to-1)
+   '(  "p 2" . imi-persp-switch-to-2)
+   '(  "p 3" . imi-persp-switch-to-3)
+   '(  "p 4" . imi-persp-switch-to-4)
+   '(  "p 5" . imi-persp-switch-to-5)
+
+
    ;; SPC j/k will run the original command in MOTION state.
    '("j" . "H-j")
    '("k" . "H-k")
@@ -23,8 +109,8 @@
    '("8" . meow-digit-argument)
    '("9" . meow-digit-argument)
    '("0" . meow-digit-argument)
-   '("/" . meow-keypad-describe-key)
-   '("?" . meow-cheatsheet))
+
+   )
   (meow-normal-define-key
    '("0" . meow-expand-0)
    '("9" . meow-expand-9)
@@ -88,9 +174,13 @@
    '("'" . repeat)
    '("<escape>" . ignore)))
 
-(meow-setup)
 (meow-global-mode 1)
 
-
+(with-eval-after-load "meow"
+  (setq meow-esc-delay 0.001)
+  (setq meow-grab-fill-commands nil)
+  (meow-setup)
+  (meow-setup-indicator)
+  )
 
 (provide 'init-meow)

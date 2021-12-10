@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: new-elisp-file
-# key: nfile
-# --
-;;  -*- lexical-binding: t; -*-
-
-
-
-(provide '$1)

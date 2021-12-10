@@ -2,6 +2,7 @@
 
 (defun imi-load-after-idle-time ()
   (winum-mode)
+  (winner-mode)
   (delete-selection-mode)
   (doom-modeline-mode)
   (org-bullets-mode)

@@ -1,6 +1,8 @@
 ;;  -*- lexical-binding: t; -*-
 (require 'winum)
 
+(setq winum-scope 'frame-local)
+
 ;; buffer
 (global-set-key (kbd "s-0") #'winum-select-window-0)
 (global-set-key (kbd "s-1") #'winum-select-window-1)

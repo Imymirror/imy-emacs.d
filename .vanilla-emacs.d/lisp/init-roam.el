@@ -2,11 +2,6 @@
 
 (setq org-roam-v2-ack t)
 
-(global-set-key (kbd "C-c n f") 'org-roam-node-find)
-(global-set-key (kbd "C-c n i") 'org-roam-node-insert)
-(global-set-key (kbd "C-c n I") 'org-roam-insert-immediate)
-
-
 (defun imy/switch-roam-directory (x)
   "switch roam directory : 1.original  2.memory"
   (interactive "nEnter 1.roam2 2.memory: ")

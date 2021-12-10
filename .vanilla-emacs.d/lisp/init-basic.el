@@ -20,8 +20,12 @@
 
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
-;;(add-to-list 'display-buffer-alist  '("*Help*" display-buffer-same-window))
+(add-to-list 'display-buffer-alist  '("*Help*" display-buffer-same-window))
+
 (add-to-list 'default-frame-alist '(fullscreen . maximized)) 
+
+(set-default 'truncate-lines t)
+
 
 (setq display-time-24hr-format t)
 ;;(setq display-time-format "%I:%M")

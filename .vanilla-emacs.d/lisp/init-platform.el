@@ -14,4 +14,9 @@
 (setq ns-use-proxy-icon nil)
 (setq frame-title-format nil)
 
+;; issue : ls does not support --dired; see ‘dired-use-ls-dired’ for more details.
+;; from https://stackoverflow.com/questions/25125200/emacs-error-ls-does-not-support-dired
+(when (string= system-type "darwin")       
+  (setq dired-use-ls-dired nil))
+
 (provide 'init-platform)

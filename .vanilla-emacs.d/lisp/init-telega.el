@@ -2,7 +2,8 @@
 (require 'telega)
 
 (with-eval-after-load 'telega
-  (define-key telega-msg-button-map "k" nil))
+  (define-key telega-msg-button-map "k" nil)
+  (define-key telega-msg-button-map (kbd "SPC") nil))
 
 
 (setq telega-chat-show-avatars t)
