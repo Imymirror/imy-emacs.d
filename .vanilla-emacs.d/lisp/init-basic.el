@@ -11,20 +11,25 @@
 (setq
      backup-by-copying t ; 自动备份
      backup-directory-alist
-     '(("." . "~/project/vanilla-emacs/backup")) ; 自动备份在指定目录下
+     `(("." . ,imi-backup-path)) ; 自动备份在指定目录下
      delete-old-versions t ; 自动删除旧的备份文件
      kept-new-versions 3 ; 保留最近的3个备份文件
      kept-old-versions 1 ; 保留最早的1个备份文件
      version-control t) ; 多次备份
 
 
+(setq ring-bell-function 'ignore)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (add-to-list 'display-buffer-alist  '("*Help*" display-buffer-same-window))
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized)) 
+;; disable line wrap
+(setq default-truncate-lines t)
+;; make side by side buffers function the same as the main window
+(setq truncate-partial-width-windows nil)
 
-(set-default 'truncate-lines t)
+;;(set-default 'truncate-lines t)
 
 
 (setq display-time-24hr-format t)

@@ -162,4 +162,24 @@ directory to make multiple eshell windows easier."
   (skip-syntax-backward "-")
   (skip-syntax-backward "^-"))
 
+(defun imi-frame-switch-by-number (n)
+  (select-frame-set-input-focus     (elt (visible-frame-list) n)))
+
+(defun imi-close-perspective()
+  (message (concat "Saving " imi-persp-path ))
+  ;; telega confict with persp, don't save
+  (when (telega-server-live-p)  (telega-kill 1) )  
+  (persp-save-state-to-file imi-persp-path))
+
+(add-hook 'kill-emacs-hook 'imi-close-perspective)
+
+
+(defun imi-persp-switch-to-n (n)
+  (let ((names (persp-names-current-frame-fast-ordered))
+        (count 0))
+    (dolist (name names)
+      (when (= count n)
+        (persp-switch name))
+      (cl-incf count))))
+
 (provide 'init-imi-func)

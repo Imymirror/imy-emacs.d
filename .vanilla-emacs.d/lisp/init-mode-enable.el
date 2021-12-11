@@ -1,15 +1,16 @@
 ;;  -*- lexical-binding: t; -*-
 
 (defun imi-load-after-idle-time ()
+  (yas-global-mode 1)
   (winum-mode)
   (winner-mode)
   (delete-selection-mode)
   (doom-modeline-mode)
-  (org-bullets-mode)
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
   (global-company-mode)
   (recentf-mode) ;; consult consult-recent-file
   (which-key-mode)
-  (yas-global-mode 1)
+  (ace-pinyin-global-mode)
   )
 
 ;; daemon 不允许 idle time，会死机

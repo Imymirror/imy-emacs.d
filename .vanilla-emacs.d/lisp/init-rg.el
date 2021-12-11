@@ -4,7 +4,7 @@
              '("\\`\\*rg\\*\\'" .
                (display-buffer-in-side-window
                 (side . right)
-                ;;(window-width . 80)
+                (window-width . 160)
 		)))
 
 (provide 'init-rg)

@@ -1,5 +1,5 @@
 ;;  -*- lexical-binding: t; -*-
 
-(consult-theme 'modus-vivendi)
+(consult-theme 'doom-nord)
 
 (provide 'init-consult)

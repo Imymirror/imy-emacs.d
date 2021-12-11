@@ -3,15 +3,14 @@
 (require 'meow)
 
 (global-set-key (kbd "C-M-s-)") 'telega) 
-
-(defun imi-switch-frame-by-number (n)
-  (select-frame-set-input-focus     (elt (visible-frame-list) n)))
-
+(global-set-key (kbd "C-M-c") 'ace-pinyin-jump-char) 
+(global-set-key (kbd "C-M-l") 'avy-goto-line) 
 
 (defun meow-setup ()
   (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
   
   (meow-motion-overwrite-define-key
+   '("<escape>" . ignore)
    '("j" . meow-next)
    '("k" . meow-prev))
   
@@ -31,16 +30,16 @@
    '(  "s r" . consult-recent-file)
    '(  "s G" . consult-git-grep)
 
-
    ;; frame
    '(  "f n" . make-frame)
    '(  "f d" . delete-frame)
-   '(  "f 1" . (lambda () (interactive) (imi-switch-frame-by-number 1)))
-   '(  "f 2" . (lambda () (interactive) (imi-switch-frame-by-number 2)))
-   '(  "f 3" . (lambda () (interactive) (imi-switch-frame-by-number 3)))
-   '(  "f 4" . (lambda () (interactive) (imi-switch-frame-by-number 4)))
-   '(  "f 5" . (lambda () (interactive) (imi-switch-frame-by-number 5)))
-   '(  "f 6" . (lambda () (interactive) (imi-switch-frame-by-number 6)))
+   '(  "f 0" . (lambda () (interactive) (imi-frame-switch-by-number 0)))
+   '(  "f 1" . (lambda () (interactive) (imi-frame-switch-by-number 1)))
+   '(  "f 2" . (lambda () (interactive) (imi-frame-switch-by-number 2)))
+   '(  "f 3" . (lambda () (interactive) (imi-frame-switch-by-number 3)))
+   '(  "f 4" . (lambda () (interactive) (imi-frame-switch-by-number 4)))
+   '(  "f 5" . (lambda () (interactive) (imi-frame-switch-by-number 5)))
+   '(  "f 6" . (lambda () (interactive) (imi-frame-switch-by-number 6)))
 
    ;; window
    '(  "w m" . delete-other-windows)
@@ -59,11 +58,6 @@
    '(  "w u" . winner-undo)
    '(  "w U" . winner-redo)
 
-   ;; goto(g used by meow，direct)
-   '(  "d l" . avy-goto-line)
-   '(  "d c" . avy-goto-char)
-
-   
    ;; roam
    '(  "n n" . org-roam-node-find)
    '(  "n t" . org-roam-tag-add)
@@ -180,7 +174,7 @@
   (setq meow-esc-delay 0.001)
   (setq meow-grab-fill-commands nil)
   (meow-setup)
-  (meow-setup-indicator)
+;;  (meow-setup-indicator)
   )
 
 (provide 'init-meow)
