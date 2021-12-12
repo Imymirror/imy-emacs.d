@@ -2,7 +2,8 @@
 
 
 * introduce
-我的 emacs 配置之旅，分成三个阶段 :
-- 第一阶段，在玩过 doom emacs 之后，尝试自己配置 emacs，尽可能地玩一遍 emacs 相关的插件。所有产生了一篇很粗糙的 [[file:configure-emacs-from-scratch.org][从零配置 emacs 的文章]]
-- 第二阶段，对第一阶段的配置不断地完善，达到某种稳定的状态，用 org babel 来管理配置。从零配置 [[file:configure-emacs-by-babel.org][emacs org babel 版本]]。真实配置目录是 [[file:.emacs.d/][.emacs.d]]
-- 第三阶段，尝试使用 vanilla emacs 的方式 或者使用 evil 之外的模态去使用 emacs。真实配置目录是 [[file:.vanilla-emacs.d/][.vanilla-emacs.d]]
+我的 emacs 配置之旅，分成四个阶段 :
+1. 使用 doom-emacs。
+2. 放弃 doom-emacs 尝试 [[file:configure-emacs-from-scratch.org][从零配置 emacs]], 尽可能地玩一遍 emacs 相关的插件。
+3. 对 2 配置不断完善，开始尝试使用 org babel 来管理配置。[[file:configure-emacs-by-babel.org][emacs babel 版本的文档]]。真实配置目录是 [[file:.emacs.d/][.emacs.d]]
+4. 放弃之前的配置，尝试以 vanilla emacs 的使用方式，并且将模态从 evil 转向 moew。真实配置目录是 [[file:.vanilla-emacs.d/][.vanilla-emacs.d]]
