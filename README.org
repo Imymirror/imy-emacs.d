@@ -6,4 +6,4 @@
 1. 使用 doom-emacs。
 2. 放弃 doom-emacs 尝试 [[file:configure-emacs-from-scratch.org][从零配置 emacs]], 尽可能地玩一遍 emacs 相关的插件。
 3. 对 2 配置不断完善，开始尝试使用 org babel 来管理配置。[[file:configure-emacs-by-babel.org][emacs babel 版本的文档]]。真实配置目录是 [[file:.emacs.d/][.emacs.d]]
-4. 放弃之前的配置，尝试以 vanilla emacs 的使用方式，并且将模态从 evil 转向 moew。真实配置目录是 [[file:.vanilla-emacs.d/][.vanilla-emacs.d]]
+4. 放弃 evil，转向 meow，尝试 vanilla emacs。真实配置目录是 [[file:.vanilla-emacs.d/][.vanilla-emacs.d]]
