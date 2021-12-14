@@ -7,37 +7,32 @@
 (require 'init-speedup)
 (require 'init-some-path)
 (require 'init-imi-func)
+(require 'init-font)
 (require 'init-basic)
 (require 'init-platform)
-(require 'init-package)
+(require 'init-straight)
+
+(require 'init-gtd)			        
 
 ;; package
+(require 'init-meow)			        
 (require 'init-roam)
-(require 'init-org-mode)
-(require 'init-telega)
-(require 'init-gtd)
-(require 'init-doom)
-(require 'init-winum)
-(require 'init-org-download)
-(require 'init-persp)
-;; package
-
-;; completion system
-(require 'init-selectrum)
-(require 'init-consult)
+(require 'init-org-mode)		        
+(require 'init-org-download)		        
+					        
+;; ;; completion system			        
+(require 'init-vertico)
+(require 'init-consult)		        
 (require 'init-rg)
 
+;; ;; language				        
+(require 'init-lsp)			        
+(require 'init-tree-sitter)		        
+					        
+(require 'init-mode-enable)		        
+					        
+(require 'init-custom)		        
 
-;; modal
-;;(require 'init-ryo-modal)
-(require 'init-meow)
 
-;; language
-(require 'init-lsp)
-(require 'yasnippet)
-
-(require 'init-mode-enable)
-
-(require 'init-custom)
 
 

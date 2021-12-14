@@ -1,5 +1,5 @@
 ;;  -*- lexical-binding: t; -*-
 
-(consult-theme 'doom-nord)
+(consult-theme 'tsdh-light)
 
 (provide 'init-consult)

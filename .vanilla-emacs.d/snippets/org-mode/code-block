@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: code-block
+# key: cb
+# --
+#+begin_src $1
+$0
+#+end_src

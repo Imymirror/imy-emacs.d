@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: blog-template
+# key: blogtemplate
+# --
+#+hugo_base_dir: ../
+#+hugo_section: ./
+
+#+hugo_weight: 2001
+#+hugo_auto_set_lastmod: t
+
+#+title: $1
+
+#+date: `(format-time-string "%Y-%m-%d")`
+#+author: Imymirror
+
+#+hugo_tags: $2
+#+hugo_categories: $3
+
+#+hugo_menu: :menu "main" :weight 2001
+#+hugo_custom_front_matter: :foo bar :baz zoo :alpha 1 :beta "two words" :gamma 10
+
+#+hugo_draft: false

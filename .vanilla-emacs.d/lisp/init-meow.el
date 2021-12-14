@@ -2,9 +2,21 @@
 
 (require 'meow)
 
-(global-set-key (kbd "C-M-s-)") 'telega) 
+;; (global-set-key (kbd "C-M-s-)") 'telega) 
 (global-set-key (kbd "C-M-c") 'ace-pinyin-jump-char) 
 (global-set-key (kbd "C-M-l") 'avy-goto-line) 
+
+;; buffer
+;;(global-set-key (kbd "s-0") #'(lambda () (interactive) (imi-frame-switch-by-number 0)))
+(global-set-key (kbd "s-1") (lambda () (interactive) (imi-frame-switch-by-number 1)))
+(global-set-key (kbd "s-2") (lambda () (interactive) (imi-frame-switch-by-number 2)))
+(global-set-key (kbd "s-3") (lambda () (interactive) (imi-frame-switch-by-number 3)))
+(global-set-key (kbd "s-4") (lambda () (interactive) (imi-frame-switch-by-number 4)))
+(global-set-key (kbd "s-5") (lambda () (interactive) (imi-frame-switch-by-number 5)))
+(global-set-key (kbd "s-6") (lambda () (interactive) (imi-frame-switch-by-number 6)))
+(global-set-key (kbd "s-7") (lambda () (interactive) (imi-frame-switch-by-number 7)))
+(global-set-key (kbd "s-8") (lambda () (interactive) (imi-frame-switch-by-number 8)))
+(global-set-key (kbd "s-9") (lambda () (interactive) (imi-frame-switch-by-number 9)))
 
 (defun meow-setup ()
   (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
@@ -33,13 +45,13 @@
    ;; frame
    '(  "f n" . make-frame)
    '(  "f d" . delete-frame)
-   '(  "f 0" . (lambda () (interactive) (imi-frame-switch-by-number 0)))
-   '(  "f 1" . (lambda () (interactive) (imi-frame-switch-by-number 1)))
-   '(  "f 2" . (lambda () (interactive) (imi-frame-switch-by-number 2)))
-   '(  "f 3" . (lambda () (interactive) (imi-frame-switch-by-number 3)))
-   '(  "f 4" . (lambda () (interactive) (imi-frame-switch-by-number 4)))
-   '(  "f 5" . (lambda () (interactive) (imi-frame-switch-by-number 5)))
-   '(  "f 6" . (lambda () (interactive) (imi-frame-switch-by-number 6)))
+   ;; '(  "f 0" . (lambda () (interactive) (imi-frame-switch-by-number 0)))
+   ;; '(  "f 1" . (lambda () (interactive) (imi-frame-switch-by-number 1)))
+;;   '(  "f 2" . (lambda () (interactive) (imi-frame-switch-by-number 2)))
+;;   '(  "f 3" . (lambda () (interactive) (imi-frame-switch-by-number 3)))
+;;   '(  "f 4" . (lambda () (interactive) (imi-frame-switch-by-number 4)))
+;;   '(  "f 5" . (lambda () (interactive) (imi-frame-switch-by-number 5)))
+;;   '(  "f 6" . (lambda () (interactive) (imi-frame-switch-by-number 6)))
 
    ;; window
    '(  "w m" . delete-other-windows)
@@ -72,12 +84,15 @@
    '(  "b s" . imi-save-all-buffers)
 
    ;; org toggle
-   '(  "o i" . imi-open-iTerm)
+   '(  "o I" . imi-open-iTerm)
    '(  "o p" . imi-org-download-paste-clipboard)
    '(  "o s" . shell)
    '(  "o l" . link-hint-open-link)
    '(  "o g" . grab-mac-link-dwim)
    '(  "o o" . imi-reveal-in-finder)
+   '(  "o h" . org-hide-block-all)
+   '(  "o i" . org-toggle-inline-images)
+   '(  "o L" . org-toggle-link-display)
 
    ;; persp/project
    '(  "p 0" . imi-persp-switch-to-0)
@@ -116,6 +131,7 @@
    '("3" . meow-expand-3)
    '("2" . meow-expand-2)
    '("1" . meow-expand-1)
+
    '("-" . negative-argument)
    '(";" . meow-reverse)
    '("," . meow-inner-of-thing)

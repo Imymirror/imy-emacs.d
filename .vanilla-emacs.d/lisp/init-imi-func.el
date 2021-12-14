@@ -165,21 +165,17 @@ directory to make multiple eshell windows easier."
 (defun imi-frame-switch-by-number (n)
   (select-frame-set-input-focus     (elt (visible-frame-list) n)))
 
-(defun imi-close-perspective()
-  (message (concat "Saving " imi-persp-path ))
-  ;; telega confict with persp, don't save
-  (when (telega-server-live-p)  (telega-kill 1) )  
-  (persp-save-state-to-file imi-persp-path))
-
-(add-hook 'kill-emacs-hook 'imi-close-perspective)
-
-
-(defun imi-persp-switch-to-n (n)
-  (let ((names (persp-names-current-frame-fast-ordered))
-        (count 0))
-    (dolist (name names)
-      (when (= count n)
-        (persp-switch name))
-      (cl-incf count))))
+(defun imi-org-delete-link ()
+  "Replace an org link by its description or if empty its address"
+  (interactive)
+  (if (org-in-regexp org-link-bracket-re 1)
+      (save-excursion
+        (let ((remove (list (match-beginning 0) (match-end 0)))
+              (description
+               (if (match-end 2) 
+                   (org-match-string-no-properties 2)
+                 (org-match-string-no-properties 1))))
+          (apply 'delete-region remove)
+          (insert description)))))
 
 (provide 'init-imi-func)

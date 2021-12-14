@@ -4,7 +4,6 @@
 (when (file-exists-p "~/private/") (load sensitive-path))
 
 (setq imi-persp-path "~/env/emacs/vanilla/persp-confs/01-imi-persp-auto-save.persp")
-
 (setq persp-save-dir (expand-file-name "persp-confs/" "~/env/emacs/vanilla/"))
 
 (setq imi-package-path "~/env/emacs/vanilla/packages")

@@ -9,15 +9,18 @@
 
 ;;			 ("gnu" . "http://elpa.gnu.org/packages/")
 			 ("melpa" . "https://melpa.org/packages/")
-			 ("melpa-stable" . "https://stable.melpa.org/packages/")
+;;			 ("melpa-stable" . "https://stable.melpa.org/packages/")
 			 ;; ("elpy" .  "http://jorgenschaefer.github.io/packages/")
 			 ))
 
 (package-initialize)
 
 (setq package-list '(
-		     which-key org-roam selectrum telega selectrum-prescient ctrlf rg company smartparens winum ryo-modal crux expand-region avy consult lsp-mode yasnippet link-hint grab-mac-link org-download persp-mode magit meow ace-pinyin
-
+		     which-key org-roam  telega  ctrlf rg company smartparens  crux  avy consult  yasnippet link-hint grab-mac-link org-download  magit meow ace-pinyin ox-hugo
+			       lsp-mode
+			       tree-sitter tree-sitter-langs
+			       selectrum selectrum-prescient  
+;;persp-mode  ryo-modal winum expand-region 
 
 			       ))
 

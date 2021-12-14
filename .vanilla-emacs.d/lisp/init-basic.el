@@ -1,9 +1,6 @@
 ;;; -*- lexical-binding: t -*-
 
-;;(set-face-attribute 'default nil :height 140 :weight 'regular :width 'normal :family "PingFang SC")
-(set-face-attribute 'default nil :height 150)
-
-;; ;; Open links in the same Window by default.
+;; Open links in the same Window by default.
 (setq org-link-frame-setup '((file . find-file)))
 
 (global-set-key (kbd "<f5>") (lambda() (interactive)(find-file user-init-file)))
@@ -19,6 +16,7 @@
 
 
 (setq ring-bell-function 'ignore)
+(setq inhibit-startup-screen t)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (add-to-list 'display-buffer-alist  '("*Help*" display-buffer-same-window))
