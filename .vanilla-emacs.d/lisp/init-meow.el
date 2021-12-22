@@ -45,13 +45,7 @@
    ;; frame
    '(  "f n" . make-frame)
    '(  "f d" . delete-frame)
-   ;; '(  "f 0" . (lambda () (interactive) (imi-frame-switch-by-number 0)))
-   ;; '(  "f 1" . (lambda () (interactive) (imi-frame-switch-by-number 1)))
-;;   '(  "f 2" . (lambda () (interactive) (imi-frame-switch-by-number 2)))
-;;   '(  "f 3" . (lambda () (interactive) (imi-frame-switch-by-number 3)))
-;;   '(  "f 4" . (lambda () (interactive) (imi-frame-switch-by-number 4)))
-;;   '(  "f 5" . (lambda () (interactive) (imi-frame-switch-by-number 5)))
-;;   '(  "f 6" . (lambda () (interactive) (imi-frame-switch-by-number 6)))
+
 
    ;; window
    '(  "w m" . delete-other-windows)
@@ -74,6 +68,7 @@
    '(  "n n" . org-roam-node-find)
    '(  "n t" . org-roam-tag-add)
    '(  "n i" . org-roam-node-insert)
+   '(  "n s" . org-roam-db-sync)
 
    ;; buffer
    '(  "b p" . persp-switch-to-buffer)
@@ -83,26 +78,20 @@
    '(  "b n" . next-buffer)
    '(  "b s" . imi-save-all-buffers)
 
-   ;; org toggle
+   ;; org/toggle
    '(  "o I" . imi-open-iTerm)
    '(  "o p" . imi-org-download-paste-clipboard)
    '(  "o s" . shell)
    '(  "o l" . link-hint-open-link)
    '(  "o g" . grab-mac-link-dwim)
+   '(  "o G" . magit-status)
    '(  "o o" . imi-reveal-in-finder)
    '(  "o h" . org-hide-block-all)
    '(  "o i" . org-toggle-inline-images)
    '(  "o L" . org-toggle-link-display)
-
-   ;; persp/project
-   '(  "p 0" . imi-persp-switch-to-0)
-   '(  "p 1" . imi-persp-switch-to-1)
-   '(  "p 2" . imi-persp-switch-to-2)
-   '(  "p 3" . imi-persp-switch-to-3)
-   '(  "p 4" . imi-persp-switch-to-4)
-   '(  "p 5" . imi-persp-switch-to-5)
-
-
+   '(  "o f" . org-footnote-new)
+   '(  "o F" . org-footnote-goto-definition)
+   
    ;; SPC j/k will run the original command in MOTION state.
    '("j" . "H-j")
    '("k" . "H-k")

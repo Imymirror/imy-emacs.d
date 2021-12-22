@@ -178,4 +178,41 @@ directory to make multiple eshell windows easier."
           (apply 'delete-region remove)
           (insert description)))))
 
+;; from https://superuser.com/questions/895920/how-can-i-close-all-buffers-in-emacs
+;; clean-buffer-list : By default it cleans buffers that have not been accessed for 3 days (or 1 hour, in the case of some special buffers)
+(defun imi-kill-other-buffers ()
+  "Kill all other buffers."
+  (interactive)
+  (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
+
+(defun imi-kill-all-buffers ()
+  (interactive)
+  (mapc 'kill-buffer (buffer-list)))
+
+;; from https://github.com/tshu-w/.emacs.d/blob/master/lisp/core-funcs.el#L163
+(defun open-file-in-external-app (file-path)
+  "Open FILE-PATH in external application."
+  (cond
+   ((eq system-type 'windows-nt)
+    (w32-shell-execute "open" (replace-regexp-in-string "/" "\\\\" file-path)))
+   ((eq system-type 'darwin) (shell-command (format "open \"%s\"" file-path)))
+   ((eq system-type 'gnu/linux) (let ((process-connection-type nil))
+                                  (start-process "" nil "xdg-open" file-path)))))
+
+(defun open-file-or-directory-in-external-app (arg)
+  "Open current file in external application.
+If the universal prefix argument is used then open the folder
+containing the current file by the default explorer."
+  (interactive "P")
+  (if arg
+      (open-file-in-external-app (expand-file-name default-directory))
+    (let ((file-path (if (derived-mode-p 'dired-mode)
+                         (dired-get-file-for-visit)
+                       buffer-file-name)))
+      (if file-path
+          (open-file-in-external-app file-path)
+        (message "No file associated to this buffer.")))))
+
+
+
 (provide 'init-imi-func)

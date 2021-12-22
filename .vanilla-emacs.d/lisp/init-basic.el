@@ -19,15 +19,15 @@
 (setq inhibit-startup-screen t)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
+(menu-bar-mode 0)
 (add-to-list 'display-buffer-alist  '("*Help*" display-buffer-same-window))
 
-(add-to-list 'default-frame-alist '(fullscreen . maximized)) 
-;; disable line wrap
-(setq default-truncate-lines t)
-;; make side by side buffers function the same as the main window
-(setq truncate-partial-width-windows nil)
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-;;(set-default 'truncate-lines t)
+;;(setq default-truncate-lines t) ;; not work
+;; make side by side buffers function the same as the main window
+;;(setq truncate-partial-width-windows nil)
+;;(add-hook 'org-mode-hook '(lambda () (toggle-truncate-lines nil) ))
 
 
 (setq display-time-24hr-format t)

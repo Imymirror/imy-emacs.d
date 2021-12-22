@@ -9,6 +9,7 @@
 (require 'init-imi-func)
 (require 'init-font)
 (require 'init-basic)
+(require 'init-project)
 (require 'init-platform)
 (require 'init-straight)
 
@@ -18,7 +19,8 @@
 (require 'init-meow)			        
 (require 'init-roam)
 (require 'init-org-mode)		        
-(require 'init-org-download)		        
+(require 'init-org-download)
+(require 'init-citar)
 					        
 ;; ;; completion system			        
 (require 'init-vertico)
@@ -29,8 +31,10 @@
 (require 'init-lsp)			        
 (require 'init-tree-sitter)		        
 					        
-(require 'init-mode-enable)		        
-					        
+(require 'init-mode-enable)
+
+
+
 (require 'init-custom)		        
 
 

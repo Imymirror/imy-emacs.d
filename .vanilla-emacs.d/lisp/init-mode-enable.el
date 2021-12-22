@@ -2,6 +2,7 @@
 
 (defun imi-load-after-idle-time ()
   (yas-global-mode 1)
+  (smartparens-global-mode)
   ;;(winum-mode)
   (winner-mode)
   (delete-selection-mode)

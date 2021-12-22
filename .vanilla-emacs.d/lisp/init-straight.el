@@ -21,17 +21,22 @@
 (straight-use-package 'el-patch)
 
 (setq package-list '(
-		     which-key org-roam     rg company smartparens    avy consult  yasnippet link-hint grab-mac-link org-download  magit meow ace-pinyin ox-hugo rainbow-identifiers
+		     which-key org-roam  rg company smartparens    avy   yasnippet link-hint grab-mac-link org-download  magit meow ace-pinyin ox-hugo rainbow-identifiers 
+		     doom-themes
+
+		     citar
 		     lsp-mode
-		     
 		     tree-sitter tree-sitter-langs
-		     ;; selectrum selectrum-prescient ctrlf
-vertico orderless marginalia 
 		     
+		     ;; selectrum selectrum-prescient ctrlf
+		     vertico orderless marginalia consult
+		     
+		     ;; swiper counsel	
+		     ;; org-ref ivy-bibtex hydra
 		     ;;persp-mode  ryo-modal winum expand-region 
 		     ;;crux
 
-	;; telega	     visual-fill-column 
+		     ;; telega	     visual-fill-column 
 		     ))
 
 (dolist (package package-list)
