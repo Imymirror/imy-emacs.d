@@ -27,7 +27,7 @@
 ;;(setq default-truncate-lines t) ;; not work
 ;; make side by side buffers function the same as the main window
 ;;(setq truncate-partial-width-windows nil)
-;;(add-hook 'org-mode-hook '(lambda () (toggle-truncate-lines nil) ))
+(add-hook 'org-mode-hook '(lambda () (toggle-truncate-lines nil) ))
 
 
 (setq display-time-24hr-format t)

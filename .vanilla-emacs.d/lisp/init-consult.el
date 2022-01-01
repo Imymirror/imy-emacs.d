@@ -1,6 +1,6 @@
 ;;  -*- lexical-binding: t; -*-
 
-(consult-theme 'wheatgrass)
+(consult-theme 'dichromacy)
 
 (setq consult-project-root-function
       (lambda ()

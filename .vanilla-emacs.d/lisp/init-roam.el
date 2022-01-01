@@ -5,8 +5,11 @@
 (setq org-roam-node-display-template "${tags:35} ${title:80}" )
 
 ;; daily
+(require 'org-roam-dailies)
+(setq org-roam-dailies-directory imi-roam-daily-path)
+
 (setq org-roam-dailies-capture-templates
-      '(("d" "default" entry "* %<%I:%M %p>: %?"
+      '(("d" "default" entry "* TODO %<%I:%M %p>: %?"
          :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
 
 ;; roam directory
@@ -14,18 +17,18 @@
   "switch roam directory : 1.original  2.memory"
   (interactive "nEnter 1.roam2 2.memory: ")
   (cond ((= x 1)   
-	 (setq org-roam-directory "~/pkm-roam/roam2")  
+	 (setq org-roam-directory "~/central-management-system/pkm-roam/roam2")  
 	 (setq org-roam-db-location "~/pkm-roam/roam2-org-roam.db"))
 	((= x 2)   
-	 (setq org-roam-directory "~/pkm-roam/yinye")  
-	 (setq org-roam-db-location "~/pkm-roam/roam-yinye-org-roam.db")
+	 (setq org-roam-directory "~/central-management-system/pkm-roam/yinye")  
+	 (setq org-roam-db-location "~/pkm-roam/roam-yinye-org-roam.db"))
 	((= x 3)   
 	 (setq org-roam-directory "~/central-management-system/zotero/roam")  
 	 (setq org-roam-db-location "~/central-management-system/zotero/zotero-roam.db"))
-	 )
+	 
 	(t      ;; 默认路径
 	 (setq org-roam-directory "~/central-management-system/zotero/roam")  
-	 (setq org-roam-db-location "~/central-management-system/zotero/asset/zotero-roam.db"))
+	 (setq org-roam-db-location "~/central-management-system/zotero/zotero-roam.db"))
 	 ))
 
 

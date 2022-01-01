@@ -23,9 +23,10 @@
 (setq package-list '(
 		     which-key org-roam  rg company smartparens    avy   yasnippet link-hint grab-mac-link org-download  magit meow ace-pinyin ox-hugo rainbow-identifiers 
 		     doom-themes
-
-		     citar
-		     lsp-mode
+		     treemacs
+		     
+		     citar ;;citeproc
+		     lsp-mode  
 		     tree-sitter tree-sitter-langs
 		     
 		     ;; selectrum selectrum-prescient ctrlf
@@ -36,7 +37,8 @@
 		     ;;persp-mode  ryo-modal winum expand-region 
 		     ;;crux
 
-		     ;; telega	     visual-fill-column 
+		     ;;	      telega	     visual-fill-column
+		     ;; doom-modeline
 		     ))
 
 (dolist (package package-list)

@@ -1,5 +1,5 @@
 ;; -*- lexical-binding: t; -*-
-(setq imi-gtd-path "~/pkm-roam/roam2/gtd/")
+(setq imi-gtd-path "~/central-management-system/zotero/roam/gtd/")
 (setq imi-gtd-inbox-file (concat imi-gtd-path "inbox.org"))
 (setq imi-gtd-tickler-file (concat imi-gtd-path "tickler.org"))
 (setq imi-gtd-someday-file (concat imi-gtd-path "someday.org"))

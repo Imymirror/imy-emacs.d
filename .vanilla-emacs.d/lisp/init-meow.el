@@ -7,7 +7,7 @@
 (global-set-key (kbd "C-M-l") 'avy-goto-line) 
 
 ;; buffer
-;;(global-set-key (kbd "s-0") #'(lambda () (interactive) (imi-frame-switch-by-number 0)))
+(global-set-key (kbd "s-0") 'treemacs-select-window)
 (global-set-key (kbd "s-1") (lambda () (interactive) (imi-frame-switch-by-number 1)))
 (global-set-key (kbd "s-2") (lambda () (interactive) (imi-frame-switch-by-number 2)))
 (global-set-key (kbd "s-3") (lambda () (interactive) (imi-frame-switch-by-number 3)))
@@ -40,6 +40,7 @@
    '(  "s g" . consult-ripgrep)
    '(  "s f" . consult-find)
    '(  "s r" . consult-recent-file)
+   '(  "s R" . rg)
    '(  "s G" . consult-git-grep)
 
    ;; frame
@@ -69,6 +70,8 @@
    '(  "n t" . org-roam-tag-add)
    '(  "n i" . org-roam-node-insert)
    '(  "n s" . org-roam-db-sync)
+   '(  "n d" . org-roam-dailies-map)
+   
 
    ;; buffer
    '(  "b p" . persp-switch-to-buffer)
@@ -78,6 +81,10 @@
    '(  "b n" . next-buffer)
    '(  "b s" . imi-save-all-buffers)
 
+   ;; toggle
+   '(  "t f" . hs-hide-block)
+   '(  "t F" . hs-show-block)
+   
    ;; org/toggle
    '(  "o I" . imi-open-iTerm)
    '(  "o p" . imi-org-download-paste-clipboard)

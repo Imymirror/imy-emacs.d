@@ -1,5 +1,7 @@
 ;;  -*- lexical-binding: t; -*-
 
+;;(setq coding-system-for-read 'utf-8)
+
 (setq user-init-file (or load-file-name (buffer-file-name)))
 (setq user-emacs-directory (file-name-directory user-init-file))
 (add-to-list 'load-path (expand-file-name (concat user-emacs-directory "lisp")))
@@ -21,7 +23,7 @@
 (require 'init-org-mode)		        
 (require 'init-org-download)
 (require 'init-citar)
-					        
+				        
 ;; ;; completion system			        
 (require 'init-vertico)
 (require 'init-consult)		        
@@ -33,10 +35,4 @@
 					        
 (require 'init-mode-enable)
 
-
-
 (require 'init-custom)		        
-
-
-
-

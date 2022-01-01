@@ -22,10 +22,12 @@
 (setq org-cite-follow-processor 'citar)
 (setq org-cite-activate-processor 'citar)
 
-(define-key org-mode-map (kbd "C-c b") 'org-cite-insert)
+(define-key org-mode-map (kbd "C-c c c") 'org-cite-insert)
+(define-key org-mode-map (kbd "C-c c o") 'citar-open)
+(define-key org-mode-map (kbd "C-c c r") 'citar-refresh)
 
 (setq citar-templates
-      '((main . "${author editor:12} ${date year issued:4}  ${title:30}")
+      '((main . "${author editor:12} ${date year issued:4}  ${title:250}")
           (suffix . "  ${tags keywords keywords:20}")
  ;;       (suffix . "  ${=key= id:15}    ${=type=:12}    ${tags keywords:*}")
         (note . "Notes on ${author editor}, ${title}")))

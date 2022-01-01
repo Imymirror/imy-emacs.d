@@ -1,19 +1,23 @@
 ;;  -*- lexical-binding: t; -*-
 
 (defun imi-load-after-idle-time ()
-  (yas-global-mode 1)
+  (hs-minor-mode)
+ ;; (yas-global-mode 1)
   (smartparens-global-mode)
   ;;(winum-mode)
   (winner-mode)
   (delete-selection-mode)
   ;;(doom-modeline-mode)
-  (global-company-mode)
+;;  (global-company-mode)
+ (add-hook 'after-init-hook 'global-company-mode)
+ (add-hook 'after-init-hook 'yas-global-mode)
+
   (recentf-mode) ;; consult consult-recent-file
   (which-key-mode)
-  (ace-pinyin-global-mode))
+  (ace-pinyin-global-mode +1))
 
 ;; daemon 不允许 idle time，会死机
- (imi-load-after-idle-time)
+(imi-load-after-idle-time)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -24,7 +28,5 @@
 ;; 		 (imi-load-after-idle-time)			  	     ;;
 ;; 		 (cancel-timer setup-idle-time-once))))		  	     ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
 
 (provide 'init-mode-enable)
