@@ -18,7 +18,7 @@
 
 
 ;; install
-(straight-use-package 'el-patch)
+;; (straight-use-package 'el-patch)
 
 (setq package-list '(
 		     which-key org-roam  rg company smartparens    avy   yasnippet link-hint grab-mac-link org-download  magit meow ace-pinyin ox-hugo rainbow-identifiers 
@@ -31,7 +31,7 @@
 		     
 		     ;; selectrum selectrum-prescient ctrlf
 		     vertico orderless marginalia consult
-		     
+		     pomidor		     
 		     ;; swiper counsel	
 		     ;; org-ref ivy-bibtex hydra
 		     ;;persp-mode  ryo-modal winum expand-region 
@@ -39,6 +39,8 @@
 
 		     ;;	      telega	     visual-fill-column
 		     ;; doom-modeline
+
+		     org-mind-map org-contrib 
 		     ))
 
 (dolist (package package-list)

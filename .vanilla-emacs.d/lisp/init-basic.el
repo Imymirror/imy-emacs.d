@@ -16,7 +16,7 @@
 
 
 (setq ring-bell-function 'ignore)
-(setq inhibit-startup-screen t)
+;;(setq inhibit-startup-screen nil)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (menu-bar-mode 0)
@@ -27,7 +27,7 @@
 ;;(setq default-truncate-lines t) ;; not work
 ;; make side by side buffers function the same as the main window
 ;;(setq truncate-partial-width-windows nil)
-(add-hook 'org-mode-hook '(lambda () (toggle-truncate-lines nil) ))
+(add-hook 'org-mode-hook #'(lambda () (toggle-truncate-lines nil) ))
 
 
 (setq display-time-24hr-format t)

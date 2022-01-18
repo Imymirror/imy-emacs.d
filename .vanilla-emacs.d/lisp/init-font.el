@@ -1,7 +1,7 @@
 ;;  -*- lexical-binding: t; -*-
 
 ;;(set-face-attribute 'default nil :height 140 :weight 'regular :width 'normal :family "PingFang SC")
-(set-face-attribute 'default nil :height 150)
+ (set-face-attribute 'default nil :height 140)
 
 ;; mode-line
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

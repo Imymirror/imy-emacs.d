@@ -9,8 +9,8 @@
 (setq org-roam-dailies-directory imi-roam-daily-path)
 
 (setq org-roam-dailies-capture-templates
-      '(("d" "default" entry "* TODO %<%I:%M %p>: %?"
-         :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
+      '(("d" "default" entry "* TODO %<%Y-%m-%d %I:%M %p>: %?"
+         :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n#+TODO: TODO(t!) WAIT(w@/!) | DONE(d!) CANCELED(c@)\n"))))
 
 ;; roam directory
 (defun imy/switch-roam-directory (x)
@@ -18,10 +18,10 @@
   (interactive "nEnter 1.roam2 2.memory: ")
   (cond ((= x 1)   
 	 (setq org-roam-directory "~/central-management-system/pkm-roam/roam2")  
-	 (setq org-roam-db-location "~/pkm-roam/roam2-org-roam.db"))
+	 (setq org-roam-db-location "~/central-management-system/pkm-roam/roam2.db"))
 	((= x 2)   
 	 (setq org-roam-directory "~/central-management-system/pkm-roam/yinye")  
-	 (setq org-roam-db-location "~/pkm-roam/roam-yinye-org-roam.db"))
+	 (setq org-roam-db-location "~/central-management-system/pkm-roam/roam-yinye.db"))
 	((= x 3)   
 	 (setq org-roam-directory "~/central-management-system/zotero/roam")  
 	 (setq org-roam-db-location "~/central-management-system/zotero/zotero-roam.db"))
@@ -33,6 +33,12 @@
 
 
 (imy/switch-roam-directory 3)
+
+;; (setq org-roam-directory "~/central-management-system/pkm-roam/roam0")
+;; (setq org-roam-db-location "~/central-management-system/pkm-roam/roam0.db")
+;; (setq org-roam-directory "~/central-management-system/pkm-roam/memory")
+;; (setq org-roam-db-location "~/central-management-system/pkm-roam/roam-memory.db")
+
 
 (defun imy/switch-to-roam2() (interactive) (imy/switch-roam-directory 1))
 (global-set-key (kbd "<f7>") 'imy/switch-to-roam2)

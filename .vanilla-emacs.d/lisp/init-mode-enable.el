@@ -1,17 +1,18 @@
 ;;  -*- lexical-binding: t; -*-
 
 (defun imi-load-after-idle-time ()
-  (hs-minor-mode)
- ;; (yas-global-mode 1)
+ ;;  (hs-minor-mode)
+  ;; (yas-global-mode 1)
   (smartparens-global-mode)
   ;;(winum-mode)
   (winner-mode)
   (delete-selection-mode)
   ;;(doom-modeline-mode)
-;;  (global-company-mode)
- (add-hook 'after-init-hook 'global-company-mode)
- (add-hook 'after-init-hook 'yas-global-mode)
-
+  (global-company-mode +1)
+  (yas-global-mode +1)
+  ;; (add-hook 'after-init-hook 'global-company-mode)
+  ;; (add-hook 'after-init-hook 'yas-global-mode)
+  
   (recentf-mode) ;; consult consult-recent-file
   (which-key-mode)
   (ace-pinyin-global-mode +1))
