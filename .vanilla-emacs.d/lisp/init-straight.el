@@ -39,8 +39,9 @@
 
 		     ;;	      telega	     visual-fill-column
 		     ;; doom-modeline
+		     ;; org-contrib ;; 不用 freemind 
 
-		     org-mind-map org-contrib 
+		     org-mind-map
 		     ))
 
 (dolist (package package-list)

@@ -25,7 +25,7 @@
 (require 'init-org-download)
 (require 'init-citar)
 (require 'init-pomodoro)
-(require ')
+(require 'init-mind-map)
 
 ;; ;; completion system			        
 (require 'init-vertico)
@@ -40,7 +40,5 @@
 
 (with-eval-after-load 'ox
   (require 'ox-hugo))
-
-
 
 (require 'init-custom)		        

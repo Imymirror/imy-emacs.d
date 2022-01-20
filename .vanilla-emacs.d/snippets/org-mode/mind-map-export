@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: minde
+# key: minde
+# --
+#+EXPORT_FILE_NAME: ./mindmap/`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`
