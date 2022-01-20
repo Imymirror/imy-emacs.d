@@ -2,7 +2,7 @@
 ;; init-package.el -*- lexical-binding: t; -*-
 
 (require 'package)
-(setq package-user-dir imi-package-path)
+(setq package-user-dir imi/package-path)
 (setq package-enable-at-startup nil)
 (setq package-archives '(
 			 ("gnu" . "http://elpa.emacs-china.org/gnu/")

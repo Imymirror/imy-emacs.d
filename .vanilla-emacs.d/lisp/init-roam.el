@@ -6,7 +6,7 @@
 
 ;; daily
 (require 'org-roam-dailies)
-(setq org-roam-dailies-directory imi-roam-daily-path)
+(setq org-roam-dailies-directory imi/roam-daily-path)
 
 (setq org-roam-dailies-capture-templates
       '(("d" "default" entry "* TODO %<%Y-%m-%d %I:%M %p>: %?"

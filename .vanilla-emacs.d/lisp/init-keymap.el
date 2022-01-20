@@ -18,8 +18,8 @@
 
 (global-set-key (kbd "C-c w m")  'delete-other-windows)
 (global-set-key (kbd "C-c w C-w")  'other-window)
-(global-set-key (kbd "C-c w C-r")  'imi-window-jump-right)
-(global-set-key (kbd "C-c w C-b")  'imi-window-jump-below)
+(global-set-key (kbd "C-c w C-r")  'imi/window-jump-right)
+(global-set-key (kbd "C-c w C-b")  'imi/window-jump-below)
 (global-set-key (kbd "C-c w C-d")  'delete-window)
 (global-set-key (kbd "C-c w C-h")  'windmove-left)
 (global-set-key (kbd "C-c w C-l")  'windmove-right)
@@ -36,24 +36,24 @@
 (global-set-key (kbd "C-c b C-k") 'kill-this-buffer)
 (global-set-key (kbd "C-c b C-p") 'previous-buffer)
 (global-set-key (kbd "C-c b C-n") 'next-buffer)
-(global-set-key (kbd "C-c b C-s") 'imi-save-all-buffers)
+(global-set-key (kbd "C-c b C-s") 'imi/save-all-buffers)
 
 ;; toogle
-(global-set-key (kbd "C-c o C-i") 'imi-open-iTerm)
-(global-set-key (kbd "C-c o C-p") 'imi-org-download-paste-clipboard)
+(global-set-key (kbd "C-c o C-i") 'imi/open-iTerm)
+(global-set-key (kbd "C-c o C-p") 'imi/org-download-paste-clipboard)
 (global-set-key (kbd "C-c o C-s") 'shell)
 (global-set-key (kbd "C-c o C-l") 'link-hint-open-link)
 (global-set-key (kbd "C-c o C-c") 'grab-mac-link-dwim)
-(global-set-key (kbd "C-c o C-o") 'imi-reveal-in-finder)
+(global-set-key (kbd "C-c o C-o") 'imi/reveal-in-finder)
 (global-set-key (kbd "C-c o C-b") 'persp-switch-to-buffer)
 
 
-(global-set-key (kbd "C-c C-0") 'imi-persp-switch-to-0)
-(global-set-key (kbd "C-c C-1") 'imi-persp-switch-to-1)
-(global-set-key (kbd "C-c C-2") 'imi-persp-switch-to-2)
-(global-set-key (kbd "C-c C-3") 'imi-persp-switch-to-3)
-(global-set-key (kbd "C-c C-4") 'imi-persp-switch-to-4)
-(global-set-key (kbd "C-c C-5") 'imi-persp-switch-to-5)
+(global-set-key (kbd "C-c C-0") 'imi/persp-switch-to-0)
+(global-set-key (kbd "C-c C-1") 'imi/persp-switch-to-1)
+(global-set-key (kbd "C-c C-2") 'imi/persp-switch-to-2)
+(global-set-key (kbd "C-c C-3") 'imi/persp-switch-to-3)
+(global-set-key (kbd "C-c C-4") 'imi/persp-switch-to-4)
+(global-set-key (kbd "C-c C-5") 'imi/persp-switch-to-5)
 
  
 (provide 'init-keymap)

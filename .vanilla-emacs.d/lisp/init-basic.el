@@ -8,7 +8,7 @@
 (setq
      backup-by-copying t ; 自动备份
      backup-directory-alist
-     `(("." . ,imi-backup-path)) ; 自动备份在指定目录下
+     `(("." . ,imi/backup-path)) ; 自动备份在指定目录下
      delete-old-versions t ; 自动删除旧的备份文件
      kept-new-versions 3 ; 保留最近的3个备份文件
      kept-old-versions 1 ; 保留最早的1个备份文件

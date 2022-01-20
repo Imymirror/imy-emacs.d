@@ -2,7 +2,7 @@
 
 (require 'org-download)
 
-(defun imi-im-file-name ()
+(defun imi/im-file-name ()
   "copy buffer's full path to kill ring"
   (interactive)
   (when buffer-file-name
@@ -10,11 +10,11 @@
      ;; (file-name-nondirectory  (file-truename buffer-file-name))))
      (file-name-sans-extension (buffer-name))))
 
-(defun imi-org-download-paste-clipboard (&optional use-default-filename)
+(defun imi/org-download-paste-clipboard (&optional use-default-filename)
   (interactive "P")
   (insert "#+ATTR_ORG: :width 500 ")
 
-  (setq org-download-image-dir (concat "images/" (imi-im-file-name)))
+  (setq org-download-image-dir (concat "images/" (imi/im-file-name)))
   (let ((file
          (if (not use-default-filename)
              (read-string (format "Filename [%s]: " org-download-screenshot-basename)

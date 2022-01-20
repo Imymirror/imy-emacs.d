@@ -21,12 +21,12 @@
 ;; persp
 (ryo-modal-key
  "SPC" '(
-	 ("0" imi-persp-switch-to-0)
-	 ("1" imi-persp-switch-to-1)
-	 ("2" imi-persp-switch-to-2)
-	 ("3" imi-persp-switch-to-3)
-	 ("4" imi-persp-switch-to-4)
-	 ("5" imi-persp-switch-to-5)
+	 ("0" imi/persp-switch-to-0)
+	 ("1" imi/persp-switch-to-1)
+	 ("2" imi/persp-switch-to-2)
+	 ("3" imi/persp-switch-to-3)
+	 ("4" imi/persp-switch-to-4)
+	 ("5" imi/persp-switch-to-5)
 	 ("b B" persp-switch-to-buffer)))
 
 (ryo-modal-key
@@ -47,12 +47,12 @@
 ;; open/org
 (ryo-modal-key
  "SPC" '(
-	 ("o I" imi-open-iTerm)
-	 ("o i" imi-org-download-paste-clipboard)
+	 ("o I" imi/open-iTerm)
+	 ("o i" imi/org-download-paste-clipboard)
 	 ("o s" shell)
 	 ("o l" link-hint-open-link)
 	 ("o g" grab-mac-link-dwim)
-	 ("o o" imi-reveal-in-finder))) 
+	 ("o o" imi/reveal-in-finder))) 
 
 ;; roam 
 (ryo-modal-key
@@ -68,7 +68,7 @@
 	 ("b k" kill-this-buffer)
 	 ("b p" previous-buffer)
 	 ("b n" next-buffer)
-	 ("b s" imi-save-all-buffers))) 
+	 ("b s" imi/save-all-buffers))) 
 
 
 ;; window
@@ -76,8 +76,8 @@
  "SPC" '(
 	 ("w m" delete-other-windows)
 	 ("w w" other-window)
-	 ("w r" imi-window-jump-right )
-	 ("w b" imi-window-jump-below )
+	 ("w r" imi/window-jump-right )
+	 ("w b" imi/window-jump-below )
 	 ("w d"  delete-window)
 	 ("w h" windmove-left )
 	 ("w l" windmove-right )
@@ -139,7 +139,7 @@
  ("g m" pop-to-mark-command)
  
  ;; Editing/marking
- ("r" imi-replace-char-at-point)
+ ("r" imi/replace-char-at-point)
  ("R" query-replace)
  ("u" undo)
  ("U" undo-redo)
@@ -151,10 +151,10 @@
  ("O" crux-smart-open-line-above :exit t)
  ("p" yank)
  ("P" yank-rectangle)
- ("N" imi-narrow-or-widen-dwim)
+ ("N" imi/narrow-or-widen-dwim)
 
  ;; Change/replace (c keyword)
- ("c c" imi-change-current-line :exit t)
+ ("c c" imi/change-current-line :exit t)
  ("c w" kill-word :exit t)
  ;; ("c l" avy-kill-whole-line :exit t)
  ("c b" backward-kill-word :exit t)
@@ -177,7 +177,7 @@
 
  ;; Copying (y verb)
  ("y e" kill-ring-save)
- ("y y" imi-copy-line)
+ ("y y" imi/copy-line)
  ("y l" avy-kill-ring-save-whole-line)
  ("y w" kill-word :name "save-word" :then '(yank))
 
@@ -197,7 +197,7 @@
  ("v m" set-mark-command)
  
  ;; Move (m verb)
- ("m m" imi-move-current-line)
+ ("m m" imi/move-current-line)
  ("m r" avy-move-region)
  ("m l" avy-move-line)
 
@@ -208,8 +208,8 @@
 
 ;; 这三个毫无用处
 ;;(ryo-modal-key "SPC o o"  'org-cycle :mode 'org-mode)
-;;(ryo-modal-key "SPC o b"  'imi-worf-beginning-of-line :mode 'org-mode )
-;;(ryo-modal-key "SPC o t"  'imi-worf-shifttab :mode 'org-mode )
+;;(ryo-modal-key "SPC o b"  'imi/worf-beginning-of-line :mode 'org-mode )
+;;(ryo-modal-key "SPC o t"  'imi/worf-shifttab :mode 'org-mode )
 
 (global-set-key (kbd "C-M-s-)") 'telega) 
 

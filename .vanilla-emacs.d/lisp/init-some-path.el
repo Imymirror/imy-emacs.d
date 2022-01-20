@@ -3,12 +3,12 @@
 (setq sensitive-path "~/private/sensitive.el")
 (when (file-exists-p "~/private/") (load sensitive-path))
 
-(setq imi-persp-path "~/env/emacs/vanilla/persp-confs/01-imi-persp-auto-save.persp")
+(setq imi/persp-path "~/env/emacs/vanilla/persp-confs/01-imi/persp-auto-save.persp")
 (setq persp-save-dir (expand-file-name "persp-confs/" "~/env/emacs/vanilla/"))
 
-(setq imi-package-path "~/env/emacs/vanilla/packages")
-(setq imi-backup-path  "~/env/emacs/vanilla/backup")
-(setq imi-roam-daily-path  "~/central-management-system/zotero/roam/daily/")
+(setq imi/package-path "~/env/emacs/vanilla/packages")
+(setq imi/backup-path  "~/env/emacs/vanilla/backup")
+(setq imi/roam-daily-path  "~/central-management-system/zotero/roam/daily/")
 
 ;; proxy
 (setq url-proxy-services
