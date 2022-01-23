@@ -14,5 +14,11 @@
   (start-process "my-process" "blog-export" "sh" "/Users/fuhongxue/.emacs.d/shell/blog-preview.sh" "/bin")
 (run-with-timer 1 nil (lambda () (browse-url "http://localhost:1313"))))
 
+(defun imi/blog-publish ()
+  "publish blog online"
+  (interactive)
+    (start-process "my-process" "blog-export" "sh" "/Users/fuhongxue/.emacs.d/shell/blog-publish.sh" "/bin"))
+
+
 
 (provide 'init-blog)

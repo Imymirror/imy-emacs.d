@@ -2,13 +2,11 @@
 # name: blog-template
 # key: blogtemplate
 # --
-#+hugo_base_dir: ../
+#+hugo_base_dir: ./
 #+hugo_section: ./
 
 #+hugo_weight: 2001
 #+hugo_auto_set_lastmod: t
-
-#+title: $1
 
 #+date: `(format-time-string "%Y-%m-%d")`
 #+author: Imymirror
