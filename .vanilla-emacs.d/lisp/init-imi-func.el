@@ -214,7 +214,10 @@ containing the current file by the default explorer."
         (message "No file associated to this buffer.")))))
 
 
-
+(defun imi/backup-emacs ()
+  "backup emacs configuration to github"
+  (interactive)
+  (start-process "my-process" "automation" "sh" "/Users/fuhongxue/.emacs.d/shell/emacs-backup.sh" "/bin"))
 
 
 (provide 'init-imi-func)

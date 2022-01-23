@@ -4,7 +4,8 @@
   (interactive)
   (shell-command-to-string "sh ~/.emacs.d/shell/blog-export-copy-to-org-dir.sh")
   (org-hugo-export-to-md)
-  (shell-command-to-string "sh ~/.emacs.d/shell/blog-export-copy-to-github-dir.sh"))
+  (shell-command-to-string "sh ~/.emacs.d/shell/blog-export-copy-to-github-dir.sh")
+  (imi/blog-preview))
 
 
 (defun imi/blog-preview ()
@@ -17,11 +18,8 @@
 (defun imi/blog-publish ()
   "publish blog online"
   (interactive)
-    (start-process "my-process" "automation" "sh" "/Users/fuhongxue/.emacs.d/shell/blog-publish.sh" "/bin"))
+  (start-process "my-process" "automation" "sh" "/Users/fuhongxue/.emacs.d/shell/blog-publish.sh" "/bin")
+  (run-with-timer 1 nil (lambda () (browse-url "https://imymirror.github.io/"))))
 
-(defun imi/backup-emacs ()
-  "backup emacs configuration to github"
-  (interactive)
-  (start-process "my-process" "automation" "sh" "/Users/fuhongxue/.emacs.d/shell/emacs-backup.sh" "/bin"))
 
 (provide 'init-blog)
