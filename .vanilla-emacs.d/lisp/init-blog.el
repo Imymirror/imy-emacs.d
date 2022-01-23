@@ -22,6 +22,6 @@
 (defun imi/backup-emacs ()
   "backup emacs configuration to github"
   (interactive)
-  (shell-command-to-string "sh ~/.emacs.d/shell/emacs-backup.sh"))
+  (start-process "my-process" "blog-export" "sh" "/Users/fuhongxue/.emacs.d/shell/emacs-backup.sh" "/bin"))
 
 (provide 'init-blog)
