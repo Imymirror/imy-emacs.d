@@ -19,6 +19,9 @@
   (interactive)
     (start-process "my-process" "blog-export" "sh" "/Users/fuhongxue/.emacs.d/shell/blog-publish.sh" "/bin"))
 
-
+(defun imi/backup-emacs ()
+  "backup emacs configuration to github"
+  (interactive)
+  (shell-command-to-string "sh ~/.emacs.d/shell/emacs-backup.sh"))
 
 (provide 'init-blog)
