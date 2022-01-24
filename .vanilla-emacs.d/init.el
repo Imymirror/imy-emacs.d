@@ -26,7 +26,7 @@
 (require 'init-citar)
 (require 'init-pomodoro)
 (require 'init-mind-map)
-(require 'init-blog)
+(require 'init-automation)
 
 ;; ;; completion system			        
 (require 'init-vertico)
