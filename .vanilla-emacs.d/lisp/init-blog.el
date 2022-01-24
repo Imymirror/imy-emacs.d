@@ -1,4 +1,8 @@
 ;;  -*- lexical-binding: t; -*-
+
+;; 生成 TOC
+(setq org-hugo-export-with-toc t)  
+
 (defun imi/blog-export ()
   "export org blog to github"
   (interactive)
