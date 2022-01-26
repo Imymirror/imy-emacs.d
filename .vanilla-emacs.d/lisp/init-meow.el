@@ -31,7 +31,14 @@
    ;;'("/" . meow-keypad-describe-key)
    ;;'("?" . meow-cheatsheet)
    '("." . find-file)
-   
+
+   ;; automation
+   '(  "a e" . imi/backup-emacs)
+   '(  "a z" . imi/backup-zotero)
+   '(  "a m" . imi/org-mind-map-open-html)
+   '(  "a b e" . imi/blog-export)
+   '(  "a b p" . imi/blog-publish)
+
    ;; consult
    '(  "s l" . consult-line)
    '(  "s b" . consult-buffer)
@@ -42,7 +49,12 @@
    '(  "s r" . consult-recent-file)
    '(  "s R" . rg)
    '(  "s G" . consult-git-grep)
+   
+   ;; surround
+   '(  "S t" . imi/surround-tilde)
+   '(  "S S" . imi/surround-pair)
 
+   
    ;; frame
    '(  "f n" . make-frame)
    '(  "f d" . delete-frame)

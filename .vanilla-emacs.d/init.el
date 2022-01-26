@@ -25,7 +25,6 @@
 (require 'init-org-download)
 (require 'init-citar)
 (require 'init-pomodoro)
-(require 'init-mind-map)
 (require 'init-automation)
 
 ;; ;; completion system			        

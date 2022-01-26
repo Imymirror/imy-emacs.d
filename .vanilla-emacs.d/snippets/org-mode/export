@@ -2,11 +2,7 @@
 # name: export
 # key: export
 # --
-#+LATEX: \newpage
-#+LATEX_COMPILER: xelatex
-#+LATEX_HEADER: \usepackage{ctex}
-#+LATEX_HEADER: \usepackage[utf8]{inputenc}
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+
+#+SETUPFILE: ~/central-management-system/zotero/asset/imi-standard-latex-export.org 
 #+EXPORT_FILE_NAME: ./exports/`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`
-#+cite_export: csl ../data/styles/ieee.csl
-#+print_bibliography:
+

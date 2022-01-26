@@ -12,6 +12,11 @@
       '(("d" "default" entry "* TODO %<%Y-%m-%d %I:%M %p>: %?"
          :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n#+TODO: TODO(t!) WAIT(w@/!) | DONE(d!) CANCELED(c@)\n"))))
 
+
+(setq org-roam-capture-templates '(("d" "default" plain "%?" :target
+  (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n\n* References \n# #+print_bibliography:")
+  :unnarrowed t)))
+
 ;; roam directory
 (defun imi/switch-roam-directory (x)
   "switch roam directory : 1.original  2.memory"

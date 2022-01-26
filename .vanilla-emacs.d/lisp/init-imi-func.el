@@ -215,5 +215,27 @@ containing the current file by the default explorer."
 
 
 
+;; from https://www.emacswiki.org/emacs/SurroundRegion
+(defun imi/surround (begin end open close)
+  "Put OPEN at START and CLOSE at END of the region.
+If you omit CLOSE, it will reuse OPEN."
+;;  (interactive  "r\nsStart: \nsEnd: ")
+  (when (string= close "")
+    (setq close open))
+  (save-excursion
+    (goto-char end)
+    (insert close)
+    (goto-char begin)
+    (insert open)))
+
+(defun imi/surround-pair (begin end schar)
+  "Surround with schar"
+  (interactive "r\nsChar: \n")
+  (imi/surround begin end schar schar))
+
+(defun imi/surround-tilde (begin end)
+  "Surround with tilde."
+  (interactive "r\n")
+  (imi/surround begin end "~" "~"))
 
 (provide 'init-imi-func)

@@ -2,6 +2,7 @@
 
 ;; blog 相关 export,preview,publish
 (require 'init-blog)
+(require 'init-mind-map)
 
 ;; 自动备份 emacs 配置
 (defun imi/backup-emacs ()
