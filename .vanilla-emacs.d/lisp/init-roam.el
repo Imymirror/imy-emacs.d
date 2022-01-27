@@ -14,7 +14,7 @@
 
 
 (setq org-roam-capture-templates '(("d" "default" plain "%?" :target
-  (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n\n* References \n# #+print_bibliography:")
+  (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n\n* references \n# #+print_bibliography:")
   :unnarrowed t)))
 
 ;; roam directory
