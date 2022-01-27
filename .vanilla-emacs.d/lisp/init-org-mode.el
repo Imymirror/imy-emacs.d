@@ -7,6 +7,7 @@
 
 (require 'ox-org)
 
+;; export
 (add-to-list 'org-latex-classes
     '("org-plain-latex"
     "\\documentclass{article}[102pt,letterpaper]
@@ -18,5 +19,7 @@
     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
     ("\\paragraph{%s}" . "\\paragraph*{%s}")
     ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+
 
 (provide 'init-org-mode)

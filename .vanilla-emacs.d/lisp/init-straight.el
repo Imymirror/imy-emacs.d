@@ -47,6 +47,11 @@
 (dolist (package package-list)
   (straight-use-package package))
 
+
+;; (straight-use-package
+;;  '( org-html-themify :type git :host github :repo "DogLooksGood/org-html-themify" :files ("*.el" "*.js" "*.css")
+;;     ))
+
 ;; (straight-use-package
 ;;  '(el-patch :type git :host github :repo "zevlg/telega.el" :commit "26fee82fac70d55ade55381b475e865d99dde496"
 ;; 	    ))
