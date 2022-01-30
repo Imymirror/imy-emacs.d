@@ -5,7 +5,7 @@
  ;; use consult-completing-read for enhanced interface
 ;; (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
 
-(defconst robo/bib-libraries (list "~/central-management-system/zotero/export/My Library.bib"  )) ; All of my bib databases.
+(defconst robo/bib-libraries (list "~/central-management-system/zotero/asset/My Library.bib"  )) ; All of my bib databases.
 ;;(defconst robo/main-bib-library (nth 0 robo/bib-libraries))         ; The main db is always the first
 (defconst robo/main-pdfs-library-paths `("~/central-management-system/zotero/export/My Library/files" "~/central-management-system/zotero/roam")) ; PDFs directories in a list
 ;;(defconst robo/main-pdfs-library-path (nth 0 robo/main-pdfs-library-paths)) ; Main PDFs directory

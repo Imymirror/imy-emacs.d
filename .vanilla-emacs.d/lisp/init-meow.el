@@ -98,6 +98,8 @@
    ;; toggle
    '(  "t f" . hs-hide-block)
    '(  "t F" . hs-show-block)
+   '(  "t r" . imi/restart-emacs)
+   '(  "t e" . eval-buffer)
    
    ;; org/toggle
    '(  "o I" . imi/open-iTerm)

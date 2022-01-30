@@ -15,9 +15,10 @@ If TREENAMEP is non-nil include in the filename the name of the top level header
 (defun imi/org-mind-map-open-html ()
   "open org mind map html"
   (interactive)
-  (let* ((output-filename (concat "./mindmap/" (imi/org-mind-map-open-filename nil))))
-    (org-md-export-to-markdown (concat output-filename ".md"))
-    (start-process "" nil "markmap"  (concat output-filename ".md"))))
+  (let* ((output-filename (concat "/Users/fuhongxue/central-management-system/zotero/export/" (imi/org-mind-map-open-filename nil))))
+    (org-md-export-to-markdown)
+    (start-process "" nil "markmap"  (concat output-filename ".md"))
+    ))
 
 ;; (require 'ox-freemind) ;; 有缺陷，headerline 的层级过深就会消失
 

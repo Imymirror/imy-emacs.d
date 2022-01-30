@@ -4,5 +4,5 @@
 # --
 
 #+SETUPFILE: ~/central-management-system/zotero/asset/imi-standard-latex-export.org 
-#+EXPORT_FILE_NAME: ./exports/`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`
+#+EXPORT_FILE_NAME: /Users/fuhongxue/central-management-system/zotero/export/`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`
 

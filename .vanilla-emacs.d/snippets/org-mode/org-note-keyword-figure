@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: org-note-keyword-figure
+# key: kfi
+# --
+~figure~

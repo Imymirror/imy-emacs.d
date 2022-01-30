@@ -34,9 +34,9 @@
                            (imi/gtd-reference-file :maxlevel . 2)
 			   ))
 
-(setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
+;; (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
+(setq org-todo-keywords '((sequence "TODO(t!)" "WAITING(w@/!)" "|" "DONE(d!)" "CANCELLED(c@)")))
 
-(setq org-agenda-files (list imi/gtd-inbox-file imi/gtd-gtd-file imi/gtd-tickler-file))
 
 (setq org-agenda-custom-commands 
       '(("o" "At the office" tags-todo "@office"
