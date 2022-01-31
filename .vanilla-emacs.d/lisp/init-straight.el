@@ -42,6 +42,9 @@
 		     ;; org-contrib ;; 不用 freemind 
 
 		     org-mind-map
+
+		     ;; beautify
+		     org-bullets
 		     ))
 
 (dolist (package package-list)

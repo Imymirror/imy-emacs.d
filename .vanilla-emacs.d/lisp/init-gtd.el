@@ -31,7 +31,7 @@
 (setq org-refile-targets '((imi/gtd-gtd-file :maxlevel . 3)
                            (imi/gtd-someday-file :level . 1)
                            (imi/gtd-tickler-file :maxlevel . 2)
-                           (imi/gtd-reference-file :maxlevel . 2)
+                           (imi/gtd-reference-file :maxlevel . 1)
 			   ))
 
 ;; (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))

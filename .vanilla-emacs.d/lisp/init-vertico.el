@@ -3,6 +3,8 @@
 (vertico-mode)
 (marginalia-mode)
 
+(require 'vertico-buffer)
+
 ;; from purcell
 (defun sanityinc/use-orderless-in-minibuffer ()
   (setq-local completion-styles '(substring orderless)))

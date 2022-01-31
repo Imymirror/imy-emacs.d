@@ -11,7 +11,7 @@
   (start-process "my-process" "automation" "sh" "/Users/fuhongxue/.emacs.d/shell/emacs-backup.sh" "/bin"))
 
 (defun imi/backup-zotero ()
-  "backup emacs configuration to github"
+  "backup emacs configuration, Programming-source-code-analysis to github"
   (interactive)
   (start-process "my-process" "automation" "sh" "/Users/fuhongxue/.emacs.d/shell/zotero-backup.sh" "/bin"))
 

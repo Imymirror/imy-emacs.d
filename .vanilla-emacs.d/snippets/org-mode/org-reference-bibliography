@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: org-reference-bibliography
+# key: >hrb
+# --
+* reference
+# #+print_bibliography:
