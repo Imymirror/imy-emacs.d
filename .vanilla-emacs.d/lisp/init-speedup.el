@@ -40,7 +40,4 @@ If you experience freezing, decrease this. If you experience stuttering, increas
                                   (garbage-collect))))
 (add-hook 'after-focus-change-function 'garbage-collect))))
 
-
-
-
 (provide 'init-speedup)

@@ -1,6 +1,9 @@
 ;;  -*- lexical-binding: t; -*-
 
 (defun imi/load-after-idle-time ()
+   (add-hook 'after-init-hook #'doom-modeline-mode)
+
+  
  ;;  (hs-minor-mode)
   ;; (yas-global-mode 1)
   (smartparens-global-mode)
@@ -19,6 +22,8 @@
 
 ;; daemon 不允许 idle time，会死机
 (imi/load-after-idle-time)
+
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

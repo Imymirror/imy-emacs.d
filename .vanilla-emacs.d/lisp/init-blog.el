@@ -1,5 +1,7 @@
 ;;  -*- lexical-binding: t; -*-
 
+(with-eval-after-load 'ox  (require 'ox-hugo))
+
 ;; 生成 TOC
 (setq org-hugo-export-with-toc t)  
 

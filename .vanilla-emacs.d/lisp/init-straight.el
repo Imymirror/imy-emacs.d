@@ -21,7 +21,8 @@
 ;; (straight-use-package 'el-patch)
 
 (setq package-list '(
-		     which-key org-roam  rg company smartparens    avy   yasnippet link-hint grab-mac-link org-download  magit meow ace-pinyin ox-hugo rainbow-identifiers 
+		     which-key org-roam  rg company smartparens    avy   yasnippet link-hint grab-mac-link org-download  magit meow ace-pinyin ox-hugo rainbow-identifiers
+			       projectile
 		     doom-themes
 		     treemacs
 		     
@@ -30,25 +31,31 @@
 		     tree-sitter tree-sitter-langs
 		     
 		     ;; selectrum selectrum-prescient ctrlf
-		     vertico orderless marginalia consult
-		     pomidor		     
-		     ;; swiper counsel	
-		     ;; org-ref ivy-bibtex hydra
-		     ;;persp-mode  ryo-modal winum expand-region 
-		     ;;crux
-
-		     ;;	      telega	     visual-fill-column
-		     ;; doom-modeline
-		     ;; org-contrib ;; 不用 freemind 
+		     ;; vertico
+		     orderless marginalia consult  embark
+		     embark-consult
+		     pomidor
+		     
+	      doom-modeline
 
 		     org-mind-map
 
 		     ;; beautify
-		     org-bullets
+		     org-bullets	 spacemacs-theme
 		     ))
 
 (dolist (package package-list)
   (straight-use-package package))
+
+(straight-use-package '( vertico :files (:defaults "extensions/*")
+                         :includes (vertico-buffer
+                                    vertico-directory
+                                    vertico-flat
+                                    vertico-indexed
+                                    vertico-mouse
+                                    vertico-quick
+                                    vertico-repeat
+                                    vertico-reverse)))
 
 
 ;; (straight-use-package

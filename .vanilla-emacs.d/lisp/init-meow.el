@@ -115,6 +115,7 @@
    '(  "o L" . org-toggle-link-display)
    '(  "o f" . org-footnote-new)
    '(  "o F" . org-footnote-goto-definition)
+   '(  "o y" . yas-insert-snippet)
    
    ;; SPC j/k will run the original command in MOTION state.
    '("j" . "H-j")

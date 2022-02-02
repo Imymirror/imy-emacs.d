@@ -19,7 +19,7 @@
 
 (defun imi/switch-to-roam-subject (x)
   "A new way to take notes. classified by subject."
-  (interactive "nEnter 1:zettlekasten  2: \n")
+  (interactive "nEnter 1:zettlekasten  2:zotero/roam \n")
   (cond ((= x 1)   
 	 (setq org-roam-directory "~/central-management-system/zotero/zettlekasten")  
 	 (setq org-roam-db-location "~/central-management-system/zotero/roam-db/zettlekasten-emacs.db"))
@@ -55,7 +55,7 @@
 	 ))
 
 
-(imi/switch-roam-directory 3)
+(imi/switch-to-roam-subject 1)
 
 ;; (setq org-roam-directory "~/central-management-system/pkm-roam/roam0")
 ;; (setq org-roam-db-location "~/central-management-system/pkm-roam/roam0.db")
