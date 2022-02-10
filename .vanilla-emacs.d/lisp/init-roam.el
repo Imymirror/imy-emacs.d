@@ -8,9 +8,14 @@
 (require 'org-roam-dailies)
 (setq org-roam-dailies-directory imi/roam-daily-path)
 
+;; (setq org-roam-dailies-capture-templates
+;;       '(("d" "default" entry "* TODO %<%Y-%m-%d %I:%M %p>: %?"
+;;          :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n#+TODO: TODO(t!) WAIT(w@/!) | DONE(d!) CANCELED(c@)\n"))))
+
 (setq org-roam-dailies-capture-templates
       '(("d" "default" entry "* TODO %<%Y-%m-%d %I:%M %p>: %?"
-         :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n#+TODO: TODO(t!) WAIT(w@/!) | DONE(d!) CANCELED(c@)\n"))))
+         :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
+
 
 
 (setq org-roam-capture-templates '(("d" "default" plain "%?" :target

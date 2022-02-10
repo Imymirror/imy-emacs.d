@@ -41,3 +41,4 @@
 
 
 (require 'init-custom)		        
+(put 'scroll-left 'disabled nil)

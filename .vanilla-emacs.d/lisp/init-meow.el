@@ -105,7 +105,7 @@
    ;; org/toggle
    '(  "o I" . imi/open-iTerm)
    '(  "o p" . imi/org-download-paste-clipboard)
-   '(  "o s" . shell)
+   '(  "o s" . eshell)
    '(  "o l" . link-hint-open-link)
    '(  "o g" . grab-mac-link-dwim)
    '(  "o G" . magit-status)
