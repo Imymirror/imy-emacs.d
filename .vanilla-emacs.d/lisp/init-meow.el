@@ -82,7 +82,9 @@
    '(  "n t" . org-roam-tag-add)
    '(  "n i" . org-roam-node-insert)
    '(  "n s" . org-roam-db-sync)
-   '(  "n S" . imi/switch-to-roam-subject)
+   '(  "n S 1" . imi/switch-roam-directory)
+   '(  "n S 2" . imi/switch-to-roam-engineering)
+
    '(  "n d" . org-roam-dailies-map)
    '(  "n f c" . (lambda () (interactive) (org-roam-node-find nil "#collection ") ))
    '(  "n f n" . (lambda () (interactive) (org-roam-node-find nil "#note ") ))

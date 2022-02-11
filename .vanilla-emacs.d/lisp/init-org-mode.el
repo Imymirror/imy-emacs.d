@@ -5,6 +5,7 @@
 
 (setq org-footnote-auto-adjust t)
 (setq org-cycle-include-plain-lists 'integrate)
+;; (setq org-cycle-include-plain-lists t)
 
 
 (require 'ox-org)
