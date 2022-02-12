@@ -15,5 +15,4 @@
   (interactive)
   (start-process "my-process" "automation" "sh" "/Users/fuhongxue/.emacs.d/shell/zotero-backup.sh" "/bin"))
 
-
 (provide 'init-automation)

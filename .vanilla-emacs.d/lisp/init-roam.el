@@ -2,6 +2,13 @@
 
 (setq org-roam-v2-ack t)
 
+(add-to-list 'display-buffer-alist
+             '("\\*org-roam\\*"
+               (display-buffer-in-direction)
+               (direction . right)
+               (window-width . 0.33)
+               (window-height . fit-window-to-buffer)))
+
 (setq org-roam-node-display-template "${tags:35} ${title:80}" )
 
 ;; daily
@@ -22,36 +29,25 @@
   (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
   :unnarrowed t)))
 
+
 (defun imi/switch-to-roam-engineering (x)
   "seperate note for engineering."
-  (interactive "nEnter 1:algorithm  default:engineering \n")
+  (interactive "nEnter 1:algorithm 2.rational-emacs 3.flux-compose default:engineering \n")
   (cond ((= x 1)   
 	 (setq org-roam-directory "~/central-management-system/zotero/engineering/algorithm/")  
 	 (setq org-roam-db-location "~/central-management-system/zotero/roam-db/algorithm.db"))
-	;; ((= x 2)   
-	;;  (setq org-roam-directory "~/central-management-system/zotero/roam")  
-	;;  (setq org-roam-db-location "~/central-management-system/zotero/roam-db/zotero-roam.db"))	 
+	((= x 2)   
+	 (setq org-roam-directory "~/central-management-system/zotero/engineering/rational-emacs")  
+	 (setq org-roam-db-location "~/central-management-system/zotero/roam-db/rational-emacs.db"))
+	((= x 3)   
+	 (setq org-roam-directory "~/central-management-system/zotero/engineering/flux-compose")  
+	 (setq org-roam-db-location "~/central-management-system/zotero/roam-db/flux-compose.db"))
 	(t      ;; 默认路径
 	 (setq org-roam-directory "~/central-management-system/zotero/engineering")  
 	 (setq org-roam-db-location "~/central-management-system/zotero/roam-db/engineering.db"))
 	 )
   )
 
-
-;; (defun imi/switch-to-roam-subject (x)
-;;   "A new way to take notes. classified by subject."
-;;   (interactive "nEnter 1:zettlekasten  2:zotero/roam \n")
-;;   (cond ((= x 1)   
-;; 	 (setq org-roam-directory "~/central-management-system/zotero/zettlekasten")  
-;; 	 (setq org-roam-db-location "~/central-management-system/zotero/roam-db/zettlekasten-emacs.db"))
-;; 	((= x 2)   
-;; 	 (setq org-roam-directory "~/central-management-system/zotero/roam")  
-;; 	 (setq org-roam-db-location "~/central-management-system/zotero/roam-db/zotero-roam.db"))	 
-;; 	(t      ;; 默认路径
-;; 	 (setq org-roam-directory "~/central-management-system/zotero/roam")  
-;; 	 (setq org-roam-db-location "~/central-management-system/zotero/roam-db/zotero-roam.db"))
-;; 	 )
-;;   )
 
 
 ;; roam directory
@@ -82,24 +78,5 @@
 
 (imi/switch-roam-directory 5)
 
-;; (setq org-roam-directory "~/central-management-system/pkm-roam/roam0")
-;; (setq org-roam-db-location "~/central-management-system/pkm-roam/roam0.db")
-;; (setq org-roam-directory "~/central-management-system/pkm-roam/memory")
-;; (setq org-roam-db-location "~/central-management-system/pkm-roam/roam-memory.db")
-;; (defun imi/switch-to-blog() (interactive) (imi/switch-roam-directory 4))
-
-;; (defun imi/switch-to-roam2() (interactive) (imi/switch-roam-directory 1))
-;; (global-set-key (kbd "<f7>") 'imi/switch-to-roam2)
-;; (defun imi/switch-to-roam-memory () (interactive) (imi/switch-roam-directory 2))
-;; (global-set-key (kbd "<f8>") 'imi/switch-to-roam-memory)
-;; (defun imi/switch-to-roam-yinye () (interactive) (imi/switch-roam-directory 3))
-;; (global-set-key (kbd "<f9>") 'imi/switch-to-roam-yinye)
-
-(add-to-list 'display-buffer-alist
-             '("\\*org-roam\\*"
-               (display-buffer-in-direction)
-               (direction . right)
-               (window-width . 0.33)
-               (window-height . fit-window-to-buffer)))
 
 (provide 'init-roam)
