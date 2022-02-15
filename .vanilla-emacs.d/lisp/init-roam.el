@@ -45,5 +45,4 @@
 
 (imi/setup-roam-db "zettlekasten")
 
-
 (provide 'init-roam)
