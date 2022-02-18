@@ -107,7 +107,7 @@
    '(  "o p" . imi/org-download-paste-clipboard)
    '(  "o s" . eshell)
    '(  "o l" . link-hint-open-link)
-   '(  "o g" . grab-mac-link-dwim)
+   ;; '(  "o g" . grab-mac-link-dwim)
    '(  "o G" . magit-status)
    '(  "o o" . imi/reveal-in-finder)
    '(  "o h" . org-hide-block-all)
