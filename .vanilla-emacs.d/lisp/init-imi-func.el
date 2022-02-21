@@ -118,6 +118,33 @@ Forward to `org-shifttab' with ARG."
   (interactive)
   (shell-command (concat "open -R " buffer-file-name)))
 
+(defun imi/reveal-in-finder-directory ()
+  (interactive)
+  (let ((path (or (buffer-file-name) (dired-file-name-at-point)))
+        dir file)
+    (when path
+      (setq dir (file-name-directory path))
+      (setq file (file-name-nondirectory path)))
+    (open-finder-1 dir file)))
+
+(defun open-finder-1 (dir file)
+  (let ((script
+         (if file
+             (concat
+              "tell application \"Finder\"\n"
+              " set frontmost to true\n"
+              " make new Finder window to (POSIX file \"" (expand-file-name dir) "\")\n"
+              " select file \"" file "\"\n"
+              "end tell\n")
+           (concat
+            "tell application \"Finder\"\n"
+            " set frontmost to true\n"
+            " make new Finder window to {path to desktop folder}\n"
+            "end tell\n"))))
+    (start-process "osascript-getinfo" nil "osascript" "-e" script)))
+
+
+
 (defun imi/open-iTerm ()
   "Opens up a new shell in the directory associated with the
 current buffer's file. The eshell is renamed to match that
@@ -219,7 +246,7 @@ containing the current file by the default explorer."
 (defun imi/surround (begin end open close)
   "Put OPEN at START and CLOSE at END of the region.
 If you omit CLOSE, it will reuse OPEN."
-;;  (interactive  "r\nsStart: \nsEnd: ")
+  ;;  (interactive  "r\nsStart: \nsEnd: ")
   (when (string= close "")
     (setq close open))
   (save-excursion

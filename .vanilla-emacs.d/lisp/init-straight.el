@@ -27,7 +27,7 @@
 		     treemacs
 		     
 		     citar ;;citeproc
-		     lsp-mode  
+		     lsp-mode  cmake-mode
 		     tree-sitter tree-sitter-langs
 		     
 		     ;; selectrum selectrum-prescient ctrlf

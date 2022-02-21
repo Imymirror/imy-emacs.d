@@ -107,9 +107,11 @@
    '(  "o p" . imi/org-download-paste-clipboard)
    '(  "o s" . eshell)
    '(  "o l" . link-hint-open-link)
-   ;; '(  "o g" . grab-mac-link-dwim)
+   '(  "o g" . grab-mac-link-dwim)
    '(  "o G" . magit-status)
    '(  "o o" . imi/reveal-in-finder)
+    '(  "o O" . imi/reveal-in-finder-directory)
+
    '(  "o h" . org-hide-block-all)
    '(  "o i" . org-toggle-inline-images)
    '(  "o L" . org-toggle-link-display)
@@ -204,7 +206,7 @@
   (setq meow-esc-delay 0.001)
   (setq meow-grab-fill-commands nil)
   (meow-setup)
-;;  (meow-setup-indicator)
+  ;;  (meow-setup-indicator)
   )
 
 (provide 'init-meow)
