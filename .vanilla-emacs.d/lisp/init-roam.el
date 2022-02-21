@@ -32,16 +32,32 @@
 
 (defun imi/setup-roam-db (name)
   (let ((directory (concat imi/central-management-system-root-path "zotero/notes/" name))
-	  (db (concat imi/central-management-system-root-path "zotero/roam-db/" name ".db")))
-      (setq org-roam-directory  directory)  
-      (setq org-roam-db-location db))
+	(db (concat imi/central-management-system-root-path "zotero/roam-db/" name ".db")))
+    (setq org-roam-directory  directory)  
+    (setq org-roam-db-location db))
   )
+
+(defun imi/directory-files-no-dot (DIRECTORY &optional FULL MATCH NOSORT COUNT)
+  (cl-remove-if (lambda (x) (member x '("." ".." ".DS" ".DS_Store")))
+		(directory-files DIRECTORY)))
+
+
+;; (defun imi/switch-roam-engineer ()
+;;   (interactive)
+;;   (let* ( (choices '("algorithm" "rational-emacs" "flux-compose" "english" "chenhao" "zettlekasten" "pkm-roam" "roam"))
+;; 	  (name (completing-read "select a roam engineering db: " choices)))
+;;     (imi/setup-roam-db name)))
+
 
 (defun imi/switch-roam-engineer ()
   (interactive)
-  (let* ( (choices '("algorithm" "rational-emacs" "flux-compose" "english" "chenhao" "zettlekasten" "pkm-roam" "roam"))
+  (let* (
+	 (path (concat imi/central-management-system-root-path "zotero/notes"))
+	 (choices (imi/directory-files-no-dot path))	 
+	 ;; (choices '("algorithm" "rational-emacs" "flux-compose" "english" "chenhao" "zettlekasten" "pkm-roam" "roam"))
 	  (name (completing-read "select a roam engineering db: " choices)))
     (imi/setup-roam-db name)))
+
 
 (imi/setup-roam-db "zettlekasten")
 
