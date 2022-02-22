@@ -38,16 +38,8 @@
   )
 
 (defun imi/directory-files-no-dot (DIRECTORY &optional FULL MATCH NOSORT COUNT)
-  (cl-remove-if (lambda (x) (member x '("." ".." ".DS" ".DS_Store")))
+  (cl-remove-if (lambda (x) (member x '("." ".." ".DS_Store")))
 		(directory-files DIRECTORY)))
-
-
-;; (defun imi/switch-roam-engineer ()
-;;   (interactive)
-;;   (let* ( (choices '("algorithm" "rational-emacs" "flux-compose" "english" "chenhao" "zettlekasten" "pkm-roam" "roam"))
-;; 	  (name (completing-read "select a roam engineering db: " choices)))
-;;     (imi/setup-roam-db name)))
-
 
 (defun imi/switch-roam-engineer ()
   (interactive)
