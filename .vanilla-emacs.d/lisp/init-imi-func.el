@@ -265,4 +265,11 @@ If you omit CLOSE, it will reuse OPEN."
   (interactive "r\n")
   (imi/surround begin end "~" "~"))
 
+(defun imi/print-elements-of-list (list)
+  "Print each element of LIST on a line of its own."
+  (while list
+    (print (car list))
+    (setq list (cdr list))))
+
+
 (provide 'init-imi-func)
