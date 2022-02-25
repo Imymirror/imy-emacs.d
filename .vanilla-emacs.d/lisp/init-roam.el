@@ -37,9 +37,11 @@
     (setq org-roam-db-location db))
   )
 
+
 (defun imi/directory-files-no-dot (DIRECTORY &optional FULL MATCH NOSORT COUNT)
   (cl-remove-if (lambda (x) (member x '("." ".." ".DS_Store")))
 		(directory-files DIRECTORY)))
+
 
 (defun imi/switch-roam-engineer ()
   (interactive)
@@ -50,7 +52,7 @@
 	 (name (completing-read "select a roam engineering db: " choices)))
     (imi/setup-roam-db name)))
 
-
 (imi/setup-roam-db "zettlekasten")
+
 
 (provide 'init-roam)
