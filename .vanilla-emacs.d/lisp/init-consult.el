@@ -1,6 +1,6 @@
 ;;  -*- lexical-binding: t; -*-
 
-(consult-theme 'doom-rouge)
+;;(consult-theme 'doom-rouge)
 
 
 (setq consult-project-root-function

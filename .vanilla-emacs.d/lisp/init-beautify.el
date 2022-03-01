@@ -13,6 +13,7 @@
 
 ;; headline font size
 (defun imi/org-beautify-headline-font-size ()
+  (interactive)
   (let* ((variable-tuple
           (cond
 	   ;; ((x-list-fonts "PingFang SC")     '(:font "PingFang SC"))
@@ -32,18 +33,19 @@
      `(org-level-6 ((t (,@headline ,@variable-tuple))))
      `(org-level-5 ((t (,@headline ,@variable-tuple))))
      `(org-level-4 ((t (,@headline ,@variable-tuple :height 1.2))))
-     `(org-level-3 ((t (,@headline ,@variable-tuple :height 1.2))))
-     `(org-level-2 ((t (,@headline ,@variable-tuple :height 1.2))))
-     `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.3))))
-     `(org-document-title ((t (,@headline ,@variable-tuple :height 1.2 :underline nil))))))
+     `(org-level-3 ((t (,@headline ,@variable-tuple :height 1.3))))
+     `(org-level-2 ((t (,@headline ,@variable-tuple :height 1.4))))
+     `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.5))))
+     `(org-document-title ((t (,@headline ,@variable-tuple :height 1.5 :underline nil))))))
   )
 
 ;; 打开方式有三种 : emacs -nw, emacs daemon, emacs
 ;; display-graphic-p window-system 的结果分别为 (nil,nil), (true,true), (true,true)
 (if (window-system)
-        (add-hook 'after-make-frame-functions
-              (lambda (frame)
+    (add-hook 'after-make-frame-functions
+	      (lambda (frame)
 		(imi/org-beautify-headline-font-size))))
+
 
 
 (custom-theme-set-faces

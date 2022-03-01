@@ -21,27 +21,37 @@
 ;; (straight-use-package 'el-patch)
 
 (setq package-list '(
-		     which-key org-roam  rg company smartparens    avy   yasnippet link-hint grab-mac-link org-download  magit meow ace-pinyin ox-hugo rainbow-identifiers
-			       projectile
-		     doom-themes
+ meow
+		     
+ company smartparens    avy   yasnippet link-hint grab-mac-link
+
+
+ ;;org-download
+ magit  ace-pinyin ox-hugo rainbow-identifiers
+
 		     treemacs
 		     
 		     citar ;;citeproc
-		     lsp-mode  cmake-mode
+		     cmake-mode
 		     tree-sitter tree-sitter-langs
 		     
 		     ;; selectrum selectrum-prescient ctrlf
 		     ;; vertico
-		     orderless marginalia consult  embark
+		     orderless
+		     consult
+		     embark
 		     embark-consult
 		     pomidor
 		     
-	      doom-modeline
+;;	      doom-modeline
 
-		     org-mind-map
+		     ;; org-mind-map
 
 		     ;; beautify
-		     org-bullets	 spacemacs-theme
+		     ;;org-bullets
+		     ;;spacemacs-theme
+
+		     use-package
 		     ))
 
 (dolist (package package-list)

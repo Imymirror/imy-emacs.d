@@ -1,7 +1,6 @@
 ;;  -*- lexical-binding: t; -*-
 
 (vertico-mode)
-(marginalia-mode)
 
 (require 'vertico-buffer)
 

@@ -7,4 +7,9 @@
                 (window-width . 160)
 		)))
 
+
+(use-package rg
+  :straight t
+  :bind ("C-c s" . rg))
+
 (provide 'init-rg)

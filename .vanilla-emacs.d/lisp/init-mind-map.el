@@ -1,6 +1,17 @@
 ;;  -*- lexical-binding: t; -*-
 
-(require 'org-mind-map)
+;;(require 'org-mind-map)
+
+(use-package org-mind-map
+  :straight t
+  :init
+  (require 'ox-org)
+  :ensure t
+  ;; Uncomment the below if 'ensure-system-packages` is installed
+  ;;:ensure-system-package (gvgen . graphviz)
+  :config
+  (setq org-mind-map-engine "dot")       ; Default. Directed Graph
+  )
 
 (defun imi/org-mind-map-open-filename (treenamep)
   "Return a default filename for saving the tree diagram.

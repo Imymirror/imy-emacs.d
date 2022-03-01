@@ -1,14 +1,14 @@
 ;;  -*- lexical-binding: t; -*-
 
-(require 'org-download)
+;;(require 'org-download)
 
 (defun imi/im-file-name ()
   "copy buffer's full path to kill ring"
   (interactive)
   (when buffer-file-name
     ;; (file-name-nondirectory (kill-new (file-truename buffer-file-name)))))
-     ;; (file-name-nondirectory  (file-truename buffer-file-name))))
-     (file-name-sans-extension (buffer-name))))
+    ;; (file-name-nondirectory  (file-truename buffer-file-name))))
+    (file-name-sans-extension (buffer-name))))
 
 (defun imi/org-download-paste-clipboard (&optional use-default-filename)
   (interactive "P")
@@ -20,17 +20,29 @@
              (read-string (format "Filename [%s]: " org-download-screenshot-basename)
                           nil nil org-download-screenshot-basename)
            nil)))
-(org-download-clipboard file)))
+    (org-download-clipboard file)))
 
-(with-eval-after-load "org"
-  (setq org-download-method 'directory)
-  (setq org-download-image-dir  "images/")
-  (setq org-download-heading-lvl nil)
-  (setq org-download-timestamp "%Y%m%d-%H%M%S_")
-  (setq org-image-actual-width nil)
-  (setq org-src-window-setup 'split-window-right)
-  (setq org-download-annotate-function (lambda (_link) ""))
+
+
+(use-package org-download
+  :straight t
+  :config
+;;  (with-eval-after-load "org"
+    (setq org-download-method 'directory)
+    (setq org-download-image-dir  "images/")
+    (setq org-download-heading-lvl nil)
+    (setq org-download-timestamp "%Y%m%d-%H%M%S_")
+    (setq org-image-actual-width nil)
+    (setq org-src-window-setup 'split-window-right)
+    (setq org-download-annotate-function (lambda (_link) ""))
+  ;;  )
   )
+
+
+;; (use-package spacemacs-theme
+;;   :straight t)
+
+
 
 
 (provide 'init-org-download)

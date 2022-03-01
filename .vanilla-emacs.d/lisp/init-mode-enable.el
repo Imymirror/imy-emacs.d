@@ -18,7 +18,7 @@
   ;; (add-hook 'after-init-hook 'yas-global-mode)
   
   (recentf-mode) ;; consult consult-recent-file
-  (which-key-mode)
+  ;; (which-key-mode)
   (ace-pinyin-global-mode +1))
 
 ;; daemon 不允许 idle time，会死机
