@@ -1,7 +1,6 @@
 ;; init-org-mode.el -*- lexical-binding: t; -*-
 
 (add-hook 'org-mode-hook 'org-indent-mode)
-(setq grab-mac-link-dwim-favourite-app 'chrome)
 
 (setq org-footnote-auto-adjust t)
 (setq org-cycle-include-plain-lists 'integrate)
@@ -24,6 +23,5 @@
 	       ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
 
-(require 'init-beautify)
 
 (provide 'init-org-mode)

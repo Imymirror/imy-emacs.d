@@ -7,7 +7,7 @@
 (global-set-key (kbd "C-M-l") 'avy-goto-line) 
 
 ;; buffer
-(global-set-key (kbd "s-0") 'treemacs-select-window)
+
 (global-set-key (kbd "s-1") (lambda () (interactive) (imi/frame-switch-by-number 1)))
 (global-set-key (kbd "s-2") (lambda () (interactive) (imi/frame-switch-by-number 2)))
 (global-set-key (kbd "s-3") (lambda () (interactive) (imi/frame-switch-by-number 3)))

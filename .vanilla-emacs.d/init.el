@@ -1,6 +1,5 @@
 ;;  -*- lexical-binding: t; -*-
 
-
 (setq user-init-file (or load-file-name (buffer-file-name)))
 (setq user-emacs-directory (file-name-directory user-init-file))
 (add-to-list 'load-path (expand-file-name (concat user-emacs-directory "lisp")))
@@ -82,11 +81,21 @@
 (require 'init-lsp)			        
 (require 'init-tree-sitter)		        
 					        
-;;(require 'init-mode-enable)
+(require 'init-mode-enable)
 
 ;; from https://github.com/company-mode/company-mode/issues/14
 (setq-local company-dabbrev-downcase nil)
 
+(use-package grab-mac-link
+  :straight t
+  :bind ("C-c g" . grab-mac-link-dwim)
+  :config
+  (setq grab-mac-link-dwim-favourite-app 'chrome))
 
-(require 'init-custom)		        
+(use-package treemacs
+  :straight t
+  :ensure t
+  :bind ("s-0" . treemacs-select-window))
+
+(require 'init-custom)
 (put 'scroll-left 'disabled nil)

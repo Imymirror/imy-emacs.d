@@ -17,20 +17,16 @@
   (load bootstrap-file nil 'nomessage))
 
 
-;; install
-;; (straight-use-package 'el-patch)
 
 (setq package-list '(
  meow
 		     
- company smartparens    avy   yasnippet link-hint grab-mac-link
-
+ company smartparens    avy   yasnippet link-hint 
 
  ;;org-download
  magit  ace-pinyin ox-hugo rainbow-identifiers
 
-		     treemacs
-		     
+	     
 		     citar ;;citeproc
 		     cmake-mode
 		     tree-sitter tree-sitter-langs
@@ -42,14 +38,7 @@
 		     embark
 		     embark-consult
 		     pomidor
-		     
-;;	      doom-modeline
 
-		     ;; org-mind-map
-
-		     ;; beautify
-		     ;;org-bullets
-		     ;;spacemacs-theme
 
 		     use-package
 		     ))
@@ -66,15 +55,5 @@
                                     vertico-quick
                                     vertico-repeat
                                     vertico-reverse)))
-
-
-;; (straight-use-package
-;;  '( org-html-themify :type git :host github :repo "DogLooksGood/org-html-themify" :files ("*.el" "*.js" "*.css")
-;;     ))
-
-;; (straight-use-package
-;;  '(el-patch :type git :host github :repo "zevlg/telega.el" :commit "26fee82fac70d55ade55381b475e865d99dde496"
-;; 	    ))
-
 
 (provide 'init-straight)
