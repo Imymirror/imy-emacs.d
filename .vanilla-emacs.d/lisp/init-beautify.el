@@ -41,12 +41,12 @@
 
 ;; 打开方式有三种 : emacs -nw, emacs daemon, emacs
 ;; display-graphic-p window-system 的结果分别为 (nil,nil), (true,true), (true,true)
-(if (window-system)
-    (add-hook 'after-make-frame-functions
-	      (lambda (frame)
-		(imi/org-beautify-headline-font-size))))
+;; (if (window-system)
+;;     (add-hook 'after-make-frame-functions
+;; 	      (lambda (frame)
+;; 		(imi/org-beautify-headline-font-size))))
 
-
+(imi/org-beautify-headline-font-size)
 
 ;; (custom-theme-set-faces
 ;;  'user

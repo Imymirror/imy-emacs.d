@@ -20,15 +20,17 @@
 
 (setq package-list '(
  meow
-		     
- company smartparens    avy   yasnippet link-hint 
+		      
+ ;;yasnippet
+ ;;link-hint 
 
  ;;org-download
- magit  ace-pinyin ox-hugo rainbow-identifiers
-
+;; magit  ace-pinyin rainbow-identifiers
+ox-hugo 
 	     
-		     citar ;;citeproc
-		     cmake-mode
+citar
+;;citeproc
+		     
 		     tree-sitter tree-sitter-langs
 		     
 		     ;; selectrum selectrum-prescient ctrlf
@@ -37,9 +39,8 @@
 		     consult
 		     embark
 		     embark-consult
-		     pomidor
 
-
+		     
 		     use-package
 		     ))
 

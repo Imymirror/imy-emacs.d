@@ -12,7 +12,6 @@
   (winner-mode)
   (delete-selection-mode)
   ;;(doom-modeline-mode)
-  (global-company-mode +1)
   (yas-global-mode +1)
   ;; (add-hook 'after-init-hook 'global-company-mode)
   ;; (add-hook 'after-init-hook 'yas-global-mode)

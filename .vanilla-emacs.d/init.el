@@ -15,6 +15,7 @@
 
 ;; use-package
 (require 'init-rg)
+
 (use-package which-key
   :straight t
   :init (which-key-mode 1))
@@ -25,7 +26,7 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
-;;  (load-theme 'doom-rouge t)
+ (load-theme 'doom-rouge t)
 
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
@@ -40,7 +41,8 @@
 (use-package spacemacs-theme
   :straight t
   :defer t
-  :init (load-theme 'spacemacs-light t))
+  ;; :init (load-theme 'spacemacs-light t)
+  )
 
 (use-package org-bullets :straight t)
 
@@ -80,11 +82,35 @@
 ;; language				        
 (require 'init-lsp)			        
 (require 'init-tree-sitter)		        
-					        
-(require 'init-mode-enable)
+(require 'init-smartparens)
+(require 'init-yasnippet)
+(require 'init-link-hint)
 
-;; from https://github.com/company-mode/company-mode/issues/14
-(setq-local company-dabbrev-downcase nil)
+
+(use-package avy
+  :straight t)
+
+(use-package magit
+  :straight t)
+
+(use-package ace-pinyin 
+  :straight t)
+
+
+(use-package cmake-mode
+  :straight t)
+
+(use-package pomidor
+  :straight t)
+
+
+(use-package company
+  :straight t
+  ;; :init   (global-company-mode +1)
+  :config
+  ;; from https://github.com/company-mode/company-mode/issues/14
+  (setq-local company-dabbrev-downcase nil))
+
 
 (use-package grab-mac-link
   :straight t
@@ -96,6 +122,8 @@
   :straight t
   :ensure t
   :bind ("s-0" . treemacs-select-window))
+
+ (require 'init-mode-enable)
 
 (require 'init-custom)
 (put 'scroll-left 'disabled nil)
