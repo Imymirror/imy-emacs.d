@@ -1,6 +1,9 @@
 ;;  -*- lexical-binding: t; -*-
 
-(with-eval-after-load 'ox  (require 'ox-hugo))
+;; (with-eval-after-load 'ox  (require 'ox-hugo))
+
+;; (use-package ox-hugo :straight t
+;; :commands imi/blog-export )
 
 ;; 生成 TOC
 (setq org-hugo-export-with-toc t)  

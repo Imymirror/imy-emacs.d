@@ -7,8 +7,9 @@
 (require 'init-speedup)
 (require 'init-some-path)
 (require 'init-imi-func)
-(require 'init-font)
+;;(require 'init-font)
 (require 'init-basic)
+
 
 (require 'init-platform)
 (require 'init-straight)
@@ -16,7 +17,6 @@
 ;; use-package
 (require 'init-rg)
 
-(use-package ox-hugo :straight t )
 
 (use-package which-key
   :straight t
@@ -28,7 +28,8 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
- (load-theme 'doom-rouge t)
+  
+  (load-theme 'modus-vivendi t)
 
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
@@ -42,16 +43,17 @@
 
 (use-package spacemacs-theme
   :straight t
+  :commands consult-theme
   :defer t
   ;; :init (load-theme 'spacemacs-light t)
   )
 
-(use-package org-bullets :straight t)
+(use-package org-bullets :straight t
+  :after org)
 
 (use-package doom-modeline
   :straight t
-  :ensure t
-  :init (doom-modeline-mode 1))
+  :ensure t)
 
 (require 'init-gtd)			        
 
@@ -64,7 +66,7 @@
 (require 'init-citar)
 (require 'init-pomodoro)
 (require 'init-automation)
-(require 'init-mind-map)
+;; (require 'init-mind-map)
 
 ;; completion system			        
 (require 'init-vertico)
@@ -79,7 +81,8 @@
   (marginalia-mode))
 
 ;;(require 'init-consult)		        
-(use-package consult :straight t )
+(use-package consult :straight t
+  :commands execute-extended-command )
 ;; (require 'init-embark)
 
 ;; language				        
@@ -105,11 +108,12 @@
 
 (use-package cmake-mode
   :straight t
-    :mode "CMakeLists.txt")
+  :mode "CMakeLists.txt")
 
 
 (use-package company
   :straight t
+  :commands global-company-mode
   :init
   (setq company-minimum-prefix-length 2)
   (setq company-tooltip-limit 20)

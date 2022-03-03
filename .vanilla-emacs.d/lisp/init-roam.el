@@ -4,8 +4,7 @@
   (let ((directory (concat imi/central-management-system-root-path "zotero/notes/" name))
 	(db (concat imi/central-management-system-root-path "zotero/roam-db/" name ".db")))
     (setq org-roam-directory  directory)  
-    (setq org-roam-db-location db))
-  )
+    (setq org-roam-db-location db)))
 
 
 (defun imi/directory-files-no-dot (DIRECTORY &optional FULL MATCH NOSORT COUNT)

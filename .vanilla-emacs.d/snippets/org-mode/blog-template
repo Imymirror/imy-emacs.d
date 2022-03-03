@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: blog-template
-# key: blogtemplate
+# key: >blogtempalte
 # --
 #+hugo_base_dir: ./
 #+hugo_section: ./

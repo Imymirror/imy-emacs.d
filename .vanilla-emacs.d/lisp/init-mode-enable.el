@@ -1,18 +1,18 @@
 ;;  -*- lexical-binding: t; -*-
 
 (defun imi/load-after-idle-time ()
-  (add-hook 'after-init-hook #'doom-modeline-mode)
+  ;; (add-hook 'after-init-hook #'doom-modeline-mode)
 
-  (global-visual-line-mode)
+;;  (global-visual-line-mode)
   
   ;;  (hs-minor-mode)
   ;; (yas-global-mode 1)
-  (smartparens-global-mode)
+ ;; (smartparens-global-mode)
   ;;(winum-mode)
   (winner-mode)
   (delete-selection-mode)
   ;;(doom-modeline-mode)
-  (yas-global-mode +1)
+;;  (yas-global-mode +1)
   ;; (add-hook 'after-init-hook 'global-company-mode)
   ;; (add-hook 'after-init-hook 'yas-global-mode)
   
