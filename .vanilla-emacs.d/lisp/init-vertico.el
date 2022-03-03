@@ -1,20 +1,37 @@
 ;;  -*- lexical-binding: t; -*-
 
-(vertico-mode)
+(use-package vertico
+  :straight ( vertico :files (:defaults "extensions/*")
+              :includes (vertico-buffer
+                         vertico-directory
+                         vertico-flat
+                         vertico-indexed
+                         vertico-mouse
+                         vertico-quick
+                         vertico-repeat
+                         vertico-reverse))
+  :init (vertico-mode))
 
-(require 'vertico-buffer)
 
-;; from purcell
-(defun sanityinc/use-orderless-in-minibuffer ()
-  (setq-local completion-styles '(substring orderless)))
-(add-hook 'minibuffer-setup-hook 'sanityinc/use-orderless-in-minibuffer)
+(use-package orderless
+  :straight t
+  :config
+  ;; from purcell
+  (defun sanityinc/use-orderless-in-minibuffer ()
+    (setq-local completion-styles '(substring orderless)))
+  (add-hook 'minibuffer-setup-hook 'sanityinc/use-orderless-in-minibuffer)
+  
+  (setq read-file-name-completion-ignore-case t
+	read-buffer-completion-ignore-case t
+	completion-ignore-case t))
+
+;; (vertico-mode)
+
+;; (require 'vertico-buffer)
 
 ;; (setq completion-styles '(orderless)
 ;;       completion-category-defaults nil
 ;;       completion-category-overrides '((file (styles partial-completion))))
 
-(setq read-file-name-completion-ignore-case t
-      read-buffer-completion-ignore-case t
-      completion-ignore-case t)
 
 (provide 'init-vertico)

@@ -26,8 +26,9 @@
 
 (use-package org-download
   :straight t
-  :config
-;;  (with-eval-after-load "org"
+  ;; :after org
+  :init
+  ;;  (with-eval-after-load "org"
     (setq org-download-method 'directory)
     (setq org-download-image-dir  "images/")
     (setq org-download-heading-lvl nil)
@@ -37,13 +38,6 @@
     (setq org-download-annotate-function (lambda (_link) ""))
   ;;  )
   )
-
-
-;; (use-package spacemacs-theme
-;;   :straight t)
-
-
-
 
 (provide 'init-org-download)
 

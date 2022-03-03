@@ -16,9 +16,11 @@
 ;; use-package
 (require 'init-rg)
 
+(use-package ox-hugo :straight t )
+
 (use-package which-key
   :straight t
-  :init (which-key-mode 1))
+  :bind ("C-c t w" . which-key-mode))
 
 (use-package doom-themes
   :straight t
@@ -51,7 +53,6 @@
   :ensure t
   :init (doom-modeline-mode 1))
 
-
 (require 'init-gtd)			        
 
 ;; ;; package
@@ -77,7 +78,9 @@
   :init
   (marginalia-mode))
 
-(require 'init-consult)		        
+;;(require 'init-consult)		        
+(use-package consult :straight t )
+;; (require 'init-embark)
 
 ;; language				        
 (require 'init-lsp)			        
@@ -88,33 +91,46 @@
 
 
 (use-package avy
-  :straight t)
+  :straight t
+  :bind ("C-c g l" . avy-goto-line))
 
 (use-package magit
-  :straight t)
+  :straight t
+  :bind ("C-c t m magit"))
 
-(use-package ace-pinyin 
-  :straight t)
+(use-package ace-pinyin :straight t
+  :init (ace-pinyin-global-mode +1)
+  :bind ("C-c g c" . ace-pinyin-jump-char))
 
 
 (use-package cmake-mode
-  :straight t)
-
-(use-package pomidor
-  :straight t)
+  :straight t
+    :mode "CMakeLists.txt")
 
 
 (use-package company
   :straight t
-  ;; :init   (global-company-mode +1)
-  :config
+  :init
+  (setq company-minimum-prefix-length 2)
+  (setq company-tooltip-limit 20)
+  (setq company-idle-delay 0.1)
+  (setq company-show-numbers t)
+  (setq company-tooltip-limit 6)
+  (setq tab-always-indent 'complete)
   ;; from https://github.com/company-mode/company-mode/issues/14
-  (setq-local company-dabbrev-downcase nil))
+  (setq company-dabbrev-downcase nil)
+  (add-to-list 'completion-styles 'initials t)
+  (add-hook 'after-init-hook 'global-company-mode))
+(with-eval-after-load 'company
+  (define-key company-active-map (kbd "M-n") nil)
+  (define-key company-active-map (kbd "M-p") nil)
+  (define-key company-active-map (kbd "C-n") #'company-select-next)
+  (define-key company-active-map (kbd "C-p") #'company-select-previous))
 
 
 (use-package grab-mac-link
   :straight t
-  :bind ("C-c g" . grab-mac-link-dwim)
+  :bind ("C-c o g" . grab-mac-link-dwim)
   :config
   (setq grab-mac-link-dwim-favourite-app 'chrome))
 
@@ -123,7 +139,7 @@
   :ensure t
   :bind ("s-0" . treemacs-select-window))
 
- (require 'init-mode-enable)
+(require 'init-mode-enable)
 
 (require 'init-custom)
-(put 'scroll-left 'disabled nil)
+;;(put 'scroll-left 'disabled nil)

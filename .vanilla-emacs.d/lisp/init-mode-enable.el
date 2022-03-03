@@ -18,7 +18,7 @@
   
   (recentf-mode) ;; consult consult-recent-file
   ;; (which-key-mode)
-  (ace-pinyin-global-mode +1))
+  )
 
 ;; daemon 不允许 idle time，会死机
 (imi/load-after-idle-time)

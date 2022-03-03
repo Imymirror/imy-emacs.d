@@ -1,10 +1,7 @@
 ;;  -*- lexical-binding: t; -*-
 
-(require 'meow)
 
 ;; (global-set-key (kbd "C-M-s-)") 'telega) 
-(global-set-key (kbd "C-M-c") 'ace-pinyin-jump-char) 
-(global-set-key (kbd "C-M-l") 'avy-goto-line) 
 
 ;; buffer
 
@@ -200,13 +197,22 @@
    '("'" . repeat)
    '("<escape>" . ignore)))
 
-(meow-global-mode 1)
 
-(with-eval-after-load "meow"
+;; (with-eval-after-load "meow"
+;;   (setq meow-esc-delay 0.001)
+;;   (setq meow-grab-fill-commands nil)
+;;   (meow-setup)
+;;   ;;  (meow-setup-indicator)
+;;   )
+
+(use-package meow :straight t
+  :init
+  (meow-global-mode 1)
+  :config
   (setq meow-esc-delay 0.001)
   (setq meow-grab-fill-commands nil)
   (meow-setup)
-  ;;  (meow-setup-indicator)
-  )
+  
+)
 
 (provide 'init-meow)

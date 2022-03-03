@@ -17,44 +17,11 @@
   (load bootstrap-file nil 'nomessage))
 
 
+;; (setq package-list '(use-package))
 
-(setq package-list '(
- meow
-		      
- ;;yasnippet
- ;;link-hint 
+;; (dolist (package package-list)
+;;   (straight-use-package package))
 
- ;;org-download
-;; magit  ace-pinyin rainbow-identifiers
-ox-hugo 
-	     
-citar
-;;citeproc
-		     
-		     tree-sitter tree-sitter-langs
-		     
-		     ;; selectrum selectrum-prescient ctrlf
-		     ;; vertico
-		     orderless
-		     consult
-		     embark
-		     embark-consult
-
-		     
-		     use-package
-		     ))
-
-(dolist (package package-list)
-  (straight-use-package package))
-
-(straight-use-package '( vertico :files (:defaults "extensions/*")
-                         :includes (vertico-buffer
-                                    vertico-directory
-                                    vertico-flat
-                                    vertico-indexed
-                                    vertico-mouse
-                                    vertico-quick
-                                    vertico-repeat
-                                    vertico-reverse)))
+(straight-use-package 'use-package)
 
 (provide 'init-straight)

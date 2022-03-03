@@ -8,7 +8,7 @@
   :ensure t
   :diminish yas-minor-mode
   :bind (:map yas-minor-mode-map
-              ("C-c C-e" . yas-expand))
+              ("C-c t y" . yas-expand))
   
   :config
   (yas-reload-all)

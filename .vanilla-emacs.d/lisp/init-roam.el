@@ -34,6 +34,8 @@
          ("C-c n c" . org-roam-capture)
          ;; Dailies
          ("C-c n j" . org-roam-dailies-capture-today))
+  :bind-keymap
+  ("C-c n d" . org-roam-dailies-map)
   :config
   (require 'init-beautify)
   (imi/setup-roam-db "roam-zettlekasten")
