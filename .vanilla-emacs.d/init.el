@@ -7,16 +7,14 @@
 (require 'init-speedup)
 (require 'init-some-path)
 (require 'init-imi-func)
-;;(require 'init-font)
+(require 'init-font)
 (require 'init-basic)
 
 
 (require 'init-platform)
 (require 'init-straight)
 
-;; use-package
 (require 'init-rg)
-
 
 (use-package which-key
   :straight t
@@ -29,7 +27,7 @@
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
   
-  (load-theme 'modus-vivendi t)
+  (load-theme 'doom-solarized-light t)
 
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
@@ -41,15 +39,13 @@
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
-(use-package spacemacs-theme
-  :straight t
-  :commands consult-theme
-  :defer t
-  ;; :init (load-theme 'spacemacs-light t)
-  )
+;; (use-package spacemacs-theme
+;;   :straight t
+;;   :commands consult-theme
+;;   :defer t
+;;   ;; :init (load-theme 'spacemacs-light t)
+;;   )
 
-(use-package org-bullets :straight t
-  :after org)
 
 (use-package doom-modeline
   :straight t
@@ -66,10 +62,11 @@
 (require 'init-citar)
 (require 'init-pomodoro)
 (require 'init-automation)
-;; (require 'init-mind-map)
 
 ;; completion system			        
 (require 'init-vertico)
+
+(use-package org-bullets :straight t :after org)
 
 ;; Enable richer annotations using the Marginalia package
 (use-package marginalia
@@ -80,35 +77,45 @@
   :init
   (marginalia-mode))
 
-;;(require 'init-consult)		        
 (use-package consult :straight t
   :commands execute-extended-command )
 ;; (require 'init-embark)
 
-;; language				        
-(require 'init-lsp)			        
-(require 'init-tree-sitter)		        
+;;(require 'init-lsp)			        
+(use-package lsp-mode
+  :straight t
+  :commands lsp
+  :hook (
+	 (c-mode . lsp)
+	 (c++-mode . lsp))
+  :config
+  (setq lsp-headerline-breadcrumb-enable nil)
+  (setq company-idle-delay 0) ;; default 0.2
+  (setq company-minimum-prefix-length 1))
+
+;; (require 'init-tree-sitter)
 (require 'init-smartparens)
 (require 'init-yasnippet)
 (require 'init-link-hint)
-
 
 (use-package avy
   :straight t
   :bind ("C-c g l" . avy-goto-line))
 
-(use-package magit
-  :straight t
-  :bind ("C-c t m magit"))
+;; (use-package magit
+;;   :straight t
+;;   :defer t
+;;   :bind ("C-c t m magit"))
 
 (use-package ace-pinyin :straight t
   :init (ace-pinyin-global-mode +1)
   :bind ("C-c g c" . ace-pinyin-jump-char))
 
 
-(use-package cmake-mode
-  :straight t
-  :mode "CMakeLists.txt")
+;; (use-package cmake-mode
+;;   :straight t
+;;   :defer t
+;;   :mode "CMakeLists.txt")
 
 
 (use-package company
@@ -138,12 +145,10 @@
   :config
   (setq grab-mac-link-dwim-favourite-app 'chrome))
 
-(use-package treemacs
-  :straight t
-  :ensure t
-  :bind ("s-0" . treemacs-select-window))
-
-(require 'init-mode-enable)
+;; (use-package treemacs
+;;   :straight t
+;;   :ensure t
+;;   :bind ("s-0" . treemacs-select-window))
 
 (require 'init-custom)
 ;;(put 'scroll-left 'disabled nil)

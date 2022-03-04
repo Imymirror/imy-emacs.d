@@ -6,10 +6,11 @@
   :straight t
   :mode (("\\.org$" . org-mode))
   :hook
-  (toggle-truncate-lines nil)
+  (recentf-mode winner-mode delete-selection-mode)
+  
   :config
     (require 'ox-org)
-
+(setq toggle-truncate-lines nil)
   (add-to-list 'org-latex-classes
 	       '("org-plain-latex"
 		 "\\documentclass{article}[102pt,letterpaper]

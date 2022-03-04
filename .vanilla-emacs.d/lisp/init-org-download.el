@@ -26,7 +26,7 @@
 
 (use-package org-download
   :straight t
-  ;; :after org
+  :after org
   :init
   ;;  (with-eval-after-load "org"
     (setq org-download-method 'directory)

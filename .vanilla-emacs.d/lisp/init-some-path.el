@@ -14,8 +14,7 @@
 (setq url-proxy-services
       `(
         ("http" . ,imy/proxy-url)
-        ("https" . ,imy/proxy-url)
-        ))
+        ("https" . ,imy/proxy-url)))
 
 
 (provide 'init-some-path)

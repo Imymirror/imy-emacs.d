@@ -10,11 +10,13 @@
                          vertico-quick
                          vertico-repeat
                          vertico-reverse))
-  :init (vertico-mode))
+  :init (vertico-mode)
+  )
 
 
 (use-package orderless
   :straight t
+  :after vertico
   :config
   ;; from purcell
   (defun sanityinc/use-orderless-in-minibuffer ()
