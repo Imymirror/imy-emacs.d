@@ -27,7 +27,7 @@
   :config
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-	doom-themes-enable-italic t) ; if nil, italics is universally disabled
+	    doom-themes-enable-italic t) ; if nil, italics is universally disabled
 
   (load-theme 'doom-solarized-light t)
 
@@ -63,7 +63,7 @@
     :defer 6
     ;; Either bind `marginalia-cycle` globally or only in the minibuffer
     :bind (:map minibuffer-local-map
-		("M-A" . marginalia-cycle))
+		        ("M-A" . marginalia-cycle))
     :init (marginalia-mode))
   
   (use-package which-key
@@ -111,50 +111,35 @@
     :straight t
     :commands consult-theme
     :defer t)
-  
-  (use-package company
-    :straight t
-    :init
-    (global-company-mode 1)
-    :bind
-    (:map company-active-map
-	  ("M-n" . nil )
-	  ("M-p" . nil )
-	  ("C-n" . company-select-next )
-	  ("C-p" . company-select-previous ))
-    :config
-    (setq company-minimum-prefix-length 2)
-    (setq company-tooltip-limit 20)
-    (setq company-idle-delay 0.1)
-    (setq company-show-numbers t)
-    (setq company-tooltip-limit 6)
-    (setq tab-always-indent 'complete)
-    ;; from https://github.com/company-mode/company-mode/issues/14
-    (setq company-dabbrev-downcase nil)
-    (add-to-list 'completion-styles 'initials t)
-    (add-hook 'after-init-hook 'global-company-mode))
 
+  (require 'init-company)
+  
   (use-package lsp-mode
     :straight t
     :commands lsp
     :hook (
-	   (c-mode . lsp)
-	   (c++-mode . lsp))
+	       (c-mode . lsp)
+	       (c++-mode . lsp))
     :config
     
     ;; from https://emacs-lsp.github.io/lsp-mode/tutorials/CPP-guide/
     (setq gc-cons-threshold (* 100 1024 1024)
-	  read-process-output-max (* 1024 1024)
-	  treemacs-space-between-root-nodes nil
-	  company-idle-delay 0.0
-	  company-minimum-prefix-length 1
-	  lsp-idle-delay 0.1)  ;; clangd is fast
+	      read-process-output-max (* 1024 1024)
+	      treemacs-space-between-root-nodes nil
+	      company-idle-delay 0.0
+	      company-minimum-prefix-length 1
+	      lsp-idle-delay 0.1)  ;; clangd is fast
     (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
     
     ;; from https://stackoverflow.com/questions/69934/set-4-space-indent-in-emacs-in-text-mode
     (setq-default indent-tabs-mode nil)
     (setq-default tab-width 4)
-    (setq indent-line-function 'insert-tab)))
+    (setq indent-line-function 'insert-tab))
+
+  (require 'init-rust)
+
+  (use-package ctrlf :straight t :init (ctrlf-mode))
+  )
 
 (require 'init-custom)
 
