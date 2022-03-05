@@ -3,18 +3,10 @@
 
 ;; from https://gist.github.com/mutyalads/19c54aa30a4a77c40af1677eeab1e3ab#file-emacs-init-L134
 ;; smart parenthesis
-(use-package smartparens
-  :straight t
-  :diminish smartparens-mode
-  :commands
-  smartparens-strict-mode
-  smartparens-mode
-  sp-restrict-to-pairs-interactive
-  sp-local-pair
-  :mode ("\\.el\\'" . smartparens-global-mode)
-  :init
-  (setq sp-interactive-dwim t)
+(use-package smartparens :straight t
+  :init (smartparens-global-mode)
   :config
+  (setq sp-interactive-dwim t)
   (require 'smartparens-config)
   (sp-use-smartparens-bindings)
 

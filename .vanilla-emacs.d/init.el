@@ -21,11 +21,7 @@
 (require 'init-vertico)
 
 
-(use-package consult :straight t
-  :commands execute-extended-command )
 ;; (require 'init-embark)
-
-
 
 (use-package doom-themes
   :straight t
@@ -46,13 +42,9 @@
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
-
-
-
-
 (use-package avy
   :straight t
-  :defer 6
+  :defer 3
   :bind ("C-c g l" . avy-goto-line)
   :config
   (use-package doom-modeline
@@ -61,6 +53,7 @@
     :init
     (doom-modeline-mode 1))
 
+  (use-package consult :straight t :commands execute-extended-command)
 
   (use-package org-bullets :straight t :defer 4 :config (org-bullets-mode))
 
@@ -71,13 +64,11 @@
     ;; Either bind `marginalia-cycle` globally or only in the minibuffer
     :bind (:map minibuffer-local-map
 		("M-A" . marginalia-cycle))
-    :init
-    (use-package which-key
-      :straight t
-      :init (which-key-mode 1)
-      )
-
-    (marginalia-mode))
+    :init (marginalia-mode))
+  
+  (use-package which-key
+    :straight t
+    :init (which-key-mode 1))
 
 
   (require 'init-gtd)			        
@@ -126,11 +117,17 @@
     :straight t
     :commands consult-theme
     :defer t)
-
+  
   (use-package company
     :straight t
     :init
     (global-company-mode 1)
+    :bind
+    (:map company-active-map
+	  ("M-n" . nil )
+	  ("M-p" . nil )
+	  ("C-n" . company-select-next )
+	  ("C-p" . company-select-previous ))
     :config
     (setq company-minimum-prefix-length 2)
     (setq company-tooltip-limit 20)
@@ -142,35 +139,30 @@
     (setq company-dabbrev-downcase nil)
     (add-to-list 'completion-styles 'initials t)
     (add-hook 'after-init-hook 'global-company-mode))
-  (with-eval-after-load 'company
-    (define-key company-active-map (kbd "M-n") nil)
-    (define-key company-active-map (kbd "M-p") nil)
-    (define-key company-active-map (kbd "C-n") #'company-select-next)
-    (define-key company-active-map (kbd "C-p") #'company-select-previous)))
 
-(use-package lsp-mode
-  :straight t
-  :commands lsp
-  :hook (
-	 (c-mode . lsp)
-	 (c++-mode . lsp))
-  :config
-  
-  ;; from https://emacs-lsp.github.io/lsp-mode/tutorials/CPP-guide/
-  (setq gc-cons-threshold (* 100 1024 1024)
-	read-process-output-max (* 1024 1024)
-	treemacs-space-between-root-nodes nil
-	company-idle-delay 0.0
-	company-minimum-prefix-length 1
-	lsp-idle-delay 0.1)  ;; clangd is fast
-  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
-  
-  ;; from https://stackoverflow.com/questions/69934/set-4-space-indent-in-emacs-in-text-mode
-  (setq-default indent-tabs-mode nil)
-  (setq-default tab-width 4)
-  (setq indent-line-function 'insert-tab))
+  (use-package lsp-mode
+    :straight t
+    :commands lsp
+    :hook (
+	   (c-mode . lsp)
+	   (c++-mode . lsp))
+    :config
+    
+    ;; from https://emacs-lsp.github.io/lsp-mode/tutorials/CPP-guide/
+    (setq gc-cons-threshold (* 100 1024 1024)
+	  read-process-output-max (* 1024 1024)
+	  treemacs-space-between-root-nodes nil
+	  company-idle-delay 0.0
+	  company-minimum-prefix-length 1
+	  lsp-idle-delay 0.1)  ;; clangd is fast
+    (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
+    
+    ;; from https://stackoverflow.com/questions/69934/set-4-space-indent-in-emacs-in-text-mode
+    (setq-default indent-tabs-mode nil)
+    (setq-default tab-width 4)
+    (setq indent-line-function 'insert-tab))
 
-;;(add-to-list 'auto-mode-alist '("\\.el\\'" . emacs-lisp-mode))
+  )
 
 (require 'init-custom)
 

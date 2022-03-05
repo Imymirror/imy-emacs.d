@@ -211,8 +211,6 @@
   :config
   (setq meow-esc-delay 0.001)
   (setq meow-grab-fill-commands nil)
-  (meow-setup)
-  
-)
+  (meow-setup))
 
 (provide 'init-meow)
