@@ -111,35 +111,17 @@
     :straight t
     :commands consult-theme
     :defer t)
+  
+  (use-package ctrlf :straight t :init (ctrlf-mode))
 
   (require 'init-company)
-  
-  (use-package lsp-mode
-    :straight t
-    :commands lsp
-    :hook (
-	       (c-mode . lsp)
-	       (c++-mode . lsp))
-    :config
-    
-    ;; from https://emacs-lsp.github.io/lsp-mode/tutorials/CPP-guide/
-    (setq gc-cons-threshold (* 100 1024 1024)
-	      read-process-output-max (* 1024 1024)
-	      treemacs-space-between-root-nodes nil
-	      company-idle-delay 0.0
-	      company-minimum-prefix-length 1
-	      lsp-idle-delay 0.1)  ;; clangd is fast
-    (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
-    
-    ;; from https://stackoverflow.com/questions/69934/set-4-space-indent-in-emacs-in-text-mode
-    (setq-default indent-tabs-mode nil)
-    (setq-default tab-width 4)
-    (setq indent-line-function 'insert-tab))
+  (require 'init-lsp)
+  (use-package flycheck :ensure :straight t)
+  (require 'init-rust))
 
-  (require 'init-rust)
-
-  (use-package ctrlf :straight t :init (ctrlf-mode))
-  )
+(use-package emacs
+  :bind (
+         ("C-c t s" . shell)))
 
 (require 'init-custom)
 

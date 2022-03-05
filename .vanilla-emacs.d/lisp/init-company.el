@@ -36,7 +36,7 @@
 	      ("C-p". company-select-previous)
 	      ("M-<". company-select-first)
 	      ("M->". company-select-last))
-     (:map company-mode-map
+     (:map prog-mode-map
         ("<tab>". tab-indent-or-complete)
         ("TAB". tab-indent-or-complete))
     :config

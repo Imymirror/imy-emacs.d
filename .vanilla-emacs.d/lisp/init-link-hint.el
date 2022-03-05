@@ -1,11 +1,10 @@
 ;;  -*- lexical-binding: t; -*-
-
 (use-package link-hint
   :straight t
   :ensure t
   :after org
   :bind
-  ("C-c l o" . link-hint-open-link)
-  ("C-c l c" . link-hint-copy-link))
+  (:map org-mode-map
+          ("C-c l" . link-hint-open-link)))
 
 (provide 'init-link-hint)
