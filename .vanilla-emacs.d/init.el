@@ -20,7 +20,6 @@
 ;; completion system			        
 (require 'init-vertico)
 
-
 ;; (require 'init-embark)
 
 (use-package doom-themes
@@ -47,6 +46,7 @@
   :defer 3
   :bind ("C-c g l" . avy-goto-line)
   :config
+  
   (use-package doom-modeline
     :straight t
     :defer 3
@@ -70,18 +70,13 @@
     :straight t
     :init (which-key-mode 1))
 
-
   (require 'init-gtd)			        
-
   (require 'init-project)
-
   (require 'init-rg)
-
   (require 'init-org-download)
   (require 'init-citar)
   (require 'init-pomodoro)
   (require 'init-automation)
-
   (require 'init-tree-sitter)
   (require 'init-smartparens)
   (require 'init-yasnippet)
@@ -90,7 +85,6 @@
   (use-package ace-pinyin :straight t
     :init (ace-pinyin-global-mode +1)
     :bind ("C-c g c" . ace-pinyin-jump-char))
-
 
   (use-package grab-mac-link
     :straight t
@@ -160,9 +154,7 @@
     ;; from https://stackoverflow.com/questions/69934/set-4-space-indent-in-emacs-in-text-mode
     (setq-default indent-tabs-mode nil)
     (setq-default tab-width 4)
-    (setq indent-line-function 'insert-tab))
-
-  )
+    (setq indent-line-function 'insert-tab)))
 
 (require 'init-custom)
 
