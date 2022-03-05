@@ -2,11 +2,12 @@
 
 ;; (with-eval-after-load 'ox  (require 'ox-hugo))
 
-;; (use-package ox-hugo :straight t
-;; :commands imi/blog-export )
+(use-package ox-hugo :straight t
+  :commands imi/blog-export
+  :config
+  ;; 生成 TOC
+  (setq org-hugo-export-with-toc t)  )
 
-;; 生成 TOC
-(setq org-hugo-export-with-toc t)  
 
 (defun imi/blog-export ()
   "export org blog to github"
@@ -22,7 +23,7 @@
   (interactive)
   (shell-command-to-string "kill -9 $(pgrep -f 'hugo server')")
   (start-process "my-process" "automation" "sh" "/Users/fuhongxue/.emacs.d/shell/blog-preview.sh" "/bin")
-(run-with-timer 1 nil (lambda () (browse-url "http://localhost:1313"))))
+  (run-with-timer 1 nil (lambda () (browse-url "http://localhost:1313"))))
 
 (defun imi/blog-publish ()
   "publish blog online"

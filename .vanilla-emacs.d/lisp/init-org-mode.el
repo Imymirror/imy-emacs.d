@@ -7,10 +7,9 @@
   :mode (("\\.org$" . org-mode))
   :hook
   (recentf-mode winner-mode delete-selection-mode)
-  
   :config
-    (require 'ox-org)
-(setq toggle-truncate-lines nil)
+  (require 'ox-org)
+  (setq toggle-truncate-lines nil)
   (add-to-list 'org-latex-classes
 	       '("org-plain-latex"
 		 "\\documentclass{article}[102pt,letterpaper]
@@ -23,7 +22,7 @@
 		 ("\\paragraph{%s}" . "\\paragraph*{%s}")
 		 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
   (add-hook 'org-mode-hook 'org-indent-mode)
-;; (setq org-cycle-include-plain-lists t)
+  ;; (setq org-cycle-include-plain-lists t)
 
   (setq org-footnote-auto-adjust t)
   (setq org-cycle-include-plain-lists 'integrate))

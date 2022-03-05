@@ -11,6 +11,7 @@
   smartparens-mode
   sp-restrict-to-pairs-interactive
   sp-local-pair
+  :mode ("\\.el\\'" . smartparens-global-mode)
   :init
   (setq sp-interactive-dwim t)
   :config

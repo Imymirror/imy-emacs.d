@@ -8,8 +8,6 @@
                            (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 
 
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-(add-hook 'org-mode-hook 'visual-line-mode) ;; conflict : full-paragraph and proportional font
 
 ;; headline font size
 (defun imi/org-beautify-headline-font-size ()
