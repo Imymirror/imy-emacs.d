@@ -4,7 +4,8 @@
 ;; https://emacs.stackexchange.com/questions/17710/use-package-with-config-to-set-variables
 (use-package org
   :straight t
-  :mode (("\\.org$" . org-mode))
+  :defer 2
+  ;; :mode (("\\.org$" . org-mode))
   :hook
   (recentf-mode winner-mode delete-selection-mode)
   :config

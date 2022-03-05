@@ -5,7 +5,7 @@
 
 (use-package yasnippet
   :straight t
-  :ensure t
+  :defer 2
   :diminish yas-minor-mode
   :bind (:map yas-minor-mode-map
               ("C-c t y" . yas-expand)

@@ -23,6 +23,7 @@
 
 (use-package org-roam
   :straight t
+  :defer 2
   :init
   (setq imi/central-management-system-root-path "~/central-management-system/")
   (setq org-roam-v2-ack t)
