@@ -1,11 +1,8 @@
 ;;  -*- lexical-binding: t; -*-
 
 ;; from https://gist.github.com/seanhagen/8421498ea363a2143afd5e73006266b0#file-yasnippet-config-el-L6
-
-
 (use-package yasnippet
   :straight t
-  :defer 2
   :bind (:map yas-minor-mode-map
               ("C-c t y" . yas-expand)
 	      ("C-c t Y" . yas/visit-snippet-file))

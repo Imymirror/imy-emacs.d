@@ -27,7 +27,7 @@
   :config
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-	    doom-themes-enable-italic t) ; if nil, italics is universally disabled
+	doom-themes-enable-italic t) ; if nil, italics is universally disabled
 
   (load-theme 'doom-solarized-light t)
 
@@ -41,34 +41,19 @@
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
-(use-package avy
-  :straight t
-  :defer 3
-  :bind ("C-c g l" . avy-goto-line)
+(use-package avy :straight t :defer 1 :bind ("C-c g l" . avy-goto-line)
   :config
   
-  (use-package doom-modeline
-    :straight t
-    :defer 3
-    :init
-    (doom-modeline-mode 1))
+  (use-package doom-modeline :straight t :init (doom-modeline-mode 1))
 
   (use-package consult :straight t :commands execute-extended-command)
 
-  (use-package org-bullets :straight t :defer 4 :config (org-bullets-mode))
+  (use-package org-bullets :straight t  :init (org-bullets-mode 1))
 
   ;; Enable richer annotations using the Marginalia package
-  (use-package marginalia
-    :straight t
-    :defer 6
-    ;; Either bind `marginalia-cycle` globally or only in the minibuffer
-    :bind (:map minibuffer-local-map
-		        ("M-A" . marginalia-cycle))
-    :init (marginalia-mode))
+  (use-package marginalia :straight t :bind (:map minibuffer-local-map ("M-A" . marginalia-cycle)) :init (marginalia-mode))
   
-  (use-package which-key
-    :straight t
-    :init (which-key-mode 1))
+  (use-package which-key :straight t :init (which-key-mode 1))
 
   (require 'init-gtd)			        
   (require 'init-project)
@@ -82,46 +67,29 @@
   (require 'init-yasnippet)
   (require 'init-link-hint)
 
-  (use-package ace-pinyin :straight t
-    :init (ace-pinyin-global-mode +1)
-    :bind ("C-c g c" . ace-pinyin-jump-char))
+  (use-package ace-pinyin :straight t :init (ace-pinyin-global-mode +1) :bind ("C-c g c" . ace-pinyin-jump-char))
 
-  (use-package grab-mac-link
-    :straight t
-    :bind ("C-c o g" . grab-mac-link-dwim)
-    :config
-    (setq grab-mac-link-dwim-favourite-app 'chrome))
+  (use-package grab-mac-link :straight t :bind ("C-c o g" . grab-mac-link-dwim) :config (setq grab-mac-link-dwim-favourite-app 'chrome))
 
-  (use-package treemacs
-    :straight t
-    :bind ("s-0" . treemacs-select-window)
-    :config (message "loading treemacs"))
+  (use-package treemacs :straight t :bind ("s-0" . treemacs-select-window) :config (message "loading treemacs"))
 
-  (use-package cmake-mode
-    :straight t
-    :mode "CMakeLists.txt"
-    :config (message "loading cmake-mode"))
 
-  (use-package magit
-    :straight t
-    :bind ("C-c t m" . magit)
-    :config (message "magit..."))
+  (use-package cmake-mode :straight t :defer 2 :mode "CMakeLists.txt" :config (message "loading cmake-mode"))
+  
+  (use-package magit :straight t :bind ("C-c t m" . magit) :config (message "magit..."))
 
-  (use-package spacemacs-theme
-    :straight t
-    :commands consult-theme
-    :defer t)
+  (use-package spacemacs-theme :straight t :commands consult-theme :defer t)
   
   (use-package ctrlf :straight t :init (ctrlf-mode))
+  
+  (use-package flycheck :ensure :straight t)
 
   (require 'init-company)
   (require 'init-lsp)
-  (use-package flycheck :ensure :straight t)
   (require 'init-rust))
 
-(use-package emacs
-  :bind (
-         ("C-c t s" . shell)))
+(use-package emacs :bind (("C-c t s" . shell)))
+
 
 (require 'init-custom)
 

@@ -2,9 +2,9 @@
 (use-package link-hint
   :straight t
   :ensure t
-  :after org
   :bind
   (:map org-mode-map
-          ("C-c l" . link-hint-open-link)))
+        ("M-l" . link-hint-open-link) ;; downcase useless
+        ))
 
 (provide 'init-link-hint)
