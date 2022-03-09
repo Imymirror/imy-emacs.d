@@ -15,12 +15,15 @@
   (insert "#+ATTR_ORG: :width 500 ")
 
   (setq org-download-image-dir (concat "images/" (imi/im-file-name)))
-  (let ((file
-         (if (not use-default-filename)
-             (read-string (format "Filename [%s]: " org-download-screenshot-basename)
-                          nil nil org-download-screenshot-basename)
-           nil)))
-    (org-download-clipboard file)))
+
+  ;; (let ((file
+  ;;        (if (not use-default-filename)
+  ;;            (read-string (format "Filename [%s]: " org-download-screenshot-basename)
+  ;;                         nil nil org-download-screenshot-basename)
+  ;;          nil)))
+  ;;   (org-download-clipboard file))
+  
+  (org-download-clipboard org-download-screenshot-basename))
 
 
 
