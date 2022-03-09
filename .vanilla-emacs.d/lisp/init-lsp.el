@@ -6,7 +6,8 @@
   :commands lsp
   :hook (
 	     (c-mode . lsp)
-	     (c++-mode . lsp))
+	     (c++-mode . lsp)
+         (rustic-mode . lsp))
   :bind (:map lsp-mode-map
               ("M-j" . lsp-ui-imenu)
               ("M-?" . lsp-find-references)
@@ -33,11 +34,8 @@
   (setq-default tab-width 4)
   (setq indent-line-function 'insert-tab)
   
-  
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
-
-  )
+    (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
 
 (use-package lsp-ui :straight t
   :ensure

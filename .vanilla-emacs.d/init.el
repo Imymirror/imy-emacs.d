@@ -29,7 +29,7 @@
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
 	doom-themes-enable-italic t) ; if nil, italics is universally disabled
 
-  (load-theme 'doom-solarized-light t)
+  (load-theme 'doom-rouge t)
 
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
@@ -41,15 +41,16 @@
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
-(use-package avy :straight t :defer 1 :bind ("C-c g l" . avy-goto-line)
+(use-package avy :straight t :defer 1 :bind ("M-s-l" . avy-goto-line)
   :config
   
   (use-package doom-modeline :straight t :init (doom-modeline-mode 1))
 
   (use-package consult :straight t :commands execute-extended-command)
 
-  (use-package org-bullets :straight t  :init (org-bullets-mode 1))
+  ;; (use-package org-bullets :straight t  :init (org-bullets-mode 1))
 
+  
   ;; Enable richer annotations using the Marginalia package
   (use-package marginalia :straight t :bind (:map minibuffer-local-map ("M-A" . marginalia-cycle)) :init (marginalia-mode))
   
@@ -66,15 +67,15 @@
   (require 'init-smartparens)
   (require 'init-yasnippet)
   (require 'init-link-hint)
+  
 
-  (use-package ace-pinyin :straight t :init (ace-pinyin-global-mode +1) :bind ("C-c g c" . ace-pinyin-jump-char))
+  (use-package ace-pinyin :straight t :init (ace-pinyin-global-mode +1) :bind ("M-s-c" . ace-pinyin-jump-char))
 
   (use-package grab-mac-link :straight t :bind ("C-c o g" . grab-mac-link-dwim) :config (setq grab-mac-link-dwim-favourite-app 'chrome))
 
   (use-package treemacs :straight t :bind ("s-0" . treemacs-select-window) :config (message "loading treemacs"))
 
-
-  (use-package cmake-mode :straight t :defer 2 :mode "CMakeLists.txt" :config (message "loading cmake-mode"))
+  (use-package cmake-mode :straight t :defer t :mode "CMakeLists.txt" :config (message "loading cmake-mode"))
   
   (use-package magit :straight t :bind ("C-c t m" . magit) :config (message "magit..."))
 
@@ -88,8 +89,7 @@
   (require 'init-lsp)
   (require 'init-rust))
 
-(use-package emacs :bind (("C-c t s" . shell)))
-
+(use-package emacs :bind (("C-M-s" . shell)))
 
 (require 'init-custom)
 

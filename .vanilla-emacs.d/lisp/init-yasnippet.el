@@ -6,11 +6,12 @@
   :bind (:map yas-minor-mode-map
               ("C-c t y" . yas-expand)
 	      ("C-c t Y" . yas/visit-snippet-file))
-  
+  :init
+  (yas-global-mode 1)
   :config
   (yas-reload-all)
-  (add-hook 'prog-mode-hook #'yas-minor-mode)
-   (add-hook 'text-mode-hook 'yas-minor-mode)
+  ;; (add-hook 'prog-mode-hook #'yas-minor-mode)
+  ;; (add-hook 'text-mode-hook 'yas-minor-mode)
   ;;(yas-global-mode 1)
   (setq yas-prompt-functions '(yas-dropdown-prompt
                                ;; yas-ido-prompt

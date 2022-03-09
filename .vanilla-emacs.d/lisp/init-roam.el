@@ -11,6 +11,13 @@
   (cl-remove-if (lambda (x) (member x '("." ".." ".DS_Store")))
 		(directory-files DIRECTORY)))
 
+(defun imi/switch-to-roam-root ()
+  (interactive)
+  (let ((directory (concat imi/central-management-system-root-path "zotero/notes"))
+	(db (concat imi/central-management-system-root-path "zotero/roam-db/roam-root.db")))
+    (setq org-roam-directory  directory)  
+    (setq org-roam-db-location db)))
+
 
 (defun imi/switch-roam-engineer ()
   (interactive)
