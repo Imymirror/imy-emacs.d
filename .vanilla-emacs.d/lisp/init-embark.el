@@ -4,6 +4,8 @@
   :bind
   (("C-:" . embark-act)         ;; pick some comfortable binding
    ("C-;" . embark-dwim)        ;; good alternative: M-.
+   ("C-\"" . embark-export)
+   
    ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
   :config
   (require 'init-embark-leader-key)

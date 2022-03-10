@@ -14,18 +14,7 @@
   )
 
 
-(use-package orderless
-  :straight t
-  :after vertico
-  :config
-  ;; from purcell
-  (defun sanityinc/use-orderless-in-minibuffer ()
-    (setq-local completion-styles '(substring orderless)))
-  (add-hook 'minibuffer-setup-hook 'sanityinc/use-orderless-in-minibuffer)
-  
-  (setq read-file-name-completion-ignore-case t
-	read-buffer-completion-ignore-case t
-	completion-ignore-case t))
+
 
 ;; (vertico-mode)
 

@@ -19,7 +19,7 @@
 
 ;; completion system			        
 (require 'init-vertico)
-
+(require 'init-orderless)
 
 (use-package doom-themes
   :straight t
