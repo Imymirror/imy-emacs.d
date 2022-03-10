@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: new-elisp-file
-# key: nfile
+# key: >h
 # --
 ;;  -*- lexical-binding: t; -*-
 

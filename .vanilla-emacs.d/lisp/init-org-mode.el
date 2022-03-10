@@ -1,6 +1,5 @@
 ;; init-org-mode.el -*- lexical-binding: t; -*-
 
-  (use-package org-superstar :straight t)
 
 
 ;; from https://zzamboni.org/post/my-emacs-configuration-with-commentary/

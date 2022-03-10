@@ -20,7 +20,6 @@
 ;; completion system			        
 (require 'init-vertico)
 
-;; (require 'init-embark)
 
 (use-package doom-themes
   :straight t
@@ -41,15 +40,14 @@
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
-(use-package avy :straight t :defer 1 :bind ("M-s-l" . avy-goto-line)
+(use-package avy :straight t :defer 2 :bind ("M-s-l" . avy-goto-line)
   :config
   
-  (use-package doom-modeline :straight t :init (doom-modeline-mode 1))
+  (use-package doom-modeline :straight t :init (doom-modeline-mode 1) :config (setq doom-modeline-buffer-file-name-style 'file-name))
 
   (use-package consult :straight t :commands execute-extended-command)
 
-  ;; (use-package org-bullets :straight t  :init (org-bullets-mode 1))
-
+  (use-package org-superstar :straight t :after org )
   
   ;; Enable richer annotations using the Marginalia package
   (use-package marginalia :straight t :bind (:map minibuffer-local-map ("M-A" . marginalia-cycle)) :init (marginalia-mode))
@@ -85,12 +83,16 @@
   
   (use-package flycheck :ensure :straight t)
 
+  (require 'init-embark)
+
   (require 'init-company)
   (require 'init-lsp)
-  (require 'init-rust))
-
-(use-package emacs :bind (("C-M-s" . shell)))
+  (require 'init-rust)
+  
+  (use-package emacs :bind (("C-M-s" . shell)))
+  (recentf-mode))
 
 (require 'init-custom)
+
 
 ;;(put 'scroll-left 'disabled nil)

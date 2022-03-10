@@ -12,6 +12,7 @@
 
 (defun imi/org-download-paste-clipboard (&optional use-default-filename)
   (interactive "P")
+  
   (insert "#+ATTR_ORG: :width 500 ")
 
   (setq org-download-image-dir (concat "images/" (imi/im-file-name)))
