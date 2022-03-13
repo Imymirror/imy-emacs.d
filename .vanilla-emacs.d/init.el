@@ -43,7 +43,7 @@
 (use-package avy :straight t :defer 2 :bind ("M-s-l" . avy-goto-line)
   :config
   
-  (use-package doom-modeline :straight t :init (doom-modeline-mode 1) :config (setq doom-modeline-buffer-file-name-style 'file-name))
+  (use-package doom-modeline :straight t :init (doom-modeline-mode 1) :config (setq doom-modeline-buffer-file-name-style 'relative-from-project))
 
   (use-package consult :straight t :commands execute-extended-command)
 

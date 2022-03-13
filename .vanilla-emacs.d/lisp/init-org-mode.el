@@ -29,7 +29,9 @@
 		 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
   
   (add-hook 'org-mode-hook 'org-indent-mode)
-  (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1) (toggle-truncate-lines nil)))
+  (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)
+			     ;; (toggle-truncate-lines nil)
+			     ))
 
   ;; (setq org-cycle-include-plain-lists t)
   (recentf-mode 1)

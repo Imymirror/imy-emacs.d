@@ -28,6 +28,8 @@
 	 (name (completing-read "select a roam engineering db: " choices)))
     (imi/setup-roam-db name)))
 
+
+
 (use-package org-roam
   :straight t
   :defer 2
@@ -46,7 +48,6 @@
   :config
   (require 'init-beautify)
   
-  (imi/setup-roam-db "roam-zettlekasten")
   (add-to-list 'display-buffer-alist '("\\*org-roam\\*" (display-buffer-in-direction)   (direction . right) (window-width . 0.33) (window-height . fit-window-to-buffer)))
 
   (setq org-roam-node-display-template "${tags:35} ${title:80}" )
@@ -54,7 +55,9 @@
   ;; daily
   (require 'org-roam-dailies)
   (setq org-roam-dailies-directory imi/roam-daily-path)
-  (setq org-roam-dailies-capture-templates '(("d" "default" entry "* TODO %<%Y-%m-%d %I:%M %p>: %?" :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
-  (setq org-roam-capture-templates '(("d" "default" plain "%?" :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n") :unnarrowed t))))
+  (setq org-roam-dailies-capture-templates '(("d" "default" entry "* %<%Y-%m-%d %H:%M > %?" :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n#+filetags: :daily:\n"))))
+  (setq org-roam-capture-templates '(("d" "default" plain "%?" :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n") :unnarrowed t)))
+(imi/setup-roam-db "2022-03-13-daily-based")
+  )
 
 (provide 'init-roam)

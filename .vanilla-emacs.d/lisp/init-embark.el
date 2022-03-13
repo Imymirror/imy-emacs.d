@@ -11,7 +11,7 @@
   (require 'init-embark-leader-key)
   (require 'init-embark-consult-ouline-narrow)
   (require 'init-embark-which-key)
-  (require 'init-embark-tab-switch)
+;;  (require 'init-embark-tab-switch)
   (require 'init-embark-show-modeline-target))
 
 ;; Consult users will also want the embark-consult package.
