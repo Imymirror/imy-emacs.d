@@ -50,7 +50,17 @@
   (use-package org-superstar :straight t :after org )
   
   ;; Enable richer annotations using the Marginalia package
-  (use-package marginalia :straight t :bind (:map minibuffer-local-map ("M-A" . marginalia-cycle)) :init (marginalia-mode))
+  (use-package marginalia :straight t :bind (:map minibuffer-local-map ("M-A" . marginalia-cycle)) :init (marginalia-mode) :custom   (marginalia-max-relative-age 0))
+
+(use-package all-the-icons :straight t
+  :if (display-graphic-p))
+  
+  (use-package all-the-icons-completion
+    :straight t
+  :after (marginalia all-the-icons)
+  :hook (marginalia-mode . all-the-icons-completion-marginalia-setup)
+  :init
+  (all-the-icons-completion-mode))
   
   (use-package which-key :straight t :init (which-key-mode 1))
 
@@ -88,6 +98,8 @@
   (require 'init-company)
   (require 'init-lsp)
   (require 'init-rust)
+
+  ;; (require 'init-corfu)
   
   (use-package emacs :bind (("C-M-s" . shell)))
   (recentf-mode))
@@ -95,4 +107,5 @@
 (require 'init-custom)
 
 
-;;(put 'scroll-left 'disabled nil)
+(put 'scroll-left 'disabled nil)
+(put 'downcase-region 'disabled nil)

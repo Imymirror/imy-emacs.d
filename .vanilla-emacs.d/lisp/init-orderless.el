@@ -26,7 +26,6 @@
   ;; (setq orderless-matching-styles '(orderless-regexp))
   (setq orderless-style-dispatchers '(  without-if-bang ))
 
-
   (setq read-file-name-completion-ignore-case t
 	read-buffer-completion-ignore-case t
 	completion-ignore-case t))

@@ -20,6 +20,8 @@
   (setq company-idle-delay 0) ;; default 0.2
   (setq company-minimum-prefix-length 1)
 
+
+    
   ;; from https://emacs-lsp.github.io/lsp-mode/tutorials/CPP-guide/
   (setq gc-cons-threshold (* 100 1024 1024)
 	    read-process-output-max (* 1024 1024)
