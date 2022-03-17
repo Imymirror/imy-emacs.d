@@ -1,7 +1,5 @@
 ;; init-org-mode.el -*- lexical-binding: t; -*-
 
-
-
 ;; from https://zzamboni.org/post/my-emacs-configuration-with-commentary/
 ;; https://emacs.stackexchange.com/questions/17710/use-package-with-config-to-set-variables
 (use-package org
@@ -14,6 +12,8 @@
   :config
   (message "org.....")
   (require 'ox-org)
+  
+  (setq org-startup-folded t)
   
   (setq toggle-truncate-lines nil)
   (add-to-list 'org-latex-classes
