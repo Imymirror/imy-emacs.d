@@ -32,11 +32,11 @@
   
   
   ;; from https://stackoverflow.com/questions/69934/set-4-space-indent-in-emacs-in-text-mode
-  (setq-default indent-tabs-mode nil)
-  (setq-default tab-width 4)
-  (setq indent-line-function 'insert-tab)
+  ;; (setq-default indent-tabs-mode nil)
+  ;; (setq-default tab-width 4)
+  ;; (setq indent-line-function 'insert-tab)
   
-    (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
 
 (use-package lsp-ui :straight t
