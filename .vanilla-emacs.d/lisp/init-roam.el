@@ -29,7 +29,6 @@
     (imi/setup-roam-db name)))
 
 
-
 (use-package org-roam
   :straight t
   :defer 2

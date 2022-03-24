@@ -81,8 +81,7 @@
    '(  "n S" . org-roam-db-sync)
    '(  "n s" . imi/switch-roam-engineer)
    '(  "n d" . org-roam-dailies-map)
-   '(  "n f c" . (lambda () (interactive) (org-roam-node-find nil "#collection ") ))
-   '(  "n f n" . (lambda () (interactive) (org-roam-node-find nil "#note ") ))
+   '(  "n f f" . (lambda () (interactive) (org-roam-node-find nil "#index ") ))
    
 
    ;; buffer
@@ -107,7 +106,7 @@
    '(  "o g" . grab-mac-link-dwim)
    '(  "o G" . magit-status)
    '(  "o o" . imi/reveal-in-finder)
-    '(  "o O" . imi/reveal-in-finder-directory)
+   '(  "o O" . imi/reveal-in-finder-directory)
 
    '(  "o h" . org-hide-block-all)
    '(  "o i" . org-toggle-inline-images)
