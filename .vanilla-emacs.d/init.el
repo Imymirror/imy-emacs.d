@@ -92,12 +92,10 @@
   (use-package ctrlf :straight t :init (ctrlf-mode))
   
   (use-package flycheck :ensure :straight t)
-
-  (require 'init-embark)
-
   (require 'init-company)
   (require 'init-lsp)
   (require 'init-rust)
+  (require 'init-embark)
 
   ;; (require 'init-corfu)
   
