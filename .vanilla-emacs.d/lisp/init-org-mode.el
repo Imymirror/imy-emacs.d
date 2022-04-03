@@ -11,8 +11,18 @@
     ( winner-mode delete-selection-mode)
   :config
   (message "org.....")
+
+(setq org-tag-alist '(("review" . ?r)
+                      ("summary" . ?s)
+                      ("case" . ?c)
+                      ("book" . ?b)
+                      ("twitter" . ?t)
+                      ("youtube" . ?y)
+                      ("emacs" . ?e)
+                      ("how_to" . ?h)))
+
+
   (require 'ox-org)
-  
   (setq org-startup-folded t)
   
   (setq toggle-truncate-lines nil)

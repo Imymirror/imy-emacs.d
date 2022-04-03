@@ -76,14 +76,11 @@
   (require 'init-yasnippet)
   (require 'init-link-hint)
   
-
   (use-package ace-pinyin :straight t :init (ace-pinyin-global-mode +1) :bind ("M-s-c" . ace-pinyin-jump-char))
 
   (use-package grab-mac-link :straight t :bind ("C-c o g" . grab-mac-link-dwim) :config (setq grab-mac-link-dwim-favourite-app 'chrome))
 
   (use-package treemacs :straight t :bind ("s-0" . treemacs-select-window) :config (message "loading treemacs"))
-
-  (use-package cmake-mode :straight t :defer t :mode "CMakeLists.txt" :config (message "loading cmake-mode"))
   
   (use-package magit :straight t :bind ("C-c t m" . magit) :config (message "magit..."))
 
@@ -91,6 +88,7 @@
   
   (use-package ctrlf :straight t :init (ctrlf-mode))
   
+  (use-package cmake-mode :straight t :defer t :mode "CMakeLists.txt" :config (message "loading cmake-mode"))
   (use-package flycheck :ensure :straight t)
   (require 'init-company)
   (require 'init-lsp)
@@ -105,5 +103,5 @@
 (require 'init-custom)
 
 
-(put 'scroll-left 'disabled nil)
-(put 'downcase-region 'disabled nil)
+;; (put 'scroll-left 'disabled nil)
+;; (put 'downcase-region 'disabled nil)
