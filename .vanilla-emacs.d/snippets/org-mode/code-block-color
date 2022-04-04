@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: code-block-color
+# key: >cbc
+# --
+#+ATTR_LATEX: :options frame=single,backgroundcolor=\color{yinhongse}
+#+begin_src $1
+$0
+#+end_src

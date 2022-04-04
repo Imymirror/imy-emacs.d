@@ -19,6 +19,7 @@
                       ("twitter" . ?t)
                       ("youtube" . ?y)
                       ("emacs" . ?e)
+                      ("weibo" . ?w)
                       ("how_to" . ?h)))
 
 
