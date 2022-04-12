@@ -47,7 +47,7 @@
   :config
   (require 'init-beautify)
   
-  (add-to-list 'display-buffer-alist '("\\*org-roam\\*" (display-buffer-in-direction)   (direction . right) (window-width . 0.33) (window-height . fit-window-to-buffer)))
+ (add-to-list 'display-buffer-alist '("\\*org-roam\\*" (display-buffer-in-direction)   (direction . right) (window-width . 0.33) (window-height . fit-window-to-buffer)))
 
   (setq org-roam-node-display-template "${tags:35} ${title:80}" )
 
@@ -56,7 +56,6 @@
   (setq org-roam-dailies-directory imi/roam-daily-path)
   (setq org-roam-dailies-capture-templates '(("d" "default" entry "* %<%Y-%m-%d %H:%M> %?" :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n#+filetags: :daily:\n"))))
   (setq org-roam-capture-templates '(("d" "default" plain "%?" :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n") :unnarrowed t)))
-(imi/setup-roam-db "2022-03-13-daily-based")
-  )
+(imi/setup-roam-db "2022-03-13-daily-based"))
 
 (provide 'init-roam)

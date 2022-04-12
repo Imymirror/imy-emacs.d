@@ -4,14 +4,16 @@
 ;; https://emacs.stackexchange.com/questions/17710/use-package-with-config-to-set-variables
 (use-package org
   :straight t
-  :after org-superstar
-  :defer 2
+;;  :after org-superstar
+  :defer t
   ;; :mode (("\\.org$" . org-mode))
-  :hook
-    ( winner-mode delete-selection-mode)
+  :hook ( winner-mode delete-selection-mode)
   :config
-  (message "org.....")
+  
+;; export code block color 
+(setq org-latex-listings t)
 
+  
 (setq org-tag-alist '(("review" . ?r)
                       ("summary" . ?s)
                       ("case" . ?c)
