@@ -82,6 +82,9 @@
    '(  "n s" . imi/switch-roam-engineer)
    '(  "n d" . org-roam-dailies-map)
    '(  "n f f" . (lambda () (interactive) (org-roam-node-find nil "#index ") ))
+   '(  "n f o" . (lambda () (interactive) (org-roam-node-find nil "#outline ") ))
+   '(  "n f t" . (lambda () (interactive) (org-roam-node-find nil "#theme ") ))
+   '(  "n f c" . (lambda () (interactive) (org-roam-node-find nil "#course ") ))
    
 
    ;; buffer

@@ -3,7 +3,7 @@
 (use-package citar
   :straight t
   :bind (	      ("C-c c o" . citar-open)
-		      :map org-mode-map
+		      ;; :map org-mode-map
 		      ("C-c c c" . org-cite-insert)
 		      ("C-c c r" . citar-refresh))
   :config
@@ -13,9 +13,11 @@
   ;; use consult-completing-read for enhanced interface
   ;; (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
 
-  (defconst robo/bib-libraries (list "~/central-management-system/zotero/asset/My Library.bib"  )) ; All of my bib databases.
+
+  ;; 
+  (defconst robo/bib-libraries (list "~/central-management-system/zotero/asset/My Library.bib"    )) ; All of my bib databases.
   ;;(defconst robo/main-bib-library (nth 0 robo/bib-libraries))         ; The main db is always the first
-  (defconst robo/main-pdfs-library-paths `("~/central-management-system/zotero/export/My Library/files" "~/central-management-system/zotero/roam")) ; PDFs directories in a list
+  (defconst robo/main-pdfs-library-paths `("~/central-management-system/zotero/data/storage" )) ; PDFs directories in a list
   ;;(defconst robo/main-pdfs-library-path (nth 0 robo/main-pdfs-library-paths)) ; Main PDFs directory
 
   (setq citar-bibliography robo/bib-libraries
@@ -45,8 +47,6 @@
   ;;          (suffix . "  ${tags keywords keywords:40}")
   ;;          (preview . "${author editor} ${title}, ${journal publisher container-title collection-title booktitle} ${volume} (${year issued date}).\n")
   ;;          (note . "#+title: Notes on ${author editor}, ${title}")))
-
-
 
   )
 

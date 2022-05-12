@@ -263,7 +263,7 @@ If you omit CLOSE, it will reuse OPEN."
 (defun imi/surround-tilde (begin end)
   "Surround with tilde."
   (interactive "r\n")
-  (imi/surround begin end "~" "~"))
+  (imi/surround begin end " ~" "~ "))
 
 (defun imi/print-elements-of-list (list)
   "Print each element of LIST on a line of its own."

@@ -22,9 +22,7 @@
 (use-package doom-modeline :straight t :init (doom-modeline-mode 1) :config (setq doom-modeline-buffer-file-name-style 'relative-from-project))
 (use-package org-superstar :straight t :defer t)
 
-(use-package avy :straight t :defer 2 :bind ("M-s-l" . avy-goto-line)
-
-)
+(use-package avy :straight t :defer 2 :bind ("M-s-l" . avy-goto-line))
 
 (require 'init-link-hint)
 
@@ -74,14 +72,14 @@
 (require 'init-company)
 (require 'init-lsp)
 (require 'init-rust)
+(use-package racket-mode :straight t :defer t)
 
 ;; (require 'init-corfu)
 
 (use-package emacs :bind (("C-M-s" . shell)))
 
-
 (require 'init-custom)
 
 
 ;; (put 'scroll-left 'disabled nil)
-;; (put 'downcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)

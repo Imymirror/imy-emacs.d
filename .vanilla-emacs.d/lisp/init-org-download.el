@@ -38,7 +38,7 @@
     (setq org-download-heading-lvl nil)
     (setq org-download-timestamp "%Y%m%d-%H%M%S_")
     (setq org-image-actual-width nil)
-    (setq org-src-window-setup 'split-window-right)
+    (setq org-src-window-setup 'reorganize-frame)
     (setq org-download-annotate-function (lambda (_link) ""))
   ;;  )
   )
