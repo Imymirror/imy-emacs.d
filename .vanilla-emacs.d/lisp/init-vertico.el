@@ -10,8 +10,7 @@
                          vertico-quick
                          vertico-repeat
                          vertico-reverse))
-  :init (vertico-mode)
-  )
+  :init (vertico-mode))
 
 
 

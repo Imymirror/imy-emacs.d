@@ -4,8 +4,6 @@
   :after org
   :defer t
   :bind
-  (:map org-mode-map
-        ("C-c l" . link-hint-open-link) ;; downcase useless
-        ))
+  (:map org-mode-map ("C-c l" . link-hint-open-link)))
 
 (provide 'init-link-hint)
