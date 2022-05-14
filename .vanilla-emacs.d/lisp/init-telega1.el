@@ -1,10 +1,10 @@
 ;;  -*- lexical-binding: t; -*-
-
+;; (require 'telega)
+(setq telega-use-docker t)
 (use-package telega
   :straight
   (:host github :repo "zevlg/telega.el" :branch "master")
   :config
-  
   
   (with-eval-after-load 'telega
     (define-key telega-msg-button-map "k" nil)
@@ -25,4 +25,4 @@
   )
 
 
-(provide 'init-telega)
+(provide 'init-telega1)

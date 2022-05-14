@@ -112,6 +112,7 @@
    '(  "o O" . imi/reveal-in-finder-directory)
 
    '(  "o h" . org-hide-block-all)
+   '(  "o H" . org-show-all)
    '(  "o i" . org-toggle-inline-images)
    '(  "o L" . org-toggle-link-display)
    '(  "o f" . org-footnote-new)

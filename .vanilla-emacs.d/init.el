@@ -32,8 +32,6 @@
 (require 'init-embark)
 (use-package ctrlf :straight t :init (ctrlf-mode))
 
-
-
 (require 'init-project)
 (require 'init-rg)
 (require 'init-org-download)
@@ -52,6 +50,19 @@
 (require 'init-lsp)
 (use-package racket-mode :straight t :defer t)
 ;; (require 'init-rust)
+
+;; keyboard macro
+(fset 'yunwei-title
+   (kmacro-lambda-form [?t ?. ?l ?l ?l ?l ?d ?i return escape] 0 "%d"))
+
+(fset 'yunwei-add-star
+   (kmacro-lambda-form [?i escape ?\C-e ?\C-a ?i ?* ?* ?  down escape] 0 "%d"))
+
+(fset 'yunwei-title
+   (kmacro-lambda-form [?\C-s ?m ?p ?4 return ?d ?i return escape] 0 "%d"))
+
+; (setq telega-use-docker t)
+(require 'init-telega)
 
 (require 'init-custom)
 
