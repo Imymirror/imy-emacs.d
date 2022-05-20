@@ -302,4 +302,21 @@ If you omit CLOSE, it will reuse OPEN."
       (kill-new (file-name-sans-extension (file-name-nondirectory filename)) )
       (message "Copied buffer file name '%s' to the clipboard." (file-name-sans-extension (file-name-nondirectory filename)) ))))
 
+(defun imi/delete-blank-lines-in-region ()
+  (interactive)
+  (save-restriction
+    (narrow-to-region (point) (mark))
+    (goto-char (point-min))
+
+    (delete-blank-lines)
+
+    (while (not (= (point) (point-max)))
+      (forward-line) 
+      (delete-blank-lines))))
+
+(defun imi/my-term ()
+  (interactive)
+  (term "/bin/zsh"))
+
+
 (provide 'init-imi-func)

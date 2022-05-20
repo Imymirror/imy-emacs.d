@@ -16,21 +16,25 @@
 (require 'init-meow)			        
 (require 'init-roam)
 (require 'init-org-mode)		        
+(require 'init-latex)
 
 (require 'init-theme)
 (use-package which-key :straight t :init (which-key-mode 1))
 
 (use-package avy :straight t :defer 2 :bind ("M-s-l" . avy-goto-line))
+(use-package ace-pinyin :straight t :init (ace-pinyin-global-mode +1) :bind ("M-s-c" . ace-pinyin-jump-char))
 
 (require 'init-link-hint)
 
 ;; completion system			        
 (require 'init-vertico)
 (require 'init-orderless)
-(use-package consult :straight t :commands execute-extended-command)
+(require 'init-consult)
+
 (use-package marginalia :straight t :bind (:map minibuffer-local-map ("M-A" . marginalia-cycle)) :init (marginalia-mode) :custom   (marginalia-max-relative-age 0))
 (require 'init-embark)
 (use-package ctrlf :straight t :init (ctrlf-mode))
+(use-package doom-modeline :straight t :init (doom-modeline-mode 1) :config (setq doom-modeline-buffer-file-name-style 'relative-from-project))
 
 (require 'init-project)
 (require 'init-rg)
@@ -40,7 +44,6 @@
 (require 'init-smartparens)
 (require 'init-yasnippet)
 
-(use-package ace-pinyin :straight t :init (ace-pinyin-global-mode +1) :bind ("M-s-c" . ace-pinyin-jump-char))
 (use-package grab-mac-link :straight t :bind ("C-c o g" . grab-mac-link-dwim) :config (setq grab-mac-link-dwim-favourite-app 'chrome))
 
 (use-package treemacs :straight t :bind ("s-0" . treemacs-select-window) :config (message "loading treemacs"))
@@ -48,22 +51,17 @@
 (use-package flycheck :ensure :straight t)
 (require 'init-company)
 (require 'init-lsp)
-(use-package racket-mode :straight t :defer t)
+(require 'init-racket)
+
+
 ;; (require 'init-rust)
 
-;; keyboard macro
-(fset 'yunwei-title
-   (kmacro-lambda-form [?t ?. ?l ?l ?l ?l ?d ?i return escape] 0 "%d"))
-
-(fset 'yunwei-add-star
-   (kmacro-lambda-form [?i escape ?\C-e ?\C-a ?i ?* ?* ?  down escape] 0 "%d"))
-
-(fset 'yunwei-title
-   (kmacro-lambda-form [?\C-s ?m ?p ?4 return ?d ?i return escape] 0 "%d"))
-
-; (setq telega-use-docker t)
 (require 'init-telega)
+(require 'init-keyboard-macro)
+
+
+;; (require 'init-second-choice)
+(require 'init-emacs)
+
 
 (require 'init-custom)
-
-

@@ -36,14 +36,23 @@
   (setq imi/central-management-system-root-path "~/central-management-system/")
   (setq org-roam-v2-ack t)
   :bind (("C-c n l" . org-roam-buffer-toggle)
-         ("C-c n f" . org-roam-node-find)
+         ("C-c n n" . org-roam-node-find)
          ("C-c n g" . org-roam-graph)
          ("C-c n i" . org-roam-node-insert)
          ("C-c n c" . org-roam-capture)
+         ("C-c n t" . org-roam-tag-add)
+         ("C-c n s" . imi/switch-roam-engineer)
+         ("C-c n S" . org-roam-db-sync)
+	 (  "C-c n f f" . (lambda () (interactive) (org-roam-node-find nil "#index ") ))
+	 (  "C-c n f o" . (lambda () (interactive) (org-roam-node-find nil "#outline ") ))
+	 (  "C-c n f t" . (lambda () (interactive) (org-roam-node-find nil "#topic ") ))
+	 (  "C-c n f c" . (lambda () (interactive) (org-roam-node-find nil "#course ") ))
+   
+
          ;; Dailies
          ("C-c n j" . org-roam-dailies-capture-today))
-  :bind-keymap
-  ("C-c n d" . org-roam-dailies-map)
+  ;; :bind-keymap ; defined in meow, otherwise cause a bug
+  ;; ("C-c n d" . org-roam-dailies-map)
   :config
   (require 'init-beautify)
   
@@ -60,20 +69,15 @@
 (imi/setup-roam-db "2022-05-10-theme"))
 
 
-;; org-roam-ui
-
 (use-package org-roam-ui
   :straight
     (:host github :repo "org-roam/org-roam-ui" :branch "main" :files ("*.el" "out"))
     :after org-roam
-;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
-;;         a hookable mode anymore, you're advised to pick something yourself
-;;         if you don't care about startup time, use
-;;  :hook (after-init . org-roam-ui-mode)
     :config
     (setq org-roam-ui-sync-theme t
           org-roam-ui-follow t
           org-roam-ui-update-on-save t
           org-roam-ui-open-on-start t))
+
 
 (provide 'init-roam)

@@ -1,8 +1,5 @@
 ;;  -*- lexical-binding: t; -*-
 
-
-;; (global-set-key (kbd "C-M-s-)") 'telega) 
-
 ;; buffer
 
 (global-set-key (kbd "s-1") (lambda () (interactive) (imi/frame-switch-by-number 1)))
@@ -17,7 +14,7 @@
 
 (defun meow-setup ()
   (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
-  
+
   (meow-motion-overwrite-define-key
    '("<escape>" . ignore)
    '("j" . meow-next)
@@ -28,24 +25,13 @@
    ;;'("/" . meow-keypad-describe-key)
    ;;'("?" . meow-cheatsheet)
    '("." . find-file)
-
+ 
    ;; automation
    '(  "a e" . imi/backup-emacs)
    '(  "a z" . imi/backup-zotero)
    '(  "a m" . imi/org-mind-map-open-html)
    '(  "a b e" . imi/blog-export)
    '(  "a b p" . imi/blog-publish)
-
-   ;; consult
-   '(  "s l" . consult-line)
-   '(  "s b" . consult-buffer)
-   '(  "s i" . consult-imenu)
-   '(  "s o" . consult-outline)
-   '(  "s g" . consult-ripgrep)
-   '(  "s f" . consult-find)
-   '(  "s r" . consult-recent-file)
-   '(  "s R" . rg)
-   '(  "s G" . consult-git-grep)
    
    ;; surround
    '(  "S t" . imi/surround-tilde)
@@ -74,18 +60,8 @@
    '(  "w u" . winner-undo)
    '(  "w U" . winner-redo)
 
-   ;; roam
-   '(  "n n" . org-roam-node-find)
-   '(  "n t" . org-roam-tag-add)
-   '(  "n i" . org-roam-node-insert)
-   '(  "n S" . org-roam-db-sync)
-   '(  "n s" . imi/switch-roam-engineer)
-   '(  "n d" . org-roam-dailies-map)
-   '(  "n f f" . (lambda () (interactive) (org-roam-node-find nil "#index ") ))
-   '(  "n f o" . (lambda () (interactive) (org-roam-node-find nil "#outline ") ))
-   '(  "n f t" . (lambda () (interactive) (org-roam-node-find nil "#topic ") ))
-   '(  "n f c" . (lambda () (interactive) (org-roam-node-find nil "#course ") ))
    
+   '(  "n d" . org-roam-dailies-map)
 
    ;; buffer
    '(  "b p" . persp-switch-to-buffer)

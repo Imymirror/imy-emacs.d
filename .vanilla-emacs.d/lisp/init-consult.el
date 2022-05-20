@@ -1,12 +1,15 @@
 ;;  -*- lexical-binding: t; -*-
 
-(use-package consult :straight t )
+(use-package consult :straight t :commands execute-extended-command
+  :bind (
+   ("C-c s l" . consult-line)
+   ("C-c s b" . consult-buffer)
+   ("C-c s i" . consult-imenu)
+   ("C-c s o" . consult-outline)
+   ("C-c s g" . consult-ripgrep)
+   ("C-c s f" . consult-find)
+   ("C-c s r" . consult-recent-file)
+   ("C-c s G" . consult-git-grep)))
 
-
-;; 废弃 https://github.com/minad/consult/commit/116e30998ef3d97fb194edaff0854ca5a0732447
-;; (setq consult-project-root-function
-;;       (lambda ()
-;;         (when-let (project (project-current))
-;;           (car (project-roots project)))))
 
 (provide 'init-consult)

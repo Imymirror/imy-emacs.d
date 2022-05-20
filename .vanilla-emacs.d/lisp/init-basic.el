@@ -4,6 +4,7 @@
 (setq org-link-frame-setup '((file . find-file)))
 
 (global-set-key (kbd "<f5>") (lambda() (interactive)(find-file user-init-file)))
+(global-set-key (kbd "<f6>") (lambda() (interactive)(find-file "~/env/emacs/vanilla/")))
 
 (setq
      backup-by-copying t ; 自动备份
