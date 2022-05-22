@@ -5,7 +5,8 @@
   :bind (	      ("C-c c o" . citar-open)
 		      ;; :map org-mode-map
 		      ("C-c c c" . org-cite-insert)
-		      ("C-c c r" . citar-refresh))
+		      ("C-c c r" . citar-insert-reference)
+		      ("C-c c R" . citar-refresh))
   :config
 
   (require 'citar-org)
@@ -21,19 +22,9 @@
 	 )
   (setq citar-file-open-function 'org-open-file)
 
-
-;  (setq org-cite-global-bibliography robo/bib-libraries)
-  ;; (setq org-cite-insert-processor 'citar)
-  ;; (setq org-cite-follow-processor 'citar)
-  ;; (setq org-cite-activate-processor 'citar)
-
-  ;; (setq citar-templates
-  ;; 	'((main . "${author editor:12} ${date year issued:4}  ${title:250}")
-  ;;         (suffix . "  ${tags keywords keywords:20}")
-  ;; 	  ;;       (suffix . "  ${=key= id:15}    ${=type=:12}    ${tags keywords:*}")
-  ;;         (note . "Notes on ${author editor}, ${title}")))
-  )
-
-
+  (setq org-cite-global-bibliography robo/bib-libraries)
+  (setq org-cite-insert-processor 'citar)
+  (setq org-cite-follow-processor 'citar)
+  (setq org-cite-activate-processor 'citar))
 
 (provide 'init-citar)

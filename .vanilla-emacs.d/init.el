@@ -15,7 +15,10 @@
 
 (require 'init-meow)			        
 (require 'init-roam)
-(require 'init-org-mode)		        
+(require 'init-org-mode)
+; (require 'init-beautify)
+(use-package org-modern :straight t :config (add-hook 'org-mode-hook #'org-modern-mode))
+
 (require 'init-latex)
 
 (require 'init-theme)

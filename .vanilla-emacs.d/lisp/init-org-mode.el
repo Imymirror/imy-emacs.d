@@ -6,7 +6,8 @@
   (:host github :repo "casouri/valign" :branch "master" :files ("*.el" "out"))
   :after org
   :config
-  (add-hook 'org-mode-hook #'valign-mode))
+   (add-hook 'org-mode-hook #'valign-mode)
+  )
 
 
 
@@ -44,11 +45,12 @@
   (setq org-cycle-include-plain-lists 'integrate)
   
   (add-hook 'org-mode-hook 'org-indent-mode)
-;  (setq org-startup-folded t)
+  (setq org-startup-folded t)
   
-  (require 'warnings)
-  (setq warning-suppress-types (append warning-suppress-types '((org-element-cache))))
+  ;; (require 'warnings)
+  ;; (setq warning-suppress-types (append warning-suppress-types '((org-element-cache))))
  )
+
 
 
 (provide 'init-org-mode)
