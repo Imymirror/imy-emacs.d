@@ -1,8 +1,12 @@
 ;; init-roam.el -*- lexical-binding: t; -*-
 
+
+(setq imi/central-management-system-root-path "~/central-management-system/0-shape-up-method/")
+(setq imi/roam-daily-path (concat imi/central-management-system-root-path "note/daily-note/"))
+
 (defun imi/setup-roam-db (name)
-  (let ((directory (concat imi/central-management-system-root-path "zotero/notes/" name))
-	(db (concat imi/central-management-system-root-path "zotero/roam-db/" name ".db")))
+  (let ((directory (concat imi/central-management-system-root-path "note/" name))
+	(db (concat imi/central-management-system-root-path "cache/" name ".db")))
     (setq org-roam-directory  directory)  
     (setq org-roam-db-location db)))
 
@@ -13,8 +17,8 @@
 
 (defun imi/switch-to-roam-root ()
   (interactive)
-  (let ((directory (concat imi/central-management-system-root-path "zotero/notes"))
-	(db (concat imi/central-management-system-root-path "zotero/roam-db/roam-root.db")))
+  (let ((directory (concat imi/central-management-system-root-path "note/"))
+	(db (concat imi/central-management-system-root-path "cache/roam-root.db")))
     (setq org-roam-directory  directory)  
     (setq org-roam-db-location db)))
 
@@ -22,7 +26,7 @@
 (defun imi/switch-roam-engineer ()
   (interactive)
   (let* (
-	 (path (concat imi/central-management-system-root-path "zotero/notes"))
+	 (path (concat imi/central-management-system-root-path "note/"))
 	 (choices (imi/directory-files-no-dot path))	 
 	 ;; (choices '("algorithm" "rational-emacs" "flux-compose" "english" "chenhao" "zettlekasten" "pkm-roam" "roam"))
 	 (name (completing-read "select a roam engineering db: " choices)))
@@ -33,7 +37,6 @@
   :straight t
   :defer 2
   :init
-  (setq imi/central-management-system-root-path "~/central-management-system/")
   (setq org-roam-v2-ack t)
   :bind (("C-c n l" . org-roam-buffer-toggle)
          ("C-c n n" . org-roam-node-find)
@@ -57,7 +60,7 @@
   
  (add-to-list 'display-buffer-alist '("\\*org-roam\\*" (display-buffer-in-direction)   (direction . right) (window-width . 0.33) (window-height . fit-window-to-buffer)))
 
-  (setq org-roam-node-display-template "${tags:35} ${title:80}" )
+ (setq org-roam-node-display-template "${tags:35} ${title:80}" )
 
   ;; daily
   (require 'org-roam-dailies)
@@ -65,7 +68,8 @@
   (setq org-roam-dailies-capture-templates '(("d" "default" entry "* %<%Y-%m-%d %H:%M> %?" :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n#+filetags: :daily:\n"))))
   (setq org-roam-capture-templates '(("d" "default" plain "%?" :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n") :unnarrowed t)))
   
-(imi/setup-roam-db "2022-05-10-theme"))
+  (imi/setup-roam-db "daily-note")
+  )
 
 
 (use-package org-roam-ui

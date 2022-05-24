@@ -318,5 +318,18 @@ If you omit CLOSE, it will reuse OPEN."
   (interactive)
   (term "/bin/zsh"))
 
+(defun imi/ask-before-closing ()
+  "Prompt for confirmation for emacsclient(not daemon) like confirm-kill-emacs for running Emacs without daemon."
+  (interactive)
+  (if (y-or-n-p (format "Really exit Emacs? "))
+          (save-buffers-kill-terminal)
+    (message "Canceled frame close!")))
+
+
+;; Source: http://www.emacswiki.org/emacs-en/download/misc-cmds.el
+(defun imi/revert-buffer-no-confirm ()
+  "Revert buffer without confirmation."
+  (interactive)
+  (revert-buffer :ignore-auto :noconfirm))
 
 (provide 'init-imi-func)

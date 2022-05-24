@@ -8,7 +8,6 @@
 
 (setq imi/package-path "~/env/emacs/vanilla/packages")
 (setq imi/backup-path  "~/env/emacs/vanilla/backup")
-(setq imi/roam-daily-path  "~/central-management-system/zotero/notes/2022-05-10-theme/daily")
 
 ;; proxy
 (setq url-proxy-services

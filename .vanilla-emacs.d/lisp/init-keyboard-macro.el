@@ -6,5 +6,7 @@
 (fset 'km-yunwei-title
       (kmacro-lambda-form [?\C-s ?m ?p ?4 return ?d ?i return escape] 0 "%d"))
 
+(fset 'km-format-problem-name
+   (kmacro-lambda-form [?\M-% return ?!] 0 "%d"))
 
 (provide 'init-keyboard-macro)

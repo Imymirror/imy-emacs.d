@@ -14,14 +14,14 @@ folder, otherwise delete a word"
 
 (use-package vertico
   :straight ( vertico :files (:defaults "extensions/*")
-              ;; :includes (vertico-buffer
-              ;;            vertico-directory
-              ;;            vertico-flat
-              ;;            vertico-indexed
-              ;;            vertico-mouse
-              ;;            vertico-quick
-              ;;            vertico-repeat
-              ;;            vertico-reverse)
+              :includes (vertico-buffer
+                         vertico-directory
+                         vertico-flat
+                         vertico-indexed
+                         vertico-mouse
+                         vertico-quick
+                         vertico-repeat
+                         vertico-reverse)
 	      )
   :bind (:map minibuffer-local-map
 	      ("C-<backspace>" . dw/minibuffer-backward-kill))

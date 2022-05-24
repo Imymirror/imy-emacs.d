@@ -21,8 +21,6 @@
 		 ("\\paragraph{%s}" . "\\paragraph*{%s}")
 		 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
-
-  
   (add-hook 'org-mode-hook 'org-fragtog-mode))
 
 (provide 'init-latex)

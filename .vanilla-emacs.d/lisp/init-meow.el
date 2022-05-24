@@ -34,7 +34,7 @@
    '(  "a b p" . imi/blog-publish)
    
    ;; surround
-   '(  "S t" . imi/surround-tilde)
+   '(  "S T" . imi/surround-tilde)
    '(  "S S" . imi/surround-pair)
 
    
@@ -177,19 +177,13 @@
    '("<escape>" . ignore)))
 
 
-;; (with-eval-after-load "meow"
-;;   (setq meow-esc-delay 0.001)
-;;   (setq meow-grab-fill-commands nil)
-;;   (meow-setup)
-;;   ;;  (meow-setup-indicator)
-;;   )
-
 (use-package meow :straight t
   :init
   (meow-global-mode 1)
   :config
   (setq meow-esc-delay 0.001)
   (setq meow-grab-fill-commands nil)
+  (setq meow-keypad-describe-delay 10)
   (meow-setup))
 
 (provide 'init-meow)

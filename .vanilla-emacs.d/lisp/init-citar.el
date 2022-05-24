@@ -11,7 +11,7 @@
 
   (require 'citar-org)
 
-  (defconst robo/bib-libraries (list "~/central-management-system/zotero/asset/My Library.bib"    )) ; All of my bib databases.
+  (defconst robo/bib-libraries (list "~/central-management-system/0-shape-up-method/zotero/asset/My Library.bib"    )) ; All of my bib databases.
   ;;(defconst robo/main-bib-library (nth 0 robo/bib-libraries))         ; The main db is always the first
 ;  (defconst robo/main-pdfs-library-paths `("~/central-management-system/zotero/data/storage" )) ; PDFs directories in a list
   ;;(defconst robo/main-pdfs-library-path (nth 0 robo/main-pdfs-library-paths)) ; Main PDFs directory

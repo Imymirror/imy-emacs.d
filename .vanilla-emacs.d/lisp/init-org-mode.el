@@ -6,7 +6,7 @@
   (:host github :repo "casouri/valign" :branch "master" :files ("*.el" "out"))
   :after org
   :config
-   (add-hook 'org-mode-hook #'valign-mode)
+;;   (add-hook 'org-mode-hook #'valign-mode)
   )
 
 
