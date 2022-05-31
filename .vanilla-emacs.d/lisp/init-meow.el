@@ -60,7 +60,6 @@
    '(  "w u" . winner-undo)
    '(  "w U" . winner-redo)
 
-   
    '(  "n d" . org-roam-dailies-map)
 
    ;; buffer

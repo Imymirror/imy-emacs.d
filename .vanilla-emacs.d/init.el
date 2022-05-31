@@ -82,4 +82,6 @@
 (use-package magit :straight t
   :bind (("C-M-s-(" . magit)))
 
+(use-package olivetti :straight t)
+
 (require 'init-custom)

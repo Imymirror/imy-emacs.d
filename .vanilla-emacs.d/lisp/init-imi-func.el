@@ -332,4 +332,14 @@ If you omit CLOSE, it will reuse OPEN."
   (interactive)
   (revert-buffer :ignore-auto :noconfirm))
 
+(defun imi/copy-org-link ()
+   (interactive)
+   (let* ((context (org-element-context))
+          (type (org-element-type context))
+          (beg (org-element-property :begin context))
+          (end (org-element-property :end context)))
+     (when (eq type 'link)
+      (copy-region-as-kill beg end))))
+
+
 (provide 'init-imi-func)

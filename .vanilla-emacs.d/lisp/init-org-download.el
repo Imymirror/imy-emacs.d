@@ -15,7 +15,7 @@
   
   (insert "#+ATTR_ORG: :width 500 ")
 
-  (setq org-download-image-dir (concat "images/" (imi/im-file-name)))
+  (setq org-download-image-dir (concat "../../assets/" (imi/im-file-name)))
 
   ;; (let ((file
   ;;        (if (not use-default-filename)

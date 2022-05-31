@@ -16,6 +16,7 @@
 (use-package org
   :straight  t
   :defer t
+  :bind (("C-c o l" . imi/copy-org-link ))
   :hook ( winner-mode delete-selection-mode)
   :config
   
@@ -45,7 +46,7 @@
   (setq org-cycle-include-plain-lists 'integrate)
   
   (add-hook 'org-mode-hook 'org-indent-mode)
-  (setq org-startup-folded t)
+;  (setq org-startup-folded nil)
   
   ;; (require 'warnings)
   ;; (setq warning-suppress-types (append warning-suppress-types '((org-element-cache))))
