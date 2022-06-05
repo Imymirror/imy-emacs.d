@@ -9,4 +9,7 @@
 (fset 'km-format-problem-name
    (kmacro-lambda-form [?\M-% return ?!] 0 "%d"))
 
+(fset 'km-format-current-buffer
+   (kmacro-lambda-form [?\C-x ?h ? ?¾] 0 "%d"))
+
 (provide 'init-keyboard-macro)
