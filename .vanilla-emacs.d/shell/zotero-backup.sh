@@ -1,8 +1,8 @@
 #!/bin/bash
 
-pushd ~/central-management-system/zotero
+pushd ~/central-management-system/0-shape-up-method/assets/
 
-sh run.sh
+sh auto-update.sh
 
 popd
 

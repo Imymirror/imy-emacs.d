@@ -1,11 +1,11 @@
 ;;  -*- lexical-binding: t; -*-
 
 ;; (set-face-attribute 'default nil :height 140 :weight 'regular :width 'normal :family "PingFang SC")
-;; (set-face-attribute 'default nil :height 140 :weight 'regular :width 'normal :family "Fira Code")
+(set-face-attribute 'default nil :height 130 :weight 'regular :width 'normal :family "Fira Code")
 ;; (set-face-attribute 'default nil :height 130)
 ;; Hiragino Sans GB
 
- (set-frame-font "Fira Code-13" nil t)
+;; (set-frame-font "Fira Code-13" nil t)
  ;; (set-fontset-font t 'han      (font-spec :family "Hiragino Sans GB" :size 15))
  ;; (set-fontset-font t 'cjk-misc (font-spec :family "Hiragino Sans GB" :size 15))                                                        
 

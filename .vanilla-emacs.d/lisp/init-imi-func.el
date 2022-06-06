@@ -157,7 +157,7 @@ directory to make multiple eshell windows easier."
 (defun imi/restart-emacs ()
   (interactive)
   (imi/save-all-buffers)
-  (call-process "sh" nil nil nil "-c" "sh /Users/fuhongxue/.emacs.d/restart.sh &")
+  (call-process "sh" nil nil nil "-c" "sh /Users/fuhongxue/.emacs.d/shell/restart.sh &")
   (save-buffers-kill-terminal))
 
 ;; from https://stackoverflow.com/questions/384284/how-do-i-rename-an-open-file-in-emacs
