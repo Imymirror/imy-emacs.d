@@ -4,6 +4,8 @@
 (setq user-emacs-directory (file-name-directory user-init-file))
 (add-to-list 'load-path (expand-file-name (concat user-emacs-directory "lisp")))
 
+(require 'init-custom)
+
 (require 'init-speedup)
 (require 'init-some-path)
 (require 'init-imi-func)
@@ -17,8 +19,7 @@
 (require 'init-roam)
 (require 'init-org-mode)
 
-(use-package org-modern :straight t :config
-					;(add-hook 'org-mode-hook #'org-modern-mode)
+(use-package org-modern :straight t :config ;(add-hook 'org-mode-hook #'org-modern-mode)
 )
 
 (require 'init-latex)
@@ -72,4 +73,3 @@
 
 (use-package olivetti :straight t)
 
-(require 'init-custom)
