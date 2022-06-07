@@ -12,4 +12,7 @@
 (fset 'km-format-current-buffer
    (kmacro-lambda-form [?\C-x ?h ? ?¾] 0 "%d"))
 
+(fset 'km-insert-detailed-timestamp
+   (kmacro-lambda-form [?\C-u ?\C-c ?. return] 0 "%d"))
+
 (provide 'init-keyboard-macro)
