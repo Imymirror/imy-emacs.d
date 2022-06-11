@@ -322,7 +322,7 @@ If you omit CLOSE, it will reuse OPEN."
   "Prompt for confirmation for emacsclient(not daemon) like confirm-kill-emacs for running Emacs without daemon."
   (interactive)
   (if (y-or-n-p (format "Really exit Emacs? "))
-          (save-buffers-kill-terminal)
+      (save-buffers-kill-terminal)
     (message "Canceled frame close!")))
 
 
@@ -333,13 +333,20 @@ If you omit CLOSE, it will reuse OPEN."
   (revert-buffer :ignore-auto :noconfirm))
 
 (defun imi/copy-org-link ()
-   (interactive)
-   (let* ((context (org-element-context))
-          (type (org-element-type context))
-          (beg (org-element-property :begin context))
-          (end (org-element-property :end context)))
-     (when (eq type 'link)
+  (interactive)
+  (let* ((context (org-element-context))
+         (type (org-element-type context))
+         (beg (org-element-property :begin context))
+         (end (org-element-property :end context)))
+    (when (eq type 'link)
       (copy-region-as-kill beg end))))
 
+(defun imi/save-macro (name)
+  "save a macro. Take a name as argument
+       and save the last defined macro under
+       this name at the end of your .emacs"
+  (interactive "SName of the macro: ")  ; ask for the name of the macro
+  (kmacro-name-last-macro name)         ; use this name for the macro
+  (insert-kbd-macro name))               ; copy the macro
 
 (provide 'init-imi-func)

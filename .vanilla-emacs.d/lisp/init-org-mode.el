@@ -36,9 +36,8 @@
 
   (require 'ox-org)
 
-  (setq toggle-truncate-lines nil)
+;;  (setq toggle-truncate-lines nil)
   
-
   (setq org-cycle-include-plain-lists t)
   (recentf-mode 1)
 
@@ -46,7 +45,7 @@
   (setq org-cycle-include-plain-lists 'integrate)
   
   (add-hook 'org-mode-hook 'org-indent-mode)
-;  (setq org-startup-folded nil)
+  (setq org-startup-folded 'showall)
   
   ;; (require 'warnings)
   ;; (setq warning-suppress-types (append warning-suppress-types '((org-element-cache))))

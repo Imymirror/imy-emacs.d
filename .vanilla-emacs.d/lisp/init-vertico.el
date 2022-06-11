@@ -24,14 +24,13 @@ folder, otherwise delete a word"
                          vertico-reverse)
 	      )
   :bind (:map minibuffer-local-map
-	      ("C-<backspace>" . dw/minibuffer-backward-kill))
+	      ("M-<backspace>" . dw/minibuffer-backward-kill))
   :init (vertico-mode))
 
 
 
 
-;; (vertico-mode)
-
+;;  (vertico-mode)
 ;; (require 'vertico-buffer)
 
 ;; (setq completion-styles '(orderless)

@@ -1,6 +1,6 @@
 ;;  -*- lexical-binding: t; -*-
 
-(use-package consult :straight t :commands execute-extended-command
+(use-package consult :straight t 
   :bind (
    ("C-c s l" . consult-line)
    ("C-c s b" . consult-buffer)

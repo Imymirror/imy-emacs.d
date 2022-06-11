@@ -40,22 +40,18 @@
   (setq org-roam-v2-ack t)
   :bind (("C-c n l" . org-roam-buffer-toggle)
          ("C-c n n" . org-roam-node-find)
-         ("C-c n g" . org-roam-graph)
+;;         ("C-c n g" . org-roam-graph)
+         ("C-c n g" . org-roam-ui-mode)
          ("C-c n i" . org-roam-node-insert)
          ("C-c n c" . org-roam-capture)
          ("C-c n t" . org-roam-tag-add)
          ("C-c n s" . imi/switch-roam-engineer)
          ("C-c n S" . org-roam-db-sync)
-	 (  "C-c n f f" . (lambda () (interactive) (org-roam-node-find nil "#index ") ))
-	 (  "C-c n f o" . (lambda () (interactive) (org-roam-node-find nil "#outline ") ))
-	 (  "C-c n f t" . (lambda () (interactive) (org-roam-node-find nil "#topic ") ))
-	 (  "C-c n f c" . (lambda () (interactive) (org-roam-node-find nil "#course ") ))
+	 ("C-c n d" . org-roam-dailies-map)
    
-
          ;; Dailies
          ("C-c n j" . org-roam-dailies-capture-today))
   ;; :bind-keymap ; defined in meow, otherwise cause a bug
-  ;; ("C-c n d" . org-roam-dailies-map)
   :config
   
  (add-to-list 'display-buffer-alist '("\\*org-roam\\*" (display-buffer-in-direction)   (direction . right) (window-width . 0.33) (window-height . fit-window-to-buffer)))
@@ -81,6 +77,28 @@
           org-roam-ui-follow t
           org-roam-ui-update-on-save t
           org-roam-ui-open-on-start t))
+
+
+(use-package consult-org-roam :straight t
+   :ensure t
+   :init
+   (require 'consult-org-roam)
+   ;; Activate the minor-mode
+   (consult-org-roam-mode 1)
+   :custom
+   (consult-org-roam-grep-func #'consult-ripgrep)
+   :config
+   ;; Eventually suppress previewing for certain functions
+   (consult-customize
+    ;; consult-org-roam-forward-links :preview-key (kbd "M-.")
+    ;; consult-org-roam-file-find :preview-key (kbd "M-.")
+    ;; consult-org-roam-backlinks :preview-key (kbd "M-.")
+    )
+   :bind
+   ("C-c n e" . consult-org-roam-file-find)
+   ("C-c n b" . consult-org-roam-backlinks)
+   ("C-c n f" . consult-org-roam-forward-links)
+   ("C-c n r" . consult-org-roam-search))
 
 
 (provide 'init-roam)

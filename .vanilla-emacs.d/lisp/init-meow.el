@@ -60,7 +60,7 @@
    '(  "w u" . winner-undo)
    '(  "w U" . winner-redo)
 
-   '(  "n d" . org-roam-dailies-map)
+   ;; '(  "n d" . org-roam-dailies-map)
 
    ;; buffer
    '(  "b p" . persp-switch-to-buffer)
