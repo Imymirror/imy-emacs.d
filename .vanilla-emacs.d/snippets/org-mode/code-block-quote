@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: code-block
+# name: code-block-quote
 # key: >cq
 # --
 #+begin_quote

@@ -37,7 +37,7 @@
 (require 'init-embark)
 
 ;; (use-package ctrlf :straight t :init (ctrlf-mode))
-;; (use-package doom-modeline :straight t :init (doom-modeline-mode 1) :config (setq doom-modeline-buffer-file-name-style 'relative-from-project))
+(use-package doom-modeline :straight t :init (doom-modeline-mode 1) :config (setq doom-modeline-buffer-file-name-style 'relative-from-project))
 
 (require 'init-project)
 (require 'init-rg)
