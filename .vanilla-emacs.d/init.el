@@ -47,6 +47,7 @@
 (require 'init-smartparens)
 (require 'init-yasnippet)
 (require 'init-which-key)
+(use-package olivetti :straight t)
 
 (use-package grab-mac-link :straight t :bind ("C-c o g" . grab-mac-link-dwim) :config (setq grab-mac-link-dwim-favourite-app 'chrome))
 ;;(use-package treemacs :straight t :bind ("s-0" . treemacs-select-window) :config (message "loading treemacs"))
@@ -65,6 +66,5 @@
 (require 'init-emacs)
 (use-package magit :straight t :bind (("C-M-s-(" . magit)))
 
-(use-package olivetti :straight t)
 
 
