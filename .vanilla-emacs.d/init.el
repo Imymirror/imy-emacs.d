@@ -65,6 +65,3 @@
 ;; (require 'init-second-choice)
 (require 'init-emacs)
 (use-package magit :straight t :bind (("C-M-s-(" . magit)))
-
-
-
