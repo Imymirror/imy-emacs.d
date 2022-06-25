@@ -38,6 +38,7 @@
   :defer 2
   :init
   (setq org-roam-v2-ack t)
+  (org-roam-db-autosync-mode)
   :bind (("C-c n l" . org-roam-buffer-toggle)
          ("C-c n n" . org-roam-node-find)
 ;;         ("C-c n g" . org-roam-graph)

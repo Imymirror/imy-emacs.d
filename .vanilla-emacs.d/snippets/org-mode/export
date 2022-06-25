@@ -3,5 +3,5 @@
 # key: >export
 # --
 
-#+SETUPFILE: ~/central-management-system/zotero/asset/imi-standard-latex-export.org 
+#+SETUPFILE: ~/central-management-system/0-shape-up-method/zotero/asset/imi-standard-latex-export.org
 #+EXPORT_FILE_NAME: /Users/fuhongxue/Downloads/`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`
