@@ -4,6 +4,8 @@
   (:host github :repo "zevlg/telega.el" :branch "release-0.8.0")
   :config
   ;;  (setq telega-use-docker t)  
+
+  (add-hook 'telega-msg-ignore-predicates 'telega-msg-from-blocked-sender-p)
   
   (define-key telega-msg-button-map "k" nil)
   (define-key telega-msg-button-map (kbd "SPC") nil)
@@ -38,8 +40,6 @@
 				 ))
 	 ))
   )
-
-
 
 
 
