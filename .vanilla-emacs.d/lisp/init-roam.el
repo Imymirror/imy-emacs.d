@@ -91,9 +91,10 @@
    :config
    ;; Eventually suppress previewing for certain functions
    (consult-customize
-    ;; consult-org-roam-forward-links :preview-key (kbd "M-.")
-    ;; consult-org-roam-file-find :preview-key (kbd "M-.")
-    ;; consult-org-roam-backlinks :preview-key (kbd "M-.")
+    consult-org-roam-forward-links :preview-key (kbd "M-.")
+    consult-org-roam-file-find :preview-key (kbd "M-.")
+    consult-org-roam-backlinks :preview-key (kbd "M-.")
+    org-roam-node-insert :preview-key (kbd "M-.")
     )
    :bind
    ("C-c n e" . consult-org-roam-file-find)
