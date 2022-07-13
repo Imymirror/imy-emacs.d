@@ -12,7 +12,7 @@
   (require 'citar-org)
 
 ;; (defconst robo/bib-libraries (list "~/central-management-system/0-shape-up-method/zotero/asset/My Library.bib"    )) ; All of my bib databases.
- (defconst robo/bib-libraries (list "~/central-management-system/0-shape-up-method/assets/My Library.bib"    )) ; All of my bib databases.
+ (defconst robo/bib-libraries (list (concat imi/second-brain-root-path "assets/My Library.bib")     )) ; All of my bib databases.
  ;; (defconst robo/bib-libraries (list "/Users/fuhongxue/Downloads/My Library/My Library.bib"    )) ; All of my bib databases.
   ;;(defconst robo/main-bib-library (nth 0 robo/bib-libraries))         ; The main db is always the first
 ;  (defconst robo/main-pdfs-library-paths `("/Users/fuhongxue/Downloads/My Library/files/" )) ; PDFs directories in a list

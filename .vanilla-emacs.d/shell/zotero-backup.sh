@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pushd ~/central-management-system/0-shape-up-method/assets/
+pushd ~/central-management-system/second-brain/assets/
 
 sh auto-update.sh
 

@@ -1,12 +1,13 @@
 ;; init-roam.el -*- lexical-binding: t; -*-
 
 
-(setq imi/central-management-system-root-path "~/central-management-system/0-shape-up-method/")
-(setq imi/roam-daily-path (concat imi/central-management-system-root-path "note/daily-note/"))
+(setq imi/second-brain-root-path (concat imi/central-management-system-root-path "second-brain/"))
+
+(setq imi/roam-daily-path (concat imi/second-brain-root-path "note/daily-note/"))
 
 (defun imi/setup-roam-db (name)
-  (let ((directory (concat imi/central-management-system-root-path "note/" name))
-	(db (concat imi/central-management-system-root-path "cache/" name ".db")))
+  (let ((directory (concat imi/second-brain-root-path "note/" name))
+	(db (concat imi/second-brain-root-path "cache/" name ".db")))
     (setq org-roam-directory  directory)  
     (setq org-roam-db-location db)))
 
@@ -17,8 +18,8 @@
 
 (defun imi/switch-to-roam-root ()
   (interactive)
-  (let ((directory (concat imi/central-management-system-root-path "note/"))
-	(db (concat imi/central-management-system-root-path "cache/roam-root.db")))
+  (let ((directory (concat imi/second-brain-root-path "note/"))
+	(db (concat imi/second-brain-root-path "cache/roam-root.db")))
     (setq org-roam-directory  directory)  
     (setq org-roam-db-location db)))
 
@@ -26,7 +27,7 @@
 (defun imi/switch-roam-engineer ()
   (interactive)
   (let* (
-	 (path (concat imi/central-management-system-root-path "note/"))
+	 (path (concat imi/second-brain-root-path "note/"))
 	 (choices (imi/directory-files-no-dot path))	 
 	 ;; (choices '("algorithm" "rational-emacs" "flux-compose" "english" "chenhao" "zettlekasten" "pkm-roam" "roam"))
 	 (name (completing-read "select a roam engineering db: " choices)))
@@ -93,6 +94,7 @@
    (consult-customize
     consult-org-roam-forward-links :preview-key (kbd "M-.")
     consult-org-roam-file-find :preview-key (kbd "M-.")
+    org-roam-node-find :preview-key (kbd "M-.")
     consult-org-roam-backlinks :preview-key (kbd "M-.")
     org-roam-node-insert :preview-key (kbd "M-.")
     )

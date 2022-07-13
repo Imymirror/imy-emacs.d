@@ -54,7 +54,7 @@
 
 (use-package flycheck :ensure :straight t)
 (require 'init-company)
-(require 'init-lsp)
+;; (require 'init-lsp)
 (require 'init-racket)
 
 ;; (require 'init-rust)

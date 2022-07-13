@@ -1,5 +1,8 @@
 ;;  -*- lexical-binding: t; -*-
 
+(setq imi/central-management-system-root-path "~/central-management-system/")
+
+
 (setq sensitive-path "~/private/sensitive.el")
 (when (file-exists-p "~/private/") (load sensitive-path))
 
