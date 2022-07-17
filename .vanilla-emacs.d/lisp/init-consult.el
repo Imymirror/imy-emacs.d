@@ -4,6 +4,7 @@
   :bind (
    ("C-c s l" . consult-line)
    ("C-c s b" . consult-buffer)
+   ("C-c s B" . consult-project-buffer) 
    ("C-c s i" . consult-imenu)
    ("C-c s o" . consult-outline)
    ("C-c s g" . consult-ripgrep)

@@ -50,7 +50,9 @@
 (use-package olivetti :straight t)
 
 (use-package grab-mac-link :straight t :bind ("C-c o g" . grab-mac-link-dwim) :config (setq grab-mac-link-dwim-favourite-app 'chrome))
-;;(use-package treemacs :straight t :bind ("s-0" . treemacs-select-window) :config (message "loading treemacs"))
+
+(use-package all-the-icons :straight t :if (display-graphic-p))
+(use-package treemacs :straight t :bind ("s-0" . treemacs-select-window) :config (message "loading treemacs"))
 
 (use-package flycheck :ensure :straight t)
 (require 'init-company)

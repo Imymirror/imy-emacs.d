@@ -21,7 +21,7 @@
   "export org blog to github"
   (interactive)
 					;  (shell-command-to-string "sh ~/.emacs.d/shell/blog-export-copy-to-org-dir.sh")
-  (setq blog-note-dir (concat imi/second-brain-root-path "note/blog/"))
+  (setq blog-note-dir (concat imi/second-brain-root-path "note/Learning-Management-System/blog/"))
   (shell-command (concat "rm -rf " blog-note-dir "content/*"))
   (shell-command (concat "rm -rf " blog-note-dir "static/*"))
 

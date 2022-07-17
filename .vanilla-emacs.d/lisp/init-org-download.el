@@ -10,12 +10,15 @@
     ;; (file-name-nondirectory  (file-truename buffer-file-name))))
     (file-name-sans-extension (buffer-name))))
 
+(setq imi/org-download-assets-path (concat imi/central-management-system-root-path "second-brain/assets/"))
+
 (defun imi/org-download-paste-clipboard (&optional use-default-filename)
   (interactive "P")
   
   (insert "#+ATTR_ORG: :width 500 ")
-
-  (setq org-download-image-dir (concat "../../assets/" (imi/im-file-name)))
+					;  (setq org-download-image-dir (concat "../../assets/" (imi/im-file-name)))
+					;  (setq org-download-image-dir (concat imi/org-download-assets-path (imi/im-file-name)))
+  (setq org-download-image-dir (concat imi/org-download-assets-path (imi/im-file-name)))
 
   ;; (let ((file
   ;;        (if (not use-default-filename)
@@ -33,13 +36,13 @@
   :after org
   :init
   ;;  (with-eval-after-load "org"
-    (setq org-download-method 'directory)
-    (setq org-download-image-dir  "images/")
-    (setq org-download-heading-lvl nil)
-    (setq org-download-timestamp "%Y%m%d-%H%M%S_")
-    (setq org-image-actual-width nil)
-    (setq org-src-window-setup 'reorganize-frame)
-    (setq org-download-annotate-function (lambda (_link) ""))
+  (setq org-download-method 'directory)
+  ;;  (setq org-download-image-dir  "images/")
+  (setq org-download-heading-lvl nil)
+  (setq org-download-timestamp "%Y%m%d-%H%M%S_")
+  (setq org-image-actual-width nil)
+  (setq org-src-window-setup 'reorganize-frame)
+  (setq org-download-annotate-function (lambda (_link) ""))
   ;;  )
   )
 

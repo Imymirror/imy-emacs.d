@@ -4,6 +4,7 @@
 (setq imi/second-brain-root-path (concat imi/central-management-system-root-path "second-brain/"))
 
 (setq imi/roam-daily-path (concat imi/second-brain-root-path "note/daily-note/"))
+(setq imi/roam-directory-alist '("Learning-Management-System/blog"))
 
 (defun imi/setup-roam-db (name)
   (let ((directory (concat imi/second-brain-root-path "note/" name))
@@ -28,7 +29,7 @@
   (interactive)
   (let* (
 	 (path (concat imi/second-brain-root-path "note/"))
-	 (choices (imi/directory-files-no-dot path))	 
+	 (choices  (append (imi/directory-files-no-dot path) imi/roam-directory-alist))	 
 	 ;; (choices '("algorithm" "rational-emacs" "flux-compose" "english" "chenhao" "zettlekasten" "pkm-roam" "roam"))
 	 (name (completing-read "select a roam engineering db: " choices)))
     (imi/setup-roam-db name)))
@@ -42,7 +43,7 @@
   (org-roam-db-autosync-mode)
   :bind (("C-c n l" . org-roam-buffer-toggle)
          ("C-c n n" . org-roam-node-find)
-;;         ("C-c n g" . org-roam-graph)
+	 ;;         ("C-c n g" . org-roam-graph)
          ("C-c n g" . org-roam-ui-mode)
          ("C-c n i" . org-roam-node-insert)
          ("C-c n c" . org-roam-capture)
@@ -50,15 +51,15 @@
          ("C-c n s" . imi/switch-roam-engineer)
          ("C-c n S" . org-roam-db-sync)
 	 ("C-c n d" . org-roam-dailies-map)
-   
+	 
          ;; Dailies
          ("C-c n j" . org-roam-dailies-capture-today))
   ;; :bind-keymap ; defined in meow, otherwise cause a bug
   :config
   
- (add-to-list 'display-buffer-alist '("\\*org-roam\\*" (display-buffer-in-direction)   (direction . right) (window-width . 0.33) (window-height . fit-window-to-buffer)))
+  (add-to-list 'display-buffer-alist '("\\*org-roam\\*" (display-buffer-in-direction)   (direction . right) (window-width . 0.33) (window-height . fit-window-to-buffer)))
 
- (setq org-roam-node-display-template "${tags:35} ${title:80}" )
+  (setq org-roam-node-display-template "${tags:35} ${title:80}" )
 
   ;; daily
   (require 'org-roam-dailies)
@@ -72,37 +73,37 @@
 
 (use-package org-roam-ui
   :straight
-    (:host github :repo "org-roam/org-roam-ui" :branch "main" :files ("*.el" "out"))
-    :after org-roam
-    :config
-    (setq org-roam-ui-sync-theme t
-          org-roam-ui-follow t
-          org-roam-ui-update-on-save t
-          org-roam-ui-open-on-start t))
+  (:host github :repo "org-roam/org-roam-ui" :branch "main" :files ("*.el" "out"))
+  :after org-roam
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
 
 
 (use-package consult-org-roam :straight t
-   :ensure t
-   :init
-   (require 'consult-org-roam)
-   ;; Activate the minor-mode
-   (consult-org-roam-mode 1)
-   :custom
-   (consult-org-roam-grep-func #'consult-ripgrep)
-   :config
-   ;; Eventually suppress previewing for certain functions
-   (consult-customize
-    consult-org-roam-forward-links :preview-key (kbd "M-.")
-    consult-org-roam-file-find :preview-key (kbd "M-.")
-    org-roam-node-find :preview-key (kbd "M-.")
-    consult-org-roam-backlinks :preview-key (kbd "M-.")
-    org-roam-node-insert :preview-key (kbd "M-.")
-    )
-   :bind
-   ("C-c n e" . consult-org-roam-file-find)
-   ("C-c n b" . consult-org-roam-backlinks)
-   ("C-c n f" . consult-org-roam-forward-links)
-   ("C-c n r" . consult-org-roam-search))
+  :ensure t
+  :init
+  (require 'consult-org-roam)
+  ;; Activate the minor-mode
+  (consult-org-roam-mode 1)
+  :custom
+  (consult-org-roam-grep-func #'consult-ripgrep)
+  :config
+  ;; Eventually suppress previewing for certain functions
+  (consult-customize
+   consult-org-roam-forward-links :preview-key (kbd "M-.")
+   consult-org-roam-file-find :preview-key (kbd "M-.")
+   org-roam-node-find :preview-key (kbd "M-.")
+   consult-org-roam-backlinks :preview-key (kbd "M-.")
+   org-roam-node-insert :preview-key (kbd "M-.")
+   )
+  :bind
+  ("C-c n e" . consult-org-roam-file-find)
+  ("C-c n b" . consult-org-roam-backlinks)
+  ("C-c n f" . consult-org-roam-forward-links)
+  ("C-c n r" . consult-org-roam-search))
 
 
 (provide 'init-roam)

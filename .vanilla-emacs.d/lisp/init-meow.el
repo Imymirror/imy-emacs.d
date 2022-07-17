@@ -12,6 +12,7 @@
 (global-set-key (kbd "s-8") (lambda () (interactive) (imi/frame-switch-by-number 8)))
 (global-set-key (kbd "s-9") (lambda () (interactive) (imi/frame-switch-by-number 9)))
 
+
 (defun meow-setup ()
   (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
 
@@ -40,7 +41,13 @@
    
    ;; frame
    '(  "f n" . make-frame)
-   '(  "f d" . delete-frame)
+   '(  "f D" . delete-frame)
+   '(  "f a" . (lambda () (interactive) (imi/frame-switch-by-number 1)))
+   '(  "f s" . (lambda () (interactive) (imi/frame-switch-by-number 2)))
+   '(  "f j" . (lambda () (interactive) (imi/frame-switch-by-number 3)))
+   '(  "f k" . (lambda () (interactive) (imi/frame-switch-by-number 4)))
+   '(  "f l" . (lambda () (interactive) (imi/frame-switch-by-number 5)))
+   '(  "f ;" . (lambda () (interactive) (imi/frame-switch-by-number 5)))
 
 
    ;; window

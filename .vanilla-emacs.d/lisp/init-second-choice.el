@@ -3,7 +3,6 @@
 
 ;; (use-package org-superstar :straight t :defer t :config   (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1))))
 
-;; (use-package all-the-icons :straight t :if (display-graphic-p))
 
 ;; (use-package all-the-icons-completion
 ;;   :straight t
