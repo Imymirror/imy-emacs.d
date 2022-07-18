@@ -41,7 +41,7 @@
    
    ;; frame
    '(  "f n" . make-frame)
-   '(  "f D" . delete-frame)
+   '(  "f d" . delete-frame)
    '(  "f a" . (lambda () (interactive) (imi/frame-switch-by-number 1)))
    '(  "f s" . (lambda () (interactive) (imi/frame-switch-by-number 2)))
    '(  "f j" . (lambda () (interactive) (imi/frame-switch-by-number 3)))

@@ -32,7 +32,7 @@
 ;; completion system			        
 (require 'init-vertico)
 (require 'init-orderless)
-(require 'init-consult)
+; (require 'init-consult)
 (use-package marginalia :straight t :bind (:map minibuffer-local-map ("M-A" . marginalia-cycle)) :init (marginalia-mode) :custom   (marginalia-max-relative-age 0))
 (require 'init-embark)
 
@@ -47,7 +47,7 @@
 (require 'init-smartparens)
 (require 'init-yasnippet)
 (require 'init-which-key)
-(use-package olivetti :straight t)
+;; (use-package olivetti :straight t)
 
 (use-package grab-mac-link :straight t :bind ("C-c o g" . grab-mac-link-dwim) :config (setq grab-mac-link-dwim-favourite-app 'chrome))
 
@@ -56,7 +56,7 @@
 
 (use-package flycheck :ensure :straight t)
 (require 'init-company)
-;; (require 'init-lsp)
+(require 'init-lsp)
 (require 'init-racket)
 
 ;; (require 'init-rust)
