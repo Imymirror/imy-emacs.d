@@ -99,20 +99,6 @@ Forward to `org-shifttab' with ARG."
     (setq this-command last-command)
     (org-cycle-internal-global)))
 
-;; window
-(defun imi/window-jump-below ()
-  "jump below and move cursor"
-  (interactive)
-  (split-window-vertically)
-  (other-window 1)
-  )
-
-(defun imi/window-jump-right ()
-  "jump below and move cursor"
-  (interactive)
-  (split-window-horizontally)
-  (other-window 1)
-  )
 
 (defun imi/reveal-in-finder ()
   (interactive)
@@ -175,6 +161,17 @@ directory to make multiple eshell windows easier."
           (rename-buffer new-name)
           (set-visited-file-name new-name)
           (set-buffer-modified-p nil))))))
+
+(defun imi/delete-this-file ()
+  "Delete the current file, and kill the buffer."
+  (interactive)
+  (unless (buffer-file-name)
+    (error "No file is currently being edited"))
+  (when (yes-or-no-p (format "Really delete '%s'?"
+                             (file-name-nondirectory buffer-file-name)))
+    (delete-file (buffer-file-name))
+    (kill-this-buffer)))
+
 
 ;; from https://emacs.stackexchange.com/questions/31429/want-equivalent-of-vim-w-and-e
 (defun imi/forward-word ()

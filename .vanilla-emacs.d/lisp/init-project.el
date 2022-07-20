@@ -11,6 +11,8 @@
 
 
 (use-package projectile
+  :init
+  (projectile-mode 1)
   :straight t
   :bind-keymap ("s-p" . projectile-command-map))
 

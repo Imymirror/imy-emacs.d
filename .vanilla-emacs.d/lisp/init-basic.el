@@ -1,5 +1,11 @@
 ;;; -*- lexical-binding: t -*-
 
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
+(menu-bar-mode 0)
+(setq ring-bell-function 'ignore)
+
+
 ;; Open links in the same Window by default.
 (setq org-link-frame-setup '((file . find-file)))
 
@@ -16,27 +22,15 @@
      version-control t) ; 多次备份
 
 
-(setq ring-bell-function 'ignore)
 ;;(setq inhibit-startup-screen nil)
-(tool-bar-mode 0)
-(scroll-bar-mode 0)
-(menu-bar-mode 0)
 (add-to-list 'display-buffer-alist  '("*Help*" display-buffer-same-window))
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 
-
 (setq display-time-24hr-format t)
 ;;(setq display-time-format "%I:%M")
 
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (message "Emacs ready in %s with %d garbage collections."
-                     (format "%.2f seconds"
-                             (float-time
-                              (time-subtract after-init-time before-init-time)))
-                     gcs-done)))
 
 
 (provide 'init-basic)

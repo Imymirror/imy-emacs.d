@@ -38,4 +38,5 @@ folder, otherwise delete a word"
 ;;       completion-category-overrides '((file (styles partial-completion))))
 
 
+
 (provide 'init-vertico)

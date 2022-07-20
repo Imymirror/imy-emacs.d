@@ -9,7 +9,6 @@
 	 ("C-x C-c" . imi/ask-before-closing)
 	 :map telega-chat-mode-map
 	 ("C-c d" . km-telega-chat-delete)
-	 )
-  )
+	 ))
 
 (provide 'init-emacs)

@@ -22,8 +22,8 @@
  ;      citar-library-paths robo/main-pdfs-library-paths
         ;; citar-file-extensions '("pdf" "org" "md")
 	 )
-  (setq citar-file-open-function 'org-open-file)
-
+   (setq citar-file-open-function 'org-open-file)
+   
   (setq org-cite-global-bibliography robo/bib-libraries)
   (setq org-cite-insert-processor 'citar)
   (setq org-cite-follow-processor 'citar)
