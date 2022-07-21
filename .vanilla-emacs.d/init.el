@@ -3,6 +3,7 @@
 (setq user-init-file (or load-file-name (buffer-file-name)))
 (setq user-emacs-directory (file-name-directory user-init-file))
 (add-to-list 'load-path (expand-file-name (concat user-emacs-directory "lisp")))
+(add-to-list 'load-path (expand-file-name (concat user-emacs-directory "site-lisp"))) ;; 第三方库
 
 (require 'init-custom)
 
