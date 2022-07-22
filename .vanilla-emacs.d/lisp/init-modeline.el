@@ -4,8 +4,11 @@
 
 (use-package diminish :straight t
   :config
-  
-  (set-face-attribute 'mode-line nil :font "SongTi SC-20" :weight 'regular )
+
+  ;; (defun imi/modeline-face()
+  ;;   (set-face-attribute 'mode-line nil :font "SongTi SC-20" :weight 'regular )  )
+
+  ;; (add-hook 'after-init-hook 'imi/modeline-face)
   
   (diminish 'projectile-mode)
   (diminish 'org-indent-mode)

@@ -5,7 +5,6 @@
 (add-to-list 'load-path (expand-file-name (concat user-emacs-directory "lisp")))
 (add-to-list 'load-path (expand-file-name (concat user-emacs-directory "site-lisp"))) ;; 第三方库
 
-(require 'init-custom)
 (require 'init-straight)
 
 (require 'init-speedup)
@@ -18,13 +17,12 @@
 (require 'init-font)
 (require 'init-basic)
 (require 'init-recentf)
+(require 'init-meow)			        
 					; (require 'init-platforms)
 
-(require 'init-meow)			        
 (require 'init-roam)
 (require 'init-org-mode)
 			       ; (use-package org-modern :straight t :config)
-
 (require 'init-latex)
 
 (require 'init-theme)
@@ -35,12 +33,11 @@
 
 (require 'init-rg)
 
-;; completion system			        
+;; completion system
 (require 'init-orderless)
 (require 'init-minibuffer)
 (require 'init-hippie-expand)
 
-;; (use-package ctrlf :straight t :init (ctrlf-mode))
 (require 'init-modeline)
 (require 'init-dired)
 (require 'init-isearch)
@@ -52,7 +49,7 @@
 (require 'init-automation)
 ;(require 'init-smartparens)
 (require 'init-yasnippet)
-(require 'init-which-key)
+; (require 'init-which-key)
 
 ;; (use-package olivetti :straight t)
 
@@ -64,12 +61,10 @@
 
 (use-package all-the-icons :straight t :if (display-graphic-p))
 (use-package treemacs :straight t :bind ("s-0" . treemacs-select-window) :config (message "loading treemacs"))
-
 (use-package flycheck :ensure :straight t)
 (require 'init-company)
 (require 'init-lsp)
 (require 'init-racket)
-
 ;; (require 'init-rust)
 
 (require 'init-telega)
@@ -79,3 +74,4 @@
 (require 'init-emacs)
 (use-package magit :straight t :bind (("C-M-s-(" . magit)))
 
+(require 'init-custom)
