@@ -51,10 +51,10 @@
 
 
    ;; window
-   '(  "w m" . delete-other-windows)
+  ; '(  "w m" . delete-other-windows)
    '(  "w w" . other-window)
-   '(  "w r" . imi/window-jump-right)
-   '(  "w b" . imi/window-jump-below)
+ ;  '(  "w r" . imi/window-jump-right)
+;   '(  "w b" . imi/window-jump-below)
    '(  "w d" . delete-window)
    '(  "w h" . windmove-left)
    '(  "w l" . windmove-right)

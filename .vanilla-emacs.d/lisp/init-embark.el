@@ -1,13 +1,30 @@
 ;;  -*- lexical-binding: t; -*-
 
+(defun sanityinc/maybe-suspend-frame ()
+  (interactive)
+  (unless (and *is-a-mac* window-system)
+    (suspend-frame)))
+
+(global-set-key (kbd "C-z") 'sanityinc/maybe-suspend-frame)
+
 (use-package embark :straight t
   :bind
-  (("C-:" . embark-act)         ;; pick some comfortable binding
-   ("C-;" . embark-dwim)        ;; good alternative: M-.
-   ("C-\"" . embark-export)
+  (
+   ;("C-:" . embark-act)         ;; pick some comfortable binding
+   ("M-." . embark-dwim)        ;; good alternative: M-.
+   ;("C-\"" . embark-export)
    
-   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+   ("C-h B" . embark-bindings)
+   :map vertico-map
+   ("C-c C-o" . embark-export)
+   ("C-c C-c" . embark-act)
+   
+   ) ;; alternative for `describe-bindings'
   :config
+
+        ;; (define-key vertico-map (kbd "C-c C-o") 'embark-export)
+	;; (define-key vertico-map (kbd "C-c C-c") 'embark-act)
+	
   (require 'init-embark-leader-key)
   (require 'init-embark-consult-ouline-narrow)
   (require 'init-embark-which-key)

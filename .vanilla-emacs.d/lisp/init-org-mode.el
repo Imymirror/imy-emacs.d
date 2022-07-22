@@ -17,7 +17,6 @@
   :straight  t
   :defer t
   :bind (("C-c o l" . imi/copy-org-link ))
-  :hook ( winner-mode delete-selection-mode)
   :config
   
   ;;  headline press C-c C-c
@@ -36,11 +35,9 @@
 
   (require 'ox-org)
 
-  (setq toggle-truncate-lines nil)
   (global-visual-line-mode)
   
   (setq org-cycle-include-plain-lists t)
-  (recentf-mode 1)
 
   (setq org-footnote-auto-adjust t)
   (setq org-cycle-include-plain-lists 'integrate)

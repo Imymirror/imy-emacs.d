@@ -2,7 +2,9 @@
 
 
 ;; (set-face-attribute 'default nil :height 140 :weight 'regular :width 'normal :family "PingFang SC")
- (set-face-attribute 'default nil :height 130 :weight 'regular :width 'normal :family "Fira Code")
+(set-face-attribute 'default nil :height 130 :weight 'regular :width 'normal :family "Fira Code")
+; (set-face-attribute 'mode-line nil :font "SongTi SC-20" :weight 'regular )
+
 ; (set-face-attribute 'default nil :height 130 :weight 'regular :width 'normal :family "Adobe Caslon Pro")
 ;; (set-face-attribute 'default nil :height 130)
 ;; Hiragino Sans GB

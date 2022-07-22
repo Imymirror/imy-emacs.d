@@ -6,12 +6,10 @@
  ;; (smartparens-global-mode)
   ;;(winum-mode)
   (winner-mode)
-  (delete-selection-mode)
 ;;  (yas-global-mode +1)
   ;; (add-hook 'after-init-hook 'global-company-mode)
   ;; (add-hook 'after-init-hook 'yas-global-mode)
   
-  (recentf-mode) ;; consult consult-recent-file
   ;; (which-key-mode)
   )
 
