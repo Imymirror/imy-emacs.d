@@ -35,12 +35,9 @@
     (imi/setup-roam-db name)))
 
 
-(use-package org-roam
-  :straight t
-  :defer 2
+(use-package org-roam :straight t
   :init
   (setq org-roam-v2-ack t)
-  (org-roam-db-autosync-mode)
   :bind (("C-c n l" . org-roam-buffer-toggle)
          ("C-c n n" . org-roam-node-find)
 	 ;;         ("C-c n g" . org-roam-graph)
@@ -56,6 +53,7 @@
          ("C-c n j" . org-roam-dailies-capture-today))
   ;; :bind-keymap ; defined in meow, otherwise cause a bug
   :config
+;  (org-roam-db-autosync-mode 1)
   
   (add-to-list 'display-buffer-alist '("\\*org-roam\\*" (display-buffer-in-direction)   (direction . right) (window-width . 0.33) (window-height . fit-window-to-buffer)))
 
@@ -83,9 +81,8 @@
 
 
 (use-package consult-org-roam :straight t
-  :ensure t
   :init
-  (require 'consult-org-roam)
+;  (require 'consult-org-roam)
   ;; Activate the minor-mode
   (consult-org-roam-mode 1)
   :custom

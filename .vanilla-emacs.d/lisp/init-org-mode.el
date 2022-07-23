@@ -4,7 +4,6 @@
 (use-package valign
   :straight
   (:host github :repo "casouri/valign" :branch "master" :files ("*.el" "out"))
-  :after org
   :config
 ;;   (add-hook 'org-mode-hook #'valign-mode)
   )
@@ -13,9 +12,8 @@
 
 ;; from https://zzamboni.org/post/my-emacs-configuration-with-commentary/
 ;; https://emacs.stackexchange.com/questions/17710/use-package-with-config-to-set-variables
-(use-package org
-  :straight  t
-  :defer t
+(use-package org :straight  t
+;  :defer t
   :bind (("C-c o l" . imi/copy-org-link ))
   :config
    (diminish 'org-indent-mode)

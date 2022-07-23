@@ -24,10 +24,11 @@
 
 (use-package dimmer :straight t
   :init
-  (dimmer-mode)
   :config
 
-    (setq-default dimmer-fraction 0.15)
+  (setq-default dimmer-fraction 0.15)
+  (dimmer-mode)
+
   ;; (advice-add 'frame-set-background-mode :after (lambda (&rest args) (dimmer-process-all)))
 
   ;;   ;; Don't dim in terminal windows. Even with 256 colours it can

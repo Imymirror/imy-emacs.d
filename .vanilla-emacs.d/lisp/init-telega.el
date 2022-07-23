@@ -2,6 +2,7 @@
 (use-package telega
   :straight
   (:host github :repo "zevlg/telega.el" :branch "release-0.8.0")
+  :bind (("C-M-s-)"  . telega) )
   :config
   ;;  (setq telega-use-docker t)  
 

@@ -1,12 +1,12 @@
 ;;  -*- lexical-binding: t; -*-
 
 
-;; (set-face-attribute 'default nil :height 140 :weight 'regular :width 'normal :family "PingFang SC")
-(set-face-attribute 'default nil :height 130 :weight 'regular :width 'normal :family "Fira Code")
+;;(set-face-attribute 'default nil :height 140 :weight 'regular :width 'normal :family "PingFang SC")
+;; (set-face-attribute 'default nil :height 140 :weight 'regular :width 'normal :family "Fira Code")
 ; (set-face-attribute 'mode-line nil :font "SongTi SC-20" :weight 'regular )
 
 ; (set-face-attribute 'default nil :height 130 :weight 'regular :width 'normal :family "Adobe Caslon Pro")
-;; (set-face-attribute 'default nil :height 130)
+ (set-face-attribute 'default nil :height 140)
 ;; Hiragino Sans GB
 
 ;; (set-frame-font "Fira Code-13" nil t)
