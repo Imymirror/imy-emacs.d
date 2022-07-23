@@ -6,6 +6,7 @@
 (use-package smartparens :straight t
   :init (smartparens-global-mode)
   :config
+  (diminish 'smartparens-mode)
   (setq sp-interactive-dwim t)
   (require 'smartparens-config)
   (sp-use-smartparens-bindings)

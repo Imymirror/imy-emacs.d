@@ -6,8 +6,19 @@
              :init
              (beacon-mode 1)
              :config 
-             ;; (setq-default beacon-lighter "")
-             ;; (setq-default beacon-size 20)
+;;              (setq beacon-blink-duration 1)
+;; (setq beacon-blink-delay 0)
+;; (setq beacon-blink-when-focused t)
+;; (setq beacon-blink-when-point-moves-horizontally nil)
+;; (setq beacon-blink-when-point-moves-vertically 40)
+;; (setq beacon-color "#765")
+;; (setq beacon-lighter nil)
+             ;; (setq beacon-size 10)
+
+               (setq-default beacon-lighter "")
+               (setq-default beacon-size 20)
+             (setq beacon-color "#765")
+
              )
 
 (when (fboundp 'electric-pair-mode)

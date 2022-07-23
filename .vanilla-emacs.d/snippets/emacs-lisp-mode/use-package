@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: use-package
+# key: >use
+# --
+(use-package $1 :straight t $0)

@@ -143,7 +143,9 @@ directory to make multiple eshell windows easier."
 (defun imi/restart-emacs ()
   (interactive)
   (imi/save-all-buffers)
-  (call-process "sh" nil nil nil "-c" "sh /Users/fuhongxue/.emacs.d/shell/restart.sh &")
+  (call-process "sh" nil nil nil "-c" "sh $IMYMIRROR_INSTALL_DIR/shell/restart.sh &")
+  (call-process "sh" nil nil nil "-c" (concat "sh " (expand-file-name "shell/restart.sh" (getenv "IMYMIRROR_INSTALL_DIR")) " &"))
+  
   (save-buffers-kill-terminal))
 
 ;; from https://stackoverflow.com/questions/384284/how-do-i-rename-an-open-file-in-emacs

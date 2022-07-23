@@ -1,9 +1,9 @@
 # -*- mode: snippet -*-
 # name: new-elisp-file
-# key: >h
+# key: >new
 # --
 ;;  -*- lexical-binding: t; -*-
 
+$0
 
-
-(provide '$1)
+(provide '`(file-name-sans-extension (buffer-name))`)

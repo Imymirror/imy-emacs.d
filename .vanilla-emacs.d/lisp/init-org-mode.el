@@ -18,7 +18,7 @@
   :defer t
   :bind (("C-c o l" . imi/copy-org-link ))
   :config
-  
+   (diminish 'org-indent-mode)
   ;;  headline press C-c C-c
   (setq org-tag-alist '(("review" . ?r)
 			("summary" . ?s)

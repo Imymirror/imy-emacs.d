@@ -10,11 +10,23 @@
 ;; (setq projectile-project-search-path '(("~/central-management-system/project/" . 2) ("~/central-management-system/book-code" . 1)  ))
 
 
+(defun add-or-switch-project-dwim (dir)
+  "Let elisp do a few chores & set my hands free!"
+  (interactive (list (read-directory-name "Add to known projects: ")))
+  (projectile-add-known-project dir)
+  (find-file dir)
+  (treemacs-add-and-display-current-project))
+
 (use-package projectile   :straight t
   :init
   (projectile-mode 1)
   :bind-keymap ("C-c p" . projectile-command-map)
   :config
+
+  (define-key projectile-command-map (kbd "A") 'add-or-switch-project-dwim)
+
+  (diminish 'projectile-mode)
+
   ;; (when (executable-find "rg")
   ;;   (setq-default projectile-generic-command "rg --files --hidden"))
   ;; https://github.com/LambdaRan/emacs-lambda-time-machine/blob/d8116f159005625beed822bd9c0f651ddff3115b/init-projectile.el

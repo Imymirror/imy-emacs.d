@@ -10,8 +10,8 @@
 (use-package embark :straight t
   :bind
   (
-   ;("C-:" . embark-act)         ;; pick some comfortable binding
-   ("M-." . embark-dwim)        ;; good alternative: M-.
+;   ("C-:" . embark-act)         ;; pick some comfortable binding
+;   ("M-." . embark-dwim)        ;; good alternative: M-.
    ;("C-\"" . embark-export)
    
    ("C-h B" . embark-bindings)

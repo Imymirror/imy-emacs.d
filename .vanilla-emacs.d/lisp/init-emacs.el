@@ -2,7 +2,7 @@
 
 (use-package emacs
   :bind (
-	 ("M-s-s" . imi/my-term)
+	 ("M-s-s" . crux-visit-term-buffer)
 	 ;; unset delete-frame
 	 ("s-w" . nil)
 	 ("C-c t l" . imi/revert-buffer-no-confirm)

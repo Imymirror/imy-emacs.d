@@ -7,7 +7,8 @@
 (defun imi/backup-emacs ()
   "backup emacs configuration to github"
   (interactive)
-  (start-process "my-process" "automation" "sh" "/Users/fuhongxue/.emacs.d/shell/emacs-backup.sh" "/bin"))
+  (start-process "my-process" "automation" "sh" (concat (getenv "EMACSCFG_DIR") "/.emacs.d/shell/emacs-backup")  "/bin"))
+
 
 (defun imi/backup-zotero ()
   "backup emacs configuration, Programming-source-code-analysis to github"

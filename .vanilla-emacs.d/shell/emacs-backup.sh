@@ -1,6 +1,8 @@
 #!/bin/bash
 
-pushd ~/.emacs.d/
+export IMYMIRROR_INSTALL_DIR="$EMACSCFG_DIR/.emacs.d"
+
+pushd $IMYMIRROR_INSTALL_DIR
 
 cp ./init.el ~/central-management-system/project/imy-emacs.d/.vanilla-emacs.d/
 

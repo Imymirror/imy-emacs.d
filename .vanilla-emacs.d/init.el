@@ -10,6 +10,7 @@
 (require 'init-speedup)
 (require 'init-some-path)
 (require 'init-imi-func)
+(require 'init-modeline)
 
 (require 'init-benchmarking)
 (require 'init-uniquify)
@@ -17,7 +18,7 @@
 (require 'init-font)
 (require 'init-basic)
 (require 'init-recentf)
-(require 'init-meow)			        
+(require 'init-meow)
 					; (require 'init-platforms)
 
 (require 'init-roam)
@@ -28,7 +29,8 @@
 (require 'init-theme)
 
 (use-package avy :straight t :defer 2 :bind ("M-s-l" . avy-goto-line))
-(use-package ace-pinyin :straight t :init (ace-pinyin-global-mode +1) :bind ("M-s-c" . ace-pinyin-jump-char))
+(use-package ace-pinyin :straight t :init (ace-pinyin-global-mode +1) :diminish ace-pinyin-mode :bind ("M-s-c" . ace-pinyin-jump-char) )
+
 (require 'init-link-hint)
 
 (require 'init-rg)
@@ -38,7 +40,6 @@
 (require 'init-minibuffer)
 (require 'init-hippie-expand)
 
-(require 'init-modeline)
 (require 'init-dired)
 (require 'init-isearch)
 (require 'init-grep)
@@ -47,13 +48,13 @@
 (require 'init-org-download)
 (require 'init-citar)
 (require 'init-automation)
-;(require 'init-smartparens)
+(require 'init-smartparens)
 (require 'init-yasnippet)
-; (require 'init-which-key)
+(require 'init-which-key)
 
 ;; (use-package olivetti :straight t)
 
-(require 'init-sessions)
+; (require 'init-sessions)
 (require 'init-editing-utils)
 (require 'init-whitespace)
 
@@ -73,5 +74,9 @@
 ;; (require 'init-second-choice)
 (require 'init-emacs)
 (use-package magit :straight t :bind (("C-M-s-(" . magit)))
+(require 'init-search-engine)
+
+; (use-package crux :straight t )
+(require 'init-visit-term) 
 
 (require 'init-custom)

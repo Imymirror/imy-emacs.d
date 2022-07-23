@@ -1,7 +1,7 @@
 ;;  -*- lexical-binding: t; -*-
-;; (use-package acme-theme :straight t
-;;   :config
-;;   (load-theme 'acme t))
+(use-package acme-theme :straight t
+  :config
+  (load-theme 'acme t))
 
 
 (use-package doom-themes
@@ -10,8 +10,6 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
 	doom-themes-enable-italic t) ; if nil, italics is universally disabled
-
-   (load-theme 'doom-gruvbox-light t)
 
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
@@ -39,5 +37,11 @@
   ;;     (not (display-graphic-p)))
   ;;   (add-to-list 'dimmer-exclusion-predicates 'sanityinc/display-non-graphic-p)
   )
+
+(use-package rand-theme :straight t :defer 0.1
+  :config
+  (setq rand-theme-unwanted '(tsdh-light tsdh-dark))
+  (rand-theme)
+)
 
 (provide 'init-theme)

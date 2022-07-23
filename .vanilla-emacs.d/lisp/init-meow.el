@@ -190,6 +190,11 @@
   (setq meow-esc-delay 0.001)
   (setq meow-grab-fill-commands nil)
   (setq meow-keypad-describe-delay 10)
-  (meow-setup))
+  (meow-setup)
+  
+    (diminish 'meow-insert-mode '(:propertize " [I]" face '(:foreground "tan")))
+  (diminish 'meow-normal-mode '(:propertize " [N]" face '(:foreground "plum")))
+
+  )
 
 (provide 'init-meow)
