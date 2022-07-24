@@ -53,7 +53,7 @@
          ("C-c n j" . org-roam-dailies-capture-today))
   ;; :bind-keymap ; defined in meow, otherwise cause a bug
   :config
-;  (org-roam-db-autosync-mode 1)
+  (org-roam-db-autosync-mode 1)
   
   (add-to-list 'display-buffer-alist '("\\*org-roam\\*" (display-buffer-in-direction)   (direction . right) (window-width . 0.33) (window-height . fit-window-to-buffer)))
 
