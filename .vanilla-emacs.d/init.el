@@ -76,8 +76,8 @@
 (use-package magit :straight t :bind (("C-M-s-(" . magit)))
 (require 'init-search-engine)
 
-                                        ; (use-package crux :straight t )
-
+;; (use-package crux :straight t )
 (require 'init-term)
 
 (require 'init-custom)
+(put 'narrow-to-region 'disabled nil)

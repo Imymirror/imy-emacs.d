@@ -10,7 +10,7 @@
 ;; (setq projectile-project-search-path '(("~/central-management-system/project/" . 2) ("~/central-management-system/book-code" . 1)  ))
 
 
-(defun add-or-switch-project-dwim (dir)
+(defun imi/add-or-switch-project-dwim (dir)
   "Let elisp do a few chores & set my hands free!"
   (interactive (list (read-directory-name "Add to known projects: ")))
   (projectile-add-known-project dir)
@@ -23,7 +23,7 @@
   :bind-keymap ("C-c p" . projectile-command-map)
   :config
 
-  (define-key projectile-command-map (kbd "A") 'add-or-switch-project-dwim)
+  (define-key projectile-command-map (kbd "A") 'imi/add-or-switch-project-dwim)
 
   (diminish 'projectile-mode)
 

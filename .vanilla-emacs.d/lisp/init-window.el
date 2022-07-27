@@ -15,7 +15,6 @@
   (split-window-horizontally)
   (other-window 1))
 
-(global-set-key (kbd "M-o") 'other-window)
 
 (use-package switch-window :straight t :bind (("C-x o" . switch-window))
   :config
@@ -35,10 +34,6 @@
       (unless arg
         (select-window target-window)))))
 
-(global-set-key (kbd "C-x 2") (split-window-func-with-other-buffer 'split-window-vertically))
-(global-set-key (kbd "C-x 3") (split-window-func-with-other-buffer 'split-window-horizontally))
-(global-set-key (kbd "C-c w b") (split-window-func-with-other-buffer 'split-window-vertically))
-(global-set-key (kbd "C-c w r") (split-window-func-with-other-buffer 'split-window-horizontally))
 
 
 (defun sanityinc/toggle-delete-other-windows ()
@@ -49,8 +44,6 @@
       (winner-undo)
     (delete-other-windows)))
 
-(global-set-key (kbd "C-x 1") 'sanityinc/toggle-delete-other-windows)
-(global-set-key (kbd "C-c w m") 'sanityinc/toggle-delete-other-windows)
 
 
 ;; Rearrange split windows
@@ -73,8 +66,6 @@
     (when other-buffer
       (set-window-buffer (next-window) other-buffer))))
 
-(global-set-key (kbd "C-x |") 'split-window-horizontally-instead)
-(global-set-key (kbd "C-x _") 'split-window-vertically-instead)
 
 ;; Borrowed from http://postmomentum.ch/blog/201304/blog-on-emacs
 (defun sanityinc/split-window()
@@ -88,7 +79,6 @@ Call a second time to restore the original window configuration."
     (window-configuration-to-register :sanityinc/split-window)
     (switch-to-buffer-other-window nil)))
 
-(global-set-key (kbd "<f7>") 'sanityinc/split-window)
 
 
 (defun sanityinc/toggle-current-window-dedication ()
@@ -101,7 +91,20 @@ Call a second time to restore the original window configuration."
              (if was-dedicated "no longer " "")
              (buffer-name))))
 
-(global-set-key (kbd "C-c <down>") 'sanityinc/toggle-current-window-dedication)
 
+
+(global-set-key (kbd "M-o") 'other-window)
+(global-set-key (kbd "M-O") 'imi/other-window-1)
+
+(global-set-key (kbd "C-c <down>") 'sanityinc/toggle-current-window-dedication)
+(global-set-key (kbd "C-x 2") (split-window-func-with-other-buffer 'split-window-vertically))
+(global-set-key (kbd "C-x 3") (split-window-func-with-other-buffer 'split-window-horizontally))
+(global-set-key (kbd "C-c w b") (split-window-func-with-other-buffer 'split-window-vertically))
+(global-set-key (kbd "C-c w r") (split-window-func-with-other-buffer 'split-window-horizontally))
+(global-set-key (kbd "C-x 1") 'sanityinc/toggle-delete-other-windows)
+(global-set-key (kbd "C-c w m") 'sanityinc/toggle-delete-other-windows)
+(global-set-key (kbd "<f7>") 'sanityinc/split-window)
+(global-set-key (kbd "C-x |") 'split-window-horizontally-instead)
+(global-set-key (kbd "C-x _") 'split-window-vertically-instead)
 
 (provide 'init-window)

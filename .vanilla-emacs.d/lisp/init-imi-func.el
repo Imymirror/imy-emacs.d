@@ -347,4 +347,9 @@ If you omit CLOSE, it will reuse OPEN."
   (kmacro-name-last-macro name)         ; use this name for the macro
   (insert-kbd-macro name))               ; copy the macro
 
+
+(defun imi/other-window-1()
+  (interactive)
+  (other-window -1))
+
 (provide 'init-imi-func)
