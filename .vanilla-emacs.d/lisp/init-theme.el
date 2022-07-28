@@ -41,7 +41,7 @@
 
 (use-package rand-theme :straight t :defer 0.1
   :config
-  (setq rand-theme-unwanted '(tsdh-light tsdh-dark))
+  (setq rand-theme-unwanted '(tsdh-light tsdh-dark doom-shades-of-purple           ))
   (rand-theme)
 )
 

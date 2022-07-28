@@ -1,32 +1,33 @@
 ;;  -*- lexical-binding: t; -*-
 
-(use-package citar
-  :straight t
+(use-package citar :straight t
+  :no-require
+  :custom
+  (org-cite-global-bibliography (list (concat imi/second-brain-root-path "assets/My Library.bib")))
+  (org-cite-insert-processor 'citar)
+  (org-cite-follow-processor 'citar)
+  (org-cite-activate-processor 'citar)
+  (citar-bibliography org-cite-global-bibliography)
+  ;; optional: org-cite-insert is also bound to C-c C-x C-@
   :bind (	      ("C-c c o" . citar-open)
 		      ;; :map org-mode-map
 		      ("C-c c c" . org-cite-insert)
 		      ("C-c c C" . citar-insert-reference)
 		      ("C-c c r" . citar-refresh))
   :config
+;;  (setq citar-at-point-function 'embark-act)
+  (setq citar-file-open-function 'org-open-file)
+  (setq citar-templates
+      '((main . "${author editor:10} ${date year issued:4}   ${title:48}")
+        (suffix . " ${=key= id:15}  ${=type=:12}  ${tags keywords:*}")
+        (preview . "${author editor} (${year issued date}) ${title}, ${journal journaltitle publisher container-title collection-title}.\n")
+        (note . "Notes on ${author editor}, ${title}")))
 
-  (require 'citar-org)
+;; (defun my-minibuffer-setup ()
+;;        (set (make-local-variable 'face-remapping-alist)
+;;             '((default :height 1.0 :family "Sarasa Mono SC Nerd"))))
 
-;; (defconst robo/bib-libraries (list "~/central-management-system/0-shape-up-method/zotero/asset/My Library.bib"    )) ; All of my bib databases.
- (defconst robo/bib-libraries (list (concat imi/second-brain-root-path "assets/My Library.bib")     )) ; All of my bib databases.
- ;; (defconst robo/bib-libraries (list "/Users/fuhongxue/Downloads/My Library/My Library.bib"    )) ; All of my bib databases.
-  ;;(defconst robo/main-bib-library (nth 0 robo/bib-libraries))         ; The main db is always the first
-;  (defconst robo/main-pdfs-library-paths `("/Users/fuhongxue/Downloads/My Library/files/" )) ; PDFs directories in a list
-;  (defconst robo/main-pdfs-library-path (nth 0 robo/main-pdfs-library-paths)) ; Main PDFs directory
-
-   (setq citar-bibliography robo/bib-libraries
- ;      citar-library-paths robo/main-pdfs-library-paths
-        ;; citar-file-extensions '("pdf" "org" "md")
-	 )
-   (setq citar-file-open-function 'org-open-file)
-   
-  (setq org-cite-global-bibliography robo/bib-libraries)
-  (setq org-cite-insert-processor 'citar)
-  (setq org-cite-follow-processor 'citar)
-  (setq org-cite-activate-processor 'citar))
+;; (add-hook 'minibuffer-setup-hook 'my-minibuffer-setup)
+)
 
 (provide 'init-citar)
