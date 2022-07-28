@@ -18,8 +18,7 @@
    :map vertico-map
    ("C-c C-o" . embark-export)
    ("C-c C-c" . embark-act)
-   
-   ) ;; alternative for `describe-bindings'
+   ("C-c C-l" . embark-collect)) ;; alternative for `describe-bindings'
   :config
 
         ;; (define-key vertico-map (kbd "C-c C-o") 'embark-export)

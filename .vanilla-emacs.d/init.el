@@ -68,6 +68,10 @@
 (require 'init-racket)
 ;; (require 'init-rust)
 
+;; cmake-mode 影响启动时间接近 2s
+;; (use-package cmake-mode :straight t :defer 2)
+
+
 (require 'init-telega)
 (require 'init-keyboard-macro)
 

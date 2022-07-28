@@ -18,8 +18,6 @@
 
 ;; (use-package magit :straight t :bind ("C-c t m" . magit) :config (message "magit..."))
 
-;; cmake-mode 影响启动时间接近 2s
-;; (use-package cmake-mode :straight t :defer 2  :config (message "loading cmake-mode"))
 
 ;; (put 'scroll-left 'disabled nil)
 ;; (put 'downcase-region 'disabled nil)
