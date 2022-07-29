@@ -8,7 +8,6 @@
 	      ("C-c t Y" . yas/visit-snippet-file))
   :init
   (yas-global-mode 1)
-  :diminish yas-minor-mode
   :config
   (yas-reload-all)
   

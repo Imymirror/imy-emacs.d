@@ -30,7 +30,6 @@
   :straight t
   :init
   (global-company-mode 1)
-  :diminish company-mode
   :bind
   (:map company-active-map
 	("C-n". company-select-next)

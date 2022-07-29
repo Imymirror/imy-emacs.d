@@ -29,7 +29,7 @@
 (require 'init-theme)
 
 (use-package avy :straight t :defer 2 :bind ("M-s-l" . avy-goto-line))
-(use-package ace-pinyin :straight t :init (ace-pinyin-global-mode +1) :diminish ace-pinyin-mode :bind ("M-s-c" . ace-pinyin-jump-char) )
+(use-package ace-pinyin :straight t :init (ace-pinyin-global-mode +1) :bind ("M-s-c" . ace-pinyin-jump-char) )
 
 (require 'init-link-hint)
 

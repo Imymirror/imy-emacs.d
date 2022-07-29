@@ -25,7 +25,6 @@
 
   (define-key projectile-command-map (kbd "A") 'imi/add-or-switch-project-dwim)
 
-  (diminish 'projectile-mode)
 
   ;; (when (executable-find "rg")
   ;;   (setq-default projectile-generic-command "rg --files --hidden"))

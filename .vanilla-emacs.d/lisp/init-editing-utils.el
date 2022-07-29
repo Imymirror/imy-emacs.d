@@ -53,8 +53,6 @@
 (add-hook 'after-init-hook 'global-auto-revert-mode)
 (setq global-auto-revert-non-file-buffers t
       auto-revert-verbose nil)
-(with-eval-after-load 'autorevert
-  (diminish 'auto-revert-mode))
 
                                         ;(add-hook 'after-init-hook 'transient-mark-mode)
 
@@ -87,7 +85,6 @@
              (dolist (hook '(prog-mode-hook html-mode-hook yaml-mode-hook conf-mode-hook))
                (add-hook hook 'symbol-overlay-mode))
 
-             (diminish 'symbol-overlay-mode)
              (define-key symbol-overlay-mode-map (kbd "M-i") 'symbol-overlay-put)
              (define-key symbol-overlay-mode-map (kbd "M-I") 'symbol-overlay-remove-all)
              (define-key symbol-overlay-mode-map (kbd "M-n") 'symbol-overlay-jump-next)
@@ -108,7 +105,6 @@
 (use-package page-break-lines :straight t 
              :config 
              (add-hook 'after-init-hook 'global-page-break-lines-mode)
-             (diminish 'page-break-lines-mode)
              (add-to-list 'page-break-lines-modes 'browse-kill-ring-mode))
 
 

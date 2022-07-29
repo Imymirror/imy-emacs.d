@@ -192,8 +192,8 @@
   (setq meow-keypad-describe-delay 10)
   (meow-setup)
   
-    (diminish 'meow-insert-mode '(:propertize " [I]" face '(:foreground "tan")))
-  (diminish 'meow-normal-mode '(:propertize " [N]" face '(:foreground "plum")))
+  ;;   (diminish 'meow-insert-mode '(:propertize " [I]" face '(:foreground "tan")))
+  ;; (diminish 'meow-normal-mode '(:propertize " [N]" face '(:foreground "plum")))
 
   )
 

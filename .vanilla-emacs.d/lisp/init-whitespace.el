@@ -8,8 +8,7 @@
 ;; (dolist (hook '(prog-mode-hook text-mode-hook conf-mode-hook))
 ;;   (add-hook hook 'sanityinc/show-trailing-whitespace))
 
-(use-package whitespace-cleanup-mode :straight t
- :config (diminish 'whitespace-cleanup-mode))
+(use-package whitespace-cleanup-mode :straight t)
 
 (global-set-key [remap just-one-space] 'cycle-spacing)
 
