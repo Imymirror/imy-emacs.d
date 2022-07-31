@@ -1,14 +1,12 @@
 ;; init-org-mode.el -*- lexical-binding: t; -*-
 
+ ;; (use-package org-modern :straight t :config)
+
 ;; This package provides visual alignment for Org Mode, Markdown and table.el tables on GUI Emacs.
 (use-package valign
   :straight
   (:host github :repo "casouri/valign" :branch "master" :files ("*.el" "out"))
-  :config
-;;   (add-hook 'org-mode-hook #'valign-mode)
-  )
-
-
+  :defer 2)
 
 ;; from https://zzamboni.org/post/my-emacs-configuration-with-commentary/
 ;; https://emacs.stackexchange.com/questions/17710/use-package-with-config-to-set-variables
@@ -16,7 +14,6 @@
 ;  :defer t
   :bind (("C-c o l" . imi/copy-org-link ))
   :config
-   ;; (diminish 'org-indent-mode)
   ;;  headline press C-c C-c
   (setq org-tag-alist '(("review" . ?r)
                         ("summary" . ?s)
@@ -29,7 +26,6 @@
                         ("emacs" . ?e)
                         ("weibo" . ?w)
                         ("how" . ?h)))
-
 
   (require 'ox-org)
 
