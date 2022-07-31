@@ -69,6 +69,13 @@
  (require 'init-racket)
  (require 'init-rust)
 
+;; cmake-mode 影响启动时间接近 2s
+;; (use-package cmake-mode :straight t :ensure t
+;;   :commands cmake-mode
+;;   ;; :mode (("\\.cmake\\'" . cmake-mode)
+;;   ;;        ("\\CMakeLists.txt$" . cmake-mode))
+;;   )
+
 (use-package cmake-mode
   :load-path "site-lisp/cmake-mode"
   :mode (("\\.cmake\\'" . cmake-mode)
