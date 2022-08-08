@@ -1,14 +1,15 @@
 ;;  -*- lexical-binding: t; -*-
 
 (defvar imi/ebook-process-id nil)
-(defvar imi/process-name "zathura")
+(defvar imi/process-name "sioyek") ;; issue type : command line app (zathura), normal macos app(sioyek)
+
+(defun imi/get-shell-command-string(cmd)
+  (let ((string (shell-command-to-string cmd) ))
+    (if (equal string "") string (substring string 0 -1))))
 
 (defun imi/get-ebook-process-id()
   (interactive)
-  
-  (substring 
-   (shell-command-to-string (concat "/bin/echo $(pgrep -x '" imi/process-name "')"))
-   0 -1))
+  (imi/get-shell-command-string (concat "/bin/echo $(pgrep -x '" imi/process-name "')")))
 
 
 (defvar process-test-sentinel-wait-timeout 2.0)
@@ -22,7 +23,7 @@
           )))
 
     (let (
-          (proc (start-process "osascript-getinfo" "osascript1" "osascript" "-e" script))
+          (proc (start-process "osascript-getinfo" "*osascript*" "osascript" "-e" script))
           ;; (stdout-output nil)
           (sentinel-output nil)
 
@@ -48,8 +49,13 @@
 (defun imi/switch-to-ebook-viewer()
   (interactive)
   (or imi/ebook-process-id (progn
-                             (when (string= "" (imi/get-ebook-process-id)) (start-process "osascript-getinfo" nil imi/process-name))
-                             (setq imi/ebook-process-id (imi/get-ebook-process-id))) )
+                             (when (string= "" (imi/get-ebook-process-id))
+                               (let ((output (imi/get-shell-command-string (concat "command -v -- " imi/process-name )) ))
+                                 (if (equal output "") ;; check if normal app
+                                    (shell-command-to-string (concat "/usr/bin/open -a " imi/process-name ))
+                                   (start-process "osascript-getinfo" "*osascript*"  imi/process-name "&"))))
+                             
+                             (setq imi/ebook-process-id (imi/get-ebook-process-id))))
 
   (imi/mac-set-app-front-by-id imi/ebook-process-id))
 
