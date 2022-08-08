@@ -11,8 +11,6 @@
 
 
 (require 'init-straight)
-(require 'init-byte-compilation)
-
 
 (require 'init-speedup)
 (require 'init-some-path)
@@ -20,7 +18,7 @@
 (require 'init-modeline)
 
 
- (require 'init-benchmarking)
+(require 'init-benchmarking)
 (require 'init-uniquify)
 (require 'init-window)
 (require 'init-font)
@@ -61,7 +59,6 @@
 (require 'init-yasnippet)
 (require 'init-which-key)
 
-(use-package olivetti :straight t)
 
 (require 'init-sessions)
 (require 'init-editing-utils)
@@ -77,11 +74,7 @@
 (require 'init-rust)
 
 
-(use-package cmake-mode
-  :load-path "site-lisp/cmake-mode"
-  ;; :mode (("\\.cmake\\'" . cmake-mode)
-  ;;        ("\\CMakeLists.txt$" . cmake-mode))
-  )
+(use-package cmake-mode :load-path "site-lisp/cmake-mode")
 
 (require 'init-telega)
 (require 'init-keyboard-macro)
@@ -94,9 +87,8 @@
 (use-package crux :straight t)
 (require 'init-term)
 
-
-
 (require 'init-custom)
 (put 'narrow-to-region 'disabled nil)
 
-;; (use-package cmake-mode :straight t)
+;; (require 'init-epub)
+

@@ -2,24 +2,14 @@
 
 (use-package unfill :straight t )
 (use-package list-unicode-display :straight t )
-(use-package beacon :straight t 
-             :init
-             (beacon-mode 1)
-             :config 
-;;              (setq beacon-blink-duration 1)
-;; (setq beacon-blink-delay 0)
-;; (setq beacon-blink-when-focused t)
-;; (setq beacon-blink-when-point-moves-horizontally nil)
-;; (setq beacon-blink-when-point-moves-vertically 40)
-;; (setq beacon-color "#765")
-;; (setq beacon-lighter nil)
-             ;; (setq beacon-size 10)
 
-               (setq-default beacon-lighter "")
-               (setq-default beacon-size 20)
-             (setq beacon-color "#765")
-
-             )
+;; (use-package beacon :straight t 
+;;   :init
+;;   (beacon-mode 1)
+;;   :config 
+;;   (setq-default beacon-lighter "")
+;;   (setq-default beacon-size 20)
+;;   (setq beacon-color "#765"))
 
 (when (fboundp 'electric-pair-mode)
   (add-hook 'after-init-hook 'electric-pair-mode))
@@ -76,36 +66,36 @@
 
 
 (use-package rainbow-delimiters :straight t 
-             :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+  :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
 (use-package symbol-overlay :straight t 
-             :config 
+  :config 
 
 
-             (dolist (hook '(prog-mode-hook html-mode-hook yaml-mode-hook conf-mode-hook))
-               (add-hook hook 'symbol-overlay-mode))
+  (dolist (hook '(prog-mode-hook html-mode-hook yaml-mode-hook conf-mode-hook))
+    (add-hook hook 'symbol-overlay-mode))
 
-             (define-key symbol-overlay-mode-map (kbd "M-i") 'symbol-overlay-put)
-             (define-key symbol-overlay-mode-map (kbd "M-I") 'symbol-overlay-remove-all)
-             (define-key symbol-overlay-mode-map (kbd "M-n") 'symbol-overlay-jump-next)
-             (define-key symbol-overlay-mode-map (kbd "M-p") 'symbol-overlay-jump-prev)
-             )
+  (define-key symbol-overlay-mode-map (kbd "M-i") 'symbol-overlay-put)
+  (define-key symbol-overlay-mode-map (kbd "M-I") 'symbol-overlay-remove-all)
+  (define-key symbol-overlay-mode-map (kbd "M-n") 'symbol-overlay-jump-next)
+  (define-key symbol-overlay-mode-map (kbd "M-p") 'symbol-overlay-jump-prev)
+  )
 
 
 (use-package browse-kill-ring :straight t 
-             :bind 
-             (("M-Y" . browse-kill-ring))
-             :config
-             (setq browse-kill-ring-separator "\f")
-             (define-key browse-kill-ring-mode-map (kbd "C-g") 'browse-kill-ring-quit)
-             (define-key browse-kill-ring-mode-map (kbd "M-n") 'browse-kill-ring-forward)
-             (define-key browse-kill-ring-mode-map (kbd "M-p") 'browse-kill-ring-previous)
-             )
+  :bind 
+  (("M-Y" . browse-kill-ring))
+  :config
+  (setq browse-kill-ring-separator "\f")
+  (define-key browse-kill-ring-mode-map (kbd "C-g") 'browse-kill-ring-quit)
+  (define-key browse-kill-ring-mode-map (kbd "M-n") 'browse-kill-ring-forward)
+  (define-key browse-kill-ring-mode-map (kbd "M-p") 'browse-kill-ring-previous)
+  )
 
 (use-package page-break-lines :straight t 
-             :config 
-             (add-hook 'after-init-hook 'global-page-break-lines-mode)
-             (add-to-list 'page-break-lines-modes 'browse-kill-ring-mode))
+  :config 
+  (add-hook 'after-init-hook 'global-page-break-lines-mode)
+  (add-to-list 'page-break-lines-modes 'browse-kill-ring-mode))
 
 
 (add-hook 'after-init-hook 'show-paren-mode)
@@ -126,11 +116,11 @@
 
 
 (use-package move-dup :straight t 
-             :bind (([M-S-down] . move-dup-duplicate-down)
-                    ([M-S-up] . move-dup-duplicate-up)
-                    ([M-down] . move-dup-move-lines-down)
-                    ([M-up] . move-dup-move-lines-up)
-                    ))
+  :bind (([M-S-down] . move-dup-duplicate-down)
+         ([M-S-up] . move-dup-duplicate-up)
+         ([M-down] . move-dup-move-lines-down)
+         ([M-up] . move-dup-move-lines-up)
+         ))
 
 
 (defun sanityinc/backward-up-sexp (arg)

@@ -1,5 +1,7 @@
 ;;  -*- lexical-binding: t; -*-
 
+
+(use-package olivetti :straight t)
 (add-hook 'after-init-hook 'winner-mode)
 
 ;; window
@@ -16,10 +18,6 @@
   (other-window 1))
 
 
-(use-package switch-window :straight t :bind (("C-x o" . switch-window))
-  :config
-  (setq-default switch-window-shortcut-style 'alphabet)
-(setq-default switch-window-timeout nil))
 
 
 ;; When splitting window, show (other-buffer) in the new window
@@ -106,5 +104,11 @@ Call a second time to restore the original window configuration."
 (global-set-key (kbd "<f7>") 'sanityinc/split-window)
 (global-set-key (kbd "C-x |") 'split-window-horizontally-instead)
 (global-set-key (kbd "C-x _") 'split-window-vertically-instead)
+
+(use-package switch-window :straight t :bind (("C-x o" . switch-window))
+  :config
+  (setq-default switch-window-shortcut-style 'alphabet)
+  (setq-default switch-window-timeout nil))
+
 
 (provide 'init-window)

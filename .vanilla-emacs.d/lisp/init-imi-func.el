@@ -352,4 +352,5 @@ If you omit CLOSE, it will reuse OPEN."
   (interactive)
   (other-window -1))
 
+
 (provide 'init-imi-func)
