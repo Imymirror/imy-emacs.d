@@ -55,6 +55,8 @@
 (require 'init-org-download)
 (require 'init-citar)
 (require 'init-automation)
+(require 'init-mac-front-app)
+
 (require 'init-smartparens)
 (require 'init-yasnippet)
 (require 'init-which-key)
