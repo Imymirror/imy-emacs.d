@@ -7,7 +7,11 @@
 
 (require 'init-vertico)
 (require 'init-consult)
-(use-package marginalia :straight t :bind (:map minibuffer-local-map ("M-A" . marginalia-cycle)) :init (marginalia-mode) :custom   (marginalia-max-relative-age 0))
+
+(use-package marginalia :straight t
+  :bind (:map minibuffer-local-map ("M-A" . marginalia-cycle))
+  :custom   (marginalia-max-relative-age 0))
+
 (require 'init-embark)
 
 
