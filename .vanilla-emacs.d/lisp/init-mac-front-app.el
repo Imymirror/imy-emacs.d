@@ -15,36 +15,29 @@
 (defvar process-test-sentinel-wait-timeout 2.0)
 
 (defun imi/mac-set-app-front-by-id(id)
-  (let ((script
-         (concat
-          "tell application \"System Events\"\n"
-          "set frontmost of the first process whose unix id is " id " to true\n"
-          "end tell\n"
-          )))
+  (let* ((script
+          (concat
+           "tell application \"System Events\"\n"
+           "set frontmost of the first process whose unix id is " id " to true\n"
+           "end tell\n"
+           ))
+         (proc (start-process "osascript-getinfo" "*osascript*" "osascript" "-e" script))
+         ;; (stdout-output nil)
+         (sentinel-output nil)
 
-    (let (
-          (proc (start-process "osascript-getinfo" "*osascript*" "osascript" "-e" script))
-          ;; (stdout-output nil)
-          (sentinel-output nil)
+         (sentinel-called nil)
+         (start-time (float-time)))
 
-          (sentinel-called nil)
-          (start-time (float-time))
-          )
-      ;; (set-process-filter proc (lambda (proc input)
-      ;; (message (concat "ttt: " input))
-      ;; (push input stdout-output)))
-      
+    (set-process-sentinel proc (lambda (proc msg)
+                                 (push msg sentinel-output)
+                                 (setq sentinel-called t)))
 
-      (set-process-sentinel proc (lambda (proc msg)
-                                   (push msg sentinel-output)
-                                   (setq sentinel-called t)))
+    (while (not (or sentinel-called
+        	    (> (- (float-time) start-time)
+        	       process-test-sentinel-wait-timeout)))
+      (accept-process-output))
 
-      (while (not (or sentinel-called
-        	      (> (- (float-time) start-time)
-        	         process-test-sentinel-wait-timeout)))
-        (accept-process-output))
-      
-      (when (not (equal "finished\n" (mapconcat #'identity (nreverse sentinel-output) ""))) (progn (setq imi/ebook-process-id nil) (imi/switch-to-ebook-viewer))))))
+    (when (not (equal "finished\n" (mapconcat #'identity (nreverse sentinel-output) ""))) (progn (setq imi/ebook-process-id nil) (imi/switch-to-ebook-viewer)))))
 
 (defun imi/switch-to-ebook-viewer()
   (interactive)
@@ -52,7 +45,7 @@
                              (when (string= "" (imi/get-ebook-process-id))
                                (let ((output (imi/get-shell-command-string (concat "command -v -- " imi/process-name )) ))
                                  (if (equal output "") ;; check if normal app
-                                    (shell-command-to-string (concat "/usr/bin/open -a " imi/process-name ))
+                                     (shell-command-to-string (concat "/usr/bin/open -a " imi/process-name ))
                                    (start-process "osascript-getinfo" "*osascript*"  imi/process-name "&"))))
                              
                              (setq imi/ebook-process-id (imi/get-ebook-process-id))))
