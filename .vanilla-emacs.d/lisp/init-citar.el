@@ -15,7 +15,6 @@
 		      ("C-c c C" . citar-insert-reference)
 		      ("C-c c r" . citar-refresh))
   :config
-;;  (setq citar-at-point-function 'embark-act)
   (setq citar-file-open-function 'org-open-file)
   (setq citar-templates
       '((main . "${author editor:10} ${date year issued:4}   ${title:48}")
