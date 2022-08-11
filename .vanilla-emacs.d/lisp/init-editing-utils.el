@@ -68,7 +68,7 @@
 (use-package rainbow-delimiters :straight t 
   :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
-(use-package symbol-overlay :straight t 
+(use-package symbol-overlay :straight t :disabled nil
   :config 
 
 

@@ -68,18 +68,24 @@
   (interactive)
   (imi/switch-app-by-process-name "sioyek"))
 
-(defmacro imi/install-macfa (process-name)
+(defmacro imi/install-macfa (process-name &optional rename)
   "Give process-name regarding macos, install the interactive command to front the app"
-  `(defun  ,(intern (format "imi/macfa-%s" (downcase (replace-regexp-in-string " " "-" process-name)))) ()
-       ,(format "front macs app : %s " process-name)
+  (let ((func-name (if rename rename process-name)))
+   `(defun  ,(intern (format "imi/macfa-%s" (downcase (replace-regexp-in-string " " "-" func-name)))) ()
+       ,(format "front macs app : %s " func-name)
        (interactive)
-       (imi/switch-app-by-process-name ,process-name)))
+       (imi/switch-app-by-process-name ,process-name)) 
+    )
+  )
 
 (imi/install-macfa "finder")
 (imi/install-macfa "sioyek")
+(imi/install-macfa "zathura")
 (imi/install-macfa "iTerm")
 (imi/install-macfa "Google Chrome")
 (imi/install-macfa "Zotero")
+(imi/install-macfa "网易有道词典" "youdao")
+
 
 (global-set-key (kbd "C-c g s") 'imi/macfa-sioyek)
 (global-set-key (kbd "C-c g i") 'imi/macfa-iterm)

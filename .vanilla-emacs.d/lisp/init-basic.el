@@ -29,6 +29,6 @@
 (setq display-time-24hr-format t)
 ;;(setq display-time-format "%I:%M")
 
-
+(setq delete-by-moving-to-trash t)
 
 (provide 'init-basic)
