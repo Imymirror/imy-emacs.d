@@ -1,7 +1,8 @@
 ;;  -*- lexical-binding: t; -*-
 (use-package acme-theme :straight t
-  :config
-  (load-theme 'acme t))
+  ;; :config
+  ;; (load-theme 'acme t)
+  )
 
 
 (use-package doom-themes
@@ -42,7 +43,17 @@
 (use-package rand-theme :straight t :defer 0.1
   :config
   (setq rand-theme-unwanted '(tsdh-light tsdh-dark doom-shades-of-purple doom-fairy-floss  tango-dark   doom-nova  light-blue manoj-dark ))
-  (rand-theme)
+
+  (setq rand-theme-wanted '(ef-day    ef-dark   ef-light  ef-night  ef-autumn ef-spring  ef-winter
+                                      ;;ef-summer
+                                      ))
+  ;; (rand-theme)
+  (load-theme 'ef-night)
 )
+
+(use-package ef-themes :straight (:host github :repo "protesilaos/ef-themes")
+  :config
+  ;;(package-install-file (concat straight-base-dir "/straight/" straight-build-dir "/ef-themes/" ))
+  )
 
 (provide 'init-theme)

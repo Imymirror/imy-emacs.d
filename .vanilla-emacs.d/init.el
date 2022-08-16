@@ -55,8 +55,6 @@
 (require 'init-org-download)
 (require 'init-citar)
 (require 'init-automation)
-;;(require 'init-mac-front-app)
-;; (require 'macfa-mode)
 (require 'init-macfa-mode)
 
 (require 'init-smartparens)
@@ -95,6 +93,5 @@
 (put 'narrow-to-region 'disabled nil)
 
 
-
-;; (require 'init-epub)
+(require 'init-trans-mode)
 

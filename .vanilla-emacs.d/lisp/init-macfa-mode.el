@@ -14,4 +14,5 @@
   ;; (define-key macfa-mode-map (kbd "C-c s s") 'macfa-finder)
   )
 
+
 (provide 'init-macfa-mode)
