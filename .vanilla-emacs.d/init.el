@@ -90,7 +90,7 @@
 (require 'init-term)
 
 (require 'init-custom)
-(put 'narrow-to-region 'disabled nil)
+
 
 
 (require 'init-trans-mode)

@@ -48,7 +48,7 @@
                                       ;;ef-summer
                                       ))
   ;; (rand-theme)
-  (load-theme 'ef-night)
+  (load-theme 'ef-winter)
 )
 
 (use-package ef-themes :straight (:host github :repo "protesilaos/ef-themes")

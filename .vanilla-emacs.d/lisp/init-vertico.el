@@ -24,8 +24,12 @@ folder, otherwise delete a word"
                          vertico-reverse)
 	      )
   :bind (:map minibuffer-local-map
-	      ("M-<backspace>" . dw/minibuffer-backward-kill))
+	      ("M-<backspace>" . dw/minibuffer-backward-kill)
+              :map vertico-map
+              ("<tab>" . vertico-insert)
+           )
   :init (vertico-mode))
+
 
 
 
