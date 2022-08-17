@@ -6,3 +6,6 @@
 2. 放弃 doom-emacs 尝试 [[file:configure-emacs-from-scratch.org][从零配置 emacs]], 尽可能地玩一遍 emacs 相关的插件。
 3. 对 2 配置不断完善，开始尝试使用 org babel 来管理配置。[[file:configure-emacs-by-babel.org][emacs babel 版本的文档]]。真实配置目录是 [[file:.emacs.d/][.emacs.d]]
 4. 放弃 evil，转向 meow，尝试 vanilla emacs。真实配置目录是 [[file:.vanilla-emacs.d/][.vanilla-emacs.d]]
+5. 开始尝试给 emacs 写插件
+   - [[https://github.com/Imymirror/macfa-mode][Imymirror/macfa-mode: a emacs package that set frontmost of macos app by system process name]]
+   - [[https://github.com/Imymirror/trans-mode][Imymirror/trans-mode: Emacs minor mode : a translator depends on traslate-shell]]
