@@ -103,4 +103,5 @@
   ("C-c n r" . consult-org-roam-search))
 
 
+
 (provide 'init-roam)

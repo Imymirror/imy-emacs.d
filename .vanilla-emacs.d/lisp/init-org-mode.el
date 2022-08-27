@@ -39,8 +39,8 @@
   (add-hook 'org-mode-hook 'org-indent-mode)
   (add-hook 'org-mode-hook (lambda() (setq truncate-lines nil)))
 
-
   (setq org-startup-folded 'showall)
+  
 
   ;; (require 'warnings)
   ;; (setq warning-suppress-types (append warning-suppress-types '((org-element-cache))))

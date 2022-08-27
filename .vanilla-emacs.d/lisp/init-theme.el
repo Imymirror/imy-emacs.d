@@ -46,6 +46,7 @@
 
   (setq rand-theme-wanted '(ef-day    ef-dark   ef-light  ef-night  ef-autumn ef-spring  ef-winter
                                       ;;ef-summer
+                                      doom-solarized-dark-high-contrast
                                       ))
   ;; (rand-theme)
   (load-theme 'ef-winter)

@@ -25,7 +25,8 @@
 (require 'init-basic)
 (require 'init-recentf)
 (require 'init-meow)
- 					; (require 'init-platforms)
+
+;; (require 'init-platforms)
 
 (require 'init-roam)
 (require 'init-org-mode)
@@ -90,8 +91,6 @@
 (require 'init-term)
 
 (require 'init-custom)
-
-
 
 (require 'init-trans-mode)
 

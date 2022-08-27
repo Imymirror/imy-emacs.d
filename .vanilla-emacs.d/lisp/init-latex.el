@@ -6,7 +6,7 @@
   (setq org-latex-listings t)
 
   (setq org-latex-create-formula-image-program 'dvisvgm)
-  (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.6))
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
   (setq org-preview-latex-image-directory (expand-file-name "~/env/emacs/cache/"))
   
   (add-to-list 'org-latex-classes
