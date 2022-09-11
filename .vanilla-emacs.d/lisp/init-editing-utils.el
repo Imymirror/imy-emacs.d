@@ -11,9 +11,9 @@
 ;;   (setq-default beacon-size 20)
 ;;   (setq beacon-color "#765"))
 
-(when (fboundp 'electric-pair-mode)
-  (add-hook 'after-init-hook 'electric-pair-mode))
-(add-hook 'after-init-hook 'electric-indent-mode)
+;; (when (fboundp 'electric-pair-mode)
+;;   (add-hook 'after-init-hook 'electric-pair-mode))
+;; (add-hook 'after-init-hook 'electric-indent-mode)
 
 (add-hook 'after-init-hook 'delete-selection-mode)
 

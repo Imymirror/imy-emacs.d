@@ -1,5 +1,8 @@
 ;;  -*- lexical-binding: t; -*-
 
+(defun imi/bookmark-set (c) (bookmark-set c))
+(defun imi/bookmark-jump (c) (bookmark-jump c))
+
 (use-package emacs
   :bind (
 	 ("M-s-s" . crux-visit-term-buffer)

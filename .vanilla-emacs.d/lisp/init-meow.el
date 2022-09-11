@@ -119,6 +119,18 @@
 
    )
   (meow-normal-define-key
+   '("M a" . (lambda () (interactive) (bookmark-set "a")))
+   '("` a" . (lambda () (interactive) (bookmark-jump "a")))
+   '("M s" . (lambda () (interactive) (bookmark-set "s")))
+   '("` s" . (lambda () (interactive) (bookmark-jump "s")))
+   '("M j" . (lambda () (interactive) (bookmark-set "j")))
+   '("` j" . (lambda () (interactive) (bookmark-jump "j")))
+   '("M k" . (lambda () (interactive) (bookmark-set "k")))
+   '("` k" . (lambda () (interactive) (bookmark-jump "k")))
+   
+   '("9" . meow-expand-9)
+
+   
    '("0" . meow-expand-0)
    '("9" . meow-expand-9)
    '("8" . meow-expand-8)

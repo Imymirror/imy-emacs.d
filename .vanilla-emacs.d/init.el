@@ -58,7 +58,7 @@
 (require 'init-automation)
 (require 'init-macfa-mode)
 
-(require 'init-smartparens)
+;; (require 'init-smartparens)
 (require 'init-yasnippet)
 (require 'init-which-key)
 
