@@ -15,18 +15,18 @@
 		      ("C-c c C" . citar-insert-reference)
 		      ("C-c c r" . citar-refresh))
   :config
-  (setq citar-file-open-function 'org-open-file)
+  (setq citar-file-open-function #'consult-file-externally) 
   (setq citar-templates
-      '((main . "${author editor:10} ${date year issued:4}   ${title:48}")
-        (suffix . " ${=key= id:15}  ${=type=:12}  ${tags keywords:*}")
-        (preview . "${author editor} (${year issued date}) ${title}, ${journal journaltitle publisher container-title collection-title}.\n")
-        (note . "Notes on ${author editor}, ${title}")))
+        '((main . "${author editor:10} ${date year issued:4}   ${title:48}")
+          (suffix . " ${=key= id:15}  ${=type=:12}  ${tags keywords:*}")
+          (preview . "${author editor} (${year issued date}) ${title}, ${journal journaltitle publisher container-title collection-title}.\n")
+          (note . "Notes on ${author editor}, ${title}")))
 
-;; (defun my-minibuffer-setup ()
-;;        (set (make-local-variable 'face-remapping-alist)
-;;             '((default :height 1.0 :family "Sarasa Mono SC Nerd"))))
+  ;; (defun my-minibuffer-setup ()
+  ;;        (set (make-local-variable 'face-remapping-alist)
+  ;;             '((default :height 1.0 :family "Sarasa Mono SC Nerd"))))
 
-;; (add-hook 'minibuffer-setup-hook 'my-minibuffer-setup)
-)
+  ;; (add-hook 'minibuffer-setup-hook 'my-minibuffer-setup)
+  )
 
 (provide 'init-citar)
