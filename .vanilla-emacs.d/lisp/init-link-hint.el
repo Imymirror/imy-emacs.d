@@ -6,7 +6,6 @@
   :bind
   (
    ;; :map org-mode-map
-	("C-c l" . link-hint-open-link))
-  )
+	("C-c l" . link-hint-open-link)))
 
 (provide 'init-link-hint)

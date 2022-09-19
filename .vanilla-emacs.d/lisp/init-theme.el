@@ -42,12 +42,12 @@
 
 (use-package rand-theme :straight t :defer 0.1
   :config
-  (setq rand-theme-unwanted '(tsdh-light tsdh-dark doom-shades-of-purple doom-fairy-floss  tango-dark   doom-nova  light-blue manoj-dark ))
+  (setq rand-theme-unwanted '(tsdh-light tsdh-dark doom-shades-of-purple doom-fairy-floss  tango-dark   doom-nova  light-blue manoj-dark wombat))
 
-  (setq rand-theme-wanted '(ef-day    ef-dark   ef-light  ef-night  ef-autumn ef-spring  ef-winter
-                                      ;;ef-summer
-                                      doom-solarized-dark-high-contrast
-                                      ))
+  ;; (setq rand-theme-wanted '(ef-day    ef-dark   ef-light  ef-night  ef-autumn ef-spring  ef-winter
+  ;;                                     ;;ef-summer
+  ;;                                     doom-solarized-dark-high-contrast
+  ;;                                     ))
   ;; (rand-theme)
   (load-theme 'ef-winter)
 )
