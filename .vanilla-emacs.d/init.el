@@ -92,5 +92,10 @@
 
 (require 'init-custom)
 
+(use-package markdown-mode :straight t
+  :ensure t
+  :mode ("README\\.md\\'" . gfm-mode)
+  :init (setq markdown-command "multimarkdown"))
+
 (require 'init-trans-mode)
 

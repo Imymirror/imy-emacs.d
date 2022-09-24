@@ -1,17 +1,20 @@
 ;;  -*- lexical-binding: t; -*-
 
-
-;;(set-face-attribute 'default nil :height 140 :weight 'regular :width 'normal :family "PingFang SC")
+;; (set-face-attribute 'default nil :height 140 :weight 'regular :width 'normal :family "PingFang SC")
 ;; (set-face-attribute 'default nil :height 140 :weight 'regular :width 'normal :family "Fira Code")
-; (set-face-attribute 'mode-line nil :font "SongTi SC-20" :weight 'regular )
+;; (set-face-attribute 'mode-line nil :font "SongTi SC-20" :weight 'regular )
 
-; (set-face-attribute 'default nil :height 130 :weight 'regular :width 'normal :family "Adobe Caslon Pro")
- (set-face-attribute 'default nil :height 140)
-;; Hiragino Sans GB
+;; (set-face-attribute 'default nil :height 130 :weight 'regular :width 'normal :family "Adobe Caslon Pro")
+;; (set-face-attribute 'default nil :height 140)
 
-;; (set-frame-font "Fira Code-13" nil t)
- ;; (set-fontset-font t 'han      (font-spec :family "Hiragino Sans GB" :size 15))
- ;; (set-fontset-font t 'cjk-misc (font-spec :family "Hiragino Sans GB" :size 15))                                                        
+(set-frame-font "Fira Code-14" nil t)
+(set-fontset-font t 'han      (font-spec :family "Hiragino Sans GB" :weight 'regular :size 15))
+(set-fontset-font t 'cjk-misc (font-spec :family "Hiragino Sans GB" :size 15))
+
+(add-hook 'after-make-frame-functions (lambda (frame)
+                                        (set-frame-font "Fira Code-14" nil t)
+                                        (set-fontset-font t 'han      (font-spec :family "Hiragino Sans GB" :weight 'regular :size 15))
+                                        (set-fontset-font t 'cjk-misc (font-spec :family "Hiragino Sans GB" :size 15))))
 
 ;; mode-line
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
