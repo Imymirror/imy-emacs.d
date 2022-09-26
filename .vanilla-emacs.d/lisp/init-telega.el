@@ -22,7 +22,7 @@
     (interactive)
     (make-face 'my-telega-face)
     ;; (set-face-attribute 'my-telega-face nil :font "M+ 1m")
-    (set-face-attribute 'my-telega-face nil :font "Sarasa Mono SC Nerd 13")
+    (set-face-attribute 'my-telega-face nil :font "Sarasa Mono SC Nerd 14")
 ;;    (set-face-attribute 'my-telega-face nil :font "Fira Code 12")
 
     (setq buffer-face-mode-face 'my-telega-face)

@@ -88,7 +88,7 @@
 (require 'init-search-engine)
 
 (use-package crux :straight t)
-(require 'init-term)
+;; (require 'init-term)
 
 (require 'init-custom)
 

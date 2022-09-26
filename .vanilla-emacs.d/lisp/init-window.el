@@ -17,9 +17,6 @@
   (split-window-horizontally)
   (other-window 1))
 
-
-
-
 ;; When splitting window, show (other-buffer) in the new window
 
 (defun split-window-func-with-other-buffer (split-function)
@@ -101,6 +98,7 @@ Call a second time to restore the original window configuration."
 (global-set-key (kbd "C-c w r") (split-window-func-with-other-buffer 'split-window-horizontally))
 (global-set-key (kbd "C-x 1") 'sanityinc/toggle-delete-other-windows)
 (global-set-key (kbd "C-c w m") 'sanityinc/toggle-delete-other-windows)
+(global-set-key (kbd "C-c w M") 'maximize-window)
 (global-set-key (kbd "<f7>") 'sanityinc/split-window)
 (global-set-key (kbd "C-x |") 'split-window-horizontally-instead)
 (global-set-key (kbd "C-x _") 'split-window-vertically-instead)
