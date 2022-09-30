@@ -1,7 +1,7 @@
 #+title: README
 
 * introduce
-我的 emacs 配置之旅，分成四个阶段 :
+我的 emacs 配置之旅，分成五个阶段 :
 1. 使用 doom-emacs。
 2. 放弃 doom-emacs 尝试 [[file:configure-emacs-from-scratch.org][从零配置 emacs]], 尽可能地玩一遍 emacs 相关的插件。
 3. 对 2 配置不断完善，开始尝试使用 org babel 来管理配置。[[file:configure-emacs-by-babel.org][emacs babel 版本的文档]]。真实配置目录是 [[file:.emacs.d/][.emacs.d]]

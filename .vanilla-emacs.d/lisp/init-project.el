@@ -18,6 +18,7 @@
   (treemacs-add-and-display-current-project))
 
 (use-package projectile   :straight t
+  :after meow
   :init
   (projectile-mode 1)
   :bind-keymap ("C-c p" . projectile-command-map)
