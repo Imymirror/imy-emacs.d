@@ -12,7 +12,7 @@
 (add-to-list 'load-path imi/lisp-dir)
 (add-to-list 'load-path imi/site-lisp-dir) ;; 第三方库
 
-
+(require 'init-proxy)
 (require 'init-straight)
 
 (require 'init-speedup)
@@ -101,7 +101,6 @@
   :init (setq markdown-command "multimarkdown"))
 
 (require 'init-trans-mode)
-
 
 
 (put 'scroll-left 'disabled nil)
