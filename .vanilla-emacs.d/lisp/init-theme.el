@@ -16,7 +16,7 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
 	doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (load-theme 'doom-solarized-dark-high-contrast  t)
+  (load-theme 'doom-rouge  t)
   
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)

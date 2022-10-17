@@ -43,4 +43,5 @@
                     ;; add accent snippets
                     :cond #'laas-object-on-left-condition
                     "qq" (lambda () (interactive) (laas-wrap-previous-object "sqrt"))))
+
 (provide 'init-latex)

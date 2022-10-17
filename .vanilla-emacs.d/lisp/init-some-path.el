@@ -1,6 +1,6 @@
 ;;  -*- lexical-binding: t; -*-
 
-(setq imi/central-management-system-root-path "~/central-management-system/")
+(setq imi/central-management-system-root-path "~/imymirror/")
 
 
 (setq sensitive-path "~/private/sensitive.el")

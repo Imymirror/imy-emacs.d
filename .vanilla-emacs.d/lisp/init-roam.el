@@ -3,8 +3,13 @@
 
 (setq imi/second-brain-root-path (concat imi/central-management-system-root-path "second-brain/"))
 
-(setq imi/roam-daily-path (concat imi/second-brain-root-path "note/daily-note/"))
-(setq imi/roam-directory-alist '("Learning-Management-System/blog"))
+
+(setq imi/roam-directory-alist '("Learning-Management-System/1-old-before-book-zixuedaquan"
+                                 "Learning-Management-System/2-zixuedaquan/heima-java-web"
+                                 "Learning-Management-System/2-zixuedaquan/pbr"
+                                 "Learning-Management-System/2-zixuedaquan/methodology"
+                                 "Learning-Management-System/2-zixuedaquan/psychology"
+                                 "Learning-Management-System/2-zixuedaquan/"))
 
 (defun imi/setup-roam-db (name)
   (let ((directory (concat imi/second-brain-root-path "note/" name))
@@ -42,6 +47,7 @@
          ("C-c n n" . org-roam-node-find)
          ;;         ("C-c n g" . org-roam-graph)
          ("C-c n g" . org-roam-ui-mode)
+         ("C-c n G" . org-roam-ui-node-local)
          ("C-c n i" . org-roam-node-insert)
          ("C-c n c" . org-roam-capture)
          ("C-c n t" . org-roam-tag-add)
@@ -57,11 +63,32 @@
 
   (add-to-list 'display-buffer-alist '("\\*org-roam\\*" (display-buffer-in-direction)   (direction . right) (window-width . 0.33) (window-height . fit-window-to-buffer)))
 
-  (setq org-roam-node-display-template "${tags:35} ${title:80}" )
+  ;;  (setq org-roam-node-display-template "${tags:35} ${title:80}" )
+  (cl-defmethod org-roam-node-filetitle ((node org-roam-node))
+    "Return the file TITLE for the node."
+    (org-roam-get-keyword "TITLE" (org-roam-node-file node)))
 
+  (cl-defmethod org-roam-node-hierarchy ((node org-roam-node))
+    "Return the hierarchy for the node."
+    (let ((title (org-roam-node-title node))
+          (olp (org-roam-node-olp node))
+          (level (org-roam-node-level node))
+          (filetitle (org-roam-node-filetitle node)))
+      (concat
+       (if (> level 0) (concat title " @@ ") title)
+       (if (> level 0) (concat filetitle "  "))
+       (if (> level 1) (concat (string-join olp " > ") ""))
+       )))
+
+  (setq org-roam-node-display-template "${tags:30} ${hierarchy:*} ")
+
+  
   ;; daily
   (require 'org-roam-dailies)
+  
+  (setq imi/roam-daily-path (concat imi/second-brain-root-path "note/daily-note/"))
   (setq org-roam-dailies-directory imi/roam-daily-path)
+  
   (setq org-roam-dailies-capture-templates '(("d" "default" entry "* %<%Y-%m-%d %H:%M> %?" :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n#+filetags: :daily:\n"))))
   (setq org-roam-capture-templates '(("d" "default" plain "%?" :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n") :unnarrowed t)))
 
@@ -82,7 +109,7 @@
 
 (use-package consult-org-roam :straight t
   :init
-;  (require 'consult-org-roam)
+                                        ;  (require 'consult-org-roam)
   ;; Activate the minor-mode
   (consult-org-roam-mode 1)
   :custom
@@ -101,7 +128,6 @@
   ("C-c n b" . consult-org-roam-backlinks)
   ("C-c n f" . consult-org-roam-forward-links)
   ("C-c n r" . consult-org-roam-search))
-
 
 
 (provide 'init-roam)

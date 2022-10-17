@@ -1,9 +1,11 @@
 ;;  -*- lexical-binding: t; -*-
 
+(setq imi/zotero-path "~/imymirror/zotero/")
+
 (use-package citar :straight t
   :no-require
   :custom
-  (org-cite-global-bibliography (list (concat imi/second-brain-root-path "assets/My Library.bib")))
+  (org-cite-global-bibliography (list (concat imi/zotero-path "My Library.bib")))
   (org-cite-insert-processor 'citar)
   (org-cite-follow-processor 'citar)
   (org-cite-activate-processor 'citar)

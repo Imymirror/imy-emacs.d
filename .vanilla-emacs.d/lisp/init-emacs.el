@@ -14,6 +14,7 @@
 	 ;; ("C-c d" . km-telega-chat-delete)
 	 )
   :config
-  (put 'narrow-to-region 'disabled nil))
+  (put 'narrow-to-region 'disabled nil)
+  (electric-pair-mode 1))
 
 (provide 'init-emacs)

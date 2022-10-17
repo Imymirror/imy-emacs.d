@@ -11,8 +11,6 @@
   (define-key telega-msg-button-map "k" nil)
   (define-key telega-msg-button-map (kbd "SPC") nil)
 
-  (global-set-key (kbd "C-M-s-)") 'telega)
-
   (setq telega-chat-show-avatars t)
   (setq telega-use-images t)
 
