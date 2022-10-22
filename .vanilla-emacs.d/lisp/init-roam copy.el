@@ -3,16 +3,39 @@
 
 (setq imi/second-brain-root-path (concat imi/central-management-system-root-path "second-brain/"))
 
-(defun imi/setup-roam-db (note-path name)
-  (let ((directory (concat note-path name))
+
+(setq imi/roam-directory-alist '("Learning-Management-System/1-old-before-book-zixuedaquan"
+                                 "Learning-Management-System/2-zixuedaquan/course-heima-java-web"
+                                 "Learning-Management-System/2-zixuedaquan/course-heima-ops"
+                                 "Learning-Management-System/2-zixuedaquan/course-heima-big-data"
+                                 "Learning-Management-System/2-zixuedaquan/course-fengmishangcheng"
+                                 "Learning-Management-System/2-zixuedaquan/java"
+                                 "Learning-Management-System/2-zixuedaquan/music"
+                                 "Learning-Management-System/2-zixuedaquan/novel"
+                                 "Learning-Management-System/2-zixuedaquan/jiagou"
+                                 "Learning-Management-System/2-zixuedaquan/plan"
+                                 "Learning-Management-System/2-zixuedaquan/git"
+                                 "Learning-Management-System/2-zixuedaquan/my"
+                                 "Learning-Management-System/2-zixuedaquan/english"
+                                 "Learning-Management-System/2-zixuedaquan/search"
+                                 "Learning-Management-System/2-zixuedaquan/pbr"
+                                 "Learning-Management-System/2-zixuedaquan/learning"
+                                 "Learning-Management-System/2-zixuedaquan/data-structure-algorithm"
+                                 "Learning-Management-System/2-zixuedaquan/compiler"
+                                 "Learning-Management-System/2-zixuedaquan/people"
+                                 "Learning-Management-System/2-zixuedaquan/psychology"
+                                 "Learning-Management-System/2-zixuedaquan/philosophy"
+                                 "Learning-Management-System/2-zixuedaquan/"))
+
+(defun imi/setup-roam-db (name)
+  (let ((directory (concat imi/second-brain-root-path "note/" name))
         (db (concat imi/second-brain-root-path "cache/" name ".db")))
-     (setq org-roam-directory  directory)
-     (setq org-roam-db-location db)
-    ))
+    (setq org-roam-directory  directory)
+    (setq org-roam-db-location db)))
 
 
 (defun imi/directory-files-no-dot (DIRECTORY &optional FULL MATCH NOSORT COUNT)
-  (cl-remove-if (lambda (x) (member x '("." ".." ".DS_Store" ".git" ".gitignore")))
+  (cl-remove-if (lambda (x) (member x '("." ".." ".DS_Store")))
                 (directory-files DIRECTORY)))
 
 (defun imi/switch-to-roam-root ()
@@ -26,24 +49,12 @@
 (defun imi/switch-roam-engineer ()
   (interactive)
   (let* (
-         (path (concat imi/second-brain-root-path "note/Learning-Management-System/2-zixuedaquan/"))
-         (choices (imi/directory-files-no-dot path))
+         (path (concat imi/second-brain-root-path "note/"))
+         (choices  (append (imi/directory-files-no-dot path) imi/roam-directory-alist))
+         ;; (choices '("algorithm" "rational-emacs" "flux-compose" "english" "chenhao" "zettlekasten" "pkm-roam" "roam"))
          (name (completing-read "select a roam engineering db: " choices)))
-    (imi/setup-roam-db path name)))
+    (imi/setup-roam-db name)))
 
-(defun imi/switch-between-roam-root ()
-  (interactive)
-  (imi/switch-roam-by-path "note/Learning-Management-System/")
-  )
-
-
-(defun imi/switch-roam-by-path (path)
-  (interactive)
-  (let* (
-         (path (concat imi/second-brain-root-path path))
-         (choices (imi/directory-files-no-dot path))
-         (name (completing-read "select a roam engineering db: " choices)))
-    (imi/setup-roam-db path name)))
 
 
 (use-package org-roam :straight t
@@ -58,9 +69,7 @@
          ("C-c n c" . org-roam-capture)
          ("C-c n t" . org-roam-tag-add)
          ("C-c n s" . imi/switch-roam-engineer)
-         ("C-c n S S" . org-roam-db-sync)
-         ("C-c n S B" . imi/switch-between-roam-root)
-         ("C-c n S R" . imi/switch-to-roam-root)
+         ("C-c n S" . org-roam-db-sync)
          ("C-c n d" . org-roam-dailies-map)
 
          ;; Dailies
@@ -100,6 +109,7 @@
   (setq org-roam-dailies-capture-templates '(("d" "default" entry "* %<%Y-%m-%d %H:%M> %?" :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n#+filetags: :daily:\n"))))
   (setq org-roam-capture-templates '(("d" "default" plain "%?" :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n") :unnarrowed t)))
 
+  (imi/setup-roam-db "Learning-Management-System")
   )
 
 

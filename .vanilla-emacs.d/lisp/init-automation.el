@@ -16,5 +16,4 @@
   (start-process "my-process" "automation" "sh" (concat (getenv "EMACSCFG_DIR") "/.emacs.d/shell/zotero-backup.sh")  "/bin"))
 
 
-
 (provide 'init-automation)
