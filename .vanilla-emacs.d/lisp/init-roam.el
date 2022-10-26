@@ -1,14 +1,19 @@
 ;; init-roam.el -*- lexical-binding: t; -*-
 
-
 (setq imi/second-brain-root-path (concat imi/central-management-system-root-path "second-brain/"))
+
+(defun imi/roam-mkdir (name)
+  "make a directory in roam not root directory."
+  (interactive "sEnter your directory name: ")
+  (let ((path (concat imi/second-brain-root-path "note/Learning-Management-System/2-zixuedaquan/" name)))
+    (message "path: %s" path)
+    (mkdir path)))
 
 (defun imi/setup-roam-db (note-path name)
   (let ((directory (concat note-path name))
         (db (concat imi/second-brain-root-path "cache/" name ".db")))
      (setq org-roam-directory  directory)
-     (setq org-roam-db-location db)
-    ))
+     (setq org-roam-db-location db)))
 
 
 (defun imi/directory-files-no-dot (DIRECTORY &optional FULL MATCH NOSORT COUNT)
@@ -35,7 +40,6 @@
   (interactive)
   (imi/switch-roam-by-path "note/Learning-Management-System/")
   )
-
 
 (defun imi/switch-roam-by-path (path)
   (interactive)
@@ -68,7 +72,7 @@
   ;; :bind-keymap ; defined in meow, otherwise cause a bug
   :config
   (org-roam-db-autosync-mode 1)
-
+  
   (add-to-list 'display-buffer-alist '("\\*org-roam\\*" (display-buffer-in-direction)   (direction . right) (window-width . 0.33) (window-height . fit-window-to-buffer)))
 
   ;;  (setq org-roam-node-display-template "${tags:35} ${title:80}" )
@@ -100,7 +104,7 @@
   (setq org-roam-dailies-capture-templates '(("d" "default" entry "* %<%Y-%m-%d %H:%M> %?" :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n#+filetags: :daily:\n"))))
   (setq org-roam-capture-templates '(("d" "default" plain "%?" :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n") :unnarrowed t)))
 
-  )
+  (imi/switch-to-roam-root))
 
 
 (use-package org-roam-ui

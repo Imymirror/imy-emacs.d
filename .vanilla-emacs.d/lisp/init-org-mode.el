@@ -15,17 +15,17 @@
   :bind (("C-c o l" . imi/copy-org-link ))
   :config
   ;;  headline press C-c C-c
-  (setq org-tag-alist '(("review" . ?r)
-                        ("summary" . ?s)
-                        ("case" . ?c)
-                        ("book" . ?b)
-                        ("economics" . ?e)
-                        ("refile" . ?r)
-                        ("twitter" . ?t)
-                        ("youtube" . ?y)
-                        ("emacs" . ?e)
-                        ("weibo" . ?w)
-                        ("how" . ?h)))
+  ;; (setq org-tag-alist '(("review" . ?r)
+  ;;                       ("summary" . ?s)
+  ;;                       ("case" . ?c)
+  ;;                       ("book" . ?b)
+  ;;                       ("economics" . ?e)
+  ;;                       ("refile" . ?r)
+  ;;                       ("twitter" . ?t)
+  ;;                       ("youtube" . ?y)
+  ;;                       ("emacs" . ?e)
+  ;;                       ("weibo" . ?w)
+  ;;                       ("how" . ?h)))
 
   (require 'ox-org)
 

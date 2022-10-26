@@ -102,5 +102,6 @@
 
 (require 'init-trans-mode)
 
+(use-package yaml-mode :straight t)
 
 (put 'scroll-left 'disabled nil)
