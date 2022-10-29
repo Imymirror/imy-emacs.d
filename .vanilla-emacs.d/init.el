@@ -1,4 +1,4 @@
-;;  -*- lexical-binding: t; -*-
+
 
 (setq user-init-file (or load-file-name (buffer-file-name)))
 (setq user-emacs-directory (file-name-directory user-init-file))
@@ -80,7 +80,6 @@
 (require 'init-rust)
 
 
-(use-package cmake-mode :load-path "site-lisp/cmake-mode")
 
 (require 'init-telega)
 (require 'init-keyboard-macro)
@@ -101,7 +100,8 @@
   :init (setq markdown-command "multimarkdown"))
 
 (require 'init-trans-mode)
-
 (use-package yaml-mode :straight t)
+(use-package json-mode :straight t)
+(use-package cmake-mode :load-path "site-lisp/cmake-mode")
 
 (put 'scroll-left 'disabled nil)
