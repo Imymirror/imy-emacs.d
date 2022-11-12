@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SECOND_BRAIN_DIR= ~/imymirror/second-brain
+SECOND_BRAIN_DIR=~/imymirror/second-brain
 
 pushd $SECOND_BRAIN_DIR/assets/
 
