@@ -1,6 +1,8 @@
 #!/bin/bash
 
-pushd ~/central-management-system/second-brain/assets/
+SECOND_BRAIN_DIR= ~/imymirror/second-brain
+
+pushd $SECOND_BRAIN_DIR/assets/
 
 sh auto-update.sh
 
