@@ -6,9 +6,8 @@
 (setq imi/lisp-dir (expand-file-name (concat user-emacs-directory "lisp")))
 (setq imi/site-lisp-dir (expand-file-name (concat user-emacs-directory "site-lisp")))
 (setq imi/roam-nursery-dir (expand-file-name (concat user-emacs-directory "nursery ")))
+
 (add-to-list 'load-path (concat imi/roam-nursery-dir "/lisp"))
-
-
 (add-to-list 'load-path imi/lisp-dir)
 (add-to-list 'load-path imi/site-lisp-dir) ;; 第三方库
 

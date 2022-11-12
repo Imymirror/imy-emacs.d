@@ -6,8 +6,8 @@ sh auto-update.sh
 
 popd
 
-pushd ~/central-management-system/project/Programming-source-code-analysis/
+# pushd ~/central-management-system/project/Programming-source-code-analysis/
 
-sh run.sh
+# sh run.sh
 
-popd
+# popd

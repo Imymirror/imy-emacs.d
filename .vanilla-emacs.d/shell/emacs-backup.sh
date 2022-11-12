@@ -4,17 +4,20 @@ export IMYMIRROR_INSTALL_DIR="$EMACSCFG_DIR/.emacs.d"
 
 pushd $IMYMIRROR_INSTALL_DIR
 
-cp ./init.el ~/central-management-system/project/imy-emacs.d/.vanilla-emacs.d/
+IMY_EMACS_DIR=~/imymirror/project/imy-emacs.d
+VANILLA_DIR=$IMY_EMACS_DIR/.vanilla-emacs.d
 
-cp -R ./shell ~/central-management-system/project/imy-emacs.d/.vanilla-emacs.d/
-cp -R ./lisp ~/central-management-system/project/imy-emacs.d/.vanilla-emacs.d/
-cp -R ./snippets ~/central-management-system/project/imy-emacs.d/.vanilla-emacs.d/
+cp ./init.el $VANILLA_DIR
 
-cp -R ./site-lisp ~/central-management-system/project/imy-emacs.d/.vanilla-emacs.d/
+cp -R ./shell $VANILLA_DIR 
+cp -R ./lisp $VANILLA_DIR
+cp -R ./snippets $VANILLA_DIR
+
+cp -R ./site-lisp $VANILLA_DIR
 
 popd
 
-pushd ~/central-management-system/project/imy-emacs.d/
+pushd $IMY_EMACS_DIR 
 
 sh ./setup.sh
 
