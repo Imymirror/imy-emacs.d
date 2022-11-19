@@ -15,18 +15,26 @@
   :bind (("C-c o l" . imi/copy-org-link ))
   :config
   ;;  headline press C-c C-c
-  ;; (setq org-tag-alist '(("review" . ?r)
-  ;;                       ("summary" . ?s)
-  ;;                       ("case" . ?c)
-  ;;                       ("book" . ?b)
-  ;;                       ("economics" . ?e)
-  ;;                       ("refile" . ?r)
-  ;;                       ("twitter" . ?t)
-  ;;                       ("youtube" . ?y)
-  ;;                       ("emacs" . ?e)
-  ;;                       ("weibo" . ?w)
-  ;;                       ("how" . ?h)))
-
+  
+;; (setq org-tag-persistent-alist '(("@work" . ?w) ("@home" . ?h) ("laptop" . ?l) ("test" . ?t) ))
+;; 根据 note:my/标签 来设置 org-tag-persistent-alist
+  (setq org-tag-persistent-alist '(("orientation" . ?w)
+                                   ("principle" . ?p)
+                                   ("define" . ?d)
+                                   ("evidence" . ?e)
+                                   ("quote" . ?q)
+                                   ("case" . ?c)
+                                   ("method" . ?m)
+                                   ("opinion" . ?o)
+                                   ("decision" . ?D)
+                                   ("textology" . ?T)
+                                   ("list" . ?l)
+                                   ("topic" . ?t)
+                                   ("thoery" . ?h)
+                                   ("vs" . ?v)
+                                   ("review" . ?r)
+                                   ))
+  
   (require 'ox-org)
 
 ;;  (global-visual-line-mode)

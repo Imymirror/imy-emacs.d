@@ -13,6 +13,7 @@
   (set-fontset-font t 'cjk-misc (font-spec :family "Hiragino Sans GB" :size 15)))
 
 (add-hook 'after-make-frame-functions (lambda (frame) (imi/set-font)))
+
 (imi/set-font)
 
 ;; mode-line

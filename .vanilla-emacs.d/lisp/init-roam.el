@@ -28,6 +28,13 @@
     (setq org-roam-db-location db)))
 
 
+(defun imi/switch-to-roam-zixue()
+  (interactive)
+  (let (
+        (path (concat imi/second-brain-root-path "note/Learning-Management-System/"))
+        (name "2-zixuedaquan"))
+    (imi/setup-roam-db path name)))
+
 (defun imi/switch-roam-engineer ()
   (interactive)
   (let* (
@@ -71,7 +78,6 @@
          ("C-c n j" . org-roam-dailies-capture-today))
   ;; :bind-keymap ; defined in meow, otherwise cause a bug
   :config
-  (org-roam-db-autosync-mode 1)
   
   (add-to-list 'display-buffer-alist '("\\*org-roam\\*" (display-buffer-in-direction)   (direction . right) (window-width . 0.33) (window-height . fit-window-to-buffer)))
 
@@ -104,7 +110,8 @@
   (setq org-roam-dailies-capture-templates '(("d" "default" entry "* %<%Y-%m-%d %H:%M> %?" :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n#+filetags: :daily:\n"))))
   (setq org-roam-capture-templates '(("d" "default" plain "%?" :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n") :unnarrowed t)))
 
-  (imi/switch-to-roam-root))
+  (imi/switch-to-roam-zixue)
+  (org-roam-db-autosync-mode 1))
 
 
 (use-package org-roam-ui
@@ -139,6 +146,13 @@
   ("C-c n b" . consult-org-roam-backlinks)
   ("C-c n f" . consult-org-roam-forward-links)
   ("C-c n r" . consult-org-roam-search))
+
+
+(defun imi/roam-insert-timeline ()
+  "insert org headline with timeline"
+  (interactive)
+  (end-of-buffer)
+  (insert (concat "** " (format-time-string "<%Y-%m-%d %a %H:%M>") " ")))
 
 
 (provide 'init-roam)

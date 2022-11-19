@@ -1,6 +1,6 @@
 ;;  -*- lexical-binding: t; -*-
 
-(setq imi/zotero-path "~/imymirror/zotero/")
+(setq imi/zotero-path "~/imymirror/material/zotero/")
 
 (use-package citar :straight t
   :no-require
