@@ -2,6 +2,37 @@
 
  ;; (use-package org-modern :straight t :config)
 
+(defun imi/org-set-tag()
+
+;; (setq org-tag-persistent-alist '(("@work" . ?w) ("@home" . ?h) ("laptop" . ?l) ("test" . ?t) ))
+;; 根据 note:my/标签 来设置 org-tag-persistent-alist
+  (setq org-tag-persistent-alist '(("orientation" . ?O)
+                                   ("principle" . ?P)
+                                   ("define" . ?d)
+                                   ("evidence" . ?e)
+                                   ("quote" . ?q)
+                                   ("case" . ?c)
+                                   ("method" . ?m)
+                                   ("opinion" . ?o)
+                                   ("decision" . ?D)
+                                   ("textology" . ?T)
+                                   ("list" . ?l)
+                                   ("topic" . ?t)
+                                   ("thoery" . ?h)
+                                   ("vs" . ?v)
+                                   ("review" . ?r)
+                                   ("schools" . ?S)
+                                   ("wiki" . ?w)
+                                   ("chain" . ?C)
+                                   ("book" . ?b)
+                                   ("series" . ?s)
+                                   ("course")
+                                   ("seminars")
+                                   ("people" . ?p)
+                                   ("insight" . ?i)
+                                   ))
+  )
+
 ;; This package provides visual alignment for Org Mode, Markdown and table.el tables on GUI Emacs.
 (use-package valign
   :straight
@@ -16,25 +47,8 @@
   :config
   ;;  headline press C-c C-c
   
-;; (setq org-tag-persistent-alist '(("@work" . ?w) ("@home" . ?h) ("laptop" . ?l) ("test" . ?t) ))
-;; 根据 note:my/标签 来设置 org-tag-persistent-alist
-  (setq org-tag-persistent-alist '(("orientation" . ?w)
-                                   ("principle" . ?p)
-                                   ("define" . ?d)
-                                   ("evidence" . ?e)
-                                   ("quote" . ?q)
-                                   ("case" . ?c)
-                                   ("method" . ?m)
-                                   ("opinion" . ?o)
-                                   ("decision" . ?D)
-                                   ("textology" . ?T)
-                                   ("list" . ?l)
-                                   ("topic" . ?t)
-                                   ("thoery" . ?h)
-                                   ("vs" . ?v)
-                                   ("review" . ?r)
-                                   ))
-  
+  (imi/org-set-tag)
+
   (require 'ox-org)
 
 ;;  (global-visual-line-mode)

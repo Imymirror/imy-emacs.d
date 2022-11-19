@@ -15,5 +15,9 @@
   (interactive)
   (start-process "my-process" "automation" "sh" (concat (getenv "EMACSCFG_DIR") "/.emacs.d/shell/zotero-backup.sh")  "/bin"))
 
+(defun imi/emacs-setup-test()
+  "emacs config test."
+  (interactive)
+  (start-process "my-process" "automation" "sh" (concat (getenv "EMACSCFG_DIR") "/.emacs.d/shell/emacs-setup-test.sh")  "/bin"))
 
 (provide 'init-automation)

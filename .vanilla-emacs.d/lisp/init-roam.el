@@ -68,6 +68,7 @@
          ("C-c n i" . org-roam-node-insert)
          ("C-c n c" . org-roam-capture)
          ("C-c n t" . org-roam-tag-add)
+         ("C-c n m" . imi/roam-mkdir)
          ("C-c n s" . imi/switch-roam-engineer)
          ("C-c n S S" . org-roam-db-sync)
          ("C-c n S B" . imi/switch-between-roam-root)
