@@ -2,6 +2,12 @@
 
 (setq imi/second-brain-root-path (concat imi/central-management-system-root-path "second-brain/"))
 
+(defun imi/roam-insert-timeline ()
+  "insert org headline with timeline"
+  (interactive)
+  (end-of-buffer)
+  (insert (concat "** " (format-time-string "<%Y-%m-%d %a %H:%M>") " ")))
+
 (defun imi/roam-mkdir (name)
   "make a directory in roam not root directory."
   (interactive "sEnter your directory name: ")
@@ -41,12 +47,28 @@
          (path (concat imi/second-brain-root-path "note/Learning-Management-System/2-zixuedaquan/"))
          (choices (imi/directory-files-no-dot path))
          (name (completing-read "select a roam engineering db: " choices)))
-    (imi/setup-roam-db path name)))
+    (imi/setup-roam-db path name)
+    (org-roam-node-find nil (concat "#timeline " name))))
 
 (defun imi/switch-between-roam-root ()
   (interactive)
-  (imi/switch-roam-by-path "note/Learning-Management-System/")
-  )
+  (imi/switch-roam-by-path "note/Learning-Management-System/"))
+
+(defun imi/switch-to-3-notecard-system ()
+  (interactive)
+  (let* (
+         (path (concat imi/second-brain-root-path "note/Learning-Management-System/"))
+                  (name "3-notecard-system"))
+    (imi/setup-roam-db path name)
+    (org-roam-db-sync)))
+
+(defun imi/switch-to-2-zixuedaquan ()
+  (interactive)
+  (let* (
+         (path (concat imi/second-brain-root-path "note/Learning-Management-System/"))
+         (choices (imi/directory-files-no-dot path))
+         (name "2-zixuedaquan"))
+    (imi/setup-roam-db path name)))
 
 (defun imi/switch-roam-by-path (path)
   (interactive)
@@ -55,7 +77,6 @@
          (choices (imi/directory-files-no-dot path))
          (name (completing-read "select a roam engineering db: " choices)))
     (imi/setup-roam-db path name)))
-
 
 (use-package org-roam :straight t
   :init
@@ -70,9 +91,12 @@
          ("C-c n t" . org-roam-tag-add)
          ("C-c n m" . imi/roam-mkdir)
          ("C-c n s" . imi/switch-roam-engineer)
-         ("C-c n S S" . org-roam-db-sync)
-         ("C-c n S B" . imi/switch-between-roam-root)
-         ("C-c n S R" . imi/switch-to-roam-root)
+         ("C-c n S" . org-roam-db-sync)
+         ("C-c n w b" . imi/switch-between-roam-root)
+         ("C-c n 0" . imi/switch-to-roam-root)
+         ("C-c n 3" . imi/switch-to-3-notecard-system)
+         ("C-c n 2" . imi/switch-to-2-zixuedaquan)
+         
          ("C-c n d" . org-roam-dailies-map)
 
          ;; Dailies
@@ -147,13 +171,5 @@
   ("C-c n b" . consult-org-roam-backlinks)
   ("C-c n f" . consult-org-roam-forward-links)
   ("C-c n r" . consult-org-roam-search))
-
-
-(defun imi/roam-insert-timeline ()
-  "insert org headline with timeline"
-  (interactive)
-  (end-of-buffer)
-  (insert (concat "** " (format-time-string "<%Y-%m-%d %a %H:%M>") " ")))
-
 
 (provide 'init-roam)

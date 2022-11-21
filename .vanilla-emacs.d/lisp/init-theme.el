@@ -28,7 +28,7 @@
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config)
 
-    (load-theme 'doom-tokyo-night  t)
+    (load-theme 'doom-solarized-dark-high-contrast  t)
 
   )
 
