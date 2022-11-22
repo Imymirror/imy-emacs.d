@@ -6,6 +6,8 @@
 
 ;; (setq org-tag-persistent-alist '(("@work" . ?w) ("@home" . ?h) ("laptop" . ?l) ("test" . ?t) ))
   ;; 根据 note:my/标签 来设置 org-tag-persistent-alist
+  (setq org-tag-alist '(("frustrated") ("principle") ("timeline")))
+  
   (setq org-tag-persistent-alist '(("orientation" . ?O)
                                    ("Q@A" . ?q)
                                    ("principle" . ?P)

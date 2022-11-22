@@ -124,7 +124,6 @@
        )))
 
   (setq org-roam-node-display-template "${tags:30} ${hierarchy:*} ")
-
   
   ;; daily
   (require 'org-roam-dailies)
