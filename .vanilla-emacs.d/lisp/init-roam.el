@@ -94,7 +94,7 @@
          ("C-c n S" . org-roam-db-sync)
          ("C-c n w b" . imi/switch-between-roam-root)
          ("C-c n 0" . imi/switch-to-roam-root)
-         ("C-c n 3" . imi/switch-to-3-notecard-system)
+         ;; ("C-c n 3" . imi/switch-to-3-notecard-system)
          ("C-c n 2" . imi/switch-to-2-zixuedaquan)
          
          ("C-c n d" . org-roam-dailies-map)
