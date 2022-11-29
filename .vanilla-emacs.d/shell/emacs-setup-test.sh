@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-pushd $EMACSCFG_DIR/.emacs.d/
+pushd $EMACSCFG_DIR
 
 sh setup-test.sh
 
