@@ -1,6 +1,6 @@
 #+title: README
 
-* introduce
+* Introduce
 我的 emacs 配置之旅，分成五个阶段 :
 1. 使用 doom-emacs。
 2. 放弃 doom-emacs 尝试 [[file:configure-emacs-from-scratch.org][从零配置 emacs]], 尽可能地玩一遍 emacs 相关的插件。
@@ -9,3 +9,4 @@
 5. 开始尝试给 emacs 写插件
    - [[https://github.com/Imymirror/macfa-mode][Imymirror/macfa-mode: a emacs package that set frontmost of macos app by system process name]]
    - [[https://github.com/Imymirror/trans-mode][Imymirror/trans-mode: Emacs minor mode : a translator depends on traslate-shell]]
+6. [2023-01-29 Sun 21:23]  简单实现 org-roam 多目录功能 : [[https://github.com/Imymirror/mrds-mode][Imymirror/mrds-mode: simple multiple roam directories support(MRDS).]]
